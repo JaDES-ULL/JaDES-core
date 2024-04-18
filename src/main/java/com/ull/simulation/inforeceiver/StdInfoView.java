@@ -1,14 +1,14 @@
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
 import java.io.PrintStream;
 
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.EntityLocationInfo;
-import es.ull.iis.simulation.info.ResourceInfo;
-import es.ull.iis.simulation.info.ResourceUsageInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.EntityLocationInfo;
+import com.ull.simulation.info.ResourceInfo;
+import com.ull.simulation.info.ResourceUsageInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
 
 public class StdInfoView extends Listener {
 

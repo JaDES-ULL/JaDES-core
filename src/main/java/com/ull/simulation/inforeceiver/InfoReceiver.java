@@ -1,9 +1,9 @@
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.model.Simulation;
 
 public abstract class InfoReceiver {
 

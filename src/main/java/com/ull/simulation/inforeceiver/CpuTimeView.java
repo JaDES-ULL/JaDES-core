@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
 import java.io.PrintStream;
 
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
 
 /**
  * A listener to compute the CPU time of the simulation 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class CpuTimeView extends Listener {

@@ -1,22 +1,22 @@
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import es.ull.iis.simulation.info.AsynchronousInfo;
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.EntityLocationInfo;
-import es.ull.iis.simulation.info.ResourceInfo;
-import es.ull.iis.simulation.info.ResourceUsageInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.info.SynchronousInfo;
-import es.ull.iis.simulation.info.TimeChangeInfo;
-import es.ull.iis.simulation.info.UserInfo;
-import es.ull.iis.simulation.info.VarViewValueRequestInfo;
+import com.ull.simulation.info.AsynchronousInfo;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.EntityLocationInfo;
+import com.ull.simulation.info.ResourceInfo;
+import com.ull.simulation.info.ResourceUsageInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.info.SynchronousInfo;
+import com.ull.simulation.info.TimeChangeInfo;
+import com.ull.simulation.info.UserInfo;
+import com.ull.simulation.info.VarViewValueRequestInfo;
 
 public class SimulationInfoHandler implements InfoHandler {
 

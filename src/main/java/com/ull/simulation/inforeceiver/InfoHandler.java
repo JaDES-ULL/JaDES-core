@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
-import es.ull.iis.simulation.info.AsynchronousInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SynchronousInfo;
+import com.ull.simulation.info.AsynchronousInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SynchronousInfo;
 
 /**
  * @author ycallero

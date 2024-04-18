@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.inforeceiver;
+package com.ull.simulation.inforeceiver;
 
 import java.util.ArrayList;
 
