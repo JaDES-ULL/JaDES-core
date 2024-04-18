@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.condition;
+package com.ull.simulation.condition;
 
 /**
  * Defines a {@link Condition} which is satisfied according to a specified percentage

@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.condition;
+package com.ull.simulation.condition;
 
 /**
  * A logical condition which is used for creating restrictions or uncertain situations. A {@link Condition} is "checked" by using the 

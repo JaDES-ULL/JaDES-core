@@ -1,14 +1,11 @@
-/**
- * 
- */
-package es.ull.iis.simulation.condition;
+package com.ull.simulation.condition;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * A logical OR condition among a collection of conditions
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class OrCondition<E> extends Condition<E> {
 	/** Collection of conditions */

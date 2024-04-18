@@ -1,13 +1,10 @@
-/**
- * 
- */
-package es.ull.iis.simulation.condition;
+package com.ull.simulation.condition;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ResourceType;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ResourceType;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class ResourceTypeAcquiredCondition extends Condition<ElementInstance> {

@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.util.Prioritizable;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.util.Prioritizable;
 
 /**
  * Describes a set of elements which have something in common. This is simply a descriptive attribute
  * and is used for statistic issues.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class ElementType extends VariableStoreSimulationObject implements EntityType, Prioritizable {
 	/** Element's priority in an activity queue. Minimum value: 0. */
