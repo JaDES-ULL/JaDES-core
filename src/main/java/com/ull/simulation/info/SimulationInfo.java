@@ -1,12 +1,12 @@
-package es.ull.iis.simulation.info;
+package com.ull.simulation.info;
 
-import es.ull.iis.simulation.model.Describable;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Describable;
+import com.ull.simulation.model.Simulation;
 
 public abstract class SimulationInfo {
 	/**
 	 * A common interface for all the Type enums that appear in each {@link SimulationInfo} class 
-	 * @author Iván Castilla
+	 * @author Ivï¿½n Castilla
 	 *
 	 */
 	public interface InfoType extends Describable {	}

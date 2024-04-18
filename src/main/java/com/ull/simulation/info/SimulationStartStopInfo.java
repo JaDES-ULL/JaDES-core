@@ -1,11 +1,11 @@
-package es.ull.iis.simulation.info;
+package com.ull.simulation.info;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * Information related to the start, end and time advance during simulation. Collects the simulation timestamp, and the CPU time for the start and
  * end of the simulation.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class SimulationStartStopInfo extends AsynchronousInfo {

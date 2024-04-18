@@ -1,11 +1,11 @@
-package es.ull.iis.simulation.info;
+package com.ull.simulation.info;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.flow.ResourceHandlerFlow;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.flow.ResourceHandlerFlow;
 
 public class ResourceUsageInfo extends AsynchronousInfo {
 

@@ -1,8 +1,8 @@
-package es.ull.iis.simulation.info;
+package com.ull.simulation.info;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.Simulation;
 
 public class ElementInfo extends AsynchronousInfo {
 

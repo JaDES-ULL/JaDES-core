@@ -1,14 +1,14 @@
 /**
  * 
  */
-package es.ull.iis.simulation.info;
+package com.ull.simulation.info;
 
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.location.Location;
-import es.ull.iis.simulation.model.location.Movable;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.location.Location;
+import com.ull.simulation.model.location.Movable;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class EntityLocationInfo extends AsynchronousInfo {
