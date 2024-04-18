@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.variable;
+package com.ull.simulation.variable;
 
 import java.util.Iterator;
 import java.util.TreeMap;

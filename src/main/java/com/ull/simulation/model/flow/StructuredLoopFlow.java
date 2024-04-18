@@ -1,8 +1,8 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.TreeSet;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A structured flow which defines a repetitive subflow. Different subclasses

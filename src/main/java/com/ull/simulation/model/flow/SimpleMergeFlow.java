@@ -1,11 +1,11 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**

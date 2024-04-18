@@ -1,7 +1,7 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**

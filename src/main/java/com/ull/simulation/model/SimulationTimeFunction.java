@@ -1,28 +1,28 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import simkit.random.RandomNumberFactory;
-import es.ull.iis.function.RandomFunction;
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.function.TimeFunctionParams;
+import com.ull.function.RandomFunction;
+import com.ull.function.TimeFunction;
+import com.ull.function.TimeFunctionFactory;
+import com.ull.function.TimeFunctionParams;
 
 /**
- * A wrapper class for {@link es.ull.iis.function.TimeFunction TimeFunction}.
+ * A wrapper class for {@link com.ull.function.TimeFunction TimeFunction}.
  * Thus {@link TimeStamp} can be used to define the time function parameters.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class SimulationTimeFunction extends TimeFunction {
-	/** Inner {@link es.ull.iis.function.TimeFunction TimeFunction} */
+	/** Inner {@link com.ull.function.TimeFunction TimeFunction} */
 	private final TimeFunction function;
 
 	/**
 	 * Creates a time function to be used in a simulation.
 	 * @param unit ParallelSimulationEngine time unit
 	 * @param className Name of the time function (must be a class accepted by 
-	 * {@link es.ull.iis.function.TimeFunctionFactory TimeFunctionFactory} 
+	 * {@link com.ull.function.TimeFunctionFactory TimeFunctionFactory} 
 	 * @param parameters Parameters of the time function to be created
 	 */
 	public SimulationTimeFunction(TimeUnit unit, String className, Object... parameters) {

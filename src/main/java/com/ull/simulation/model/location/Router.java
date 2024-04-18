@@ -1,12 +1,12 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;
 
 /**
  * Class that calculates the steps that an entity has to follow to reach a destination
  * 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public interface Router {

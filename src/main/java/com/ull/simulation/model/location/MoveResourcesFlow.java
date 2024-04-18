@@ -1,26 +1,26 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;
 
 import java.util.ArrayDeque;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActionFlow;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.SingleSuccessorFlow;
-import es.ull.iis.simulation.model.flow.TaskFlow;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActionFlow;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.SingleSuccessorFlow;
+import com.ull.simulation.model.flow.TaskFlow;
 
 /**
  * A workflow step that allows {@link Element elements} to move a set of resources from one {@link Location} to another.
  * The route flow uses a {@link Router} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element from one location to another until reaching the destination.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class MoveResourcesFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {

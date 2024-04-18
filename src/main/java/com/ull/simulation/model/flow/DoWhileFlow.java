@@ -1,8 +1,8 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**
@@ -46,7 +46,7 @@ public class DoWhileFlow extends StructuredLoopFlow {
 
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.TaskFlow#finish(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(ElementInstance wThread) {
 		if (cond.check(wThread)) {

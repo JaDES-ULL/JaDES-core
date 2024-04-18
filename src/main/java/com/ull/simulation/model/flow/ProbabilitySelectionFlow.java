@@ -1,20 +1,20 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**
  * A {@link MultipleSuccessorFlow} which selects one outgoing branch among a set of them by 
  * using a probability value. Each outgoing branch has a value (0.0 - 1.0] expressing the 
  * probability to be chosen of such branch. 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class ProbabilitySelectionFlow extends MultipleSuccessorFlow {

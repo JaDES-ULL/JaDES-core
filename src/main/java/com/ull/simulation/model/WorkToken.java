@@ -1,8 +1,8 @@
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.TreeSet;
 
-import es.ull.iis.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.Flow;
 
 /**
  * The information of the current state of an {@link ElementInstance element instance}. In short, it indicates whether 

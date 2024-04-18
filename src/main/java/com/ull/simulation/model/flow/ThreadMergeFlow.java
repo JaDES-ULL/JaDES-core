@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
 
 
 /**
@@ -15,7 +15,7 @@ import es.ull.iis.simulation.model.ElementInstance;
  * a thread discriminator, if <code>acceptValue</code> is set to 1; or as a thread 
  * partial join if any other value greater than one and lower than <code>nInstances</code> 
  * is used.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class ThreadMergeFlow extends ANDJoinFlow {

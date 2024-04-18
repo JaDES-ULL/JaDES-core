@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 /**
  * Indicates that an object have a unique identifier.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public interface Identifiable {

@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 /**
  * A {@link FinalizerFlow} which merges several incoming branches into a single one.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public interface JoinFlow extends FinalizerFlow {
 

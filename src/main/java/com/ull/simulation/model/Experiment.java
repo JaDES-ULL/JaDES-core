@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 /**
  * Controls a set of simulation experiments. 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public abstract class Experiment implements Describable {
 	/** A short text describing this experiment */
@@ -90,7 +90,7 @@ public abstract class Experiment implements Describable {
 
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.common.Describable#getDescription()
+	 * @see com.ull.simulation.common.Describable#getDescription()
 	 */
 	@Override
 	public String getDescription() {

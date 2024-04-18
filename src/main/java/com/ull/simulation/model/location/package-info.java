@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;

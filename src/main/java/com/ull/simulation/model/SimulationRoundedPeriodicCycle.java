@@ -1,15 +1,15 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.util.cycle.Cycle;
-import es.ull.iis.util.cycle.RoundedPeriodicCycle;
-import es.ull.iis.util.cycle.RoundedPeriodicCycle.Type;
+import com.ull.function.TimeFunction;
+import com.ull.util.cycle.Cycle;
+import com.ull.util.cycle.RoundedPeriodicCycle;
+import com.ull.util.cycle.RoundedPeriodicCycle.Type;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class SimulationRoundedPeriodicCycle implements SimulationCycle {
@@ -70,7 +70,7 @@ public class SimulationRoundedPeriodicCycle implements SimulationCycle {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.SimulationCycle#getCycle()
+	 * @see com.ull.simulation.SimulationCycle#getCycle()
 	 */
 	@Override
 	public Cycle getCycle() {

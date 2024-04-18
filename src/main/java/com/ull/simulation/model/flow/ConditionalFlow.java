@@ -1,13 +1,13 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.condition.TrueCondition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.condition.TrueCondition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 /**
 /**

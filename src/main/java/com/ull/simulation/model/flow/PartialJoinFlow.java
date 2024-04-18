@@ -1,6 +1,6 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * An AND join flow which allows only the n-st true incoming branch to pass. It is

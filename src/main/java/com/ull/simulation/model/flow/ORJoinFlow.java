@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A merge flow which allows all the true incoming branches to pass.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public abstract class ORJoinFlow extends MergeFlow {
 

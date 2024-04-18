@@ -1,22 +1,22 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;
 
-import es.ull.iis.simulation.info.EntityLocationInfo;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.flow.ActionFlow;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.SingleSuccessorFlow;
-import es.ull.iis.simulation.model.flow.TaskFlow;
+import com.ull.simulation.info.EntityLocationInfo;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.flow.ActionFlow;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.SingleSuccessorFlow;
+import com.ull.simulation.model.flow.TaskFlow;
 
 /**
  * A workflow step that allows {@link Element elements} to move from one {@link Location} to another.
  * The route flow uses a {@link Router} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element from one location to another until reaching the destination.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {

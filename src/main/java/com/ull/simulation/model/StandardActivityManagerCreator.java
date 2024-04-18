@@ -1,18 +1,18 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class StandardActivityManagerCreator extends ActivityManagerCreator {
@@ -67,7 +67,7 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 	 * The graph G=(V, E) is created as follows: each vertex is a resource type 
 	 * and each edge is an activity that is associated with the resource types 
 	 * represented by the connected vertex.
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 *
 	 */
 	class SimulationGraph extends TreeMap<ResourceType, TreeSet<ResourceType>> {

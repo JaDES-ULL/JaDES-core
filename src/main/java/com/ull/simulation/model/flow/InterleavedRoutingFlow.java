@@ -1,15 +1,15 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A structured flow whose initial step is a parallel flow and whose final step
  * is a synchronization flow. Meets the Interleaved Routing pattern (WFP40) if all the
  * activities are presential.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class InterleavedRoutingFlow extends PredefinedStructuredFlow {
 

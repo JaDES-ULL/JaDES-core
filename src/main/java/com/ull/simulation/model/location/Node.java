@@ -1,14 +1,14 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;
 
-import es.ull.iis.function.TimeFunction;
+import com.ull.function.TimeFunction;
 
 /**
  * A location representing a specific place.
  * 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class Node extends Location {

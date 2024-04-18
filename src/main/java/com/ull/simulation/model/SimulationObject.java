@@ -1,10 +1,10 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
-import es.ull.iis.function.TimeFunctionParams;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
+import com.ull.function.TimeFunctionParams;
+import com.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * @author Ivan Castilla Rodriguez
@@ -84,7 +84,7 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
 
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.Debuggable#debug(java.lang.String)
+	 * @see com.ull.simulation.Debuggable#debug(java.lang.String)
 	 */
     public void debug(String message) {
     	if (Simulation.isDebugEnabled())
@@ -93,7 +93,7 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
 	
     /*
      * (non-Javadoc)
-     * @see es.ull.iis.simulation.Debuggable#error(java.lang.String)
+     * @see com.ull.simulation.Debuggable#error(java.lang.String)
      */
 	public void error(String description) {
 		Simulation.error(this.toString() + "\t" + getTs() + "\t" + description);
@@ -101,7 +101,7 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
     
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.Debuggable#isDebugEnabled()
+	 * @see com.ull.simulation.Debuggable#isDebugEnabled()
 	 */
 	public boolean isDebugEnabled() {
 		return Simulation.isDebugEnabled();

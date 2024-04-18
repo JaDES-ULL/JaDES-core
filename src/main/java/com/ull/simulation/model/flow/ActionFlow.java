@@ -1,14 +1,14 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Describable;
+import com.ull.simulation.model.Describable;
 
 /**
  * A flow that represents a step where some action is performed
  * 
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public interface ActionFlow extends Flow, Describable {

@@ -1,14 +1,14 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.location;
+package com.ull.simulation.model.location;
 
-import es.ull.iis.function.TimeFunction;
+import com.ull.function.TimeFunction;
 
 /**
  * A location representing a path between two or more places ({@link Node}). Useful for roads.
  * The capacity of the path is the product of the number of lanes and the capacity per lane 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class Path extends Location {

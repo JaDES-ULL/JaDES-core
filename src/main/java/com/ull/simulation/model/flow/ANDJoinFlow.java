@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**
  * A merge flow which allows only one of the incoming branches to pass. Which one
  * passes depends on the <code>acceptValue</code>.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public abstract class ANDJoinFlow extends MergeFlow {
 	/** The number of branches which have to arrive to pass the control thread */
@@ -50,7 +50,7 @@ public abstract class ANDJoinFlow extends MergeFlow {
 	}
 	
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlow#canPass(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.MergeFlow#canPass(com.ull.simulation.FlowExecutor)
 	 */
 	@Override
 	protected boolean canPass(ElementInstance wThread) {

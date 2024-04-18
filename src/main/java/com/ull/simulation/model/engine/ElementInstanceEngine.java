@@ -1,12 +1,12 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.engine;
+package com.ull.simulation.model.engine;
 
-import es.ull.iis.simulation.model.Identifiable;
+import com.ull.simulation.model.Identifiable;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public interface ElementInstanceEngine extends Identifiable {

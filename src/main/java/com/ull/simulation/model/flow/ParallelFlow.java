@@ -1,15 +1,15 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A multiple successor flow which creates a new element instance per outgoing branch.
  * Meets the Parallel Split pattern (WFP2) 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class ParallelFlow extends MultipleSuccessorFlow {
 

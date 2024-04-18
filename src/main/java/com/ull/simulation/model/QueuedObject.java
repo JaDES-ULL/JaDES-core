@@ -1,12 +1,12 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 /**
  * A simulation object with an attached queue
  * 
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public interface QueuedObject<T> {

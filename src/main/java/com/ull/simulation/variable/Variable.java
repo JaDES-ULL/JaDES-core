@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.variable;
+package com.ull.simulation.variable;
 
 /**
  * Class created to define simulation's variables. This variables those 

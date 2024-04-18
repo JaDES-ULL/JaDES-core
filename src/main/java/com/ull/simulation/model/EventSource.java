@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 /**
  * A source of simulation events. Defines at least two events: one for the moment the simulation creates

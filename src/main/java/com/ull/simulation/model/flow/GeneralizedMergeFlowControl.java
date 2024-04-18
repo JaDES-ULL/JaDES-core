@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.WorkToken;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.WorkToken;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class GeneralizedMergeFlowControl extends MergeFlowControl {
@@ -26,7 +26,7 @@ public class GeneralizedMergeFlowControl extends MergeFlowControl {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlowControl#arrive(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.MergeFlowControl#arrive(com.ull.simulation.FlowExecutor)
 	 */
 	@Override
 	public void arrive(ElementInstance wThread) {
@@ -43,7 +43,7 @@ public class GeneralizedMergeFlowControl extends MergeFlowControl {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlowControl#canReset(int)
+	 * @see com.ull.simulation.MergeFlowControl#canReset(int)
 	 */
 	@Override
 	public boolean canReset(int checkValue) {

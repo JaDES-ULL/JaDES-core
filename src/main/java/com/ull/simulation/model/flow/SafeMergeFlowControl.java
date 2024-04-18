@@ -1,12 +1,12 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementInstance;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class SafeMergeFlowControl extends MergeFlowControl {
@@ -18,7 +18,7 @@ public class SafeMergeFlowControl extends MergeFlowControl {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlowControl#arrive(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.MergeFlowControl#arrive(com.ull.simulation.FlowExecutor)
 	 */
 	@Override
 	public void arrive(ElementInstance wThread) {
@@ -36,7 +36,7 @@ public class SafeMergeFlowControl extends MergeFlowControl {
 	}
 	
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlowControl#canReset()
+	 * @see com.ull.simulation.MergeFlowControl#canReset()
 	 */
 	@Override
 	public boolean canReset(int checkValue) {

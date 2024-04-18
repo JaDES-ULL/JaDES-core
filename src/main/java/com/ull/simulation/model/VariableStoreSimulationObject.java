@@ -1,24 +1,24 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.variable.BooleanVariable;
-import es.ull.iis.simulation.variable.ByteVariable;
-import es.ull.iis.simulation.variable.CharacterVariable;
-import es.ull.iis.simulation.variable.DoubleVariable;
-import es.ull.iis.simulation.variable.FloatVariable;
-import es.ull.iis.simulation.variable.IntVariable;
-import es.ull.iis.simulation.variable.LongVariable;
-import es.ull.iis.simulation.variable.ShortVariable;
-import es.ull.iis.simulation.variable.UserVariable;
-import es.ull.iis.simulation.variable.Variable;
+import com.ull.simulation.variable.BooleanVariable;
+import com.ull.simulation.variable.ByteVariable;
+import com.ull.simulation.variable.CharacterVariable;
+import com.ull.simulation.variable.DoubleVariable;
+import com.ull.simulation.variable.FloatVariable;
+import com.ull.simulation.variable.IntVariable;
+import com.ull.simulation.variable.LongVariable;
+import com.ull.simulation.variable.ShortVariable;
+import com.ull.simulation.variable.UserVariable;
+import com.ull.simulation.variable.Variable;
 
 /**
  * A simulation object that can handle {@link Variable variables}. 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public abstract class VariableStoreSimulationObject extends SimulationObject implements VariableStore {

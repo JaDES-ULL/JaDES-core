@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.Collection;
 
 /**
  * A list of resources
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public abstract class ResourceList {

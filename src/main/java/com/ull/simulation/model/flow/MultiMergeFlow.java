@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 
 /**
  * Creates an OR flow which allows all the true incoming branches to pass. 
  * Meets the Multi-Merge pattern (WFP8).
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class MultiMergeFlow extends ORJoinFlow {
 
@@ -22,7 +22,7 @@ public class MultiMergeFlow extends ORJoinFlow {
 	}
 	
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.MergeFlow#canPass(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.MergeFlow#canPass(com.ull.simulation.FlowExecutor)
 	 */
 	@Override
 	protected boolean canPass(ElementInstance wThread) {

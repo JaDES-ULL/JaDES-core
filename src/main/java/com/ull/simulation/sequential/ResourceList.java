@@ -1,18 +1,18 @@
-package es.ull.iis.simulation.sequential;
+package com.ull.simulation.sequential;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import es.ull.iis.simulation.model.Resource;
+import com.ull.simulation.model.Resource;
 
 /**
  * Handles the overlap of timetable entries for the same resource, i.e., a resource that has 
  * several timetable entries at the same time interval with the same resource type. This list 
  * counts how many times it occurs to avoid incorrect behaviors of the amount of available
  * resources.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
-public class ResourceList extends es.ull.iis.simulation.model.ResourceList {
+public class ResourceList extends com.ull.simulation.model.ResourceList {
 	/** List of resources */
 	private final ArrayList<Resource> resources;
 	/** A count of how many times each resource has been put as available */
@@ -49,7 +49,7 @@ public class ResourceList extends es.ull.iis.simulation.model.ResourceList {
      */
     public boolean remove(Resource res) {
     	int pos = resources.indexOf(res);
-    	// FIXME Debería crearme un tipo personalizado de excepción
+    	// FIXME Deberï¿½a crearme un tipo personalizado de excepciï¿½n
     	if (pos == -1)
     		throw new RuntimeException("Unexpected error: Resource not found in resource type");
     	if (counter.get(pos).intValue() > 1) {

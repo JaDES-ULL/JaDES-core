@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.engine;
+package com.ull.simulation.model.engine;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.flow.Flow;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.flow.Flow;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public interface ElementEngine extends EventSourceEngine {

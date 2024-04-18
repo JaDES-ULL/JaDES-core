@@ -1,29 +1,29 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import es.ull.iis.simulation.info.EntityLocationInfo;
-import es.ull.iis.simulation.info.ResourceInfo;
-import es.ull.iis.simulation.model.engine.ResourceEngine;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.simulation.model.location.Location;
-import es.ull.iis.simulation.model.location.Movable;
-import es.ull.iis.simulation.model.location.MoveResourcesFlow;
-import es.ull.iis.simulation.model.location.Router;
-import es.ull.iis.simulation.model.location.TransportFlow;
-import es.ull.iis.util.cycle.DiscreteCycleIterator;
+import com.ull.simulation.info.EntityLocationInfo;
+import com.ull.simulation.info.ResourceInfo;
+import com.ull.simulation.model.engine.ResourceEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.location.Location;
+import com.ull.simulation.model.location.Movable;
+import com.ull.simulation.model.location.MoveResourcesFlow;
+import com.ull.simulation.model.location.Router;
+import com.ull.simulation.model.location.TransportFlow;
+import com.ull.util.cycle.DiscreteCycleIterator;
 
 /**
  * A simulation resource whose availability is controlled by means of {@link TimeTableEntry timetable entries}.
  * Timetable entries can overlap in time, thus allowing the resource for being potentially available for
  * different resource types simultaneously.
  * A resource finishes its execution when it has no longer valid timetable entries.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class Resource extends VariableStoreSimulationObject implements Describable, EventSource, Movable {
@@ -425,7 +425,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	 * one or more resource types. If you don't use the {@link #withDuration(SimulationCycle, TimeStamp)} method, the entries are assumed to last for
 	 * the whole duration of the simulation. You can also use the same builder for time table or cancellation entries, by invoking, respectively, 
 	 * {@link #addTimeTableEntry()} or {@link #addCancelEntry()}
-	 * @author Iván Castilla
+	 * @author Ivï¿½n Castilla
 	 *
 	 */
 	public final class TimeTableOrCancelEntriesAdder {
@@ -500,7 +500,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	    
     /**
      * The event in charge of initializing the resource
-     * @author Iván Castilla Rodríguez
+     * @author Ivï¿½n Castilla Rodrï¿½guez
      *
      */
     protected class CreateResourceEvent extends DiscreteEvent {
@@ -728,7 +728,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 
 	/**
 	 * Event to move the resource to a different location
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 *
 	 */
 	protected class MoveEvent extends DiscreteEvent {
@@ -791,7 +791,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 
 	/**
 	 * Event to move the resource to a different location
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 *
 	 */
 	protected class TransportEvent extends DiscreteEvent {

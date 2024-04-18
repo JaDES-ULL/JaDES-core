@@ -1,9 +1,9 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Simulation;
 
 /**
  * Meets the Static Partial Join for Multiple Instances pattern (WFP34) if 
@@ -11,7 +11,7 @@ import es.ull.iis.simulation.model.Simulation;
  * If <code>nInstances = acceptValue</code> is equivalent to the <code>
  * SynchronizedMultipleInstanceFlow</code>.
  * 
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class StaticPartialJoinMultipleInstancesFlow extends PredefinedStructuredFlow {

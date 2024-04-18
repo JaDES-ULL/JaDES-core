@@ -1,12 +1,12 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.Set;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Identifiable;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Identifiable;
 
 /**
  * The process an element has to carry out.<p>
@@ -19,7 +19,7 @@ import es.ull.iis.simulation.model.Identifiable;
  * This flow can be requested to be carried out by an element. To do this, a set of user-defined 
  * conditions are first checked by invoking <code>beforeRequest</code>. If this method is true, 
  * the Element can definitely request this flow.  
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public interface Flow extends Identifiable {

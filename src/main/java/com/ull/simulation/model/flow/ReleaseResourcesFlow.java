@@ -1,18 +1,18 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.ArrayDeque;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.ResourceType;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.ResourceType;
 
 /**
  * A flow to release a set of previously seized resources. The resources to release can be identified by means of a unique identifier (resourcesId)
@@ -20,7 +20,7 @@ import es.ull.iis.simulation.model.ResourceType;
  * 
  * The flow can also define resource-type-related cancellation periods. If an element releases a resource belonging to one of the resource types, this 
  * resource can't be used during a period of time after the release.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class ReleaseResourcesFlow extends SingleSuccessorFlow implements ResourceHandlerFlow, FinalizerFlow {

@@ -1,14 +1,14 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A simple flow to execute user actions at some point of the workflow. The user specifies the actions in the {@link #userAction(ElementInstance)} method.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class UserActionFlow extends SingleSuccessorFlow implements ActionFlow {

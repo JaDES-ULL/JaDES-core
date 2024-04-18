@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 /**
  * An element that requests this flow has to wait until a special class (implementing the {@link Listener} interface) sends a signal. Useful for implementing
  * conditional waitings.  
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WaitForSignalFlow extends SingleSuccessorFlow implements InitializerFlow, ActionFlow {
@@ -77,7 +77,7 @@ public class WaitForSignalFlow extends SingleSuccessorFlow implements Initialize
 	
 	/**
 	 * A class capable to listen to this flow and send a signal to element instances within this flow
-	 * @author Iván Castilla
+	 * @author Ivï¿½n Castilla
 	 *
 	 */
 	public static interface Listener {

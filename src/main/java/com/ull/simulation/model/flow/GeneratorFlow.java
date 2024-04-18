@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class GeneratorFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {

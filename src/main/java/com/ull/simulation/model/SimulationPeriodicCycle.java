@@ -1,20 +1,20 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.util.cycle.Cycle;
-import es.ull.iis.util.cycle.PeriodicCycle;
+import com.ull.function.TimeFunction;
+import com.ull.util.cycle.Cycle;
+import com.ull.util.cycle.PeriodicCycle;
 
 /**
- * A wrapper class for {@link es.ull.iis.util.cycle.PeriodicCycle PeriodicCycle} to be used inside a simulation. 
+ * A wrapper class for {@link com.ull.util.cycle.PeriodicCycle PeriodicCycle} to be used inside a simulation. 
  * Thus {@link TimeStamp} can be used to define the cycle parameters.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class SimulationPeriodicCycle implements SimulationCycle {
-	/** Inner {@link es.ull.iis.util.cycle.PeriodicCycle PeriodicCycle} */
+	/** Inner {@link com.ull.util.cycle.PeriodicCycle PeriodicCycle} */
 	private final PeriodicCycle cycle;
 	
 	/**

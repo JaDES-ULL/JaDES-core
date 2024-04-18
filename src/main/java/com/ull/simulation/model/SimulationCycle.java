@@ -1,20 +1,20 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
-import es.ull.iis.util.cycle.Cycle;
+import com.ull.util.cycle.Cycle;
 
 /**
- * A wrapper class for {@link es.ull.iis.util.cycle.Cycle Cycle} to be used inside a simulation. 
+ * A wrapper class for {@link com.ull.util.cycle.Cycle Cycle} to be used inside a simulation. 
  * Thus {@link TimeStamp} can be used to define the cycle parameters.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public interface SimulationCycle {
 	/**
-	 * Returns the inner {@link es.ull.iis.util.cycle.Cycle Cycle}.
-	 * @return the inner {@link es.ull.iis.util.cycle.Cycle Cycle}
+	 * Returns the inner {@link com.ull.util.cycle.Cycle Cycle}.
+	 * @return the inner {@link com.ull.util.cycle.Cycle Cycle}
 	 */
 	Cycle getCycle();
 }

@@ -1,11 +1,11 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.engine;
+package com.ull.simulation.model.engine;
 
 /**
  * A class capable of generating events
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public interface EventSourceEngine {

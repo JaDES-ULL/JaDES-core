@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.variable;
+package com.ull.simulation.variable;
 
 
 public interface UserVariable extends Variable {

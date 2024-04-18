@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 /**
  * A generic class for discrete events. Discrete events are instantaneous occurrences that execute one or more actions.

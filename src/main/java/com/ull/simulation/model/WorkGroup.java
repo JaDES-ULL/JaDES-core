@@ -1,18 +1,18 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.ArrayDeque;
 
-import es.ull.iis.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * A set of pairs &lt{@link ResourceType}, {@link Integer}&gt which defines how many resources 
  * from each type are required to do something (typically an {@link ActivityFlow}).
  * Contains several methods to help the simulation find a suitable solution with the currently available
  * resources.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class WorkGroup extends SimulationObject implements Describable {
 	/** List of resource types required to do something */

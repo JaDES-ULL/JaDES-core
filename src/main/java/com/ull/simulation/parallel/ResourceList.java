@@ -1,19 +1,19 @@
-package es.ull.iis.simulation.parallel;
+package com.ull.simulation.parallel;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
-import es.ull.iis.simulation.model.Resource;
+import com.ull.simulation.model.Resource;
 
 /**
  * Handles the overlap of timetable entries for the same resource, i.e., a resource that has 
  * several timetable entries at the same time interval with the same resource type. This resources 
  * counts how many times it occurs to avoid incorrect behaviors of the amount of available
  * resources.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
-public class ResourceList extends es.ull.iis.simulation.model.ResourceList {
+public class ResourceList extends com.ull.simulation.model.ResourceList {
 	/** A set of <resource - count> pairs, where the count value indicates how many times a 
 	 * resource has been added to this resource type. */
 	final private Map<Resource, Integer> counter;

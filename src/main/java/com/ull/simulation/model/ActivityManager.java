@@ -1,10 +1,10 @@
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.model.engine.ActivityManagerEngine;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.engine.ActivityManagerEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * Partition of activities. It serves as a mutual exclusion mechanism to access a set of activities
@@ -12,7 +12,7 @@ import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
  * so it must be controlled by the user by means of a semaphore. When the user wants to modify an object 
  * belonging to this AM, it's required to invoke the <code>waitSemaphore</code> method. When the modification 
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public class ActivityManager extends SimulationObject implements Describable {
     /** Static counter for assigning each new id */

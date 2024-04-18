@@ -1,32 +1,32 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model;
+package com.ull.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.EntityLocationInfo;
-import es.ull.iis.simulation.model.engine.ElementEngine;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.InitializerFlow;
-import es.ull.iis.simulation.model.flow.ReleaseResourcesFlow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
-import es.ull.iis.simulation.model.flow.TaskFlow;
-import es.ull.iis.simulation.model.location.Location;
-import es.ull.iis.simulation.model.location.Movable;
-import es.ull.iis.simulation.model.location.MoveFlow;
-import es.ull.iis.simulation.variable.EnumVariable;
-import es.ull.iis.util.Prioritizable;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.EntityLocationInfo;
+import com.ull.simulation.model.engine.ElementEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.InitializerFlow;
+import com.ull.simulation.model.flow.ReleaseResourcesFlow;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.flow.TaskFlow;
+import com.ull.simulation.model.location.Location;
+import com.ull.simulation.model.location.Movable;
+import com.ull.simulation.model.location.MoveFlow;
+import com.ull.simulation.variable.EnumVariable;
+import com.ull.util.Prioritizable;
 
 /**
  * An entity capable of following a {@link Flow workflow}. Elements have a {@link ElementType type} and interact with {@link Resource resources}
- * by means of {@link es.ull.iis.simulation.model.flow.ResourceHandlerFlow resource handler flows}
+ * by means of {@link com.ull.simulation.model.flow.ResourceHandlerFlow resource handler flows}
  * Elements can also move from a {@link Location} to another.   
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class Element extends VariableStoreSimulationObject implements Prioritizable, EventSource, Movable {
@@ -112,8 +112,8 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 	
 	/**
-	 * Returns the associated {@link es.ull.iis.simulation.model.flow.InitializerFlow Flow}.
-	 * @return the associated {@link es.ull.iis.simulation.model.flow.InitializerFlow Flow}
+	 * Returns the associated {@link com.ull.simulation.model.flow.InitializerFlow Flow}.
+	 * @return the associated {@link com.ull.simulation.model.flow.InitializerFlow Flow}
 	 */
 	public InitializerFlow getFlow() {
 		return initialFlow;
@@ -371,7 +371,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	
 	/**
 	 * An event to request a flow.
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 */
 	protected class RequestFlowEvent extends DiscreteEvent {
 		/** The element instance that executes the request */
@@ -394,7 +394,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	
 	/**
 	 * An event to finish a flow. 
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 */
 	protected class FinishFlowEvent extends DiscreteEvent {
 		/** The element instance that executes the finish */
@@ -417,7 +417,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
     /**
      * An event to perform a move. The element try to move to the next location in its path to its final destination. The element only leaves 
      * its current location if there is enough free space for the element in the new location; otherwise, it waits. 
-     * @author Iván Castilla
+     * @author Ivï¿½n Castilla
      *
      */
 	protected class MoveEvent extends DiscreteEvent {
@@ -449,7 +449,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	 * A collection of resources that have been seized by this element. They are arranged in two levels: the
 	 * first level represents resource groups, as logically defined by the modeler; the second level represents
 	 * resource types.
-	 * @author Iván Castilla
+	 * @author Ivï¿½n Castilla
 	 *
 	 */
 	protected final class SeizedResourcesCollection {

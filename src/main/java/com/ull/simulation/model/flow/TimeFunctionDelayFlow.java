@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.function.TimeFunction;
+import com.ull.function.TimeFunctionFactory;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.Simulation;
 
 /**
  * A flow that makes an element be delayed for a certain time, specified at modeling time
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TimeFunctionDelayFlow extends DelayFlow {

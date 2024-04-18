@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
-import es.ull.iis.simulation.model.Resource;
+import com.ull.simulation.model.Resource;
 
 /**
  * A flow step that can interact with {@link Resource resources} 
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public interface ResourceHandlerFlow extends ActionFlow {
