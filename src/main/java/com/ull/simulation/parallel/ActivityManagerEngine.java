@@ -1,23 +1,23 @@
-package es.ull.iis.simulation.parallel;
+package com.ull.simulation.parallel;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.engine.EngineObject;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * Partition of activities. It serves as a mutual exclusion mechanism to access a set of activities
  * and a set of resource types. Each Activity Manager (AM) must be controlled by a single thread so to 
  * ensure this mutual exclusion.
  * TODO Comment
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
-public class ActivityManagerEngine extends EngineObject implements es.ull.iis.simulation.model.engine.ActivityManagerEngine {
+public class ActivityManagerEngine extends EngineObject implements com.ull.simulation.model.engine.ActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private volatile boolean avResource = false;
     /** This queue contains the flow executors that are waiting for activities of this AM */

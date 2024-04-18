@@ -1,29 +1,29 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull.simulation.test;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import es.ull.iis.simulation.model.DiscreteEvent;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.EventSource;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationObject;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.TimeDrivenElementGenerator;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.simulation.model.flow.TimeFunctionDelayFlow;
-import es.ull.iis.simulation.model.flow.WaitForSignalFlow;
+import com.ull.simulation.model.DiscreteEvent;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.EventSource;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationObject;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.TimeDrivenElementGenerator;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.flow.TimeFunctionDelayFlow;
+import com.ull.simulation.model.flow.WaitForSignalFlow;
 
 /**
  * A dummy example of using the WaitForSignalFlow class. We define a simple flow with a WaitForSignalFlow and a DelayFlow. Elements get to the wait... flow
  * and waits until a special object ({@link SimListener}) tells them to continue. The {@link SimListener} is a class that checks the waiting list every 5 minutes
  * and let pass a random number of elements.  
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class TestWaitForSignalFlow extends Experiment {
@@ -40,7 +40,7 @@ public class TestWaitForSignalFlow extends Experiment {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.model.Experiment#getSimulation(int)
+	 * @see com.ull.simulation.model.Experiment#getSimulation(int)
 	 */
 	@Override
 	public Simulation getSimulation(int ind) {

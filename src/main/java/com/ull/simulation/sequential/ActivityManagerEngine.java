@@ -1,14 +1,14 @@
-package es.ull.iis.simulation.sequential;
+package com.ull.simulation.sequential;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.engine.EngineObject;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * Partition of activities. It serves as a mutual exclusion mechanism to access a set of activities
@@ -16,9 +16,9 @@ import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
  * so it must be controlled by the user by means of a semaphore. When the user wants to modify an object 
  * belonging to this AM, it's required to invoke the <code>waitSemaphore</code> method. When the modification 
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
-public class ActivityManagerEngine extends EngineObject implements es.ull.iis.simulation.model.engine.ActivityManagerEngine {
+public class ActivityManagerEngine extends EngineObject implements com.ull.simulation.model.engine.ActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private boolean availableResource;
     /** This queue contains the flow executors that are waiting for activities of this AM */

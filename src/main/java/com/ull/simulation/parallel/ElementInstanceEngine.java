@@ -1,20 +1,20 @@
 /**
  * 
  */
-package es.ull.iis.simulation.parallel;
+package com.ull.simulation.parallel;
 
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.engine.EngineObject;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
-public class ElementInstanceEngine extends EngineObject	implements es.ull.iis.simulation.model.engine.ElementInstanceEngine {
+public class ElementInstanceEngine extends EngineObject	implements com.ull.simulation.model.engine.ElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static final AtomicInteger counter = new AtomicInteger(1);

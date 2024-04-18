@@ -1,28 +1,28 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.condition.TrueCondition;
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.Describable;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Identifiable;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.engine.RequestResourcesEngine;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.util.Prioritizable;
-import es.ull.iis.util.PrioritizedTable;
+import com.ull.function.TimeFunction;
+import com.ull.function.TimeFunctionFactory;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.condition.TrueCondition;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.Describable;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Identifiable;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.engine.RequestResourcesEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.util.Prioritizable;
+import com.ull.util.PrioritizedTable;
 
 /**
  * A flow to request a set of resources, defined as {@link WorkGroup workgroups}. If all the resources from a workgroup are available, the element seizes 
@@ -35,7 +35,7 @@ import es.ull.iis.util.PrioritizedTable;
  * The flow is potentially feasible if there is no proof that none of the workgroups are available. The flow is feasible if it's potentially feasible 
  * and there is at least one workgroup with enough available resources.<p>
  * An element requesting a request flow which is not feasible is added to a queue until new resources are available.
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlow, ResourceHandlerFlow, Prioritizable {
@@ -200,9 +200,9 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	public void afterAcquire(final ElementInstance ei) {}
 
 	/**
-	 * Allows a user for adding a customized code when a {@link es.ull.iis.simulation.model.ElementInstance} from an {@link es.ull.iis.simulation.model.Element}
-	 * is enqueued, waiting for available {@link es.ull.iis.simulation.model.Resource}. 
-	 * @param ei {@link es.ull.iis.simulation.model.ElementInstance} requesting resources
+	 * Allows a user for adding a customized code when a {@link com.ull.simulation.model.ElementInstance} from an {@link com.ull.simulation.model.Element}
+	 * is enqueued, waiting for available {@link com.ull.simulation.model.Resource}. 
+	 * @param ei {@link com.ull.simulation.model.ElementInstance} requesting resources
 	 */
 	public void inqueue(final ElementInstance ei) {}
 	
@@ -262,7 +262,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.Flow#request(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.Flow#request(com.ull.simulation.FlowExecutor)
 	 */
 	public void request(final ElementInstance ei) {
 		if (!ei.wasVisited(this)) {
@@ -289,7 +289,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 
 	/*
 	 * (non-Javadoc)
-	 * @see es.ull.iis.simulation.TaskFlow#finish(es.ull.iis.simulation.FlowExecutor)
+	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(final ElementInstance wThread) {
 		wThread.endDelay(this);
@@ -313,7 +313,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	/**
 	 * A builder for adding workgroups. By default, workgroups have the highest priority, unconditionally available and have not delay.
 	 * The priority, condition and delay can be modified by using the "with..." methods.
-	 * @author Iván Castilla
+	 * @author Ivï¿½n Castilla
 	 *
 	 */
 	public final class WorkGroupAdder {
@@ -369,7 +369,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	 * A set of resources needed for carrying out an activity. A workgroup (WG) consists on a 
 	 * set of (resource type, #needed resources) pairs, a condition which determines if the 
 	 * workgroup can be used or not, and the priority of the workgroup inside the basicStep.
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 */
 	public class ActivityWorkGroup extends WorkGroup implements Prioritizable, Identifiable, Describable {
 		/** Priority of the workgroup */

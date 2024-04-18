@@ -1,18 +1,18 @@
-package es.ull.iis.simulation.sequential;
+package com.ull.simulation.sequential;
 
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 import java.util.concurrent.CountDownLatch;
 
-import es.ull.iis.simulation.info.TimeChangeInfo;
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.DiscreteEvent;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.flow.MergeFlow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.info.TimeChangeInfo;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.DiscreteEvent;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.flow.MergeFlow;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * Main simulation class. A simulation needs a model (introduced by means of the
@@ -26,7 +26,7 @@ import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
  * 
  * @author Iv�n Castilla Rodr�guez
  */
-public class SequentialSimulationEngine extends es.ull.iis.simulation.model.engine.SimulationEngine {
+public class SequentialSimulationEngine extends com.ull.simulation.model.engine.SimulationEngine {
 
 	/** End-of-simulation control */
 	private CountDownLatch endSignal;

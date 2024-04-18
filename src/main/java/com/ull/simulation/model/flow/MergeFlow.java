@@ -1,12 +1,12 @@
-package es.ull.iis.simulation.model.flow;
+package com.ull.simulation.model.flow;
 
 import java.util.Map;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.engine.MergeFlowEngine;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.engine.MergeFlowEngine;
+import com.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * A flow which merges several incoming branches into a single outgoing branch. The incoming 

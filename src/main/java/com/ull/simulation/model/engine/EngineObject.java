@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.model.engine;
+package com.ull.simulation.model.engine;
 
-import es.ull.iis.simulation.model.Identifiable;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.model.Identifiable;
+import com.ull.simulation.model.Simulation;
 
 /**
  * An {@link Identifiable} object associated to a {@link SimulationEngine}. The identifier is
  * unique per type of simulation object, thus different types of simulation objects can use 
  * the same identifiers.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
 public abstract class EngineObject implements Identifiable, Comparable<EngineObject>{
     /** Unique object identifier  */
@@ -63,7 +63,7 @@ public abstract class EngineObject implements Identifiable, Comparable<EngineObj
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(es.ull.iis.simulation.model.engine.EngineObject o) {
+	public int compareTo(com.ull.simulation.model.engine.EngineObject o) {
 		if (id < o.getIdentifier())
 			return -1;
 		if (id > o.getIdentifier())

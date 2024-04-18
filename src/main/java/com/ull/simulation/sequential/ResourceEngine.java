@@ -1,26 +1,26 @@
-package es.ull.iis.simulation.sequential;
+package com.ull.simulation.sequential;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.info.ResourceUsageInfo;
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.engine.EngineObject;
-import es.ull.iis.simulation.model.flow.ResourceHandlerFlow;
+import com.ull.simulation.info.ResourceUsageInfo;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.flow.ResourceHandlerFlow;
 
 /**
  * A resource is an element that becomes available at a specific simulation time and 
  * becomes unavailable at other simulation time. The availability of a resource is controlled
  * by means of timetable entries, which define a resource type and an availability cycle.
  * A resource finishes its execution when it has no longer valid timetable entries.
- * @author Carlos Martín Galán
+ * @author Carlos Martï¿½n Galï¿½n
  */
-public class ResourceEngine extends EngineObject implements es.ull.iis.simulation.model.engine.ResourceEngine {
+public class ResourceEngine extends EngineObject implements com.ull.simulation.model.engine.ResourceEngine {
     /** If true, indicates that this resource is being used after its availability time has expired */
     private boolean timeOut = false;
     /** List of currently active roles and the timestamp which marks the end of their availibity time. */
@@ -40,7 +40,7 @@ public class ResourceEngine extends EngineObject implements es.ull.iis.simulatio
      * @param simul ParallelSimulationEngine this resource is attached to.
      * @param description A short text describing this resource.
      */
-	public ResourceEngine(SequentialSimulationEngine simul, es.ull.iis.simulation.model.Resource modelRes) {
+	public ResourceEngine(SequentialSimulationEngine simul, com.ull.simulation.model.Resource modelRes) {
 		super(modelRes.getIdentifier(), simul, "RES");
         currentRoles = new TreeMap<ResourceType, Long>();
         notCanceled = true;

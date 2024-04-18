@@ -1,15 +1,15 @@
-package es.ull.iis.simulation.parallel;
+package com.ull.simulation.parallel;
 
 import java.util.ArrayDeque;
 
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.engine.EngineObject;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
 /**
  * A task which could be carried out by a {@link WorkItem} and requires certain amount and 
@@ -31,9 +31,9 @@ import es.ull.iis.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
  * An activity can also define cancellation periods for each one of the resource types it uses. 
  * If a work item takes a resource belonging to one of the cancellation periods of the activity, this
  * resource can't be used during a period of time after the activity finishes.
- * @author Carlos Martín Galán
+ * @author Carlos Martï¿½n Galï¿½n
  */
-public class RequestResourcesEngine extends EngineObject implements es.ull.iis.simulation.model.engine.RequestResourcesEngine {
+public class RequestResourcesEngine extends EngineObject implements com.ull.simulation.model.engine.RequestResourcesEngine {
     /** Total amount of {@link ElementInstance} waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */

@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.parallel;
+package com.ull.simulation.parallel;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -10,17 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import edu.bonn.cs.net.jbarrier.barrier.AbstractBarrier;
 import edu.bonn.cs.net.jbarrier.barrier.TournamentBarrier;
-import es.ull.iis.simulation.info.TimeChangeInfo;
-import es.ull.iis.simulation.model.ActivityManager;
-import es.ull.iis.simulation.model.DiscreteEvent;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationObject;
-import es.ull.iis.simulation.model.engine.EventSourceEngine;
-import es.ull.iis.simulation.model.flow.MergeFlow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.info.TimeChangeInfo;
+import com.ull.simulation.model.ActivityManager;
+import com.ull.simulation.model.DiscreteEvent;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationObject;
+import com.ull.simulation.model.engine.EventSourceEngine;
+import com.ull.simulation.model.flow.MergeFlow;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * Main parallel discrete event simulation class. A simulation uses all kind of 
@@ -30,9 +30,9 @@ import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
  * which serve as an initial partition for parallelism.<p>
  * The simulation is feed with {@link EventSourceEngine.DiscreteEvent discrete events} produced by 
  * {@link EventSourceEngine Basic elements}.
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  */
-public class ParallelSimulationEngine extends es.ull.iis.simulation.model.engine.SimulationEngine {
+public class ParallelSimulationEngine extends com.ull.simulation.model.engine.SimulationEngine {
 	/** List of active elements */
 	private final Map<Integer, ElementEngine> activeElementList = Collections.synchronizedMap(new TreeMap<Integer, ElementEngine>());
 	/** Local virtual time. Represents the current simulation time */
@@ -168,7 +168,7 @@ public class ParallelSimulationEngine extends es.ull.iis.simulation.model.engine
 	 * (by using {@link #notifyEvents(List)} are executed. If the execution of the events produces new events, 
 	 * they are added to the local buffers of the executor. <p>Once the execution of all the current events has
 	 * finished, the second phase is started, and the AM events are executed.  
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 *
 	 */
 	final class SlaveEventExecutor extends Thread implements EventExecutor {

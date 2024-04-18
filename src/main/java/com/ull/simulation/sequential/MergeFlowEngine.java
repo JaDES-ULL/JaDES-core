@@ -1,25 +1,25 @@
 /**
  * 
  */
-package es.ull.iis.simulation.sequential;
+package com.ull.simulation.sequential;
 
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.WorkToken;
-import es.ull.iis.simulation.model.engine.EngineObject;
-import es.ull.iis.simulation.model.engine.SimulationEngine;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.MergeFlow;
-import es.ull.iis.simulation.model.flow.MergeFlowControl;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.WorkToken;
+import com.ull.simulation.model.engine.EngineObject;
+import com.ull.simulation.model.engine.SimulationEngine;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.MergeFlow;
+import com.ull.simulation.model.flow.MergeFlowControl;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
-public class MergeFlowEngine extends EngineObject implements es.ull.iis.simulation.model.engine.MergeFlowEngine {
+public class MergeFlowEngine extends EngineObject implements com.ull.simulation.model.engine.MergeFlowEngine {
 	final private MergeFlow modelFlow;
 	
 	/**
@@ -39,7 +39,7 @@ public class MergeFlowEngine extends EngineObject implements es.ull.iis.simulati
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.model.engine.MergeFlowEngine#getControlStructureInstance()
+	 * @see com.ull.simulation.model.engine.MergeFlowEngine#getControlStructureInstance()
 	 */
 	@Override
 	public Map<Element, MergeFlowControl> getControlStructureInstance() {
