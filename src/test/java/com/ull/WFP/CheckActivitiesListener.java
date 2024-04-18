@@ -1,19 +1,18 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.model.flow.ActivityFlow;
 /**
  * Checks the elements created and finished during the simulation
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class CheckActivitiesListener extends CheckerListener {
@@ -39,7 +38,8 @@ public class CheckActivitiesListener extends CheckerListener {
 	 * @param elements An array where each position is an element type, and each value is the amount of 
 	 * elements which should be created per type.
 	 */
-	public CheckActivitiesListener(final int nElems, final TreeMap<ActivityFlow, Integer> actIndex, final ArrayList<Long> actDuration) {
+	public CheckActivitiesListener(final int nElems, final TreeMap<ActivityFlow, Integer> actIndex,
+								   final ArrayList<Long> actDuration) {
 		super("Activity checker ");
 		this.actIndex = actIndex;
 		this.actDuration = actDuration;

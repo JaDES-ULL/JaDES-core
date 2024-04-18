@@ -1,24 +1,24 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.inforeceiver.StdInfoView;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.SimulationTimeFunction;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
+import com.ull.functions.TimeFunctionFactory;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.inforeceiver.StdInfoView;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.SimulationTimeFunction;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestPriorityElement {

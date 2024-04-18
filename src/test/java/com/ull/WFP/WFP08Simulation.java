@@ -1,15 +1,15 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.MultiMergeFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.MultiMergeFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
 
 /**
  * WFP 8. Control de calidad
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  */
 public class WFP08Simulation extends WFPTestSimulation {
 	public WFP08Simulation(int id) {
@@ -17,7 +17,7 @@ public class WFP08Simulation extends WFPTestSimulation {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
+	 * @see com.ull.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
 	 */
 	@Override
 	protected void createModel() {

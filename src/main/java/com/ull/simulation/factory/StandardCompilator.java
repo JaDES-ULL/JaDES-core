@@ -117,7 +117,8 @@ public class StandardCompilator {
 	 * @param code Events code.
 	 * @return The Class code including the events.
 	 */
-	static private String generateClass(String workingPkg, String objectType, Integer id, String constructorStr, SimulationUserCode userMethods) {
+	static private String generateClass(String workingPkg, String objectType, Integer id, String constructorStr,
+										SimulationUserCode userMethods) {
 						
 		String finalCode = new String();
 		
@@ -188,7 +189,8 @@ public class StandardCompilator {
 	 * @param initargs Arguments passed to the constructor when creating the instance 
 	 * @return An instance of a simulation object
 	 */
-	static public Object getInstance(String workingPkg, String objectType, int id, String constructorStr, SimulationUserCode userMethods, Object... initargs) {
+	static public Object getInstance(String workingPkg, String objectType, int id, String constructorStr,
+									 SimulationUserCode userMethods, Object... initargs) {
 		// Generates the class code
 		String classCode = generateClass(workingPkg, objectType, id, constructorStr, userMethods);
 		// Generates a StringJFO from the Object's identifier and the code of the compiled class

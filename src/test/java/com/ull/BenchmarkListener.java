@@ -1,19 +1,19 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.io.PrintStream;
 
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.ResourceInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.inforeceiver.Listener;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.ResourceInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.inforeceiver.Listener;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class BenchmarkListener extends Listener {

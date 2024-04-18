@@ -5,9 +5,9 @@ package com.ull.simulation.model;
 
 import java.util.ArrayList;
 
-import com.ull.function.TimeFunction;
-import com.ull.function.TimeFunctionFactory;
-import com.ull.function.TimeFunctionParams;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.functions.TimeFunctionFactory;
+import com.ull.functions.TimeFunctionParams;
 import com.ull.simulation.model.engine.SimulationEngine;
 
 /**
@@ -16,7 +16,7 @@ import com.ull.simulation.model.engine.SimulationEngine;
  */
 public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject implements TimeFunctionParams {
 	/** Number of objects created each time this creator is invoked. */
-	protected final TimeFunction nElem;
+	protected final AbstractTimeFunction nElem;
 	/** Each flow that will be generated */
 	protected final ArrayList<INF> genInfo = new ArrayList<INF>();
 
@@ -24,7 +24,7 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	 * Creates a creator of elements.
 	 * @param nElem Number of objects created each time this creator is invoked.
 	 */
-	public Generator(final Simulation model, final int id, final TimeFunction nElem) {
+	public Generator(final Simulation model, final int id, final AbstractTimeFunction nElem) {
 		super(model, id, "GEN");
 		this.nElem = nElem;
 	}
@@ -111,7 +111,7 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	 * Returns the function that characterizes the total number of entities to be created each time the {@link #create(long)} method is invoked
 	 * @return the function that characterizes the total number of entities to be created each time the {@link #create(long)} method is invoked
 	 */
-	public TimeFunction getNElem() {
+	public AbstractTimeFunction getNElem() {
 		return nElem;
 	}
 

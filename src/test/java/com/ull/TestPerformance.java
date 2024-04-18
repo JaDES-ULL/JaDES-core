@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestPerformance {

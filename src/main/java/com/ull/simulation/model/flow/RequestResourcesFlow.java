@@ -6,8 +6,8 @@ package com.ull.simulation.model.flow;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
-import com.ull.function.TimeFunction;
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.condition.Condition;
 import com.ull.simulation.condition.TrueCondition;
 import com.ull.simulation.info.ElementActionInfo;
@@ -21,8 +21,8 @@ import com.ull.simulation.model.Simulation;
 import com.ull.simulation.model.WorkGroup;
 import com.ull.simulation.model.engine.RequestResourcesEngine;
 import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.util.Prioritizable;
-import com.ull.util.PrioritizedTable;
+import com.ull.utils.Prioritizable;
+import com.ull.utils.PrioritizedTable;
 
 /**
  * A flow to request a set of resources, defined as {@link WorkGroup workgroups}. If all the resources from a workgroup are available, the element seizes 
@@ -324,7 +324,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 		/** Availability condition */
 		private Condition<ElementInstance> cond = null;
 		/** Delay applied after seizing the resources */
-		private TimeFunction delay = null;
+		private AbstractTimeFunction delay = null;
 		
 		private WorkGroupAdder(final WorkGroup wg) {
 			this.wg = wg;
@@ -340,7 +340,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 			return this;
 		}
 
-		public WorkGroupAdder withDelay(final TimeFunction delay) {
+		public WorkGroupAdder withDelay(final AbstractTimeFunction delay) {
 			this.delay = delay;
 			return this;
 		}
@@ -377,7 +377,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	    /** Availability condition */
 	    final private Condition<ElementInstance> cond;
 	    /** A function to characterize the duration of the delay */
-	    final private TimeFunction duration;
+	    final private AbstractTimeFunction duration;
 	    /** Precomputed string which identifies this WG */
 	    final private String idString; 
 		
@@ -389,7 +389,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	     * @param wg The original workgroup
 	     * @param cond  Availability condition
 	     */    
-	    public ActivityWorkGroup(final Simulation model, final int id, final int priority, final WorkGroup wg, final Condition<ElementInstance> cond, final TimeFunction duration) {
+	    public ActivityWorkGroup(final Simulation model, final int id, final int priority, final WorkGroup wg,
+								 final Condition<ElementInstance> cond, final AbstractTimeFunction duration) {
 	    	super(model, wg.getResourceTypes(), wg.getNeeded());
 	        this.priority = priority;
 	        this.cond = cond;
@@ -409,7 +410,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	     * Returns a function to characterize the duration of the delay
 		 * @return A function to characterize the duration of the delay
 		 */
-		public TimeFunction getDuration() {
+		public AbstractTimeFunction getDuration() {
 			return duration;
 		}
 

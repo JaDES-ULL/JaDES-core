@@ -3,8 +3,8 @@
  */
 package com.ull.simulation.model.flow;
 
-import com.ull.function.TimeFunction;
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.model.Element;
 import com.ull.simulation.model.Simulation;
 
@@ -15,7 +15,7 @@ import com.ull.simulation.model.Simulation;
  */
 public class TimeFunctionDelayFlow extends DelayFlow {
 	/** Duration of the delay */
-    private final TimeFunction duration;
+    private final AbstractTimeFunction duration;
 
     /**
      * Creates a delay flow
@@ -23,7 +23,7 @@ public class TimeFunctionDelayFlow extends DelayFlow {
      * @param description A short text describing this flow
      * @param duration The duration of the delay
      */
-	public TimeFunctionDelayFlow(final Simulation model, final String description, final TimeFunction duration) {
+	public TimeFunctionDelayFlow(final Simulation model, final String description, final AbstractTimeFunction duration) {
 		super(model, description);
 		this.duration = duration;
 	}
@@ -42,7 +42,7 @@ public class TimeFunctionDelayFlow extends DelayFlow {
 	 * Returns the time function that characterizes the duration of the delay
 	 * @return the time function that characterizes the duration of the delay
 	 */
-	public TimeFunction getDuration() {
+	public AbstractTimeFunction getDuration() {
 		return duration;
 	}
 

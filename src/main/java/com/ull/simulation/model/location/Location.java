@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ull.function.TimeFunction;
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.model.Identifiable;
 import com.ull.simulation.model.SimulationObject;
 
@@ -35,7 +35,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	/** A simple FIFO queue for entities waiting to enter into the location */
 	private final List<Movable> entitiesWaiting;
 	/** The time that it takes to exit (or go through) the location */ 
-	private final TimeFunction delayAtExit;
+	private final AbstractTimeFunction delayAtExit;
 	/** An internal unique identifier */
 	private final int id;
 	/** A counter to create unique identifiers */
@@ -49,7 +49,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * @param delayAtExit The time that it takes to exit (or go through) the location
 	 * @param capacity Total capacity of the location
 	 */
-	public Location(String description, TimeFunction delayAtExit, int capacity) {
+	public Location(String description, AbstractTimeFunction delayAtExit, int capacity) {
 		id = counter++;
 		this.description = description;
 		linkedTo = new ArrayList<Location>();
@@ -66,7 +66,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * @param description A brief description of the location
 -	 * @param delayAtExit The time that it takes to exit (or go through) the location
 	 */
-	public Location(String description, TimeFunction delayAtExit) {
+	public Location(String description, AbstractTimeFunction delayAtExit) {
 		this(description, delayAtExit, Integer.MAX_VALUE);
 	}
 

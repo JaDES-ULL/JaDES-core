@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunction;
+import com.ull.functions.AbstractTimeFunction;
 import com.ull.simulation.condition.Condition;
 
 /**
@@ -21,7 +21,7 @@ public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationI
 	 * @param nElem A function to characterize the number of entities to create every time the generator is invoked 
 	 * @param cond The condition that must be met to generate the event sources
 	 */
-	public ConditionDrivenGenerator(final Simulation model, final TimeFunction nElem, final Condition<ElementInstance> cond) {
+	public ConditionDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem, final Condition<ElementInstance> cond) {
 		super(model, model.getConditionDrivenGeneratorList().size(), nElem);
 		this.cond = cond;
 		model.add(this);

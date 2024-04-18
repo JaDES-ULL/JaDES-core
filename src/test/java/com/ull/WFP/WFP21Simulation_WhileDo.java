@@ -1,17 +1,17 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.WhileDoFlow;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.WhileDoFlow;
 
 /**
- * WFP 21. Example 2: Revelado fotográfico (implemented with a while-do structure)
+ * WFP 21. Example 2: Revelado fotogrï¿½fico (implemented with a while-do structure)
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP21Simulation_WhileDo extends WFPTestSimulation {
@@ -38,7 +38,7 @@ public class WFP21Simulation_WhileDo extends WFPTestSimulation {
 	}	
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
+	 * @see com.ull.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
 	 */
 	@Override
 	protected void createModel() {

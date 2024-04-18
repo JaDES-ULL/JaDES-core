@@ -15,7 +15,7 @@ import com.ull.simulation.model.ElementInstance;
 public interface TaskFlow extends InitializerFlow, FinalizerFlow {
 	/**
 	 * Finishes the associated task.
-	 * @param wThread The element instance which requested this flow.
+	 * @param ei The element instance which requested this flow.
 	 */
 	void finish(final ElementInstance ei);
 

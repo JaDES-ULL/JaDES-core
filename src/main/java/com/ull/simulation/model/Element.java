@@ -20,7 +20,7 @@ import com.ull.simulation.model.location.Location;
 import com.ull.simulation.model.location.Movable;
 import com.ull.simulation.model.location.MoveFlow;
 import com.ull.simulation.variable.EnumVariable;
-import com.ull.util.Prioritizable;
+import com.ull.utils.Prioritizable;
 
 /**
  * An entity capable of following a {@link Flow workflow}. Elements have a {@link ElementType type} and interact with {@link Resource resources}

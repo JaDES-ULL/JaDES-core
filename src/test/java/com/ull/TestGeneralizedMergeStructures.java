@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -78,7 +78,7 @@ class IncomingBranchesControl {
 }
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestGeneralizedMergeStructures {

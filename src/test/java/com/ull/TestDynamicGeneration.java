@@ -1,20 +1,20 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.condition.NotCondition;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.condition.NotCondition;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
 
 class TestDynamicGenerationExperiment extends Experiment {
 	
@@ -48,7 +48,7 @@ class TestDynamicGenerationExperiment extends Experiment {
 }
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestDynamicGeneration {

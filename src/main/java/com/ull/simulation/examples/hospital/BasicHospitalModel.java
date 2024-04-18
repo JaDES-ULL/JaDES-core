@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.examples.hospital;
 
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.condition.PercentageCondition;
 import com.ull.simulation.model.ElementInstance;
 import com.ull.simulation.model.ElementType;

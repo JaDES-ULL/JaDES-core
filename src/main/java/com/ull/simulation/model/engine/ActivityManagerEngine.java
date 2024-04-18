@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import com.ull.simulation.model.ActivityManager;
 import com.ull.simulation.model.ElementInstance;
 import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.util.PrioritizedMap;
+import com.ull.utils.PrioritizedMap;
 
 /**
  * The engine of an {@link ActivityManager activity manager}. Useful for implementing different strategies, such as parallel and sequential.

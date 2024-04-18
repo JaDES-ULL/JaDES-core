@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.util.concurrent.StandardThreadPool;
+import com.ull.utils.concurrent.StandardThreadPool;
 
 /**
  * A class to execute several simulations in parallel. It uses a pool of threads to execute the 

@@ -5,9 +5,9 @@ package com.ull.simulation.model;
 
 import java.util.EnumSet;
 
-import com.ull.util.cycle.Cycle;
-import com.ull.util.cycle.WeeklyPeriodicCycle;
-import com.ull.util.cycle.WeeklyPeriodicCycle.WeekDays;
+import com.ull.utils.cycle.Cycle;
+import com.ull.utils.cycle.WeeklyPeriodicCycle;
+import com.ull.utils.cycle.WeeklyPeriodicCycle.WeekDays;
 
 /**
  * @author Iv�n Castilla Rodr�guez

@@ -1,16 +1,16 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.io.PrintStream;
 
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Simulation;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Simulation;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class BenchmarkTest {

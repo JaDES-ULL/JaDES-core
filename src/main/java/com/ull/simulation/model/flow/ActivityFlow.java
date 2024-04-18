@@ -10,7 +10,7 @@ import com.ull.simulation.model.Simulation;
 import com.ull.simulation.model.WorkGroup;
 import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import com.ull.simulation.model.flow.RequestResourcesFlow.WorkGroupAdder;
-import com.ull.util.Prioritizable;
+import com.ull.utils.Prioritizable;
 
 /**
  * A flow which executes a single activity. An activity is characterized by a priority and a set of {@link WorkGroup workgropus}. 

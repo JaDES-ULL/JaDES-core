@@ -21,7 +21,7 @@ public class SimpleMergeFlow extends ORJoinFlow {
 	
 	/**
 	 * Creates a new SimpleMergeFlow.
-	 * @param simul Simulation this flow belongs to.
+	 * @param model Simulation this flow belongs to.
 	 */
 	public SimpleMergeFlow(Simulation model) {
 		super(model);

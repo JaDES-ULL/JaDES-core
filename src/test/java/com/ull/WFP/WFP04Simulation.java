@@ -1,18 +1,18 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.condition.NotCondition;
-import es.ull.iis.simulation.condition.TrueCondition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ExclusiveChoiceFlow;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.condition.NotCondition;
+import com.ull.simulation.condition.TrueCondition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ExclusiveChoiceFlow;
 
 /**
- * WFP 4 Example 1: Sistema Votación
+ * WFP 4 Example 1: Sistema Votaciï¿½n
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP04Simulation extends WFPTestSimulation {

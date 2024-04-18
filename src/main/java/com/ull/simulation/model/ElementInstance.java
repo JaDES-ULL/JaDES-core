@@ -17,8 +17,8 @@ import com.ull.simulation.model.flow.ReleaseResourcesFlow;
 import com.ull.simulation.model.flow.RequestResourcesFlow;
 import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import com.ull.simulation.model.flow.TaskFlow;
-import com.ull.util.Prioritizable;
-import com.ull.util.RandomPermutation;
+import com.ull.utils.Prioritizable;
+import com.ull.utils.RandomPermutation;
 
 /**
  * Represents an instance of an element, so multiple instances of the same element can be active at

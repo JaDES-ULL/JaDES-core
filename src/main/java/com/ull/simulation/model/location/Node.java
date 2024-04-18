@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model.location;
 
-import com.ull.function.TimeFunction;
+import com.ull.functions.AbstractTimeFunction;
 
 /**
  * A location representing a specific place.
@@ -18,7 +18,7 @@ public class Node extends Location {
 	 * @param delayAtExit The time that it takes to exit (or go through) the location
 	 * @param capacity Total capacity of the location
 	 */
-	public Node(String description, TimeFunction delayAtExit, int capacity) {
+	public Node(String description, AbstractTimeFunction delayAtExit, int capacity) {
 		super(description, delayAtExit, capacity);
 	}
 	
@@ -37,7 +37,7 @@ public class Node extends Location {
 	 * @param description A brief description of the location
 	 * @param delayAtExit The time that it takes to exit (or go through) the location
 	 */
-	public Node(String description, TimeFunction delayAtExit) {
+	public Node(String description, AbstractTimeFunction delayAtExit) {
 		super(description, delayAtExit);
 	}
 	

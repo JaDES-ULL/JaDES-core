@@ -1,22 +1,22 @@
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.util.ArrayList;
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.inforeceiver.StdInfoView;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.SimulationTimeFunction;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
+import com.ull.functions.TimeFunctionFactory;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.inforeceiver.StdInfoView;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.SimulationTimeFunction;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
 
 /**
  * 
@@ -35,17 +35,17 @@ class ExpOverlapped extends Experiment {
 	}
 
 	public Simulation getSimulation(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "Sistema de análisis", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "Sistema de anï¿½lisis", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
 
         // PASO 1: Inicializo las Activityes de las que se compone
 //    	Activity actDummy = factory.getActivityInstance("Dummy");
-    	ActivityFlow actSangre = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "Análisis de sangre");
-    	ActivityFlow actOrina = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "Análisis de orina");
+    	ActivityFlow actSangre = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "Anï¿½lisis de sangre");
+    	ActivityFlow actOrina = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "Anï¿½lisis de orina");
  
         // PASO 2: Inicializo las clases de recursos
-        ResourceType crSangre = factory.getResourceTypeInstance("Máquina Análisis Sangre");
-        ResourceType crOrina = factory.getResourceTypeInstance("Máquina Análisis Orina");
+        ResourceType crSangre = factory.getResourceTypeInstance("Mï¿½quina Anï¿½lisis Sangre");
+        ResourceType crOrina = factory.getResourceTypeInstance("Mï¿½quina Anï¿½lisis Orina");
 //        ResourceType crDummy = factory.getResourceTypeInstance("Dummy");
 
         // PASO 3: Creo las tablas de clases de recursos
@@ -61,20 +61,20 @@ class ExpOverlapped extends Experiment {
 //		al1.add(getResourceType(0));
 //		al1.add(getResourceType(2));
 //        for (int i = 0; i < NRESOURCES; i++) {
-//        	Resource res = factory.getResourceInstance(i, "Máquina Análisis Sangre " + i);
+//        	Resource res = factory.getResourceInstance(i, "Mï¿½quina Anï¿½lisis Sangre " + i);
 //        	res.addTimeTableEntry(new ModelPeriodicCycle(unit, 480, RandomVariateFactory.getInstance("ConstantVariate", 1440), 0), 480, al1);
 //        }
 //		ArrayList<ResourceType> al2 = new ArrayList<ResourceType>();
 //		al2.add(crOrina);
 //		al2.add(crDummy);
-//		Resource orina1 = factory.getResourceInstance("Máquina Análisis Orina 1");
+//		Resource orina1 = factory.getResourceInstance("Mï¿½quina Anï¿½lisis Orina 1");
 //		orina1.addTimeTableEntry(new ModelPeriodicCycle(unit, 480, RandomVariateFactory.getInstance("ConstantVariate", 1440), 0), 480, al2);
 
 		ArrayList<ResourceType> al2 = new ArrayList<ResourceType>();
 		al2.add(crOrina);
 		al2.add(crSangre);
         for (int i = 0; i < NRESOURCES; i++) {
-			Resource poli1 = factory.getResourceInstance("Máquina Polivalente 1");
+			Resource poli1 = factory.getResourceInstance("Mï¿½quina Polivalente 1");
 			poli1.newTimeTableOrCancelEntriesAdder(al2).withDuration(new SimulationPeriodicCycle(unit, 480, new SimulationTimeFunction(unit, "ConstantVariate", 1440), 0), 480).addTimeTableEntry();
         }
         

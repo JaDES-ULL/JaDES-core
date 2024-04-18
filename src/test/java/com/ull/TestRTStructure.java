@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -48,7 +48,7 @@ class ResourceList1 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	Integer val = tree.get(res);
-    	// FIXME Debería crearme un tipo personalizado de excepción
+    	// FIXME Deberï¿½a crearme un tipo personalizado de excepciï¿½n
     	if (val == null)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (val > 1) {
@@ -122,7 +122,7 @@ class ResourceList2 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	int pos = resources.indexOf(res);
-    	// FIXME Debería crearme un tipo personalizado de excepción
+    	// FIXME Deberï¿½a crearme un tipo personalizado de excepciï¿½n
     	if (pos == -1)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (counter.get(pos).intValue() > 1) {
@@ -161,7 +161,7 @@ class ResourceList2 {
 /**
  * Checks two different structures to control resource lists which requires sequential and random access.
  * ResourceList1 seems to be far much better  
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestRTStructure {

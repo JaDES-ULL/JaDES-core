@@ -1,14 +1,14 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.StructuredPartialJoinFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.StructuredPartialJoinFlow;
 
 /**
- * WFP 30. Expedición Cheques
+ * WFP 30. Expediciï¿½n Cheques
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 // TODO: Check carefully
@@ -24,7 +24,7 @@ public class WFP30Simulation extends WFPTestSimulation {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
+	 * @see com.ull.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
 	 */
 	@Override
 	protected void createModel() {

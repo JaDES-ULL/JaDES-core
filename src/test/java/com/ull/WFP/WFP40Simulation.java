@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.InterleavedRoutingFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.InterleavedRoutingFlow;
 
 /**
  * WFP 40. 
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP40Simulation extends WFPTestSimulation {

@@ -1,21 +1,21 @@
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationCycle;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.SimulationTimeFunction;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.InitializerFlow;
-import es.ull.iis.util.Output;
+import com.ull.functions.TimeFunctionFactory;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationCycle;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.SimulationTimeFunction;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.InitializerFlow;
+import com.ull.utils.Output;
 
 class ExpConflict extends Experiment {
     static final int NDAYS = 1;
@@ -126,7 +126,7 @@ class ExpConflict extends Experiment {
 	}	
 }
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestConflict {

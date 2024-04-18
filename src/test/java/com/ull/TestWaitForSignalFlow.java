@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull.simulation.test;
+package com.ull;
 
 import java.util.ArrayList;
 import java.util.Random;

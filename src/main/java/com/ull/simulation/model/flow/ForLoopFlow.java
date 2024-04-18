@@ -6,8 +6,8 @@ package com.ull.simulation.model.flow;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.ull.function.ConstantFunction;
-import com.ull.function.TimeFunction;
+import com.ull.functions.ConstantFunction;
+import com.ull.functions.AbstractTimeFunction;
 import com.ull.simulation.model.ElementInstance;
 import com.ull.simulation.model.Simulation;
 
@@ -21,7 +21,7 @@ import com.ull.simulation.model.Simulation;
  */
 public class ForLoopFlow extends StructuredLoopFlow {
 	/** Loop iterations */
-	protected final TimeFunction iterations; 
+	protected final AbstractTimeFunction iterations;
 	/** List used by the control system. */
 	protected final SortedMap<ElementInstance, Integer> checkList = new TreeMap<ElementInstance, Integer>();
 
@@ -31,7 +31,7 @@ public class ForLoopFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final InitializerFlow initialSubFlow, final FinalizerFlow finalSubFlow, final TimeFunction iterations) {
+	public ForLoopFlow(final Simulation model, final InitializerFlow initialSubFlow, final FinalizerFlow finalSubFlow, final AbstractTimeFunction iterations) {
 		super(model, initialSubFlow, finalSubFlow);
 		this.iterations = iterations;
 	}
@@ -41,7 +41,7 @@ public class ForLoopFlow extends StructuredLoopFlow {
 	 * @param subFlow A unique flow defining an internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final TaskFlow subFlow, final TimeFunction iterations) {
+	public ForLoopFlow(final Simulation model, final TaskFlow subFlow, final AbstractTimeFunction iterations) {
 		this(model, subFlow, subFlow, iterations);
 	}
 	
@@ -68,7 +68,7 @@ public class ForLoopFlow extends StructuredLoopFlow {
 	 * Returns the function which characterizes the iterations performed in the loop.
 	 * @return The function which characterizes the iterations performed in the loop
 	 */
-	public TimeFunction getIterations() {
+	public AbstractTimeFunction getIterations() {
 		return iterations;
 	}
 

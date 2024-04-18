@@ -3,19 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ull</groupId>
-  <artifactId>template</artifactId>
+  <artifactId>JaDES</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>template</name>
+  <name>JaDES</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar.organization>jades</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    <maven.compiler.source>7</maven.compiler.source>
-    <maven.compiler.target>7</maven.compiler.target>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -26,34 +26,77 @@
       <scope>test</scope>
     </dependency>
 
-    <!--REPOS LOCALES-->
+    <!-- LOCALES -->
+
     <dependency>
-      <groupId>JBARRIER-1.0</groupId>
-      <artifactId>JBARRIER-1.0</artifactId>
+
+      <groupId>jbarrier</groupId>
+
+      <artifactId>jbarrier</artifactId>
+
       <version>1.0</version>
+
       <scope>system</scope>
-     <systemPath>${project.basedir}/src/libs/jbarrier-1.0.jar</systemPath>
+
+      <systemPath>${basedir}/src/lib/jbarrier.jar</systemPath>
+
     </dependency>
+
     <dependency>
-      <groupId>JFlex</groupId>
-      <artifactId>JFlex</artifactId>
+
+      <groupId>jflex</groupId>
+
+      <artifactId>jflex</artifactId>
+
       <version>1.0</version>
+
       <scope>system</scope>
-      <systemPath>${project.basedir}/src/libs/JFlex.jar</systemPath>
+
+      <systemPath>${basedir}/src/lib/JFlex.jar</systemPath>
+
     </dependency>
+
     <dependency>
+
+      <groupId>simkit</groupId>
+
+      <artifactId>simkit</artifactId>
+
+      <version>1.0</version>
+
+      <scope>system</scope>
+
+      <systemPath>${basedir}/src/lib/simkit-1.4.1.jar</systemPath>
+
+    </dependency>
+
+    <dependency>
+
       <groupId>tools</groupId>
+
       <artifactId>tools</artifactId>
+
       <version>1.0</version>
+
       <scope>system</scope>
-      <systemPath>${project.basedir}/src/libs/tools.jar</systemPath>
+
+      <systemPath>${basedir}/src/lib/tools.jar</systemPath>
+
     </dependency>
+
     <dependency>
-      <groupId>utils-library</groupId>
-      <artifactId>utils-library</artifactId>
+
+      <groupId>utils</groupId>
+
+      <artifactId>utils</artifactId>
+
       <version>1.0</version>
+
       <scope>system</scope>
-      <systemPath>${project.basedir}/src/libs/utils-library.jar</systemPath>
+
+      <systemPath>${basedir}/src/lib/utils.jar</systemPath>
+
     </dependency>
+
   </dependencies>
 </project>

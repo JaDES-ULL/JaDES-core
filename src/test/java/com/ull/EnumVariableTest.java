@@ -1,7 +1,7 @@
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.variable.EnumType;
-import es.ull.iis.simulation.variable.EnumVariable;
+import com.ull.simulation.variable.EnumType;
+import com.ull.simulation.variable.EnumVariable;
 
 class EnumTest1 {
 

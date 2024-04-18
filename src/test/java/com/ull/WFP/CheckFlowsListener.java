@@ -1,24 +1,24 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.info.ElementActionInfo;
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.model.Element;
-import es.ull.iis.simulation.model.flow.ActionFlow;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.InitializerFlow;
-import es.ull.iis.simulation.model.flow.SingleSuccessorFlow;
+import com.ull.simulation.info.ElementActionInfo;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.SimulationInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.model.Element;
+import com.ull.simulation.model.flow.ActionFlow;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.InitializerFlow;
+import com.ull.simulation.model.flow.SingleSuccessorFlow;
 
 /**
  * Checks the elements created and finished during the simulation
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class CheckFlowsListener extends CheckerListener {

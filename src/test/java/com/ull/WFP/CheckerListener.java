@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.inforeceiver.Listener;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.inforeceiver.Listener;
 
 /**
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public abstract class CheckerListener extends Listener {

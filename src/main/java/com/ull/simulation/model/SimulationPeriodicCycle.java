@@ -3,9 +3,9 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunction;
-import com.ull.util.cycle.Cycle;
-import com.ull.util.cycle.PeriodicCycle;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.utils.cycle.Cycle;
+import com.ull.utils.cycle.PeriodicCycle;
 
 /**
  * A wrapper class for {@link com.ull.util.cycle.PeriodicCycle PeriodicCycle} to be used inside a simulation. 
@@ -24,7 +24,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param period Time interval between two successive ocurrences of an event
 	 * @param endTs Relative time when this cycle is expected to finish
 	 */
-	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, TimeFunction period, TimeStamp endTs) {
+	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period, TimeStamp endTs) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, unit.convert(endTs));
 	}
 
@@ -35,7 +35,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param period Time interval between two successive ocurrences of an event
 	 * @param iterations How many times this cycle is executed. A value of 0 indicates infinite iterations
 	 */
-	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, TimeFunction period, int iterations) {
+	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period, int iterations) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, iterations);
 	}
 
@@ -47,7 +47,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param endTs Relative time when this cycle is expected to finish
 	 * @param subCycle Subcycle contained in this cycle
 	 */
-	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, TimeFunction period,
+	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period,
 			TimeStamp endTs, SimulationCycle subCycle) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, unit.convert(endTs), subCycle.getCycle());
 	}
@@ -60,7 +60,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param iterations How many times this cycle is executed. A value of 0 indicates infinite iterations
 	 * @param subCycle Subcycle contained in this cycle
 	 */
-	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, TimeFunction period,
+	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period,
 			int iterations, SimulationCycle subCycle) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, iterations, subCycle.getCycle());
 	}

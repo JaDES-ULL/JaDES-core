@@ -1,12 +1,12 @@
-package es.ull.iis.simulation.test.WFP;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
+package com.ull.WFP;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
 
 /**
  * WFP 1, Example 1: Tarjeta de Credito
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP01Simulation extends WFPTestSimulation {

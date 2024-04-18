@@ -1,24 +1,24 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.inforeceiver.StdInfoView;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.TimeDrivenElementGenerator;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
+import com.ull.simulation.inforeceiver.StdInfoView;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.TimeDrivenElementGenerator;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class TestConditionalResourceGenerator extends Experiment {
@@ -78,7 +78,7 @@ public class TestConditionalResourceGenerator extends Experiment {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.model.Experiment#getModel(int)
+	 * @see com.ull.simulation.model.Experiment#getModel(int)
 	 */
 	@Override
 	public Simulation getSimulation(int ind) {

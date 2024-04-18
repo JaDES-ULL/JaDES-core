@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunction;
+import com.ull.functions.AbstractTimeFunction;
 import com.ull.simulation.model.flow.InitializerFlow;
 import com.ull.simulation.model.location.Location;
 
@@ -30,7 +30,7 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final TimeFunction nElem, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final SimulationCycle cycle) {
 		super(model, nElem, cycle);
 	}
 
@@ -55,7 +55,8 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param flow The description of the flow of the elements to be created.
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final TimeFunction nElem, final ElementType et, final InitializerFlow flow, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ElementType et,
+									  final InitializerFlow flow, final SimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, flow, 0, null, 1.0));
 	}
@@ -70,7 +71,8 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final TimeFunction nElem, final ElementType et, final InitializerFlow flow, final TimeFunction size, final Location initLocation, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ElementType et,
+									  final InitializerFlow flow, final AbstractTimeFunction size, final Location initLocation, final SimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
 	}
@@ -85,7 +87,9 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et, final InitializerFlow flow, final TimeFunction size, final Location initLocation, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et,
+									  final InitializerFlow flow, final AbstractTimeFunction size,
+									  final Location initLocation, final SimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
 	}
@@ -100,7 +104,9 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et, final InitializerFlow flow, final int size, final Location initLocation, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et,
+									  final InitializerFlow flow, final int size, final Location initLocation,
+									  final SimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
 	}

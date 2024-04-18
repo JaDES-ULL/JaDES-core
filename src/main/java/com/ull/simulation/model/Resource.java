@@ -16,7 +16,7 @@ import com.ull.simulation.model.location.Movable;
 import com.ull.simulation.model.location.MoveResourcesFlow;
 import com.ull.simulation.model.location.Router;
 import com.ull.simulation.model.location.TransportFlow;
-import com.ull.util.cycle.DiscreteCycleIterator;
+import com.ull.utils.cycle.DiscreteCycleIterator;
 
 /**
  * A simulation resource whose availability is controlled by means of {@link TimeTableEntry timetable entries}.

@@ -23,7 +23,7 @@ import com.ull.simulation.model.flow.ActivityFlow;
 import com.ull.simulation.model.flow.Flow;
 import com.ull.simulation.model.flow.MergeFlow;
 import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.util.Output;
+import com.ull.utils.Output;
 
 /**
  * Main simulation class, identified by means of an identifier and a description.

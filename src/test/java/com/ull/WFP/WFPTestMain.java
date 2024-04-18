@@ -1,19 +1,19 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.TreeMap;
 
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.parallel.ParallelSimulationEngine;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.parallel.ParallelSimulationEngine;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class WFPTestMain extends Experiment {

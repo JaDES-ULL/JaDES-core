@@ -1,17 +1,17 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ForLoopFlow;
+import com.ull.functions.TimeFunctionFactory;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ForLoopFlow;
 
 /**
- * WFP 21. Example 2: Revelado fotográfico (implemented with a for structure)
+ * WFP 21. Example 2: Revelado fotogrï¿½fico (implemented with a for structure)
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP21Simulation_For extends WFPTestSimulation {
@@ -26,7 +26,7 @@ public class WFP21Simulation_For extends WFPTestSimulation {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
+	 * @see com.ull.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
 	 */
 	@Override
 	protected void createModel() {

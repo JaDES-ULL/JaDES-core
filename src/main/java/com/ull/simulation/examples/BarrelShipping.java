@@ -2,7 +2,7 @@ package com.ull.simulation.examples;
 
 import java.util.ArrayList;
 
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.condition.Condition;
 import com.ull.simulation.condition.NotCondition;
 import com.ull.simulation.factory.SimulationFactory;
@@ -22,7 +22,7 @@ import com.ull.simulation.model.flow.ActivityFlow;
 import com.ull.simulation.model.flow.Flow;
 import com.ull.simulation.model.flow.MultiChoiceFlow;
 import com.ull.simulation.parallel.ParallelSimulationEngine;
-import com.ull.util.cycle.WeeklyPeriodicCycle;
+import com.ull.utils.cycle.WeeklyPeriodicCycle;
 
 class BarrelShippingExperiment extends Experiment {
 

@@ -1,15 +1,15 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
-import es.ull.iis.simulation.model.flow.SimpleMergeFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
+import com.ull.simulation.model.flow.SimpleMergeFlow;
 
 /**
  * WFP 5. Example 1: Excavaciones
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP05Simulation extends WFPTestSimulation {

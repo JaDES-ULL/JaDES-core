@@ -1,19 +1,19 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.InterleavedParallelRoutingFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.InterleavedParallelRoutingFlow;
 
 /**
  * WFP 17. Interleaved Parallel Routing
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  * Creates an interleaved paralell routing example with the following activities: A, B, C, D, E, F;
  * and the following dependencies: A -> B, A -> C, C -> D -> E, B -> E. F has no dependencies 
  *
@@ -31,7 +31,7 @@ public class WFP17Simulation extends WFPTestSimulation {
 	}
 
 	/* (non-Javadoc)
-	 * @see es.ull.iis.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
+	 * @see com.ull.simulation.test.WFP.WFPTestSimulationFactory#createModel(Model model)
 	 */
 	@Override
 	protected void createModel() {

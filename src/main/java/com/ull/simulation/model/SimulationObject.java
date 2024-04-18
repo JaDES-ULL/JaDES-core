@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunctionParams;
+import com.ull.functions.TimeFunctionParams;
 import com.ull.simulation.model.engine.SimulationEngine;
 
 /**

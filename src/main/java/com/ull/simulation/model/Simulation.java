@@ -26,7 +26,7 @@ import com.ull.simulation.variable.LongVariable;
 import com.ull.simulation.variable.ShortVariable;
 import com.ull.simulation.variable.UserVariable;
 import com.ull.simulation.variable.Variable;
-import com.ull.util.Output;
+import com.ull.utils.Output;
 
 /**
  * The main simulation class. Defines all the components of the model and the logical structures required to simulate them.

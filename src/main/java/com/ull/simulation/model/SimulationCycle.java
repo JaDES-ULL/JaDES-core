@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.util.cycle.Cycle;
+import com.ull.utils.cycle.Cycle;
 
 /**
  * A wrapper class for {@link com.ull.util.cycle.Cycle Cycle} to be used inside a simulation. 

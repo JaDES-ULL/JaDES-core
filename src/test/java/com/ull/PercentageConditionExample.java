@@ -1,7 +1,7 @@
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.condition.PercentageCondition;
-import es.ull.iis.simulation.model.ElementInstance;
+import com.ull.simulation.condition.PercentageCondition;
+import com.ull.simulation.model.ElementInstance;
 
 public class PercentageConditionExample {
 

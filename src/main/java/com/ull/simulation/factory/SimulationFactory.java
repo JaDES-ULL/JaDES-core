@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.factory;
 
-import com.ull.function.TimeFunction;
+import com.ull.functions.AbstractTimeFunction;
 import com.ull.simulation.condition.Condition;
 import com.ull.simulation.model.ElementInstance;
 import com.ull.simulation.model.ElementType;
@@ -67,15 +67,15 @@ public class SimulationFactory {
 		return simul;
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(TimeFunction elem, SimulationCycle cycle) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, SimulationCycle cycle) throws ClassCastException {
 		return new TimeDrivenElementGenerator(simul, elem, cycle);
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(TimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle) throws ClassCastException {
 		return new TimeDrivenElementGenerator(simul, elem,  et, flow, cycle);
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(TimeFunction elem, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
 		// Prepare the constructor call
 		final String constructorStr = "(Simulation sim, TimeFunction nElem, SimulationCycle cycle) {super(sim, nElem, cycle);}";
 		// Prepare the new params.
@@ -85,7 +85,7 @@ public class SimulationFactory {
 		return null;
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(TimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
 		// Prepare the constructor call
 		final String constructorStr = "(Simulation sim, TimeFunction nElem, ElementType et, InitializerFlow flow, SimulationCycle cycle) {super(sim, nElem, et, flow, cycle);}";
 		// Prepare the new params.

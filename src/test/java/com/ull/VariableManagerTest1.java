@@ -1,15 +1,15 @@
-package es.ull.iis.simulation.test;
+package com.ull;
 
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.inforeceiver.StdInfoView;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.parallel.ParallelSimulationEngine;
-import es.ull.iis.simulation.variable.EnumType;
-import es.ull.iis.simulation.variable.EnumVariable;
-import es.ull.iis.simulation.variable.IntVariable;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.inforeceiver.StdInfoView;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.parallel.ParallelSimulationEngine;
+import com.ull.simulation.variable.EnumType;
+import com.ull.simulation.variable.EnumVariable;
+import com.ull.simulation.variable.IntVariable;
 
 /**
  * 

@@ -1,7 +1,7 @@
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunction;
-import com.ull.function.TimeFunctionFactory;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.functions.TimeFunctionFactory;
 import com.ull.simulation.model.flow.InitializerFlow;
 import com.ull.simulation.model.location.Location;
 
@@ -15,7 +15,7 @@ public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	/** Description of the flow that the elements carry out. */
 	protected final InitializerFlow flow;
 	/** Function to determine the size of the elements created */ 
-	protected final TimeFunction size;
+	protected final AbstractTimeFunction size;
 	/** The initial {@link Location} where the elements appear */
 	protected final Location initLocation;
 	
@@ -39,7 +39,7 @@ public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param prop Proportion of elements corresponding to this flow.
 	 */
-	public StandardElementGenerationInfo(final ElementType et, final InitializerFlow flow, final TimeFunction size, final Location initLocation, final double prop) {
+	public StandardElementGenerationInfo(final ElementType et, final InitializerFlow flow, final AbstractTimeFunction size, final Location initLocation, final double prop) {
 		super(prop);
 		this.et = et;
 		this.flow = flow;

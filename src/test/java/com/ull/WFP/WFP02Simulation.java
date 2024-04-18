@@ -1,14 +1,14 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
 
 /**
  * WFP 2, example 2: Alarma
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP02Simulation extends WFPTestSimulation {
@@ -21,7 +21,7 @@ public class WFP02Simulation extends WFPTestSimulation {
         ResourceType rt = getDefResourceType("Operador");
         
         WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt}, new int[] {1});
-    	ActivityFlow act0 = getDefActivity("Detección alarma", wg);
+    	ActivityFlow act0 = getDefActivity("Detecciï¿½n alarma", wg);
     	ActivityFlow act1 = getDefActivity("Mandar patrulla", wg, false);
     	ActivityFlow act2 = getDefActivity("Generar informe", wg, false);
    

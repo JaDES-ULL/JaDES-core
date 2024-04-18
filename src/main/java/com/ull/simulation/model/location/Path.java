@@ -3,7 +3,7 @@
  */
 package com.ull.simulation.model.location;
 
-import com.ull.function.TimeFunction;
+import com.ull.functions.AbstractTimeFunction;
 
 /**
  * A location representing a path between two or more places ({@link Node}). Useful for roads.
@@ -22,7 +22,7 @@ public class Path extends Location {
 	 * @param capacityPerLane Total capacity of each lane
 	 * @param nLanes Number of lanes of the path
 	 */
-	public Path(String description, TimeFunction delayAtExit, int capacityPerLane, int nLanes) {
+	public Path(String description, AbstractTimeFunction delayAtExit, int capacityPerLane, int nLanes) {
 		super(description, delayAtExit, capacityPerLane * nLanes);
 		this.nLanes = nLanes; 
 	}
@@ -32,7 +32,7 @@ public class Path extends Location {
 	 * @param description A brief description of the location
 	 * @param delayAtExit The time that it takes to exit (or go through) the location
 	 */
-	public Path(String description, TimeFunction delayAtExit) {
+	public Path(String description, AbstractTimeFunction delayAtExit) {
 		super(description, delayAtExit);
 		this.nLanes = Integer.MAX_VALUE; 
 	}

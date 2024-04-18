@@ -3,8 +3,8 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.util.cycle.Cycle;
-import com.ull.util.cycle.TableCycle;
+import com.ull.utils.cycle.Cycle;
+import com.ull.utils.cycle.TableCycle;
 
 /**
  * A wrapper class for {@link com.ull.util.cycle.TableCycle TableCycle} to be used inside a simulation. 

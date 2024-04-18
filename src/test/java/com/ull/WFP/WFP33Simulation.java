@@ -1,15 +1,15 @@
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ParallelFlow;
-import es.ull.iis.simulation.model.flow.SynchronizationFlow;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ParallelFlow;
+import com.ull.simulation.model.flow.SynchronizationFlow;
 
 /**
- * WFP 33. Envío Mercancías
+ * WFP 33. Envï¿½o Mercancï¿½as
  * @author Yeray Callero
- * @author Iván Castilla
+ * @author Ivï¿½n Castilla
  *
  */
 public class WFP33Simulation extends WFPTestSimulation {

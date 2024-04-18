@@ -1,17 +1,17 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test.WFP;
+package com.ull.WFP;
 
 import java.util.ArrayList;
 
-import es.ull.iis.simulation.info.ElementInfo;
-import es.ull.iis.simulation.info.SimulationStartStopInfo;
-import es.ull.iis.simulation.info.SimulationInfo;
+import com.ull.simulation.info.ElementInfo;
+import com.ull.simulation.info.SimulationStartStopInfo;
+import com.ull.simulation.info.SimulationInfo;
 
 /**
  * Checks the elements created and finished during the simulation
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class CheckElementsListener extends CheckerListener {

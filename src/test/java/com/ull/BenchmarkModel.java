@@ -1,32 +1,32 @@
 /**
  * 
  */
-package es.ull.iis.simulation.test;
+package com.ull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ForLoopFlow;
-import es.ull.iis.simulation.model.flow.InterleavedRoutingFlow;
-import es.ull.iis.simulation.parallel.ParallelSimulationEngine;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationType;
-import es.ull.iis.simulation.factory.SimulationUserCode;
-import es.ull.iis.simulation.factory.UserMethod;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.SimulationTimeFunction;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.function.TimeFunctionFactory;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ForLoopFlow;
+import com.ull.simulation.model.flow.InterleavedRoutingFlow;
+import com.ull.simulation.parallel.ParallelSimulationEngine;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationType;
+import com.ull.simulation.factory.SimulationUserCode;
+import com.ull.simulation.factory.UserMethod;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.SimulationTimeFunction;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.Resource;
+import com.ull.functions.TimeFunctionFactory;
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class BenchmarkModel {
@@ -42,7 +42,7 @@ public class BenchmarkModel {
 	 * - TOTALCONFLICT: Again the same model, but this time, the resources have multiple timetable 
 	 *   entries and can be used by any activity.
 	 * - PARALLEL: Each resource simultaneously requests ALL the activities. 
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 */
 	enum ModelType {NORESOURCES, RESOURCES, CONFLICT, MIXCONFLICT, TOTALCONFLICT, PARALLEL}
 	/**
@@ -50,7 +50,7 @@ public class BenchmarkModel {
 	 * - SAMETIME: All the elements request the activities at the same time
 	 * - CONSECUTIVE: Only one element requests an activity at a time
 	 * - MIXED: Something in the middle of the former ones.
-	 * @author Iván Castilla Rodríguez
+	 * @author Ivï¿½n Castilla Rodrï¿½guez
 	 */
 	enum OverlappingType {SAMETIME, CONSECUTIVE, MIXED};
 	final private String head;

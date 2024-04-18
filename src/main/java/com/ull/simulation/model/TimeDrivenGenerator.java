@@ -3,8 +3,8 @@
  */
 package com.ull.simulation.model;
 
-import com.ull.function.TimeFunction;
-import com.ull.util.cycle.DiscreteCycleIterator;
+import com.ull.functions.AbstractTimeFunction;
+import com.ull.utils.cycle.DiscreteCycleIterator;
 
 /**
  * @author Iv�n Castilla Rodr�guez
@@ -22,7 +22,7 @@ public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> 
 		model.add(this);
 	}
 
-	public TimeDrivenGenerator(final Simulation model, final TimeFunction nElem, final SimulationCycle cycle) {
+	public TimeDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem, final SimulationCycle cycle) {
 		super(model, model.getTimeDrivenGeneratorList().size(), nElem);
 		this.cycle = cycle;
 		model.add(this);
