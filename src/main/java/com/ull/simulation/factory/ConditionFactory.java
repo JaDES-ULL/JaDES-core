@@ -1,12 +1,12 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.variable.IntVariable;
-import es.ull.iis.simulation.variable.Variable;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.variable.IntVariable;
+import com.ull.simulation.variable.Variable;
 
 /**
  * Generate Condition's instances. We can obtain a predefined Condition

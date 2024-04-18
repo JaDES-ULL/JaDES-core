@@ -1,19 +1,19 @@
 /**
  * 
  */
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Generator;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.flow.FinalizerFlow;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.RequestResourcesFlow;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Generator;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.flow.FinalizerFlow;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
- * @author Iv·n Castilla RodrÌguez
+ * @author Iv√°n Castilla Rodr√≠guez
  *
  */
 public enum UserMethod {

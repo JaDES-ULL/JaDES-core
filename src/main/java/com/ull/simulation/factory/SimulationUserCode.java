@@ -1,11 +1,11 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
 import java.util.Set;
 import java.util.TreeMap;
 
 /**
  * A structure to store user code to be used as the body of the user methods defined in the simulator.
- * @author Yeray Callero and Iván Castilla
+ * @author Yeray Callero and Ivï¿½n Castilla
  *
  */
 public class SimulationUserCode {

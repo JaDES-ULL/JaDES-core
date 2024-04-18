@@ -1,4 +1,5 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

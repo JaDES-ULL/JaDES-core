@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import es.ull.iis.simulation.factory.SimulationUserCode;
-import es.ull.iis.simulation.factory.StandardCompilator;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.flow.Flow;
+import com.ull.simulation.factory.SimulationUserCode;
+import com.ull.simulation.factory.StandardCompilator;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.flow.Flow;
 
 /**
  * Generate Flow's instances.
@@ -49,7 +49,7 @@ public class FlowFactory {
 	/**
 	 * Finds the Flow Class corresponding to the given name. First
 	 * attempts to find the Flow assuming the the name is fully qualified.
-	 * Then searches the "search packages." The search path defaults to "es.ull.iis.model.flow"
+	 * Then searches the "search packages." The search path defaults to "com.ull.model.flow"
 	 * but additional search packages can be added.
 	 **/
 	public static Class<?> findFullyQualifiedNameFor(String className) {

@@ -1,26 +1,26 @@
 /**
  * 
  */
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
-import es.ull.iis.function.TimeFunction;
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationCycle;
-import es.ull.iis.simulation.model.TimeDrivenElementGenerator;
-import es.ull.iis.simulation.model.TimeStamp;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.InitializerFlow;
+import com.ull.function.TimeFunction;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationCycle;
+import com.ull.simulation.model.TimeDrivenElementGenerator;
+import com.ull.simulation.model.TimeStamp;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.InitializerFlow;
 
 
 /**
- * @author Iván Castilla Rodríguez
+ * @author Ivï¿½n Castilla Rodrï¿½guez
  *
  */
 public class SimulationFactory {

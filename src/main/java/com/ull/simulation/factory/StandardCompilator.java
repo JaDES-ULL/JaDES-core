@@ -1,4 +1,4 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
 import java.io.StringReader;
 import java.lang.reflect.Constructor;

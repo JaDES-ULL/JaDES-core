@@ -1,7 +1,7 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
 
 /**
- * @author Iv·n Castilla RodrÌguez
+ * @author Iv√°n Castilla Rodr√≠guez
  */
 public enum SimulationType {
 	SEQUENTIAL, 

@@ -1,4 +1,5 @@
-package es.ull.iis.simulation.factory;
+package com.ull.simulation.factory;
+
 import java.util.Map;
 
 import javax.tools.JavaFileObject;

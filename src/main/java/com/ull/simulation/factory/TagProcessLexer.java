@@ -4,7 +4,11 @@
  * This class is a simple example lexer.
  */
 
-package es.ull.iis.simulation.factory;
+/**
+ * DEPRECATED?
+ */
+
+package com.ull.simulation.factory;
  
 import java_cup.runtime.Symbol;
  
