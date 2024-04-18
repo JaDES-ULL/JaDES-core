@@ -1,21 +1,21 @@
 /**
  * 
  */
-package es.ull.iis.simulation.examples.hospital;
+package com.ull.simulation.examples.hospital;
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.condition.PercentageCondition;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationPeriodicCycle;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.TimeDrivenElementGenerator;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.ExclusiveChoiceFlow;
+import com.ull.function.TimeFunctionFactory;
+import com.ull.simulation.condition.PercentageCondition;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationPeriodicCycle;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.TimeDrivenElementGenerator;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.ExclusiveChoiceFlow;
 
 /**
  * The model of the hospital to be simulated.
@@ -33,7 +33,7 @@ import es.ull.iis.simulation.model.flow.ExclusiveChoiceFlow;
  * Surgical teams require 2 surgeons and 1 nurse. In some cases, only 1 surgeon and 1 nurse may carry out the surgical 
  * intervention, but only by incrementing its duration.
  *  
- * @author Iván Castilla Rodríguez
+ * @author IvÃ¡n Castilla Rodrï¿½guez
  *
  */
 public class BasicHospitalModel extends Simulation {

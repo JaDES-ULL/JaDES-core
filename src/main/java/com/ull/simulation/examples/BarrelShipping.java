@@ -1,28 +1,28 @@
-package es.ull.iis.simulation.examples;
+package com.ull.simulation.examples;
 
 import java.util.ArrayList;
 
-import es.ull.iis.function.TimeFunctionFactory;
-import es.ull.iis.simulation.condition.Condition;
-import es.ull.iis.simulation.condition.NotCondition;
-import es.ull.iis.simulation.factory.SimulationFactory;
-import es.ull.iis.simulation.factory.SimulationUserCode;
-import es.ull.iis.simulation.factory.UserMethod;
-import es.ull.iis.simulation.inforeceiver.StdInfoView;
-import es.ull.iis.simulation.model.ElementInstance;
-import es.ull.iis.simulation.model.ElementType;
-import es.ull.iis.simulation.model.Experiment;
-import es.ull.iis.simulation.model.Resource;
-import es.ull.iis.simulation.model.ResourceType;
-import es.ull.iis.simulation.model.Simulation;
-import es.ull.iis.simulation.model.SimulationWeeklyPeriodicCycle;
-import es.ull.iis.simulation.model.TimeUnit;
-import es.ull.iis.simulation.model.WorkGroup;
-import es.ull.iis.simulation.model.flow.ActivityFlow;
-import es.ull.iis.simulation.model.flow.Flow;
-import es.ull.iis.simulation.model.flow.MultiChoiceFlow;
-import es.ull.iis.simulation.parallel.ParallelSimulationEngine;
-import es.ull.iis.util.cycle.WeeklyPeriodicCycle;
+import com.ull.function.TimeFunctionFactory;
+import com.ull.simulation.condition.Condition;
+import com.ull.simulation.condition.NotCondition;
+import com.ull.simulation.factory.SimulationFactory;
+import com.ull.simulation.factory.SimulationUserCode;
+import com.ull.simulation.factory.UserMethod;
+import com.ull.simulation.inforeceiver.StdInfoView;
+import com.ull.simulation.model.ElementInstance;
+import com.ull.simulation.model.ElementType;
+import com.ull.simulation.model.Experiment;
+import com.ull.simulation.model.Resource;
+import com.ull.simulation.model.ResourceType;
+import com.ull.simulation.model.Simulation;
+import com.ull.simulation.model.SimulationWeeklyPeriodicCycle;
+import com.ull.simulation.model.TimeUnit;
+import com.ull.simulation.model.WorkGroup;
+import com.ull.simulation.model.flow.ActivityFlow;
+import com.ull.simulation.model.flow.Flow;
+import com.ull.simulation.model.flow.MultiChoiceFlow;
+import com.ull.simulation.parallel.ParallelSimulationEngine;
+import com.ull.util.cycle.WeeklyPeriodicCycle;
 
 class BarrelShippingExperiment extends Experiment {
 
