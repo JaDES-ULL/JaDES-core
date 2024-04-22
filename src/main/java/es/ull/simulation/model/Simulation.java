@@ -24,8 +24,8 @@ import es.ull.simulation.variable.FloatVariable;
 import es.ull.simulation.variable.IntVariable;
 import es.ull.simulation.variable.LongVariable;
 import es.ull.simulation.variable.ShortVariable;
-import es.ull.simulation.variable.UserVariable;
-import es.ull.simulation.variable.Variable;
+import es.ull.simulation.variable.IUserVariable;
+import es.ull.simulation.variable.IVariable;
 import es.ull.simulation.utils.Output;
 
 /**
@@ -34,7 +34,7 @@ import es.ull.simulation.utils.Output;
  * @author Ivan Castilla Rodriguez
  *
  */
-public class Simulation implements Identifiable, Runnable, Describable, VariableStore {
+public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore {
 	/** The default time unit used by the simulation */
 	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
 	/** If true, notifies Activity Managers that an element is available randomly; otherwise, the notification is purely sequential */
@@ -52,7 +52,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	/** List of element types present in the simulation. */
 	private final ArrayList<ElementType> elementTypeList = new ArrayList<ElementType>();
 	/** List of resources present in the simulation. */
-	private final ArrayList<Resource> resourceList = new ArrayList<Resource>();
+	private final ArrayList<Resource> AbstractResourceList = new ArrayList<Resource>();
 	/** List of resource types present in the simulation. */
 	private final ArrayList<ResourceType> resourceTypeList = new ArrayList<ResourceType>();
 	/** List of workgroups present in the simulation */
@@ -72,7 +72,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	protected static Output out = new Output();
 	
     /** Variable store */
-	protected final Map<String, Variable> varCollection = new TreeMap<String, Variable>();
+	protected final Map<String, IVariable> varCollection = new TreeMap<String, IVariable>();
 	
 	/** A handler for the information produced by the execution of this simulation */
 	protected final SimulationInfoHandler infoHandler = new SimulationInfoHandler();
@@ -199,7 +199,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 			et.assignSimulation(simulationEngine);
 		for (ResourceType rt : resourceTypeList)
 			rt.assignSimulation(simulationEngine);
-		for (Resource res : resourceList)
+		for (Resource res : AbstractResourceList)
 			res.assignSimulation(simulationEngine);
 		for (WorkGroup wg : workGroupList)	
 			wg.assignSimulation(simulationEngine);
@@ -310,7 +310,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 		for (TimeDrivenGenerator<?> evSource : tGenList)
 			simulationEngine.addWait(evSource.onCreate(startTs));
 		// Starts all the resources
-		for (Resource res : resourceList)
+		for (Resource res : AbstractResourceList)
 			simulationEngine.addWait(res.onCreate(startTs));
 
 		// Adds the event to control end of simulation
@@ -360,7 +360,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	 * @param res Resource that's added to the model.
 	 */
 	public void add(final Resource res) { 
-		resourceList.add(res);
+		AbstractResourceList.add(res);
 	}
 	
 	/**
@@ -380,7 +380,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	}
 	/**
 	 * Adds an {@link BasicFlow} to the model. This method is invoked from the object's constructor.
-	 * @param f Flow that's added to the model.
+	 * @param f IFlow that's added to the model.
 	 */
 	public void add(final BasicFlow f) { 
 		flowList.add(f);
@@ -425,7 +425,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	 * @return the list of {@link Resource resources} defined within this simulation
 	 */
 	public List<Resource> getResourceList() { 
-		return resourceList;
+		return AbstractResourceList;
 	}
 	
 	/**
@@ -510,18 +510,18 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	}
 
 	@Override
-	public Variable getVar(final String varName) {
+	public IVariable getVar(final String varName) {
 		return varCollection.get(varName);
 	}
 	
 	@Override
-	public void putVar(final String varName, final Variable value) {
+	public void putVar(final String varName, final IVariable value) {
 		varCollection.put(varName, value);
 	}
 	
 	@Override
 	public void putVar(final String varName, final double value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -531,7 +531,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	
 	@Override
 	public void putVar(final String varName, final int value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -541,7 +541,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 
 	@Override
 	public void putVar(final String varName, final boolean value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -551,7 +551,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 
 	@Override
 	public void putVar(final String varName, final char value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -561,7 +561,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	
 	@Override
 	public void putVar(final String varName, final byte value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -571,7 +571,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 
 	@Override
 	public void putVar(final String varName, final float value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -581,7 +581,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	
 	@Override
 	public void putVar(final String varName, final long value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -591,7 +591,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	
 	@Override
 	public void putVar(final String varName, final short value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);

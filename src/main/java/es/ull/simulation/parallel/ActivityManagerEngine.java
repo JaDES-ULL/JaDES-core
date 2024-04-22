@@ -9,8 +9,8 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import es.ull.simulation.model.engine.ActivityManagerEngine.FlowExecutorQueue;
-import es.ull.simulation.model.engine.ActivityManagerEngine;
+import es.ull.simulation.model.engine.IActivityManagerEngine;
+
 
 /**
  * Partition of activities. It serves as a mutual exclusion mechanism to access a set of activities
@@ -19,10 +19,10 @@ import es.ull.simulation.model.engine.ActivityManagerEngine;
  * TODO Comment
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManagerEngine extends AbstractEngineObject implements ActivityManagerEngine {
+public class ActivityManagerEngine extends AbstractEngineObject implements IActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private volatile boolean avResource = false;
-    /** This queue contains the flow executors that are waiting for activities of this AM */
+    /** This queue contains the IFlow executors that are waiting for activities of this AM */
     private final FlowExecutorQueue waitingQueue;
     /** This queue contains the element instances that have become available the current timestamp */
     private final FlowExecutorQueue currentQueue;
@@ -30,7 +30,7 @@ public class ActivityManagerEngine extends AbstractEngineObject implements Activ
     private final ActivityManager modelAM;
     
    /**
-	* Creates a new instance of ActivityManagerEngine.
+	* Creates a new instance of IActivityManagerEngine.
 	* @param simul ParallelSimulationEngine this activity manager belongs to
     */
     public ActivityManagerEngine(ParallelSimulationEngine simul, ActivityManager modelAM) {

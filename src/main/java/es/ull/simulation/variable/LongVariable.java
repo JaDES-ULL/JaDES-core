@@ -29,7 +29,7 @@ public class LongVariable extends NumberVariable{
 	 * @param obj The Variable which you want compare.
 	 * @return True if both are equal.
 	 */	
-	public boolean equas(Variable obj) {
+	public boolean equas(IVariable obj) {
 		return value.equals(obj.getValue());
 	}
 

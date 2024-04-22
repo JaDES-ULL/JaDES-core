@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import es.ull.simulation.model.engine.ElementEngine;
+import es.ull.simulation.model.engine.IElementEngine;
 
 /**
  * Represents case instances that make use of activity flows in order to carry out
@@ -18,12 +18,12 @@ import es.ull.simulation.model.engine.ElementEngine;
  * TODO Comment
  * @author Iván Castilla Rodríguez
  */
-public class ElementEngine extends AbstractEngineObject implements ElementEngine {
+public class ElementEngine extends AbstractEngineObject implements IElementEngine {
 	/** Activity queues in which this element is. This list is used to notify the activities
 	 * when the element becomes available. */
 	protected final ArrayList<ElementInstance> inQueue;
 	/** A structure to protect access to shared flows */
-	protected final Map<Flow, AtomicBoolean> protectedFlows;
+	protected final Map<IFlow, AtomicBoolean> protectedFlows;
     /** Access control */
     final private AtomicBoolean sem;
 	/** The associated {@link Element} */
@@ -36,12 +36,12 @@ public class ElementEngine extends AbstractEngineObject implements ElementEngine
 	 * @param id Element's identifier
 	 * @param simul ParallelSimulationEngine object
 	 * @param et Element type this element belongs to
-	 * @param flow First step of this element's flow
+	 * @param IFlow First step of this element's IFlow
 	 */
 	public ElementEngine(ParallelSimulationEngine simul, Element modelElem) {
 		super(modelElem.getIdentifier(), simul, "E");
 		this.modelElem = modelElem;
-		protectedFlows = new HashMap<Flow, AtomicBoolean>();
+		protectedFlows = new HashMap<IFlow, AtomicBoolean>();
         sem = new AtomicBoolean(false);
         inQueue = new ArrayList<ElementInstance>();
         endFlag = new AtomicBoolean(false);
@@ -103,28 +103,28 @@ public class ElementEngine extends AbstractEngineObject implements ElementEngine
 	}
 	
 	/**
-	 * Acquires a semaphore associated to a specific flow
-	 * @param flow The flow to be requested
+	 * Acquires a semaphore associated to a specific IFlow
+	 * @param IFlow The IFlow to be requested
 	 */
-	public void waitProtectedFlow(Flow flow) {
+	public void waitProtectedFlow(IFlow IFlow) {
 		waitSemaphore();
-		if (!protectedFlows.containsKey(flow)) {
-			protectedFlows.put(flow, new AtomicBoolean(true));
+		if (!protectedFlows.containsKey(IFlow)) {
+			protectedFlows.put(IFlow, new AtomicBoolean(true));
 			signalSemaphore();
 		}
 		else {
 			signalSemaphore();
-			final AtomicBoolean localBool = protectedFlows.get(flow);
+			final AtomicBoolean localBool = protectedFlows.get(IFlow);
 			while (!localBool.compareAndSet(false, true));
 		}
 	}
 	
 	/**
-	 * Releases a semaphore associated to a specific flow
-	 * @param flow The flow to be requested
+	 * Releases a semaphore associated to a specific IFlow
+	 * @param IFlow The IFlow to be requested
 	 */
-	public void signalProtectedFlow(Flow flow) {
-		protectedFlows.get(flow).set(false);
+	public void signalProtectedFlow(IFlow IFlow) {
+		protectedFlows.get(IFlow).set(false);
 	}
 
 	@Override

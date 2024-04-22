@@ -18,15 +18,15 @@ import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationObject;
-import es.ull.simulation.model.engine.EventSourceEngine;
-import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.engine.IEventSourceEngine;
+import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * Main parallel discrete event simulation class. A simulation uses all kind of 
  * {@link SimulationObject ParallelSimulationEngine Objects} to define a model which will be executed.<p>
- * Two important simulation objects are {@link RequestResourcesEngine activities} and {@link ResourceType 
+ * Two important simulation objects are {@link IRequestResourcesEngine activities} and {@link ResourceType 
  * resource types}. Both are grouped in different {@link ActivityManager activity managers}, 
  * which serve as an initial partition for parallelism.<p>
  * The simulation is feed with {@link EventSourceEngine.DiscreteEvent discrete events} produced by 
@@ -172,7 +172,7 @@ public class ParallelSimulationEngine extends SimulationEngine {
 	 * @author Iván Castilla Rodríguez
 	 *
 	 */
-	final class SlaveEventExecutor extends Thread implements EventExecutor {
+	final class SlaveEventExecutor extends Thread implements IEventExecutor {
 		private final int threadId;
 		/** Execution local buffer */
 		private final ArrayDeque<DiscreteEvent> extraEvents = new ArrayDeque<DiscreteEvent>();
@@ -367,13 +367,13 @@ public class ParallelSimulationEngine extends SimulationEngine {
 	}
 
 	@Override
-	public MergeFlowEngine getMergeFlowEngineInstance(MergeFlow modelFlow) {
+	public MergeFlowEngine getMergeFlowEngineInstance(AbstractMergeFlow modelFlow) {
 		return new MergeFlowEngine(this, modelFlow);
 	}
 
 	@Override
 	public void addEvent(DiscreteEvent ev) {
-   		((EventExecutor)Thread.currentThread()).addEvent(ev);
+   		((IEventExecutor)Thread.currentThread()).addEvent(ev);
 	}
 
 }

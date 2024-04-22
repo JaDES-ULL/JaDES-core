@@ -32,7 +32,7 @@ public class ByteVariable extends NumberVariable {
 	 * @param obj Variable whitch you want compare.
 	 * @return True if both are equals.
 	 */
-	public boolean equals(Variable obj) {
+	public boolean equals(IVariable obj) {
 		return (value.equals(obj.getValue()));
 	}
 

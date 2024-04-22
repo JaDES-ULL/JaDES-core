@@ -8,20 +8,20 @@ package es.ull.simulation.model.engine;
 
 import es.ull.simulation.inforeceiver.InfoReceiver;
 import es.ull.simulation.model.ActivityManager;
-import es.ull.simulation.model.Debuggable;
+import es.ull.simulation.model.IDebuggable;
 import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.IIdentifiable;
 import es.ull.simulation.model.Resource;
-import es.ull.simulation.model.ResourceList;
+import es.ull.simulation.model.AbstractResourceList;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.TimeDrivenElementGenerator;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.utils.Output;
 
@@ -30,15 +30,15 @@ import es.ull.simulation.utils.Output;
  * A simulation executes a model defined by means of different structures: 
  * <ul>
  * <li>{@link ResourceTypeEngine}</li>
- * <li>{@link ResourceEngine}</li>
+ * <li>{@link IResourceEngine}</li>
  * <li>{@link WorkGroup}</li>
  * <li>{@link ActivityFlow}</li>
  * <li>{@link ElementType}</li>
- * <li>{@link Flow}</li>
+ * <li>{@link IFlow}</li>
  * <li>{@link TimeDrivenElementGenerator}</li>
  * </ul>
  * A simulation has an associated clock which starts in <tt>startTs</tt> and advances according 
- * to the events produced by the {@link Element}s, {@link ResourceEngine}s and {@link TimeDrivenElementGenerator}s. 
+ * to the events produced by the {@link Element}s, {@link IResourceEngine}s and {@link TimeDrivenElementGenerator}s. 
  * A "next-event" technique is used to determine the next timestamp to advance. A minimum 
  * {@link TimeUnit} determines the accuracy of the simulation's clock. The simulation ends when the 
  * simulation clock reaches the <tt>endTs</tt> timestamp or no more events are available.<br>
@@ -61,7 +61,7 @@ import es.ull.simulation.utils.Output;
  * defining the destination for error and debug messages.
  * @author Iván Castilla Rodríguez
  */
-public abstract class SimulationEngine implements Identifiable, Debuggable {
+public abstract class SimulationEngine implements IIdentifiable, IDebuggable {
 	/** Simulation's identifier */
 	protected final int id;
 	/** The associated {@link Simulation} */
@@ -110,12 +110,12 @@ public abstract class SimulationEngine implements Identifiable, Debuggable {
 	
 	public abstract void initializeEngine();
 	public abstract void simulationLoop();
-	public abstract ResourceEngine getResourceEngineInstance(Resource modelRes);
-	public abstract ElementEngine getElementEngineInstance(Element modelElem);
-	public abstract ResourceList getResourceListInstance();
-	public abstract ActivityManagerEngine getActivityManagerEngineInstance(ActivityManager modelAM);
-	public abstract RequestResourcesEngine getRequestResourcesEngineInstance(RequestResourcesFlow reqFlow);
-	public abstract MergeFlowEngine getMergeFlowEngineInstance(MergeFlow modelFlow);
+	public abstract IResourceEngine getResourceEngineInstance(Resource modelRes);
+	public abstract IElementEngine getElementEngineInstance(Element modelElem);
+	public abstract AbstractResourceList getResourceListInstance();
+	public abstract IActivityManagerEngine getActivityManagerEngineInstance(ActivityManager modelAM);
+	public abstract IRequestResourcesEngine getRequestResourcesEngineInstance(RequestResourcesFlow reqFlow);
+	public abstract IMergeFlowEngine getMergeFlowEngineInstance(AbstractMergeFlow modelFlow);
 	public abstract void addEvent(DiscreteEvent ev); 
 	public abstract void addWait(DiscreteEvent ev); 
 	/**

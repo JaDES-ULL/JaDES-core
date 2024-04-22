@@ -5,13 +5,13 @@ import java.util.TreeSet;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A structured flow which defines a repetitive subflow. Different subclasses
+ * A structured IFlow which defines a repetitive subflow. Different subclasses
  * of this class represent different loop structures: while-do, do-while, for...
  * Meets the Structured Loop pattern (WFP21). 
  * @author ycallero
  */
 // TODO: Consider merge StructuredLoopFlows into PredefinedStructuredFlows
-public abstract class StructuredLoopFlow extends StructuredFlow {
+public abstract class StructuredLoopFlow extends AbstractStructuredFlow {
 	
 	/**
 	 * Create a new StructuredLoopFlow starting in <code>initialSubFlow</code> and 
@@ -19,19 +19,19 @@ public abstract class StructuredLoopFlow extends StructuredFlow {
 	 * @param initialSubFlow First step of the internal subflow
 	 * @param finalSubFlow Last step of the internal subflow
 	 */
-	public StructuredLoopFlow(Simulation model, InitializerFlow initialSubFlow, FinalizerFlow finalSubFlow) {
+	public StructuredLoopFlow(Simulation model, IInitializerFlow initialSubFlow, IFinalizerFlow finalSubFlow) {
 		super(model);
 		initialFlow = initialSubFlow;
 		finalFlow = finalSubFlow;
-		final TreeSet<Flow> visited = new TreeSet<Flow>(); 
+		final TreeSet<IFlow> visited = new TreeSet<IFlow>(); 
 		initialFlow.setRecursiveStructureLink(this, visited);
 	}
 
 	/**
-	 * Create a new StructuredLoopFlow consisting of a unique flow.
-	 * @param subFlow A unique flow defining an internal subflow
+	 * Create a new StructuredLoopFlow consisting of a unique IFlow.
+	 * @param subFlow A unique IFlow defining an internal subflow
 	 */
-	public StructuredLoopFlow(Simulation model, TaskFlow subFlow) {
+	public StructuredLoopFlow(Simulation model, ITaskFlow subFlow) {
 		this(model, subFlow, subFlow);
 	}
 }

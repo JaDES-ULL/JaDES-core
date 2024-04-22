@@ -29,7 +29,7 @@ public class ShortVariable extends NumberVariable{
 	 * @param obj The Variable which you want compare.
 	 * @return True if both are equal.
 	 */	
-	public boolean equals(Variable obj) {
+	public boolean equals(IVariable obj) {
 		return (value.equals(obj.getValue()));
 	}
 

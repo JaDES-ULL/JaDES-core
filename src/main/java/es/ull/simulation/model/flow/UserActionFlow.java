@@ -7,17 +7,17 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A simple flow to execute user actions at some point of the workflow. The user specifies the actions in the {@link #userAction(ElementInstance)} method.
+ * A simple IFlow to execute user actions at some point of the workflow. The user specifies the actions in the {@link #userAction(ElementInstance)} method.
  * @author Iv�n Castilla
  *
  */
-public class UserActionFlow extends SingleSuccessorFlow implements ActionFlow {
-	/** A brief description of the flow */
+public class UserActionFlow extends AbstractSingleSuccessorFlow implements IActionFlow {
+	/** A brief description of the IFlow */
 	final private String description;
 	/**
-	 * Creates a user action flow
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a user action IFlow
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 */
 	public UserActionFlow(final Simulation model, String description) {
 		super(model);
@@ -25,12 +25,12 @@ public class UserActionFlow extends SingleSuccessorFlow implements ActionFlow {
 	}
 
 	@Override
-	public void addPredecessor(Flow predecessor) {
+	public void addPredecessor(IFlow predecessor) {
 	}
 
 	/**
-	 * The code that this flow executes
-	 * @param ei An element instance invoking this flow
+	 * The code that this IFlow executes
+	 * @param ei An element instance invoking this IFlow
 	 */
 	public void userAction(ElementInstance ei) {
 		

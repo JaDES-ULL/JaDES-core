@@ -5,13 +5,13 @@ package es.ull.simulation.model;
 
 /**
  * Represents the role that a resource plays at a specific time cycle.
- * A timetable entry uses a trio &lt{@link ResourceType}, {@link SimulationCycle}, long&gt which defines a 
+ * A timetable entry uses a trio &lt{@link ResourceType}, {@link ISimulationCycle}, long&gt which defines a 
  * resource type, an availability cycle, and the duration of each availability period. 
  * @author Iván Castilla Rodríguez
  */
 public class TimeTableEntry {
 	/** Cycle that characterizes this entry */
-	private final SimulationCycle cycle;
+	private final ISimulationCycle cycle;
     /** The long this resource plays this role every cycle */
 	private final TimeStamp duration;
     /** Role that the resource plays during this cycle */
@@ -22,7 +22,7 @@ public class TimeTableEntry {
      * @param dur How long this resource plays this role every cycle
      * @param role Role that the resource plays during this cycle
      */
-	public TimeTableEntry(final SimulationCycle cycle, final TimeStamp dur, final ResourceType role) {
+	public TimeTableEntry(final ISimulationCycle cycle, final TimeStamp dur, final ResourceType role) {
 		this.cycle = cycle;
 		this.duration = dur;
 		this.role = role;
@@ -58,7 +58,7 @@ public class TimeTableEntry {
      * Returns the cycle that characterizes this entry.
 	 * @return the cycle that characterizes this entry
 	 */
-	public SimulationCycle getCycle() {
+	public ISimulationCycle getCycle() {
 		return cycle;
 	}
 

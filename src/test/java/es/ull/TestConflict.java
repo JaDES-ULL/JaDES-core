@@ -7,14 +7,14 @@ import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.SimulationCycle;
+import es.ull.simulation.model.ISimulationCycle;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.SimulationTimeFunction;
 import es.ull.simulation.model.TimeStamp;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.utils.Output;
 
 class ExpConflict extends Experiment {
@@ -52,7 +52,7 @@ class ExpConflict extends Experiment {
 	    	acts[i].newWorkGroupAdder(wgs[i]).withDelay(40).add();
 		}
 		
-		SimulationCycle c = SimulationPeriodicCycle.newDailyCycle(unit);
+		ISimulationCycle c = SimulationPeriodicCycle.newDailyCycle(unit);
 		
 		Resource r0 = factory.getResourceInstance("Res0");
 		Resource r1 = factory.getResourceInstance("Res1");
@@ -62,11 +62,11 @@ class ExpConflict extends Experiment {
 		r1.newTimeTableOrCancelEntriesAdder(rts[1]).withDuration(c, 480).addTimeTableEntry();
 
 
-		SimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
+		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET0"), (InitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
+						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET1"), (InitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
+						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
     }
     
     /**
@@ -95,7 +95,7 @@ class ExpConflict extends Experiment {
 	    	acts[i].newWorkGroupAdder(wgs[i]).withDelay(40).add();
 		}
 
-		SimulationCycle c = SimulationPeriodicCycle.newDailyCycle(unit);
+		ISimulationCycle c = SimulationPeriodicCycle.newDailyCycle(unit);
 		
 		Resource r0 = factory.getResourceInstance("Res0");
 		Resource r1 = factory.getResourceInstance("Res1");
@@ -107,13 +107,13 @@ class ExpConflict extends Experiment {
 		r2.newTimeTableOrCancelEntriesAdder(rts[4]).withDuration(c, 480).addTimeTableEntry();
 		r2.newTimeTableOrCancelEntriesAdder(rts[5]).withDuration(c, 480).addTimeTableEntry();
 
-		SimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
+		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET0"), (InitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
+						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET1"), (InitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
+						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET2"), (InitializerFlow)factory.getFlowInstance("SingleFlow", acts[2]), c1);
+						factory.getElementTypeInstance("ET2"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[2]), c1);
     }
     
 	@Override

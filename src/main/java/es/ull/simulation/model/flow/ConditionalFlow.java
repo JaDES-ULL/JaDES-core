@@ -37,43 +37,43 @@ public abstract class ConditionalFlow extends MultipleSuccessorFlow {
 	}
 
 	/**
-	 * Adds a conditioned flow's successor. The associated condition is set to true by default.
+	 * Adds a conditioned IFlow's successor. The associated condition is set to true by default.
 	 * This method must invoke <code>successor.addPredecessor</code> to build the graph properly. 
-	 * @param successor This flow's successor.
+	 * @param successor This IFlow's successor.
 	 */
 	@Override
-	public Flow link(Flow successor) {
+	public IFlow link(IFlow successor) {
 		return link(successor, new TrueCondition<ElementInstance>());
 	}
 	
 	/**
-	 * Adds a conditioned flow's successor. 
-	 * @param successor This flow's successor
+	 * Adds a conditioned IFlow's successor.
+	 * @param successor This IFlow's successor
 	 * @param cond The condition that has to be met to invoke the successor
 	 */
-	public Flow link(Flow successor, AbstractCondition<ElementInstance> cond) {
+	public IFlow link(IFlow successor, AbstractCondition<ElementInstance> cond) {
 		super.link(successor);
 		conditionList.add(cond);
 		return successor;
 	}
 
 	/**
-	 * Adds a collection of conditioned flow's successors. The associated condition is set to 
+	 * Adds a collection of conditioned IFlow's successors. The associated condition is set to
 	 * true by default.
-	 * @param succList This flow's successors
+	 * @param succList This IFlow's successors
 	 */
 	@Override
-	public void link(Collection<Flow> succList) {
+	public void link(Collection<IFlow> succList) {
 		link(succList, Collections.nCopies(succList.size(), new TrueCondition<ElementInstance>()));
 	}
 
 	/**
-	 * Adds a collection of conditioned flow's successors. 
+	 * Adds a collection of conditioned IFlow's successors.
 	 * Size of <code>succList</code> and <code>condList</code> must agree. 
-	 * @param succList This flow's successors
+	 * @param succList This IFlow's successors
 	 * @param condList The conditions attached to each successor
 	 */
-	public void link(Collection<Flow> succList, Collection<AbstractCondition<ElementInstance>> condList) {
+	public void link(Collection<IFlow> succList, Collection<AbstractCondition<ElementInstance>> condList) {
 		super.link(succList);
 		conditionList.addAll(condList);
 	}

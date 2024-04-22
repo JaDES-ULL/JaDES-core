@@ -13,8 +13,8 @@ import es.ull.simulation.model.Simulation;
 public class SynchronizedMultipleInstanceFlow extends StaticPartialJoinMultipleInstancesFlow {
 
 	/**
-	 * Creates a Synchronized Multiple Instances flow
-	 * @param nInstances The number of thread instances this flow creates and which must 
+	 * Creates a Synchronized Multiple Instances IFlow
+	 * @param nInstances The number of thread instances this IFlow creates and which must 
 	 * finish to pass the control
 	 */
 	public SynchronizedMultipleInstanceFlow(Simulation model, int nInstances) {

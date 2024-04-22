@@ -10,15 +10,15 @@ import java.util.WeakHashMap;
 import es.ull.simulation.factory.SimulationUserCode;
 import es.ull.simulation.factory.StandardCompilator;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 
 /**
- * Generate Flow's instances.
+ * Generate IFlow's instances.
  * @author ycallero
  *
  */
 public class FlowFactory {
-	private final static String workingPkg = Flow.class.getPackage().getName();
+	private final static String workingPkg = IFlow.class.getPackage().getName();
 	static int id = 0;
 	/**
      * A list of packages to search for RandomVariates if the
@@ -38,7 +38,7 @@ public class FlowFactory {
     protected static boolean verbose;
     
 	/**
-	 * Create de Flow's classes index.
+	 * Create de IFlow's classes index.
 	 */
 	static {
 		searchPackages = new LinkedHashSet<String>();
@@ -47,9 +47,9 @@ public class FlowFactory {
 	}
 	
 	/**
-	 * Finds the Flow Class corresponding to the given name. First
-	 * attempts to find the Flow assuming the the name is fully qualified.
-	 * Then searches the "search packages." The search path defaults to "com.ull.model.flow"
+	 * Finds the IFlow Class corresponding to the given name. First
+	 * attempts to find the IFlow assuming the the name is fully qualified.
+	 * Then searches the "search packages." The search path defaults to "com.ull.model.IFlow"
 	 * but additional search packages can be added.
 	 **/
 	public static Class<?> findFullyQualifiedNameFor(String className) {
@@ -75,7 +75,7 @@ public class FlowFactory {
 			try {
 				theClass = Thread.currentThread().getContextClassLoader().loadClass(
 						searchPackage + "." + className );
-				if (!Flow.class.isAssignableFrom(theClass)) {
+				if (!IFlow.class.isAssignableFrom(theClass)) {
 					continue;
 				}
 			} catch (ClassNotFoundException e) { continue; }
@@ -97,14 +97,14 @@ public class FlowFactory {
 	}
 	
 	/**
-	 * Get a Flow's instance.
+	 * Get a IFlow's instance.
 	 * @param id Identifier.
-	 * @param flowType Flow's type.
+	 * @param flowType IFlow's type.
 	 * @param simul Actual simulation.
 	 * @param initargs Rest of the params.
-	 * @return A Flow's instance.
+	 * @return A IFlow's instance.
 	 */
-	static public Flow getInstance(int id, String flowType, Simulation simul, Object... initargs) {
+	static public IFlow getInstance(int id, String flowType, Simulation simul, Object... initargs) {
 		Class<?> cl = findFullyQualifiedNameFor(flowType);
 		Constructor<?>[] consList = cl.getConstructors();
 		Object [] newParams = new Object[initargs.length + 1];
@@ -113,7 +113,7 @@ public class FlowFactory {
 			newParams[i] = initargs[i - 1];
 		for (int i = 0; i < consList.length; i++) {
 			try {
-				return (Flow)consList[i].newInstance(newParams);
+				return (IFlow)consList[i].newInstance(newParams);
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
@@ -130,7 +130,7 @@ public class FlowFactory {
 		return null;	
 	}
 
-	static public Flow getInstance(int id, String flowType, SimulationUserCode userMethods, Simulation simul, Object... initargs) {
+	static public IFlow getInstance(int id, String flowType, SimulationUserCode userMethods, Simulation simul, Object... initargs) {
 		userMethods.addImports("import " + Simulation.class.getPackage().getName() + ".*;");
 		Class<?>[] parameterTypes = StandardCompilator.param2Classes(initargs);
 		String cons = createConstructor(flowType, id, parameterTypes);
@@ -138,6 +138,6 @@ public class FlowFactory {
 		newParams[0] = simul;
 		for (int i = 1; i < newParams.length; i++)
 			newParams[i] = initargs[i - 1];
-		return (Flow)StandardCompilator.getInstance(workingPkg, flowType, id, cons, userMethods, newParams);
+		return (IFlow)StandardCompilator.getInstance(workingPkg, flowType, id, cons, userMethods, newParams);
 	}
 }

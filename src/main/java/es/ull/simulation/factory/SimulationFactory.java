@@ -10,13 +10,13 @@ import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.SimulationCycle;
+import es.ull.simulation.model.ISimulationCycle;
 import es.ull.simulation.model.TimeDrivenElementGenerator;
 import es.ull.simulation.model.TimeStamp;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 
 
 /**
@@ -67,17 +67,17 @@ public class SimulationFactory {
 		return simul;
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, SimulationCycle cycle) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ISimulationCycle cycle) throws ClassCastException {
 		return new TimeDrivenElementGenerator(simul, elem, cycle);
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle) throws ClassCastException {
-		return new TimeDrivenElementGenerator(simul, elem,  et, flow, cycle);
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, IInitializerFlow IFlow, ISimulationCycle cycle) throws ClassCastException {
+		return new TimeDrivenElementGenerator(simul, elem,  et, IFlow, cycle);
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ISimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
 		// Prepare the constructor call
-		final String constructorStr = "(Simulation sim, TimeFunction nElem, SimulationCycle cycle) {super(sim, nElem, cycle);}";
+		final String constructorStr = "(Simulation sim, TimeFunction nElem, ISimulationCycle cycle) {super(sim, nElem, cycle);}";
 		// Prepare the new params.
 		final Object obj = StandardCompilator.getInstance(workingPkg, TimeDrivenElementGenerator.class.getName(), creId++, constructorStr, userMethods, simul, elem, cycle);
 		if (obj != null)
@@ -85,11 +85,11 @@ public class SimulationFactory {
 		return null;
 	}
 
-	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, InitializerFlow flow, SimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
+	public TimeDrivenElementGenerator getTimeDrivenElementGeneratorInstance(AbstractTimeFunction elem, ElementType et, IInitializerFlow IFlow, ISimulationCycle cycle, SimulationUserCode userMethods) throws ClassCastException {
 		// Prepare the constructor call
-		final String constructorStr = "(Simulation sim, TimeFunction nElem, ElementType et, InitializerFlow flow, SimulationCycle cycle) {super(sim, nElem, et, flow, cycle);}";
+		final String constructorStr = "(Simulation sim, TimeFunction nElem, ElementType et, IInitializerFlow IFlow, ISimulationCycle cycle) {super(sim, nElem, et, IFlow, cycle);}";
 		// Prepare the new params.
-		final Object obj = StandardCompilator.getInstance(workingPkg, TimeDrivenElementGenerator.class.getName(), creId++, constructorStr, userMethods, simul, elem, et, flow, cycle);
+		final Object obj = StandardCompilator.getInstance(workingPkg, TimeDrivenElementGenerator.class.getName(), creId++, constructorStr, userMethods, simul, elem, et, IFlow, cycle);
 		if (obj != null)
 			return (TimeDrivenElementGenerator)obj;
 		return null;
@@ -127,11 +127,11 @@ public class SimulationFactory {
 		return new WorkGroup(simul, temp, needed);
 	}
 
-	public Flow getFlowInstance(String flowType, Object... params) throws ClassCastException {
+	public IFlow getFlowInstance(String flowType, Object... params) throws ClassCastException {
 		return FlowFactory.getInstance(flowId++, flowType, simul, params);
 	}
 
-	public Flow getFlowInstance(String flowType, SimulationUserCode userMethods, Object... params) throws ClassCastException {
+	public IFlow getFlowInstance(String flowType, SimulationUserCode userMethods, Object... params) throws ClassCastException {
 		return FlowFactory.getInstance(flowId++, flowType, userMethods, simul, params);
 	}
 

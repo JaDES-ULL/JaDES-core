@@ -11,10 +11,10 @@ import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.model.Element;
-import es.ull.simulation.model.flow.ActionFlow;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.InitializerFlow;
-import es.ull.simulation.model.flow.SingleSuccessorFlow;
+import es.ull.simulation.model.flow.IActionFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
+import es.ull.simulation.model.flow.AbstractSingleSuccessorFlow;
 
 /**
  * Checks the elements created and finished during the simulation
@@ -36,16 +36,16 @@ public class CheckFlowsListener extends CheckerListener {
 		addEntrance(ElementInfo.class);
 	}
 
-	private static final NodeInfo buildCheckStructure(InitializerFlow initFlow) {
-		if (initFlow instanceof SingleSuccessorFlow) {
+	private static final NodeInfo buildCheckStructure(IInitializerFlow initFlow) {
+		if (initFlow instanceof AbstractSingleSuccessorFlow) {
 		}
 		return null;
 	}
 	
 	@SuppressWarnings("unused")
-	private static final NodeInfo createNode(Flow flow, boolean optional, int minIterations, int maxIterations) {
-		if (flow instanceof ActionFlow) {
-			return new NodeLeafInfo((ActionFlow)flow, optional, minIterations, maxIterations);
+	private static final NodeInfo createNode(IFlow IFlow, boolean optional, int minIterations, int maxIterations) {
+		if (IFlow instanceof IActionFlow) {
+			return new NodeLeafInfo((IActionFlow)IFlow, optional, minIterations, maxIterations);
 		}
 		return new NodeBranchInfo(optional, minIterations, maxIterations);
 	}
@@ -57,31 +57,31 @@ public class CheckFlowsListener extends CheckerListener {
 	
 	
 	private static class NodeLeafInfo implements NodeInfo {
-		private final ActionFlow flow;
+		private final IActionFlow IFlow;
 		private final boolean optional;
 		private final int minIterations;
 		private final int maxIterations;
 		
 		/**
-		 * @param flow
+		 * @param IFlow
 		 * @param optional
 		 * @param minIterations
 		 * @param maxIterations
 		 */
-		public NodeLeafInfo(ActionFlow flow, boolean optional, int minIterations, int maxIterations) {
+		public NodeLeafInfo(IActionFlow IFlow, boolean optional, int minIterations, int maxIterations) {
 			super();
-			this.flow = flow;
+			this.IFlow = IFlow;
 			this.optional = optional;
 			this.minIterations = minIterations;
 			this.maxIterations = maxIterations;
 		}
 
 		/**
-		 * @return the flow
+		 * @return the IFlow
 		 */
 		@SuppressWarnings("unused")
-		public ActionFlow getFlow() {
-			return flow;
+		public IActionFlow getFlow() {
+			return IFlow;
 		}
 
 		public boolean isOptional() {

@@ -10,22 +10,22 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A flow which creates several instances of the current element instance. It physically
- * works as a single successor flow, but functionally as a parallel flow. It should
+ * A IFlow which creates several instances of the current element instance. It physically
+ * works as a single successor IFlow, but functionally as a parallel IFlow. It should
  * be use with its counterpart Thread Merge pattern (WFP 41).
  * Meets the Thread Split pattern (WFP 42).
  * @author Iván Castilla Rodríguez
  *
  */
-public class ThreadSplitFlow extends BasicFlow implements SplitFlow {
-	/** Number of outgoing threads produced by this flow */
+public class ThreadSplitFlow extends BasicFlow implements ISplitFlow {
+	/** Number of outgoing threads produced by this IFlow */
 	protected final int nInstances;
-	/** The unique successor of this flow */
-	protected Flow successor;
+	/** The unique successor of this IFlow */
+	protected IFlow successor;
 
 	/**
-	 * Creates a new thread split flow
-	 * @param model The simulation model this flow belongs to
+	 * Creates a new thread split IFlow
+	 * @param model The simulation model this IFlow belongs to
 	 * @param nInstances Number of outgoing threads
 	 */
 	public ThreadSplitFlow(final Simulation model, final int nInstances) {
@@ -34,26 +34,26 @@ public class ThreadSplitFlow extends BasicFlow implements SplitFlow {
 	}
 
 	/**
-	 * Returns the successor of the flow
-	 * @return the successor of the flow
+	 * Returns the successor of the IFlow
+	 * @return the successor of the IFlow
 	 */
-	public Flow getSuccessor() {
+	public IFlow getSuccessor() {
 		return successor;
 	}
 
 	@Override
-	public void addPredecessor(final Flow predecessor) {
+	public void addPredecessor(final IFlow predecessor) {
 	}
 
 	@Override
-	public Flow link(final Flow successor) {
-		this.successor = (Flow)successor;
+	public IFlow link(final IFlow successor) {
+		this.successor = (IFlow)successor;
 		successor.addPredecessor(this);
 		return successor;
 	}
 
 	@Override
-	public void setRecursiveStructureLink(final StructuredFlow parent, final Set<Flow> visited) {
+	public void setRecursiveStructureLink(final AbstractStructuredFlow parent, final Set<IFlow> visited) {
 		setParent(parent);
 		visited.add(this);
 		if (successor != null)

@@ -18,7 +18,7 @@ import es.ull.simulation.model.TimeStamp;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 
 /**
  * The base class to create tests for Workflow patterns.
@@ -141,13 +141,13 @@ public abstract class WFPTestSimulation extends Simulation {
 		return new SimulationPeriodicCycle(SIMUNIT, GENSTART, new SimulationTimeFunction(SIMUNIT, "ConstantVariate", GENPERIOD), 0);
 	}
 	
-	public TimeDrivenElementGenerator getDefGenerator(ElementType et, InitializerFlow flow) {
-		return getDefGenerator(DEFNELEMENTS, et, flow);
+	public TimeDrivenElementGenerator getDefGenerator(ElementType et, IInitializerFlow IFlow) {
+		return getDefGenerator(DEFNELEMENTS, et, IFlow);
 	}
 	
-	public TimeDrivenElementGenerator getDefGenerator(int elems, ElementType et, InitializerFlow flow) {
+	public TimeDrivenElementGenerator getDefGenerator(int elems, ElementType et, IInitializerFlow IFlow) {
 		nElems.set(et.getIdentifier(), nElems.get(et.getIdentifier()) + elems);
-        return new TimeDrivenElementGenerator(this, elems, et, flow, getGeneratorCycle());
+        return new TimeDrivenElementGenerator(this, elems, et, IFlow, getGeneratorCycle());
 	}
 	
 	public class TestActivityFlow extends ActivityFlow {

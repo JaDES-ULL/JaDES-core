@@ -1,6 +1,6 @@
 package es.ull.simulation.info;
 
-import es.ull.simulation.model.Describable;
+import es.ull.simulation.model.IDescribable;
 import es.ull.simulation.model.Simulation;
 
 public abstract class SimulationInfo {
@@ -9,7 +9,7 @@ public abstract class SimulationInfo {
 	 * @author Iv�n Castilla
 	 *
 	 */
-	public interface InfoType extends Describable {	}
+	public interface IInfoType extends IDescribable {	}
 
 	final protected Simulation simul;
 	

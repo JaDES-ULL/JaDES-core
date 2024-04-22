@@ -6,7 +6,7 @@ package es.ull.simulation.variable;
  * @author ycallero
  *
  */
-public class CharacterVariable implements UserVariable {
+public class CharacterVariable implements IUserVariable {
 
 	/** Character value */
 	Character value;
@@ -32,7 +32,7 @@ public class CharacterVariable implements UserVariable {
 	 * @param arg0 The Variable which you want compare.
 	 * @return True if both are equal.
 	 */
-	public boolean equals(Variable arg0) {
+	public boolean equals(IVariable arg0) {
 		return (value.equals(arg0.getValue()));
 	}
 	

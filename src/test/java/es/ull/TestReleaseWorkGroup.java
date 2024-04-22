@@ -46,7 +46,7 @@ public class TestReleaseWorkGroup extends Experiment {
 			final WorkGroup wgRelLocationA1 = new WorkGroup(this, new ResourceType[] {rtLocationA, rtMachine}, new int[] {1,1});
 			final WorkGroup wgRelLocationA2 = new WorkGroup(this, new ResourceType[] {rtMachine, rtOperatorA}, new int[] {1,2});
 
-			// Create basic steps of the flow
+			// Create basic steps of the IFlow
 			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A", 0);
 			final ReleaseResourcesFlow relLocationA1 = new ReleaseResourcesFlow(this, "Release location A 1", 0, wgRelLocationA1);
 			final ReleaseResourcesFlow relLocationA2 = new ReleaseResourcesFlow(this, "Release location A 2", 0, wgRelLocationA2);
@@ -54,7 +54,7 @@ public class TestReleaseWorkGroup extends Experiment {
 			// Assign duration and workgroups to activities
 			reqLocationA.newWorkGroupAdder(wgLocationA).add();
 
-			// Create flow
+			// Create IFlow
 			reqLocationA.link(relLocationA1).link(relLocationA2);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
 			new TimeDrivenElementGenerator(this, 1, et, reqLocationA, cycle);

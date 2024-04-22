@@ -6,7 +6,7 @@ package es.ull.simulation.variable;
  * @author ycallero
  *
  */
-public class BooleanVariable implements UserVariable {
+public class BooleanVariable implements IUserVariable {
 	
 	/** Boolean value */
 	Boolean value;
@@ -45,7 +45,7 @@ public class BooleanVariable implements UserVariable {
 	 * @param arg0 The Variable which you want compare.
 	 * @return True if both are equal.
 	 */
-	public boolean equals(Variable arg0) {
+	public boolean equals(IVariable arg0) {
 		return (getValue().equals(arg0.getValue()));
 	}
 	

@@ -6,7 +6,7 @@ package es.ull.simulation.variable;
  * @author ycallero
  *
  */
-public abstract class NumberVariable implements UserVariable {
+public abstract class NumberVariable implements IUserVariable {
 
 	/** Variable's value */
 	Number value;

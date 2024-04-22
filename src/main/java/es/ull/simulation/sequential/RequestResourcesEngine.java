@@ -10,12 +10,12 @@ import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
-import es.ull.simulation.model.engine.RequestResourcesEngine;
+import es.ull.simulation.model.engine.IRequestResourcesEngine;
 /**
  * @author Iv�n Castilla
  *
  */
-public class RequestResourcesEngine extends AbstractEngineObject implements RequestResourcesEngine {
+public class RequestResourcesEngine extends AbstractEngineObject implements IRequestResourcesEngine {
     /** Total of work items waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */

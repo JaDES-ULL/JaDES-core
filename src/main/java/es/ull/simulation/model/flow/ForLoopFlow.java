@@ -13,7 +13,7 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A structured loop flow which resembles a for loop. The internal flow is
+ * A structured loop IFlow which resembles a for loop. The internal IFlow is
  * executed n times. n is defined by using the <code>iterations</code> attribute.
  * Be careful when using a continuous random distribution for defining the number
  * of iterations, since decimal values are rounded to the closest integer.  
@@ -31,17 +31,17 @@ public class ForLoopFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final InitializerFlow initialSubFlow, final FinalizerFlow finalSubFlow, final AbstractTimeFunction iterations) {
+	public ForLoopFlow(final Simulation model, final IInitializerFlow initialSubFlow, final IFinalizerFlow finalSubFlow, final AbstractTimeFunction iterations) {
 		super(model, initialSubFlow, finalSubFlow);
 		this.iterations = iterations;
 	}
 	
 	/**
 	 * Create a new ForLoopFlow.
-	 * @param subFlow A unique flow defining an internal subflow
+	 * @param subFlow A unique IFlow defining an internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final TaskFlow subFlow, final AbstractTimeFunction iterations) {
+	public ForLoopFlow(final Simulation model, final ITaskFlow subFlow, final AbstractTimeFunction iterations) {
 		this(model, subFlow, subFlow, iterations);
 	}
 	
@@ -51,16 +51,16 @@ public class ForLoopFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final InitializerFlow initialSubFlow, final FinalizerFlow finalSubFlow, final int iterations) {
+	public ForLoopFlow(final Simulation model, final IInitializerFlow initialSubFlow, final IFinalizerFlow finalSubFlow, final int iterations) {
 		this(model, initialSubFlow, finalSubFlow, new ConstantFunction(iterations));
 	}
 	
 	/**
 	 * Create a new ForLoopFlow.
-	 * @param subFlow A unique flow defining an internal subflow
+	 * @param subFlow A unique IFlow defining an internal subflow
 	 * @param iterations Loop iterations.
  	 */
-	public ForLoopFlow(final Simulation model, final TaskFlow subFlow, final int iterations) {
+	public ForLoopFlow(final Simulation model, final ITaskFlow subFlow, final int iterations) {
 		this(model, subFlow, subFlow, new ConstantFunction(iterations));
 	}
 	

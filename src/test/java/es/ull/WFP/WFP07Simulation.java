@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.Condition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
@@ -40,7 +41,7 @@ public class WFP07Simulation extends WFPTestSimulation {
         
         StructuredSynchroMergeFlow root = new StructuredSynchroMergeFlow(this);
         
-        Condition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
+        AbstractCondition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
         
         // Create leafs
 

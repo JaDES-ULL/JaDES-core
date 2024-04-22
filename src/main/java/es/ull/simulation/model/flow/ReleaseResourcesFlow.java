@@ -15,15 +15,15 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.ResourceType;
 
 /**
- * A flow to release a set of previously seized resources. The resources to release can be identified by means of a unique identifier (resourcesId)
+ * A IFlow to release a set of previously seized resources. The resources to release can be identified by means of a unique identifier (resourcesId)
  * or a workgroup.<p>
  * 
- * The flow can also define resource-type-related cancellation periods. If an element releases a resource belonging to one of the resource types, this 
+ * The IFlow can also define resource-type-related cancellation periods. If an element releases a resource belonging to one of the resource types, this 
  * resource can't be used during a period of time after the release.
  * @author Iv�n Castilla
  *
  */
-public class ReleaseResourcesFlow extends SingleSuccessorFlow implements ResourceHandlerFlow, FinalizerFlow {
+public class ReleaseResourcesFlow extends AbstractSingleSuccessorFlow implements IResourceHandlerFlow, IFinalizerFlow {
     /** A brief description of the activity */
     protected final String description;
     /** A workgroup of resources to release */
@@ -36,9 +36,9 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
     protected final TreeMap<ResourceType, AbstractCondition<ElementInstance>> cancellationConditionList;
 	
 	/**
-	 * Creates a release resources flow
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a release resources IFlow
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 */
 	public ReleaseResourcesFlow(final Simulation model, final String description) {
 
@@ -46,10 +46,10 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	}
 	
 	/**
-	 * Creates a release resources flow that will release the resources within the default group of resources and belonging to the 
+	 * Creates a release resources IFlow that will release the resources within the default group of resources and belonging to the 
 	 * resource types defined in the specified workgroups
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 * @param wg Workgroup that identifies the resources to release
 	 */
 	public ReleaseResourcesFlow(final Simulation model, final String description, final WorkGroup wg) {
@@ -57,9 +57,9 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	}
 	
 	/**
-	 * Creates a release resources flow that will release all the resources within the group identified by resourcesId 
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a release resources IFlow that will release all the resources within the group identified by resourcesId 
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 * @param resourcesId Identifier of the group of resources
 	 */
 	public ReleaseResourcesFlow(final Simulation model, final String description, final int resourcesId) {
@@ -67,10 +67,10 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	}
 	
 	/**
-	 * Creates a release resources flow that will release the resources within the group identified by resourcesId and belonging to the 
+	 * Creates a release resources IFlow that will release the resources within the group identified by resourcesId and belonging to the 
 	 * resource types defined in the specified workgroups
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 * @param wg Workgroup that identifies the resources to release
 	 * @param resourcesId Identifier of the group of resources
 	 */
@@ -152,7 +152,7 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	}
 	
 	@Override
-	public void addPredecessor(final Flow newFlow) {}
+	public void addPredecessor(final IFlow newFlow) {}
 
 	@Override
 	public void afterFinalize(final ElementInstance ei) {}

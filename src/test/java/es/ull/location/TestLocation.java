@@ -16,11 +16,11 @@ import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.SimulationTimeFunction;
 import es.ull.simulation.model.TimeDrivenElementGenerator;
 import es.ull.simulation.model.location.Location;
-import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.IMovable;
 import es.ull.simulation.model.location.MoveFlow;
 import es.ull.simulation.model.location.Node;
 import es.ull.simulation.model.location.Path;
-import es.ull.simulation.model.location.Router;
+import es.ull.simulation.model.location.IRouter;
 
 /**
  * @author Iván Castilla Rodríguez
@@ -41,7 +41,7 @@ public class TestLocation extends Experiment {
 		super("Experiment with locations", NEXP);
 	}
 
-	class MyRouter implements Router {
+	class MyRouter implements IRouter {
 		final private Node home;
 		final private Node destination;
 		final private Path[] paths;
@@ -81,11 +81,11 @@ public class TestLocation extends Experiment {
 		}
 
 		@Override
-		public Location getNextLocationTo(Movable entity, Location finalLocation) {
+		public Location getNextLocationTo(IMovable entity, Location finalLocation) {
 			ArrayList<Location> links = entity.getLocation().getLinkedTo();
 			if (links.size() > 0)
 				return links.get(0);
-			return Router.UNREACHABLE_LOCATION;
+			return IRouter.UNREACHABLE_LOCATION;
 		}
 		
 	}
@@ -93,10 +93,10 @@ public class TestLocation extends Experiment {
 	class SimulLocation extends Simulation {
 		public SimulLocation(int id, long endTs) {
 			super(id, "Simulating locations " + id, 0, endTs);
-			final MyRouter router = new MyRouter(); 
-			final MoveFlow initFlow = new MoveFlow(this, "From home to destination", router.getDestination(), router);
+			final MyRouter IRouter = new MyRouter(); 
+			final MoveFlow initFlow = new MoveFlow(this, "From home to destination", IRouter.getDestination(), IRouter);
 			final ElementType et = new ElementType(this, "Car");
-			new TimeDrivenElementGenerator(this, NELEM, et, initFlow, NOSIZE ? 0 : ELEMSIZE, router.getHome(), new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
+			new TimeDrivenElementGenerator(this, NELEM, et, initFlow, NOSIZE ? 0 : ELEMSIZE, IRouter.getHome(), new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
 		}
 		
 	}

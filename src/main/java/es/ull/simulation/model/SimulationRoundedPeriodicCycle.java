@@ -12,7 +12,7 @@ import es.ull.simulation.utils.cycle.RoundedPeriodicCycle.Type;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationRoundedPeriodicCycle implements SimulationCycle {
+public class SimulationRoundedPeriodicCycle implements ISimulationCycle {
 	private RoundedPeriodicCycle cycle;
 	
 	/**
@@ -70,7 +70,7 @@ public class SimulationRoundedPeriodicCycle implements SimulationCycle {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ull.simulation.SimulationCycle#getCycle()
+	 * @see com.ull.simulation.ISimulationCycle#getCycle()
 	 */
 	@Override
 	public Cycle getCycle() {

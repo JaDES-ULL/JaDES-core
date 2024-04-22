@@ -11,8 +11,8 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.flow.ResourceHandlerFlow;
-import es.ull.simulation.model.engine.ResourceEngine;
+import es.ull.simulation.model.flow.IResourceHandlerFlow;
+import es.ull.simulation.model.engine.IResourceEngine;
 
 /**
  * A resource is an element that becomes available at a specific simulation time and 
@@ -21,7 +21,7 @@ import es.ull.simulation.model.engine.ResourceEngine;
  * A resource finishes its execution when it has no longer valid timetable entries.
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceEngine extends AbstractEngineObject implements ResourceEngine {
+public class ResourceEngine extends AbstractEngineObject implements IResourceEngine {
     /** If true, indicates that this resource is being used after its availability time has expired */
     private boolean timeOut = false;
     /** List of currently active roles and the timestamp which marks the end of their availibity time. */
@@ -41,7 +41,7 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
      * @param simul ParallelSimulationEngine this resource is attached to.
      * @param description A short text describing this resource.
      */
-	public ResourceEngine(SequentialSimulationEngine simul, com.ull.simulation.model.Resource modelRes) {
+	public ResourceEngine(SequentialSimulationEngine simul, Resource modelRes) {
 		super(modelRes.getIdentifier(), simul, "RES");
         currentRoles = new TreeMap<ResourceType, Long>();
         notCanceled = true;
@@ -104,11 +104,13 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
 	 * current resource type; and adds this resource to the item's caught resources list.
 	 * A "taken" element continues being booked. The book is released when the resource itself is
 	 * released. 
-	 * @param ei The element instance in charge of executing the current flow
+	 * @param ei The element instance in charge of executing the current IFlow
 	 * @return The availability timestamp of this resource for this resource type 
 	 */
 	public long catchResource(ElementInstance ei) {
-		simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes, modelRes.getCurrentResourceType(), ei, ei.getElement(), (ResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.CAUGHT, simul.getTs()));
+		simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes,
+				modelRes.getCurrentResourceType(), ei, ei.getElement(),
+				(IResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.CAUGHT, simul.getTs()));
 		currentElem = ei.getElement();
 		return currentRoles.get(modelRes.getCurrentResourceType());
 	}
@@ -121,7 +123,9 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
      * time of the resource had already expired.
      */
     public boolean releaseResource(ElementInstance ei) {
-    	simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes, modelRes.getCurrentResourceType(), ei, currentElem, (ResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.RELEASED, simul.getTs()));
+    	simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(),
+				modelRes, modelRes.getCurrentResourceType(), ei, currentElem,
+				(IResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.RELEASED, simul.getTs()));
         currentElem = null;
         modelRes.setCurrentResourceType(null);        
         if (timeOut) {

@@ -17,7 +17,7 @@ import es.ull.simulation.model.engine.SimulationEngine;
 public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject implements TimeFunctionParams {
 	/** Number of objects created each time this creator is invoked. */
 	protected final AbstractTimeFunction nElem;
-	/** Each flow that will be generated */
+	/** Each IFlow that will be generated */
 	protected final ArrayList<INF> genInfo = new ArrayList<INF>();
 
 	/**
@@ -78,16 +78,16 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	 * @param info The information used to create the event source
 	 * @return The newly created event source 
 	 */
-	public abstract EventSource createEventSource(final int ind, final INF info);
+	public abstract IEventSource createEventSource(final int ind, final INF info);
 	
 	/**
 	 * Creates all the event sources. It uses the specified proportions and the total number to create event sources.
 	 * @return The event sources created
 	 */
-	public EventSource[] create() {
+	public IEventSource[] create() {
 		int n = getSampleNElem();
 		n = beforeCreateElements(n);
-		final EventSource[] elems = new EventSource[n];
+		final IEventSource[] elems = new IEventSource[n];
         for (int i = 0; i < n; i++) {
             double p = Math.random();
             for (INF gt : genInfo) {
@@ -141,12 +141,12 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	 * @author Iván Castilla Rodríguez
 	 */
     public static class GenerationInfo {
-		/** Proportion of elements corresponding to this flow. */
+		/** Proportion of elements corresponding to this IFlow. */
 		protected final double prop;
 		
 		/**
 		 * Creates a new kind of elements to generate.
-		 * @param prop Proportion of elements corresponding to this flow.
+		 * @param prop Proportion of elements corresponding to this IFlow.
 		 */
 		protected GenerationInfo(final double prop) {
 			this.prop = prop;

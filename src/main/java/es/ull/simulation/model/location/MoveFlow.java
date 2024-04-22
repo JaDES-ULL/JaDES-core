@@ -7,38 +7,38 @@ import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.ActionFlow;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.SingleSuccessorFlow;
-import es.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.model.flow.IActionFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.AbstractSingleSuccessorFlow;
+import es.ull.simulation.model.flow.ITaskFlow;
 
 /**
  * A workflow step that allows {@link Element elements} to move from one {@link Location} to another.
- * The route flow uses a {@link Router} to define the path of the element, ensures that the destination is reachable, and moves the 
+ * The route IFlow uses a {@link IRouter} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element from one location to another until reaching the destination.
  * @author Iv�n Castilla
  *
  */
-public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {
+public class MoveFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {
     /** A brief description of the route */
     private final String description;
     /** Final destination of the element */ 
     private final Location destination;
     /** Instance that returns the path for the element */
-    private final Router router;
+    private final IRouter router;
 
     /**
-     * Creates a flow to move an element
-     * @param model Model this flow belongs to
+     * Creates a IFlow to move an element
+     * @param model Model this IFlow belongs to
      * @param description A brief description of the route
      * @param destination Final destination of the element
-     * @param router Instance that returns the path for the element
+     * @param IRouter Instance that returns the path for the element
      */
-	public MoveFlow(Simulation model, String description, Location destination, Router router) {
+	public MoveFlow(Simulation model, String description, Location destination, IRouter IRouter) {
 		super(model);
 		this.description = description;
 		this.destination = destination;
-		this.router = router;
+		this.router = IRouter;
 	}
 
 
@@ -48,7 +48,7 @@ public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlo
 	}
     
 	@Override
-	public void addPredecessor(final Flow predecessor) {
+	public void addPredecessor(final IFlow predecessor) {
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlo
 		if (!ei.wasVisited(this)) {
 			if (ei.isExecutable()) {
 				if (beforeRequest(ei)) {
-					// If already at destination, just finish the flow
+					// If already at destination, just finish the IFlow
 					if (destination.equals(ei.getElement().getLocation())) {
 						afterFinalize(ei);
 						next(ei);
@@ -89,12 +89,12 @@ public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlo
 	public void move(final ElementInstance ei) {
 		final Element elem = ei.getElement();
 		final Location nextLocation = router.getNextLocationTo(elem, destination);
-		if (Router.isUnreachableLocation(nextLocation)) {
+		if (IRouter.isUnreachableLocation(nextLocation)) {
 			ei.cancel(this);
 			next(ei);
     		error("Destination unreachable. Current: " + elem.getLocation() + "; destination: " + destination);
 		}
-		else if (Router.isConditionalWaitLocation(nextLocation)) {
+		else if (IRouter.isConditionalWaitLocation(nextLocation)) {
 			simul.notifyInfo(new EntityLocationInfo(simul, elem, elem.getLocation(), EntityLocationInfo.Type.COND_WAIT, getTs()));			
 		}
 		else if (!nextLocation.fitsIn(elem)) {
@@ -130,9 +130,9 @@ public class MoveFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlo
 
 
 	/**
-	 * @return the router
+	 * @return the IRouter
 	 */
-	public Router getRouter() {
+	public IRouter getRouter() {
 		return router;
 	}
 

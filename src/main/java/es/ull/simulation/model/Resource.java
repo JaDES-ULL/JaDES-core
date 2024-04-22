@@ -9,12 +9,12 @@ import java.util.Collection;
 
 import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.info.ResourceInfo;
-import es.ull.simulation.model.engine.ResourceEngine;
+import es.ull.simulation.model.engine.IResourceEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.location.Location;
-import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.IMovable;
 import es.ull.simulation.model.location.MoveResourcesFlow;
-import es.ull.simulation.model.location.Router;
+import es.ull.simulation.model.location.IRouter;
 import es.ull.simulation.model.location.TransportFlow;
 import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
 
@@ -26,7 +26,7 @@ import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
  * @author Iván Castilla Rodríguez
  *
  */
-public class Resource extends VariableStoreSimulationObject implements Describable, EventSource, Movable {
+public class Resource extends VariableStoreSimulationObject implements IDescribable, IEventSource, IMovable {
     /** A brief description of the resource */
     protected final String description;
 	/** The current location of the resource*/
@@ -46,7 +46,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     /** The resource type which this resource is being booked for */
     protected ResourceType currentResourceType = null;
     /** The engine in charge of executing specific actions */
-    private ResourceEngine engine;
+    private IResourceEngine engine;
 
     /**
      * Creates a resource with size 0
@@ -78,10 +78,10 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	}      
 	
 	/**
-	 * Returns the associated {@link ResourceEngine}
-	 * @return the associated {@link ResourceEngine}
+	 * Returns the associated {@link IResourceEngine}
+	 * @return the associated {@link IResourceEngine}
 	 */
-	public ResourceEngine getEngine() {
+	public IResourceEngine getEngine() {
 		return engine;
 	}
 
@@ -237,7 +237,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 
 	/**
 	 * Marks this resource as taken by an {@link Element}
-	 * @param ei The element instance in charge of executing the current flow
+	 * @param ei The element instance in charge of executing the current IFlow
 	 * @return The availability timestamp of this resource for this resource type 
 	 */
 	protected long catchResource(final ElementInstance ei) {
@@ -246,7 +246,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	
     /**
      * Releases this resource
-	 * @param ei The element instance in charge of executing the current flow
+	 * @param ei The element instance in charge of executing the current IFlow
      * @return True if the resource could be correctly released. False if the availability time of the resource had already expired.
      */
     protected boolean releaseResource(final ElementInstance ei) {
@@ -272,15 +272,15 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     }
     
     /**
-     * Creates a move event to move to destination using the specified router.
+     * Creates a move event to move to destination using the specified IRouter.
      * @param ei Element instance that initiates the move
      * @param destination Destination location
-     * @param router Instance that returns the path for the element
+     * @param IRouter Instance that returns the path for the element
      */
     public void startMove(final ElementInstance ei) {
     	final MoveResourcesFlow flow = (MoveResourcesFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
-    	final Router router = flow.getRouter();
+    	final IRouter router = flow.getRouter();
 		debug("Start route\t" + this + "\t" + destination);
     	movingInstance = ei;
     	// No need to move
@@ -289,7 +289,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     	}
     	else {
 			final Location nextLoc = router.getNextLocationTo(this, destination);
-			if (Router.isUnreachableLocation(nextLoc)) {
+			if (IRouter.isUnreachableLocation(nextLoc)) {
 	    		endMove(flow, false);
 			}
 			else {
@@ -299,15 +299,15 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     }
     
     /**
-     * Creates a transport event to move to destination using the specified router.
+     * Creates a transport event to move to destination using the specified IRouter.
      * @param ei Element instance that initiates the move
      * @param destination Destination location
-     * @param router Instance that returns the path for the element
+     * @param IRouter Instance that returns the path for the element
      */
     public void startTransport(final ElementInstance ei) {
     	final TransportFlow flow = (TransportFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
-    	final Router router = flow.getRouter();
+    	final IRouter router = flow.getRouter();
 		debug("Start transport\t" + this + "\t" + destination);
     	movingInstance = ei;
     	// No need to move
@@ -316,18 +316,19 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     	}
     	else {
 			final Location nextLoc = router.getNextLocationTo(this, destination);
-			if (Router.isUnreachableLocation(nextLoc)) {
+			if (IRouter.isUnreachableLocation(nextLoc)) {
 	    		endTransport(flow, false);
 			}
 			else {
-		    	simul.addEvent(new TransportEvent(getTs() + currentLocation.getDelayAtExit(this), nextLoc, destination, router));
+		    	simul.addEvent(new TransportEvent(getTs() + currentLocation.getDelayAtExit(this),
+						nextLoc, destination, router));
 			}
     	}
     }
     
     /**
-     * Notifies the flow that the move has finished
-     * @param ei Flow driving the movement
+     * Notifies the IFlow that the move has finished
+     * @param ei IFlow driving the movement
      * @param success True if the resource arrived at destination; false if the destination was unreachable
      */
     private void endMove(final MoveResourcesFlow flow, final boolean success) {
@@ -340,13 +341,13 @@ public class Resource extends VariableStoreSimulationObject implements Describab
     }
 
     /**
-     * Notifies the flow that the transport has finished
-     * @param ei Flow driving the movement
+     * Notifies the IFlow that the transport has finished
+     * @param ei IFlow driving the movement
      * @param success True if the resource arrived at destination; false if the destination was unreachable
      */
     private void endTransport(final TransportFlow flow, final boolean success) {
     	if (success) {
-    		flow.finish(movingInstance);
+			flow.finish(movingInstance);
     		movingInstance = null;
     		debug("Finishes transport\t" + this + "\t" + flow.getDestination());
     	}
@@ -365,18 +366,19 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		if (movingInstance.getCurrentFlow() instanceof MoveResourcesFlow) {
 	    	final MoveResourcesFlow flow = (MoveResourcesFlow)movingInstance.getCurrentFlow();
 	    	final Location destination = flow.getDestination();
-	    	final Router router = flow.getRouter();
+	    	final IRouter router = flow.getRouter();
 			
 			if (currentLocation.equals(destination)) {
 				endMove(flow, true);
 			}
 			else {
 				final Location nextLoc = router.getNextLocationTo(this, destination);
-				if (Router.isUnreachableLocation(nextLoc)) {
+				if (IRouter.isUnreachableLocation(nextLoc)) {
 					endMove(flow, false);
 				}
 				else {
-			    	simul.addEvent(new MoveEvent(getTs() + currentLocation.getDelayAtExit(this), nextLoc, destination, router));						
+			    	simul.addEvent(new MoveEvent(getTs() + currentLocation.getDelayAtExit(this),
+							nextLoc, destination, router));
 				}
 			}			
 		}
@@ -385,18 +387,19 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 			// Move the element without checking anything else
 			movingInstance.getElement().setLocation(location);
 	    	final Location destination = flow.getDestination();
-	    	final Router router = flow.getRouter();
+	    	final IRouter router = flow.getRouter();
 			
 			if (currentLocation.equals(destination)) {
 				endTransport(flow, true);
 			}
 			else {
 				final Location nextLoc = router.getNextLocationTo(this, destination);
-				if (Router.isUnreachableLocation(nextLoc)) {
+				if (IRouter.isUnreachableLocation(nextLoc)) {
 					endTransport(flow, false);
 				}
 				else {
-			    	simul.addEvent(new TransportEvent(getTs() + currentLocation.getDelayAtExit(this), nextLoc, destination, router));						
+			    	simul.addEvent(new TransportEvent(getTs() + currentLocation.getDelayAtExit(this),
+							nextLoc, destination, router));
 				}
 			}			
 		}
@@ -422,7 +425,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	
 	/**
 	 * A builder class to build time table or cancellation entries. With one builder you can create several entries with the same cycle and duration for
-	 * one or more resource types. If you don't use the {@link #withDuration(SimulationCycle, TimeStamp)} method, the entries are assumed to last for
+	 * one or more resource types. If you don't use the {@link #withDuration(ISimulationCycle, TimeStamp)} method, the entries are assumed to last for
 	 * the whole duration of the simulation. You can also use the same builder for time table or cancellation entries, by invoking, respectively, 
 	 * {@link #addTimeTableEntry()} or {@link #addCancelEntry()}
 	 * @author Iv�n Castilla
@@ -430,7 +433,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	 */
 	public final class TimeTableOrCancelEntriesAdder {
 		private final ArrayList<ResourceType> roleList = new ArrayList<ResourceType>();
-		private SimulationCycle cycle = null;
+		private ISimulationCycle cycle = null;
 		private TimeStamp dur = null;
 		
 		/**
@@ -454,7 +457,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		 * @param cycle Simulation cycle to define activation/deactivation time
 		 * @param dur How long the resource is active/will remain inactive
 		 */
-		public TimeTableOrCancelEntriesAdder withDuration(final SimulationCycle cycle, final TimeStamp dur) {
+		public TimeTableOrCancelEntriesAdder withDuration(final ISimulationCycle cycle, final TimeStamp dur) {
 			this.cycle = cycle;
 			this.dur = dur;
 			return this;
@@ -465,7 +468,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		 * @param cycle Simulation cycle to define activation/deactivation time
 		 * @param dur How long the resource is active/will remain inactive
 		 */
-		public TimeTableOrCancelEntriesAdder withDuration(final SimulationCycle cycle, final long dur) {
+		public TimeTableOrCancelEntriesAdder withDuration(final ISimulationCycle cycle, final long dur) {
 			return this.withDuration(cycle, new TimeStamp(simul.getTimeUnit(), dur));
 		}
 		
@@ -737,16 +740,16 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		/** Next location in the way to the final destination */
 		final private Location nextLocation;
 		/** The instance that computes the path to the final destination */
-		final private Router router;
+		final private IRouter router;
 		
 		/**
 		 * Creates a move event that starts a move from the resource's current location
 		 * @param ts Current timestamp
 		 * @param destination Destination location
-		 * @param router Instance that returns the path for the resource
+		 * @param IRouter Instance that returns the path for the resource
 		 */
-		public MoveEvent(final long ts, final Location destination, final Router router) {
-			this(ts, currentLocation, destination, router);
+		public MoveEvent(final long ts, final Location destination, final IRouter IRouter) {
+			this(ts, currentLocation, destination, IRouter);
 		}
 
 		/**
@@ -754,9 +757,9 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		 * @param ts Timestamp when the resource will arrive at the intermediate location
 		 * @param nextLocation Intermediate location 
 		 * @param destination Final destination
-		 * @param router Instance that returns the path for the resource
+		 * @param IRouter Instance that returns the path for the resource
 		 */
-		public MoveEvent(final long ts, final Location nextLocation, final Location destination, final Router router) {
+		public MoveEvent(final long ts, final Location nextLocation, final Location destination, final IRouter router) {
 			super(ts);
 			this.destination = destination;
 			this.nextLocation = nextLocation;
@@ -773,18 +776,20 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 				}
 				else {
 					final Location nextLoc = router.getNextLocationTo(Resource.this, destination);
-					if (Router.isUnreachableLocation(nextLoc)) {
+					if (IRouter.isUnreachableLocation(nextLoc)) {
 						endMove(flow, false);
 					}
 					else {
-						final MoveEvent mEvent = new MoveEvent(getTs() + currentLocation.getDelayAtExit(Resource.this), nextLoc, destination, router);
+						final MoveEvent mEvent = new MoveEvent(getTs() +
+								currentLocation.getDelayAtExit(Resource.this), nextLoc, destination, router);
 				    	simul.addEvent(mEvent);						
 					}
 				}
 			}
 			else {
 				nextLocation.waitFor(Resource.this);
-				simul.notifyInfo(new EntityLocationInfo(simul, Resource.this, nextLocation, EntityLocationInfo.Type.WAIT_FOR, getTs()));
+				simul.notifyInfo(new EntityLocationInfo(simul, Resource.this, nextLocation,
+						EntityLocationInfo.Type.WAIT_FOR, getTs()));
 			}
 		}
 	}
@@ -800,16 +805,16 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		/** Next location in the way to the final destination */
 		final private Location nextLocation;
 		/** The instance that computes the path to the final destination */
-		final private Router router;
+		final private IRouter router;
 		
 		/**
 		 * Creates a transport event that starts a move from the resource's current location
 		 * @param ts Current timestamp
 		 * @param destination Destination location
-		 * @param router Instance that returns the path for the resource
+		 * @param IRouter Instance that returns the path for the resource
 		 */
-		public TransportEvent(final long ts, final Location destination, final Router router) {
-			this(ts, currentLocation, destination, router);
+		public TransportEvent(final long ts, final Location destination, final IRouter IRouter) {
+			this(ts, currentLocation, destination, IRouter);
 		}
 
 		/**
@@ -817,9 +822,9 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 		 * @param ts Timestamp when the resource will arrive at the intermediate location
 		 * @param nextLocation Intermediate location 
 		 * @param destination Final destination
-		 * @param router Instance that returns the path for the resource
+		 * @param IRouter Instance that returns the path for the resource
 		 */
-		public TransportEvent(final long ts, final Location nextLocation, final Location destination, final Router router) {
+		public TransportEvent(final long ts, final Location nextLocation, final Location destination, final IRouter router) {
 			super(ts);
 			this.destination = destination;
 			this.nextLocation = nextLocation;
@@ -838,18 +843,20 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 				}
 				else {
 					final Location nextLoc = router.getNextLocationTo(Resource.this, destination);
-					if (Router.isUnreachableLocation(nextLoc)) {
+					if (IRouter.isUnreachableLocation(nextLoc)) {
 						endTransport(flow, false);
 					}
 					else {
-						final TransportEvent mEvent = new TransportEvent(getTs() + currentLocation.getDelayAtExit(Resource.this), nextLoc, destination, router);
+						final TransportEvent mEvent = new TransportEvent(getTs() +
+								currentLocation.getDelayAtExit(Resource.this), nextLoc, destination, router);
 				    	simul.addEvent(mEvent);						
 					}
 				}
 			}
 			else {
 				nextLocation.waitFor(Resource.this);
-				simul.notifyInfo(new EntityLocationInfo(simul, Resource.this, nextLocation, EntityLocationInfo.Type.WAIT_FOR, getTs()));
+				simul.notifyInfo(new EntityLocationInfo(simul, Resource.this,
+						nextLocation, EntityLocationInfo.Type.WAIT_FOR, getTs()));
 			}
 		}
 	}

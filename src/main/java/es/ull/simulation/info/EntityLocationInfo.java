@@ -5,7 +5,7 @@ package es.ull.simulation.info;
 
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.location.Location;
-import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.IMovable;
 
 /**
  * @author Iván Castilla Rodríguez
@@ -13,7 +13,7 @@ import es.ull.simulation.model.location.Movable;
  */
 public class EntityLocationInfo extends AsynchronousInfo {
 	/** Possible types of element information */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 			ARRIVE	("ARRIVE AT LOCATION"),
 			LEAVE	("LEAVE FROM LOCATION"),
 			START	("START AT LOCATION"),
@@ -32,7 +32,7 @@ public class EntityLocationInfo extends AsynchronousInfo {
 			
 		};
 	
-	final private Movable entity;
+	final private IMovable entity;
 	final private Type type;
 	final private Location location;
 	
@@ -41,7 +41,7 @@ public class EntityLocationInfo extends AsynchronousInfo {
 	 * @param model
 	 * @param ts
 	 */
-	public EntityLocationInfo(final Simulation model, final Movable entity, final Location location, final Type type, final long ts) {
+	public EntityLocationInfo(final Simulation model, final IMovable entity, final Location location, final Type type, final long ts) {
 		super(model, ts);
 		this.entity = entity;
 		this.location = location;
@@ -53,7 +53,7 @@ public class EntityLocationInfo extends AsynchronousInfo {
 	/**
 	 * @return the entity
 	 */
-	public Movable getEntity() {
+	public IMovable getEntity() {
 		return entity;
 	}
 

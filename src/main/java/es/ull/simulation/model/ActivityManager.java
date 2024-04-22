@@ -2,7 +2,7 @@ package es.ull.simulation.model;
 
 import java.util.ArrayList;
 
-import es.ull.simulation.model.engine.ActivityManagerEngine;
+import es.ull.simulation.model.engine.IActivityManagerEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 
@@ -14,7 +14,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManager extends SimulationObject implements Describable {
+public class ActivityManager extends SimulationObject implements IDescribable {
     /** Static counter for assigning each new id */
 	private static int nextid = 0;
 	/** A prioritized table of activities */
@@ -22,7 +22,7 @@ public class ActivityManager extends SimulationObject implements Describable {
     /** A list of resorce types */
     protected final ArrayList<ResourceType> resourceTypeList;
     /** The specific implementation of the behavior of the activity manager */
-    private ActivityManagerEngine engine;
+    private IActivityManagerEngine engine;
     
    /**
 	* Creates a new instance of ActivityManager.
@@ -37,10 +37,10 @@ public class ActivityManager extends SimulationObject implements Describable {
 
     /**
      * Adds a request resources flows to this activity manager.
-     * @param flow request resources flow
+     * @param IFlow request resources IFlow
      */
-    public void add(final RequestResourcesFlow flow) {
-        activityList.add(flow);
+    public void add(final RequestResourcesFlow IFlow) {
+        activityList.add(IFlow);
     }
     
     /**

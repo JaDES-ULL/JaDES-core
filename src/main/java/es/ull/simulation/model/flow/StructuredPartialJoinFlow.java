@@ -3,11 +3,11 @@ package es.ull.simulation.model.flow;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A structured flow whose initial step is a parallel flow and whose final step
- * is a partial join flow. Meets the Structured Partial Join pattern (WFP30). 
+ * A structured IFlow whose initial step is a parallel IFlow and whose final step
+ * is a partial join IFlow. Meets the Structured Partial Join pattern (WFP30).
  * @author ycallero
  */
-public class StructuredPartialJoinFlow extends PredefinedStructuredFlow {
+public class StructuredPartialJoinFlow extends AbstractPredefinedStructuredFlow {
 	
 	/**
 	 * Creates a new StructuredPartialJoinFlow.

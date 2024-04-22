@@ -13,8 +13,8 @@ public class SafeMergeFlowControl extends MergeFlowControl {
 	/** Current amount of arrived branches */
 	protected int checked;
 
-	public SafeMergeFlowControl(MergeFlow flow) {
-		super(flow);
+	public SafeMergeFlowControl(AbstractMergeFlow IFlow) {
+		super(IFlow);
 	}
 
 	/* (non-Javadoc)

@@ -14,7 +14,7 @@ import es.ull.simulation.model.engine.SimulationEngine;
  * resources.
  * @author Iván Castilla Rodríguez
  */
-public class WorkGroup extends SimulationObject implements Describable {
+public class WorkGroup extends SimulationObject implements IDescribable {
 	/** List of resource types required to do something */
 	protected final ResourceType[] resourceTypes;
 	/** Amount of resource types required to do something */

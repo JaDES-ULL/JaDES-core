@@ -9,7 +9,7 @@ import java.util.List;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
 import es.ull.simulation.functions.TimeFunctionFactory;
-import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.IIdentifiable;
 import es.ull.simulation.model.SimulationObject;
 
 /**
@@ -20,7 +20,7 @@ import es.ull.simulation.model.SimulationObject;
  * @author Iván Castilla Rodríguez
  *
  */
-public abstract class Location implements Located, Identifiable, Comparable<Location> {
+public abstract class Location implements ILocated, IIdentifiable, Comparable<Location> {
 	/** An array of the locations that this location is linked to */
 	private final ArrayList<Location> linkedTo; 
 	/** An array of the locations that this location is linked from */
@@ -30,10 +30,10 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	/** How much of the capacity is currently occupied */
 	private int occupied;
 	/** A list of the entities currently at this location */
-	private final List<Movable> entitiesIn;
+	private final List<IMovable> entitiesIn;
 	// TODO: Change by a customizable queue
 	/** A simple FIFO queue for entities waiting to enter into the location */
-	private final List<Movable> entitiesWaiting;
+	private final List<IMovable> entitiesWaiting;
 	/** The time that it takes to exit (or go through) the location */ 
 	private final AbstractTimeFunction delayAtExit;
 	/** An internal unique identifier */
@@ -54,8 +54,8 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 		this.description = description;
 		linkedTo = new ArrayList<Location>();
 		linkedFrom = new ArrayList<Location>();
-		entitiesIn = new ArrayList<Movable>();
-		entitiesWaiting = new ArrayList<Movable>();
+		entitiesIn = new ArrayList<IMovable>();
+		entitiesWaiting = new ArrayList<IMovable>();
 		this.capacity = capacity;
 		this.occupied = 0;
 		this.delayAtExit = delayAtExit;
@@ -121,10 +121,10 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 
 	/**
 	 * Returns true if the specified entity fits into this location
-	 * @param entity A movable entity
+	 * @param entity A IMovable entity
 	 * @return true if the specified entity fits into this location
 	 */
-	public boolean fitsIn(Movable entity) {
+	public boolean fitsIn(IMovable entity) {
 		return getAvailableCapacity() >= entity.getCapacity();
 	}
 	
@@ -176,7 +176,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * Returns a collection with the entities currently in this location
 	 * @return a collection with the entities currently in this location
 	 */
-	public List<Movable> getEntitiesIn() {
+	public List<IMovable> getEntitiesIn() {
 		return entitiesIn;
 	}
 	
@@ -184,7 +184,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * Puts the entity into a waiting queue until the location has enough available capacity
 	 * @param entity Entity currently trying to arrive at the location
 	 */
-	public void waitFor(Movable entity) {
+	public void waitFor(IMovable entity) {
 		entitiesWaiting.add(entity);
 	}
 	
@@ -192,7 +192,7 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * Moves an entity into the location and updates the available capacity
 	 * @param entity Entity moving into the location
 	 */
-	public void enter(Movable entity) {
+	public void enter(IMovable entity) {
 		occupied += entity.getCapacity();
 		entitiesIn.add(entity);
 		final Location currentLocation = entity.getLocation();
@@ -207,13 +207,13 @@ public abstract class Location implements Located, Identifiable, Comparable<Loca
 	 * the entity moves into the location.
 	 * @param entity Entity leaving the location
 	 */
-	private void leave(Movable entity) {
+	private void leave(IMovable entity) {
 		occupied -= entity.getCapacity();
 		entitiesIn.remove(entity);
 		// Goes through the waiting queue
-		Iterator<Movable> iter = entitiesWaiting.iterator();
+		Iterator<IMovable> iter = entitiesWaiting.iterator();
 		while (iter.hasNext()) {
-			final Movable waitingEntity = iter.next();
+			final IMovable waitingEntity = iter.next();
 			if (fitsIn(waitingEntity)) {
 				waitingEntity.notifyLocationAvailable(this);
 				iter.remove();

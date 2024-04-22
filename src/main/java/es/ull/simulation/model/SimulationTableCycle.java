@@ -12,7 +12,7 @@ import es.ull.simulation.utils.cycle.TableCycle;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationTableCycle implements SimulationCycle {
+public class SimulationTableCycle implements ISimulationCycle {
 	/** Inner {@link com.ull.util.cycle.TableCycle TableCycle} */ 
 	private final TableCycle cycle;
 	
@@ -31,7 +31,7 @@ public class SimulationTableCycle implements SimulationCycle {
 	 * @param timestamps Set of timestamps to indicate the activations of this cycle
 	 * @param subCycle Subcycle contained in this cycle
 	 */
-	public SimulationTableCycle(TimeUnit unit, TimeStamp[] timestamps, SimulationCycle subCycle) {
+	public SimulationTableCycle(TimeUnit unit, TimeStamp[] timestamps, ISimulationCycle subCycle) {
 		cycle = new TableCycle(simulationTime2Double(unit, timestamps), subCycle.getCycle());
 	}
 

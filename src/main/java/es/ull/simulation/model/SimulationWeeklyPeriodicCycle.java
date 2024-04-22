@@ -13,7 +13,7 @@ import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle.WeekDays;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationWeeklyPeriodicCycle implements SimulationCycle {
+public class SimulationWeeklyPeriodicCycle implements ISimulationCycle {
 	/**
 	 * 
 	 */

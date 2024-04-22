@@ -3,11 +3,11 @@ package es.ull.simulation.model.flow;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A structured flow whose initial step is a parallel flow and whose final step
- * is a discriminator flow. Meets the Structured Discriminator pattern (WFP9). 
+ * A structured IFlow whose initial step is a parallel IFlow and whose final step
+ * is a discriminator IFlow. Meets the Structured Discriminator pattern (WFP9). 
  * @author ycallero
  */
-public class StructuredDiscriminatorFlow extends PredefinedStructuredFlow {
+public class StructuredDiscriminatorFlow extends AbstractPredefinedStructuredFlow {
 	/**
 	 * Create a new StructureDiscriminatorMetaFlow.
 	 */

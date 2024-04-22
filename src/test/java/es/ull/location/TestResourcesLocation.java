@@ -21,11 +21,11 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ReleaseResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.location.Location;
-import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.IMovable;
 import es.ull.simulation.model.location.MoveResourcesFlow;
 import es.ull.simulation.model.location.Node;
 import es.ull.simulation.model.location.Path;
-import es.ull.simulation.model.location.Router;
+import es.ull.simulation.model.location.IRouter;
 
 /**
  * @author Iván Castilla Rodríguez
@@ -47,7 +47,7 @@ public class TestResourcesLocation extends Experiment {
 		super("Experiment with locations", NEXP);
 	}
 
-	class MyRouter implements Router {
+	class MyRouter implements IRouter {
 		final private Node home;
 		final private Node destination;
 		final private Path[] paths;
@@ -87,7 +87,7 @@ public class TestResourcesLocation extends Experiment {
 		}
 
 		@Override
-		public Location getNextLocationTo(Movable entity, Location finalLocation) {
+		public Location getNextLocationTo(IMovable entity, Location finalLocation) {
 			if (destination.equals(finalLocation)) {
 				final ArrayList<Location> links = entity.getLocation().getLinkedTo();
 				if (links.size() > 0)
@@ -98,7 +98,7 @@ public class TestResourcesLocation extends Experiment {
 				if (links.size() > 0)
 					return links.get(0);
 			}
-			return Router.UNREACHABLE_LOCATION;
+			return IRouter.UNREACHABLE_LOCATION;
 		}
 		
 	}
@@ -106,15 +106,15 @@ public class TestResourcesLocation extends Experiment {
 	class SimulLocation extends Simulation {
 		public SimulLocation(int id, long endTs) {
 			super(id, "Simulating locations " + id, 0, endTs);
-			final MyRouter router = new MyRouter(); 
+			final MyRouter IRouter = new MyRouter(); 
 			final ElementType et = new ElementType(this, "Delivery request from home");
 			final ResourceType rtTruck = new ResourceType(this, "Delivery truck");
-			rtTruck.addGenericResources(NTRUCKS, NOSIZE ? 0 : TRUCKSIZE, router.getHome());
+			rtTruck.addGenericResources(NTRUCKS, NOSIZE ? 0 : TRUCKSIZE, IRouter.getHome());
 			final WorkGroup wgTruck = new WorkGroup(this, rtTruck, 1);
 			final RequestResourcesFlow reqFlow = new RequestResourcesFlow(this, "Request truck");
 			reqFlow.newWorkGroupAdder(wgTruck).add();
-			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move truck to home", router.getHome(), router, wgTruck);
-			final MoveResourcesFlow moveFlow2 = new MoveResourcesFlow(this, "Move truck to destination", router.getDestination(), router, wgTruck);
+			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move truck to home", IRouter.getHome(), IRouter, wgTruck);
+			final MoveResourcesFlow moveFlow2 = new MoveResourcesFlow(this, "Move truck to destination", IRouter.getDestination(), IRouter, wgTruck);
 			final ReleaseResourcesFlow relFlow = new ReleaseResourcesFlow(this, "Release truck", wgTruck);
 			reqFlow.link(moveFlow1).link(moveFlow2).link(relFlow);
 			

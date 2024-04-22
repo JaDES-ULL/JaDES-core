@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import es.ull.simulation.model.engine.ElementEngine;
+import es.ull.simulation.model.engine.IElementEngine;
 
 /**
  * Represents case instances that make use of activity flows in order to carry out
@@ -15,7 +15,7 @@ import es.ull.simulation.model.engine.ElementEngine;
  * 
  * @author Iván Castilla Rodríguez
  */
-public class ElementEngine extends AbstractEngineObject implements ElementEngine {
+public class ElementEngine extends AbstractEngineObject implements IElementEngine {
 	/** Activity queues in which this element is. This list is used to notify the activities
 	 * when the element becomes available. */
 	protected final ArrayList<ElementInstance> inQueue = new ArrayList<ElementInstance>();
@@ -26,7 +26,7 @@ public class ElementEngine extends AbstractEngineObject implements ElementEngine
 	 * Creates a new element.
 	 * @param simul ParallelSimulationEngine object
 	 * @param et Element type this element belongs to
-	 * @param flow First step of this element's flow
+	 * @param IFlow First step of this element's IFlow
 	 */
 	public ElementEngine(SequentialSimulationEngine simul, Element modelElem) {
 		super(modelElem.getIdentifier(), simul, "E");
@@ -67,12 +67,12 @@ public class ElementEngine extends AbstractEngineObject implements ElementEngine
     }
 
 	@Override
-	public void waitProtectedFlow(Flow flow) {
+	public void waitProtectedFlow(IFlow IFlow) {
 		// Nothing to do		
 	}
 
 	@Override
-	public void signalProtectedFlow(Flow flow) {
+	public void signalProtectedFlow(IFlow IFlow) {
 		// Nothing to do		
 	}
 

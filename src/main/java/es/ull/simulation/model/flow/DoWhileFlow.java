@@ -6,10 +6,10 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A structured loop flow which resembles a do-while loop. The internal flow
+ * A structured loop IFlow which resembles a do-while loop. The internal IFlow
  * is executed the first time and then the postcondition is checked. If the
- * postcondition is true, the internal flow is executed again; if not, this
- * flow finishes. 
+ * postcondition is true, the internal IFlow is executed again; if not, this
+ * IFlow finishes. 
  * @author ycallero
  */
 public class DoWhileFlow extends StructuredLoopFlow {
@@ -22,7 +22,7 @@ public class DoWhileFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public DoWhileFlow(Simulation model, InitializerFlow initialSubFlow, FinalizerFlow finalSubFlow,
+	public DoWhileFlow(Simulation model, IInitializerFlow initialSubFlow, IFinalizerFlow finalSubFlow,
 					   AbstractCondition<ElementInstance> postCondition) {
 		super(model, initialSubFlow, finalSubFlow);
 		cond = postCondition;
@@ -30,10 +30,10 @@ public class DoWhileFlow extends StructuredLoopFlow {
 
 	/**
 	 * Create a new DoWhileFlow.
-	 * @param subFlow A unique flow defining an internal subflow
+	 * @param subFlow A unique IFlow defining an internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public DoWhileFlow(Simulation model, TaskFlow subFlow, AbstractCondition<ElementInstance> postCondition) {
+	public DoWhileFlow(Simulation model, ITaskFlow subFlow, AbstractCondition<ElementInstance> postCondition) {
 		this(model, subFlow, subFlow, postCondition);
 	}
 
@@ -47,7 +47,7 @@ public class DoWhileFlow extends StructuredLoopFlow {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.ITaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(ElementInstance wThread) {
 		if (cond.check(wThread)) {

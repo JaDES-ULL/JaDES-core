@@ -13,7 +13,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow.WorkGroupAdder;
 import es.ull.simulation.utils.Prioritizable;
 
 /**
- * A flow which executes a single activity. An activity is characterized by a priority and a set of {@link WorkGroup workgropus}. 
+ * A IFlow which executes a single activity. An activity is characterized by a priority and a set of {@link WorkGroup workgropus}. 
  * Each workgroup represents a combination of resource types required for carrying out the activity, and also defines different workgroup-specific
  * durations of the activity.<p>
  * 
@@ -29,7 +29,7 @@ import es.ull.simulation.utils.Prioritizable;
  * 
  * @author Iván Castilla Rodríguez
  */
-public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow, Prioritizable {
+public class ActivityFlow extends AbstractStructuredFlow implements IResourceHandlerFlow, Prioritizable {
 	private static int resourcesIdCounter = -1;
 
     /** Priority. The lowest the value, the highest the priority */
@@ -50,7 +50,8 @@ public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow,
      * @param description A short text describing this activity.
      */
     public ActivityFlow(final Simulation model, final String description) {
-        this(model, description, 0, true, false);
+
+		this(model, description, 0, true, false);
     }
 
     /**
@@ -70,7 +71,8 @@ public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow,
      * @param exclusive If true, this activity cannot be performed concurrently with any other exclusive activity
      * @param interruptible If true, this activity is interrupted when the involved resources become unavailable
      */
-    public ActivityFlow(final Simulation model, final String description, final boolean exclusive, final boolean interruptible) {
+    public ActivityFlow(final Simulation model, final String description,
+						final boolean exclusive, final boolean interruptible) {
         this(model, description, 0, exclusive, interruptible);
     }
 
@@ -82,7 +84,8 @@ public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow,
      * @param exclusive If true, this activity cannot be performed concurrently with any other exclusive activity
      * @param interruptible If true, this activity is interrupted when the involved resources become unavailable
      */
-    public ActivityFlow(final Simulation model, final String description, final int priority, final boolean exclusive, final boolean interruptible) {
+    public ActivityFlow(final Simulation model, final String description, final int priority,
+						final boolean exclusive, final boolean interruptible) {
     	super(model);
     	this.priority = priority;
     	this.description = description;
@@ -129,9 +132,9 @@ public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow,
 	}
 
 	/**
-	 * Creates a builder object for adding workgroups to this flow. 
+	 * Creates a builder object for adding workgroups to this IFlow. 
 	 * @param wg The set of pairs <ResurceType, amount> which will be seized
-	 * @return The builder object for adding workgroups to this flow
+	 * @return The builder object for adding workgroups to this IFlow
 	 */
 	public WorkGroupAdder newWorkGroupAdder(final WorkGroup wg) {
 		return ((RequestResourcesFlow)initialFlow).newWorkGroupAdder(wg);

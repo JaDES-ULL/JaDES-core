@@ -91,9 +91,9 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
      * @author Iván Castilla Rodríguez
      */
     public static class DefaultFinalizeEvent extends DiscreteEvent {
-    	final protected EventSource source;
+    	final protected IEventSource source;
         
-        public DefaultFinalizeEvent(final EventSource source, final long ts) {
+        public DefaultFinalizeEvent(final IEventSource source, final long ts) {
             super(ts);
             this.source = source;
         }
@@ -109,9 +109,9 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
      *
      */
     public static class DefaultStartEvent extends DiscreteEvent {
-    	final protected EventSource source;
+    	final protected IEventSource source;
 
-    	public DefaultStartEvent(final EventSource source, final long ts) {
+    	public DefaultStartEvent(final IEventSource source, final long ts) {
             super(ts);
             this.source = source;
         }

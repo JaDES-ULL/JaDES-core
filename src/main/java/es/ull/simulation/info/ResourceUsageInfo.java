@@ -5,12 +5,12 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
-import es.ull.simulation.model.flow.ResourceHandlerFlow;
+import es.ull.simulation.model.flow.IResourceHandlerFlow;
 
 public class ResourceUsageInfo extends AsynchronousInfo {
 
 	/** Possible types of resource information */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 			CAUGHT	("CAUGHT RESOURCE"), 
 			RELEASED	("RELEASED RESOURCE");
 			
@@ -29,11 +29,13 @@ public class ResourceUsageInfo extends AsynchronousInfo {
 	final private Resource res;
 	final private ResourceType rt;
 	final private ElementInstance instance;
-	final private ResourceHandlerFlow act;
+	final private IResourceHandlerFlow act;
 	final private Type type;
 	final private Element elem;
 	
-	public ResourceUsageInfo(final Simulation model, final Resource res, final ResourceType rt, final ElementInstance instance, final Element elem, final ResourceHandlerFlow act, final Type type, final long ts) {
+	public ResourceUsageInfo(final Simulation model, final Resource res, final ResourceType rt,
+							 final ElementInstance instance, final Element elem, final IResourceHandlerFlow act,
+							 final Type type, final long ts) {
 		super(model, ts);
 		this.res = res;
 		this.rt = rt;
@@ -67,7 +69,7 @@ public class ResourceUsageInfo extends AsynchronousInfo {
 		return message;
 	}
 
-	public ResourceHandlerFlow getActivity() {
+	public IResourceHandlerFlow getActivity() {
 		return act;
 	}
 }

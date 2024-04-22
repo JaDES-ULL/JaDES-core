@@ -6,13 +6,13 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.ActionFlow;
+import es.ull.simulation.model.flow.IActionFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
 public class ElementActionInfo extends AsynchronousInfo {
 	
 	/** Possible types of element information */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 			REQ		("REQUEST RESOURCES"),
 			ACQ		("ACQUIRE RESOURCES"),
 			START	("START DELAY"), 
@@ -34,13 +34,13 @@ public class ElementActionInfo extends AsynchronousInfo {
 		};
 	
 	final private ElementInstance instance;
-	final private ActionFlow act;
+	final private IActionFlow act;
 	final private ActivityWorkGroup wg;
 	final private Element elem;
 	final private Type type;
 	final private ArrayDeque<Resource> resources;
 	
-	public ElementActionInfo(final Simulation model, final ElementInstance instance, final Element elem, final ActionFlow act, final ActivityWorkGroup wg, final ArrayDeque<Resource> resources, final Type type, final long ts) {
+	public ElementActionInfo(final Simulation model, final ElementInstance instance, final Element elem, final IActionFlow act, final ActivityWorkGroup wg, final ArrayDeque<Resource> resources, final Type type, final long ts) {
 		super(model, ts);
 		this.instance = instance;
 		this.act = act;
@@ -88,7 +88,7 @@ public class ElementActionInfo extends AsynchronousInfo {
 	 * Returns the last activity/releaseFlow/requestFlow used
 	 * @return the last activity/releaseFlow/requestFlow used
 	 */
-	public ActionFlow getActivity() {
+	public IActionFlow getActivity() {
 		return act;
 	}
 

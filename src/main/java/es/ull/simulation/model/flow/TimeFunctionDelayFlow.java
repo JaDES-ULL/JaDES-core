@@ -9,7 +9,7 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A flow that makes an element be delayed for a certain time, specified at modeling time
+ * A IFlow that makes an element be delayed for a certain time, specified at modeling time
  * @author Iván Castilla Rodríguez
  *
  */
@@ -18,9 +18,9 @@ public class TimeFunctionDelayFlow extends DelayFlow {
     private final AbstractTimeFunction duration;
 
     /**
-     * Creates a delay flow
-     * @param model The simulation model this flow belongs to
-     * @param description A short text describing this flow
+     * Creates a delay IFlow
+     * @param model The simulation model this IFlow belongs to
+     * @param description A short text describing this IFlow
      * @param duration The duration of the delay
      */
 	public TimeFunctionDelayFlow(final Simulation model, final String description, final AbstractTimeFunction duration) {
@@ -29,9 +29,9 @@ public class TimeFunctionDelayFlow extends DelayFlow {
 	}
 
     /**
-     * Creates a delay flow
-     * @param model The simulation model this flow belongs to
-     * @param description A short text describing this flow
+     * Creates a delay IFlow
+     * @param model The simulation model this IFlow belongs to
+     * @param description A short text describing this IFlow
      * @param duration The duration of the delay
      */
 	public TimeFunctionDelayFlow(final Simulation model, final String description, final long duration) {

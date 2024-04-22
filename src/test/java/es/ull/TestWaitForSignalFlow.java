@@ -9,7 +9,7 @@ import java.util.Random;
 import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.EventSource;
+import es.ull.simulation.model.IEventSource;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationObject;
@@ -20,7 +20,7 @@ import es.ull.simulation.model.flow.TimeFunctionDelayFlow;
 import es.ull.simulation.model.flow.WaitForSignalFlow;
 
 /**
- * A dummy example of using the WaitForSignalFlow class. We define a simple flow with a WaitForSignalFlow and a DelayFlow. Elements get to the wait... flow
+ * A dummy example of using the WaitForSignalFlow class. We define a simple IFlow with a WaitForSignalFlow and a DelayFlow. Elements get to the wait... IFlow
  * and waits until a special object ({@link SimListener}) tells them to continue. The {@link SimListener} is a class that checks the waiting list every 5 minutes
  * and let pass a random number of elements.  
  * @author Iv�n Castilla
@@ -85,8 +85,8 @@ public class TestWaitForSignalFlow extends Experiment {
 		}
 	}
 	
-	class SimListener extends SimulationObject implements EventSource, WaitForSignalFlow.Listener {
-		private WaitForSignalFlow flow = null;
+	class SimListener extends SimulationObject implements IEventSource, WaitForSignalFlow.Listener {
+		private WaitForSignalFlow IFlow = null;
 		final private TestSimulation simul;
 		final private ArrayList<ElementInstance> waiting;
 		final private Random rnd;
@@ -114,13 +114,13 @@ public class TestWaitForSignalFlow extends Experiment {
 		}
 
 		@Override
-		public void register(WaitForSignalFlow flow) {
-			this.flow = flow;
+		public void register(WaitForSignalFlow IFlow) {
+			this.IFlow = IFlow;
 			
 		}
 
 		@Override
-		public void notifyArrival(WaitForSignalFlow flow, ElementInstance ei) {
+		public void notifyArrival(WaitForSignalFlow IFlow, ElementInstance ei) {
 			waiting.add(ei);
 		}
 		
@@ -135,7 +135,7 @@ public class TestWaitForSignalFlow extends Experiment {
 				final int n = rnd.nextInt(waiting.size());
 				System.out.println(getTs() + "\t" + SimListener.this + "\tAllowing " + n + " elements to pass");
 				for (int i = 0; i < n; i++) {
-					flow.signal(waiting.remove(0));
+					IFlow.signal(waiting.remove(0));
 				}
 				simul.addEvent(new CheckEvent(ts + CHECK_DELAY));
 			}

@@ -9,14 +9,14 @@ import java.util.TreeSet;
 
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ResourceInfo;
-import es.ull.simulation.model.engine.ElementInstanceEngine;
+import es.ull.simulation.model.engine.IElementInstanceEngine;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.model.flow.ReleaseResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
-import es.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.model.flow.ITaskFlow;
 import es.ull.simulation.utils.Prioritizable;
 import es.ull.simulation.utils.RandomPermutation;
 
@@ -27,35 +27,35 @@ import es.ull.simulation.utils.RandomPermutation;
  * <ol>
  * <li>Main instance. The element's main instance. Must be created by invoking the static method
  * {@link #getMainElementInstance(Element)}</li>
- * <li>Descendant thread</li>A thread created to carry out the inner flows of a structured flow.
- * To invoke, use: {@link #getDescendantElementInstance(InitializerFlow)}</li>
- * <li>Subsequent thread</li>A thread created to carry out a new flow after a split.
- * To invoke, use: {@link #getSubsequentElementInstance(boolean, Flow, WorkToken)}</li>
+ * <li>Descendant thread</li>A thread created to carry out the inner flows of a structured IFlow.
+ * To invoke, use: {@link #getDescendantElementInstance(IInitializerFlow)}</li>
+ * <li>Subsequent thread</li>A thread created to carry out a new IFlow after a split.
+ * To invoke, use: {@link #getSubsequentElementInstance(boolean, IFlow, WorkToken)}</li>
  * </ol><p>
  *  An instance has an associated token, which can be true or false. A false token is used
  *  only for synchronization purposes and doesn't execute task flows. 
  * @author Ivan Castilla Rodriguez
  *
  */
-public class ElementInstance implements Prioritizable, Comparable<ElementInstance>, Identifiable {
+public class ElementInstance implements Prioritizable, Comparable<ElementInstance>, IIdentifiable {
 	/** A string that identifies the instance */
 	private final String description; 
-    /** Element which carries out this flow. */    
+    /** Element which carries out this IFlow. */    
     private final Element elem; 
     /** The parent element thread */
     protected final ElementInstance parent;
     /** The descendant element instances */
 	protected final ArrayList<ElementInstance> descendants;
-    /** Thread's initial flow */
-    protected final Flow initialFlow;
-	/** A flag to indicate if the thread executes the flow or not */
+    /** Thread's initial IFlow */
+    protected final IFlow initialFlow;
+	/** A flag to indicate if the thread executes the IFlow or not */
 	protected WorkToken token;
-	/** The current flow the thread is in */
-	protected Flow currentFlow = null;
-	/** The last flow the thread was in */
-	protected Flow lastFlow = null;
-    /** The workgroup which is used to carry out this flow. If <code>null</code>, 
-     * the flow has not been carried out. */
+	/** The current IFlow the thread is in */
+	protected IFlow currentFlow = null;
+	/** The last IFlow the thread was in */
+	protected IFlow lastFlow = null;
+    /** The workgroup which is used to carry out this IFlow. If <code>null</code>, 
+     * the IFlow has not been carried out. */
     protected ActivityWorkGroup executionWG = null;
 	/** The arrival order of this element instance relatively to the rest of element instances 
 	 * in the same activity manager. */
@@ -65,17 +65,18 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	/** The proportion of time left to finish the activity. Used in interruptible activities. */
 	protected double remainingTask = 0.0;
 	/** The engine with the specific functioning of the element instance */
-	final private ElementInstanceEngine engine;
+	final private IElementInstanceEngine engine;
 	
     /** 
      * Creates a new element instance. The constructor is private since it must be invoked from the 
      * <code>getInstance...</code> methods.
      * @param token An object containing the state of the thread  
      * @param elem Element owner of this thread
-     * @param initialFlow The first flow to be executed by this thread
-     * @param parent The parent thread, if this thread is included within a structured flow
+     * @param initialFlow The first IFlow to be executed by this thread
+     * @param parent The parent thread, if this thread is included within a structured IFlow
      */
-    private ElementInstance(final WorkToken token, final Element elem, final Flow initialFlow, final ElementInstance parent) {
+    private ElementInstance(final WorkToken token, final Element elem, 
+							final IFlow initialFlow, final ElementInstance parent) {
     	this.token = token;
         this.elem = elem;
         this.parent = parent;
@@ -90,7 +91,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     /**
 	 * @return the engine
 	 */
-	public ElementInstanceEngine getEngine() {
+	public IElementInstanceEngine getEngine() {
 		return engine;
 	}
 
@@ -100,7 +101,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 	
 	/**
-     * Returns the priority of the element owner of this flow
+     * Returns the priority of the element owner of this IFlow
      * @return The priority of the associated element.
      */
     @Override
@@ -109,10 +110,10 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     }
 
 	/**
-	 * Sets the flow currently executed by this FlowExecutor 
-	 * @param f The flow to be performed
+	 * Sets the IFlow currently executed by this FlowExecutor 
+	 * @param f The IFlow to be performed
 	 */
-	public void setCurrentFlow(final Flow f) {
+	public void setCurrentFlow(final IFlow f) {
     	currentFlow = f;
 		executionWG = null;
 		arrivalTs = -1;
@@ -129,25 +130,25 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 
     /**
-     * Returns the flow being performed.
-	 * @return The flow being performed.
+     * Returns the IFlow being performed.
+	 * @return The IFlow being performed.
 	 */
-	public Flow getCurrentFlow() {
+	public IFlow getCurrentFlow() {
 		return currentFlow;
 	}
 
 	/**
-	 * Returns the workgroup that the element instance is using to execute a resource handler flow
-	 * @return the workgroup that the element instance is using to execute a resource handler flow
+	 * Returns the workgroup that the element instance is using to execute a resource handler IFlow
+	 * @return the workgroup that the element instance is using to execute a resource handler IFlow
 	 */
 	public ActivityWorkGroup getExecutionWG() {
 		return executionWG;
 	}
 
 	/**
-	 * When the single flow can be carried out, sets the workgroup used to
+	 * When the single IFlow can be carried out, sets the workgroup used to
 	 * carry out the activity.
-	 * @param executionWG the workgroup which is used to carry out this flow.
+	 * @param executionWG the workgroup which is used to carry out this IFlow.
 	 */
 	public void setExecutionWG(final ActivityWorkGroup executionWG) {
 		this.executionWG = executionWG;
@@ -160,7 +161,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     	if (parent != null) {
     		parent.removeDescendant(this);
     		if ((parent.descendants.size() == 0) && (parent.currentFlow != null))
-    			((TaskFlow)parent.currentFlow).finish(parent);
+    			((ITaskFlow)parent.currentFlow).finish(parent);
     	}
     }
     
@@ -193,32 +194,32 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 
 	/**
 	 * Changes the state of this thread to not valid and restarts the path of visited flows.
-	 * @param startPoint The initial flow to control infinite loops with not valid threads. 
+	 * @param startPoint The initial IFlow to control infinite loops with not valid threads. 
 	 */
-	public void cancel(final Flow startPoint) {
+	public void cancel(final IFlow startPoint) {
 		token.reset();
 		token.addFlow(startPoint);
 	}
 
 	/**
-	 * Returns the last flow visited by this FlowExecutor
-	 * @return the last flow visited by this FlowExecutor
+	 * Returns the last IFlow visited by this FlowExecutor
+	 * @return the last IFlow visited by this FlowExecutor
 	 */
-	public Flow getLastFlow() {
+	public IFlow getLastFlow() {
 		return lastFlow;
 	}
 
 	/**
-	 * Sets the last flow visited by this thread.
+	 * Sets the last IFlow visited by this thread.
 	 * @param lastFlow The lastFlow visited by this thread
 	 */
-	public void setLastFlow(final Flow lastFlow) {
+	public void setLastFlow(final IFlow lastFlow) {
 		this.lastFlow = lastFlow;
 	}
 
 	/**
-     * Returns the element performing this single flow.
-     * @return The element performing this single flow
+     * Returns the element performing this single IFlow.
+     * @return The element performing this single IFlow
      */
     public Element getElement() {
         return elem;
@@ -242,23 +243,23 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 
 	/**
-	 * Returns a new instance of an element which carries out the inner subflow of a structured flow. 
+	 * Returns a new instance of an element which carries out the inner subflow of a structured IFlow. 
 	 * The current instance is the parent of the newly created child instance. 
-	 * @return A new instance of an element created to carry out the inner subflow of a structured flow
+	 * @return A new instance of an element created to carry out the inner subflow of a structured IFlow
 	 */
-	public ElementInstance getDescendantElementInstance(final InitializerFlow newFlow) {
+	public ElementInstance getDescendantElementInstance(final IInitializerFlow newFlow) {
 		assert isExecutable() : "Invalid parent to create descendant element instance"; 
 		return new ElementInstance(new WorkToken(true), elem, newFlow, this);
 	}
 
 	/**
-	 * Returns a new instance of an element which carries out a new flow after a split flow
+	 * Returns a new instance of an element which carries out a new IFlow after a split IFlow
 	 * @param executable Indicates if the instance to be created has to be valid or not
-	 * @param newFlow The flow associated to the new instance 
+	 * @param newFlow The IFlow associated to the new instance 
 	 * @param token The token to be cloned in case the current instance is not valid and the token is also not valid. 
-	 * @return A new instance of an element created to carry out a new flow after a split flow
+	 * @return A new instance of an element created to carry out a new IFlow after a split IFlow
 	 */
-	public ElementInstance getSubsequentElementInstance(final boolean executable, final Flow newFlow, final WorkToken token) {
+	public ElementInstance getSubsequentElementInstance(final boolean executable, final IFlow newFlow, final WorkToken token) {
 		final WorkToken newToken;
 		if (!executable)
 			if (!token.isExecutable())
@@ -271,11 +272,11 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 
 	/**
-	 * Adds a new visited flow to the list.
-	 * @param flow New visited flow
+	 * Adds a new visited IFlow to the list.
+	 * @param IFlow New visited IFlow
 	 */
-	public void updatePath(final Flow flow) {
-		token.addFlow(flow);
+	public void updatePath(final IFlow IFlow) {
+		token.addFlow(IFlow);
 	}
 
 	/**
@@ -287,12 +288,12 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 	
 	/**
-	 * Returns true if the specified flow was already visited from this thread.
-	 * @param flow Flow to be checked.
-	 * @return True if the specified flow was already visited from this thread; false otherwise.
+	 * Returns true if the specified IFlow was already visited from this thread.
+	 * @param IFlow IFlow to be checked.
+	 * @return True if the specified IFlow was already visited from this thread; false otherwise.
 	 */
-	public boolean wasVisited (final Flow flow) {
-		return token.wasVisited(flow);
+	public boolean wasVisited (final IFlow IFlow) {
+		return token.wasVisited(IFlow);
 	}
 
 	/**
@@ -312,16 +313,16 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 
 	/**
-	 * Returns the timestamp when this element instance arrives to request the current single flow.
-	 * @return the timestamp when this element instance arrives to request the current single flow
+	 * Returns the timestamp when this element instance arrives to request the current single IFlow.
+	 * @return the timestamp when this element instance arrives to request the current single IFlow
 	 */
 	public long getArrivalTs() {
 		return arrivalTs;
 	}
 
 	/**
-	 * Sets the timestamp when this element instance arrives to request the current single flow.
-	 * @param arrivalTs the timestamp when this element instance arrives to request the current single flow
+	 * Sets the timestamp when this element instance arrives to request the current single IFlow.
+	 * @param arrivalTs the timestamp when this element instance arrives to request the current single IFlow
 	 */
 	public void setArrivalTs(final long arrivalTs) {
 		this.arrivalTs = arrivalTs;
@@ -373,7 +374,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	}
 	
 	public void startDelay(final long delay) {
-		elem.addFinishEvent(delay + elem.getTs(), (TaskFlow)currentFlow, this);
+		elem.addFinishEvent(delay + elem.getTs(), (ITaskFlow)currentFlow, this);
 	}
 	
 	/**

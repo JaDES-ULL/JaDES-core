@@ -12,51 +12,51 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A flow with multiple successors. Multiple successors are split nodes, that is,
- * new element instances are created from this flow on, when it's requested.
+ * A IFlow with multiple successors. Multiple successors are split nodes, that is,
+ * new element instances are created from this IFlow on, when it's requested.
  * @author Iván Castilla Rodríguez
  */
-public abstract class MultipleSuccessorFlow extends BasicFlow implements SplitFlow {
+public abstract class MultipleSuccessorFlow extends BasicFlow implements ISplitFlow {
 	/** Successor list */
-	protected final ArrayList<Flow> successorList;
+	protected final ArrayList<IFlow> successorList;
 
 	/**
-	 * Creates a flow with multiple successors.
-	 * @param model The simulation this flow belongs to.
+	 * Creates a IFlow with multiple successors.
+	 * @param model The simulation this IFlow belongs to.
 	 */
 	public MultipleSuccessorFlow(final Simulation model) {
 		super(model);
-		successorList = new ArrayList<Flow>();
+		successorList = new ArrayList<IFlow>();
 	}
 
 	@Override
-	public void addPredecessor(final Flow newFlow) {
+	public void addPredecessor(final IFlow newFlow) {
 	}
 
 	@Override
-	public Flow link(final Flow successor) {
+	public IFlow link(final IFlow successor) {
 		successorList.add(successor);
     	successor.addPredecessor(this);
     	return successor;
 	}
 
 	/**
-	 * Adds a collection of flow's successors. This method must invoke 
+	 * Adds a collection of IFlow's successors. This method must invoke 
 	 * <code>successor.addPredecessor</code> to build the graph properly. 
-	 * @param succList This flow's successors.
+	 * @param succList This IFlow's successors.
 	 */
-	public void link(final Collection<Flow> succList) {
-        for (Flow succ : succList) {
+	public void link(final Collection<IFlow> succList) {
+        for (IFlow succ : succList) {
         	successorList.add(succ);
         	succ.addPredecessor(this);
         }		
 	}
 
 	@Override
-	public void setRecursiveStructureLink(final StructuredFlow parent, final Set<Flow> visited) {
+	public void setRecursiveStructureLink(final AbstractStructuredFlow parent, final Set<IFlow> visited) {
 		 setParent(parent);
 		 visited.add(this);
-		 for (Flow f : successorList)
+		 for (IFlow f : successorList)
 			 if (!visited.contains(f))
 				 f.setRecursiveStructureLink(parent, visited); 	
 	}
@@ -65,9 +65,9 @@ public abstract class MultipleSuccessorFlow extends BasicFlow implements SplitFl
 	 * Returns the list of successor flows which follows this one.
 	 * @return the list of successor flows which follows this one.
 	 */
-	public ArrayList<Flow> getSuccessorList() {
-		ArrayList<Flow> newSuccList = new ArrayList<Flow>();
-		for (Flow f : successorList)
+	public ArrayList<IFlow> getSuccessorList() {
+		ArrayList<IFlow> newSuccList = new ArrayList<IFlow>();
+		for (IFlow f : successorList)
 			newSuccList.add(f);
 		return newSuccList;
 	}

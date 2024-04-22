@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.engine.ElementInstanceEngine;
+import es.ull.simulation.model.engine.IElementInstanceEngine;
 
 /**
  * @author Iv�n Castilla
  *
  */
-public class ElementInstanceEngine extends AbstractEngineObject	implements ElementInstanceEngine {
+public class ElementInstanceEngine extends AbstractEngineObject implements IElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static final AtomicInteger counter = new AtomicInteger(1);
@@ -89,7 +89,7 @@ public class ElementInstanceEngine extends AbstractEngineObject	implements Eleme
 	}
 	
 	/**
-	 * Removes this single flow from its conflict list. This method is invoked in case
+	 * Removes this single IFlow from its conflict list. This method is invoked in case
 	 * the work item detects that it can not carry out an activity.
 	 */
 	protected void removeFromConflictZone() {

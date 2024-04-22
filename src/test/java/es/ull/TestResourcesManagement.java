@@ -59,7 +59,7 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgMachine = new WorkGroup(this, rtMachine, 1);
 			final WorkGroup wgEmpty = new WorkGroup(this);
 			
-			// Create basic steps of the flow
+			// Create basic steps of the IFlow
 			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A", 0);
 			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this, "Request location B", 1);
 			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this, "Request operator A", 2);
@@ -82,7 +82,7 @@ public class TestResourcesManagement extends Experiment {
 			actWorkAtLocationB.newWorkGroupAdder(wgOperatorB).withDelay(10L).add();
 			actMoveFromAToB.newWorkGroupAdder(wgEmpty).withDelay(5L).add();
 
-			// Create flow
+			// Create IFlow
 			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA).link(reqTransport).link(relLocationA);
 			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport).link(actWorkAtLocationB).link(relLocationB);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
@@ -122,7 +122,7 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgMachine = new WorkGroup(this, rtMachine, 1);
 			final WorkGroup wgEmpty = new WorkGroup(this);
 			
-			// Create basic steps of the flow
+			// Create basic steps of the IFlow
 			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A");
 			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this, "Request location B");
 			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this, "Request operator A");
@@ -145,7 +145,7 @@ public class TestResourcesManagement extends Experiment {
 			actWorkAtLocationB.newWorkGroupAdder(wgOperatorB).withDelay(10L).add();
 			actMoveFromAToB.newWorkGroupAdder(wgEmpty).withDelay(5L).add();
 
-			// Create flow
+			// Create IFlow
 			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA).link(reqTransport).link(relLocationA);
 			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport).link(actWorkAtLocationB).link(relLocationB);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
@@ -172,7 +172,7 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgOperatorA = new WorkGroup(this, rtOperatorA, 1);
 			final WorkGroup wgTransport = new WorkGroup(this, rtTransport, 1);
 			
-			// Create basic steps of the flow
+			// Create basic steps of the IFlow
 			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport", 1);
 			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", 1);
 			
@@ -182,7 +182,7 @@ public class TestResourcesManagement extends Experiment {
 			reqTransport.newWorkGroupAdder(wgTransport).add();
 			actWorkAtLocationA.newWorkGroupAdder(wgOperatorA).withDelay(10L).add();
 
-			// Create flow
+			// Create IFlow
 			reqTransport.link(actWorkAtLocationA).link(relTransport);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
 			new TimeDrivenElementGenerator(this, 2, et, reqTransport, cycle);
@@ -214,7 +214,7 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgTransportA = new WorkGroup(this, rtTransportA, 1);
 			final WorkGroup wgTransportB = new WorkGroup(this, rtTransportB, 1);
 			
-			// Create basic steps of the flow
+			// Create basic steps of the IFlow
 			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport", 1);
 			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", 1);
 			
@@ -230,7 +230,7 @@ public class TestResourcesManagement extends Experiment {
 			ExclusiveChoiceFlow condFlow = new ExclusiveChoiceFlow(this);
 			condFlow.link(actWorkAtLocationB, new ResourceTypeAcquiredCondition(rtTransportB));
 			condFlow.link(relTransport);
-			// Create flow
+			// Create IFlow
 			reqTransport.link(actWorkAtLocationA).link(condFlow);
 			actWorkAtLocationB.link(relTransport);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);

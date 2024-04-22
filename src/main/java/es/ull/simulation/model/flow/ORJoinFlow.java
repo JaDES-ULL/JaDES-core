@@ -6,13 +6,13 @@ package es.ull.simulation.model.flow;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A merge flow which allows all the true incoming branches to pass.
+ * A merge IFlow which allows all the true incoming branches to pass.
  * @author Iván Castilla Rodríguez
  */
-public abstract class ORJoinFlow extends MergeFlow {
+public abstract class ORJoinFlow extends AbstractMergeFlow {
 
 	/**
-	 * Creates a new OR Join flow.
+	 * Creates a new OR Join IFlow.
 	 */
 	public ORJoinFlow(Simulation model) {
 		super(model);

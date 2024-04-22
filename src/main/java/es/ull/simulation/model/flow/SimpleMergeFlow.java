@@ -9,7 +9,7 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * Creates an OR flow which allows all the true incoming branches to pass. The 
+ * Creates an OR IFlow which allows all the true incoming branches to pass. The 
  * outgoing branch is activated only once when several incoming barnches arrive at
  * the same simulation time. 
  * Meets the Simple Merge pattern (WFP5).
@@ -21,7 +21,7 @@ public class SimpleMergeFlow extends ORJoinFlow {
 	
 	/**
 	 * Creates a new SimpleMergeFlow.
-	 * @param model Simulation this flow belongs to.
+	 * @param model Simulation this IFlow belongs to.
 	 */
 	public SimpleMergeFlow(Simulation model) {
 		super(model);

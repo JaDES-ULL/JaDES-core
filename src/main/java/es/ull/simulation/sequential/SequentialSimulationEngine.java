@@ -11,7 +11,7 @@ import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.SimulationEngine;
 
@@ -189,7 +189,7 @@ public class SequentialSimulationEngine extends SimulationEngine {
 	}
 
 	@Override
-	public MergeFlowEngine getMergeFlowEngineInstance(MergeFlow modelFlow) {
+	public MergeFlowEngine getMergeFlowEngineInstance(AbstractMergeFlow modelFlow) {
 		return new MergeFlowEngine(this, modelFlow);
 	}
 

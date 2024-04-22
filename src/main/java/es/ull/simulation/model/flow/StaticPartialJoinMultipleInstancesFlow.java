@@ -14,15 +14,15 @@ import es.ull.simulation.model.Simulation;
  * @author Iván Castilla Rodríguez
  *
  */
-public class StaticPartialJoinMultipleInstancesFlow extends PredefinedStructuredFlow {
-	/**	The number of thread instances this flow creates */
+public class StaticPartialJoinMultipleInstancesFlow extends AbstractPredefinedStructuredFlow {
+	/**	The number of thread instances this IFlow creates */
 	protected int nInstances;
 	/** The number of threads which must finish to pass the control */
 	protected int acceptValue;
 
 	/**
-	 * Creates a new Static Partial Join for Multiple Instances flow
-	 * @param nInstances The number of thread instances this flow creates
+	 * Creates a new Static Partial Join for Multiple Instances IFlow
+	 * @param nInstances The number of thread instances this IFlow creates
 	 * @param acceptValue The number of threads which must finish to pass the control
 	 */
 	public StaticPartialJoinMultipleInstancesFlow(Simulation model, int nInstances, int acceptValue) {
@@ -44,8 +44,8 @@ public class StaticPartialJoinMultipleInstancesFlow extends PredefinedStructured
 	}
 
 	/**
-	 * Returns the number of thread instances created in this flow.
-	 * @return The number of thread instances created in this flow
+	 * Returns the number of thread instances created in this IFlow.
+	 * @return The number of thread instances created in this IFlow
 	 */
 	public int getNInstances() {
 		return nInstances;

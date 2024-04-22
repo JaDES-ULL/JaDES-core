@@ -6,9 +6,9 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A structured loop flow which resembles a while-do loop. A precondition is
- * checked before executing the internal flow. If the postcondition is false,
- * this flow finishes. 
+ * A structured loop IFlow which resembles a while-do loop. A precondition is
+ * checked before executing the internal IFlow. If the postcondition is false,
+ * this IFlow finishes.
  * @author ycallero
  */
 public class WhileDoFlow extends StructuredLoopFlow {
@@ -21,7 +21,7 @@ public class WhileDoFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public WhileDoFlow(Simulation model, InitializerFlow initialSubFlow, FinalizerFlow finalSubFlow,
+	public WhileDoFlow(Simulation model, IInitializerFlow initialSubFlow, IFinalizerFlow finalSubFlow,
 					   AbstractCondition<ElementInstance> postCondition) {
 		super(model, initialSubFlow, finalSubFlow);
 		cond = postCondition;
@@ -29,10 +29,10 @@ public class WhileDoFlow extends StructuredLoopFlow {
 
 	/**
 	 * Create a new WhileDoFlow.
-	 * @param subFlow A unique flow defining an internal subflow
+	 * @param subFlow A unique IFlow defining an internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public WhileDoFlow(Simulation model, TaskFlow subFlow, AbstractCondition<ElementInstance> postCondition) {
+	public WhileDoFlow(Simulation model, ITaskFlow subFlow, AbstractCondition<ElementInstance> postCondition) {
 		this(model, subFlow, subFlow, postCondition);
 	}
 
@@ -46,7 +46,7 @@ public class WhileDoFlow extends StructuredLoopFlow {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.ull.simulation.Flow#request(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.IFlow#request(com.ull.simulation.FlowExecutor)
 	 */
 	public void request(ElementInstance wThread) {
 		if (!wThread.wasVisited(this)) {
@@ -69,7 +69,7 @@ public class WhileDoFlow extends StructuredLoopFlow {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.ITaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(ElementInstance wThread) {
 		// The loop condition is checked

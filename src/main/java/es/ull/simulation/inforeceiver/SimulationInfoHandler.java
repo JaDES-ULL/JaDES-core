@@ -18,7 +18,7 @@ import es.ull.simulation.info.TimeChangeInfo;
 import es.ull.simulation.info.UserInfo;
 import es.ull.simulation.info.VarViewValueRequestInfo;
 
-public class SimulationInfoHandler implements InfoHandler {
+public class SimulationInfoHandler implements IInfoHandler {
 
 	private HashSet<Class<?>> definedInfos;
 	private HashMap<Class<?>, ArrayList<InfoReceiver> > entranceList;

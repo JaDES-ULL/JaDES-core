@@ -9,7 +9,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import es.ull.simulation.model.engine.ActivityManagerEngine;
+import es.ull.simulation.model.engine.IActivityManagerEngine;
 
 /**
  * Partition of activities. It serves as a mutual exclusion mechanism to access a set of activities
@@ -19,11 +19,11 @@ import es.ull.simulation.model.engine.ActivityManagerEngine;
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManagerEngine extends AbstractEngineObject implements ActivityManagerEngine {
+public class ActivityManagerEngine extends AbstractEngineObject implements IActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private boolean availableResource;
-    /** This queue contains the flow executors that are waiting for activities of this AM */
-    private final es.ull.simulation.model.engine.ActivityManagerEngine.FlowExecutorQueue waitingQueue;
+    /** This queue contains the IFlow executors that are waiting for activities of this AM */
+    private final es.ull.simulation.model.engine.IActivityManagerEngine.FlowExecutorQueue waitingQueue;
     /** This queue contains the element instances that have become available the current timestamp */
     private final FlowExecutorQueue currentQueue;
     /** The associated {@link ActivityManager} */

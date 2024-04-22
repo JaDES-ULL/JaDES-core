@@ -8,8 +8,8 @@ import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Generator;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.FinalizerFlow;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFinalizerFlow;
+import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
@@ -23,8 +23,8 @@ public enum UserMethod {
 	BEFORE_ROLE_OFF("beforeRoleOff", ResourceType.class, "public long beforeRoleOff()"),
 	AFTER_ROLE_ON("afterRoleOn", ResourceType.class, "public void afterRoleOn()"),
 	AFTER_ROLE_OFF("afterRoleOff", ResourceType.class, "public void afterRoleOff()"),
-	BEFORE_REQUEST("beforeRequest", Flow.class, "public boolean beforeRequest(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
-	AFTER_FINALIZE("afterFinalize", FinalizerFlow.class, "public void afterFinalize(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	BEFORE_REQUEST("beforeRequest", IFlow.class, "public boolean beforeRequest(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	AFTER_FINALIZE("afterFinalize", IFinalizerFlow.class, "public void afterFinalize(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
 	AFTER_START("afterAcquire", RequestResourcesFlow.class, "public void afterStart(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
 	IN_QUEUE("inqueue", RequestResourcesFlow.class, "public void inqueue(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
 	EXP_END("end", Experiment.class, "public void end()"),

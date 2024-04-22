@@ -19,9 +19,9 @@ import es.ull.simulation.model.location.Location;
  * @author Iván Castilla Rodríguez
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceType extends SimulationObject implements EntityType {
+public class ResourceType extends SimulationObject implements IEntityType {
     /** A list of the currently available resources. */
-    protected ResourceList availableResourceList = null;
+    protected AbstractResourceList availableResourceList = null;
     /** A brief description of the resource type */
     protected final String description;
     /** Activity manager this resource type belongs to. */
@@ -229,7 +229,7 @@ public class ResourceType extends SimulationObject implements EntityType {
 	 * Returns the list of available resources.
 	 * @return the list of available resources
 	 */
-	public ResourceList getAvailableResourceList() {
+	public AbstractResourceList getAvailableResourceList() {
 		return availableResourceList;
 	}
 

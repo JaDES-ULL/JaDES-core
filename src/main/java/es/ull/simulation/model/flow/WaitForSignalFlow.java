@@ -9,20 +9,20 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 
 /**
- * An element that requests this flow has to wait until a special class (implementing the {@link Listener} interface) sends a signal. Useful for implementing
+ * An element that requests this IFlow has to wait until a special class (implementing the {@link Listener} interface) sends a signal. Useful for implementing
  * conditional waitings.  
  * @author Iv�n Castilla
  *
  */
-public class WaitForSignalFlow extends SingleSuccessorFlow implements InitializerFlow, ActionFlow {
+public class WaitForSignalFlow extends AbstractSingleSuccessorFlow implements IInitializerFlow, IActionFlow {
 	private final ArrayList<ElementInstance> lockedElements;
 	private final Listener listener;
 	private final String description;
 
 	/**
-	 * Creates the flow
-	 * @param simul Simulation this flow belongs to
-	 * @param listener The object that will be listening to this flow and that will send the signals to continue
+	 * Creates the IFlow
+	 * @param simul Simulation this IFlow belongs to
+	 * @param listener The object that will be listening to this IFlow and that will send the signals to continue
 	 */
 	public WaitForSignalFlow(Simulation simul, String description, Listener listener) {
 		super(simul);
@@ -33,7 +33,7 @@ public class WaitForSignalFlow extends SingleSuccessorFlow implements Initialize
 	}
 
 	@Override
-	public void addPredecessor(Flow predecessor) {
+	public void addPredecessor(IFlow predecessor) {
 	}
 
 	@Override
@@ -58,9 +58,9 @@ public class WaitForSignalFlow extends SingleSuccessorFlow implements Initialize
 	}
 
 	/**
-	 * Notifies the flow that the specified {@link ElementInstance} can continue to the next step.
+	 * Notifies the IFlow that the specified {@link ElementInstance} can continue to the next step.
 	 * @param ei Element instance that must continue
-	 * @return True if the flow contained the specified element instance; false otherwise 
+	 * @return True if the IFlow contained the specified element instance; false otherwise
 	 */
 	public boolean signal(ElementInstance ei) {
 		if (lockedElements.remove(ei)) {
@@ -76,23 +76,23 @@ public class WaitForSignalFlow extends SingleSuccessorFlow implements Initialize
 	}
 	
 	/**
-	 * A class capable to listen to this flow and send a signal to element instances within this flow
+	 * A class capable to listen to this IFlow and send a signal to element instances within this IFlow
 	 * @author Iv�n Castilla
 	 *
 	 */
 	public static interface Listener {
 		/**
-		 * This method is invoked from the flow constructor. It can be used to let the listener know which {@link WaitForSignalFlow} is
+		 * This method is invoked from the IFlow constructor. It can be used to let the listener know which {@link WaitForSignalFlow} is
 		 * listening to 
-		 * @param flow The flow this Listener is going to listen to
+		 * @param IFlow The IFlow this Listener is going to listen to
 		 */
-		void register(WaitForSignalFlow flow);
+		void register(WaitForSignalFlow IFlow);
 		/**
 		 * This method is invoked from the {@link WaitForSignalFlow#request(ElementInstance)} method, and let the listener know that a new
-		 * element instance has arrived at the flow
-		 * @param flow The flow this element instance has arrived
-		 * @param ei Element instance requesting the flow
+		 * element instance has arrived at the IFlow
+		 * @param IFlow The IFlow this element instance has arrived
+		 * @param ei Element instance requesting the IFlow
 		 */
-		void notifyArrival(WaitForSignalFlow flow, ElementInstance ei);
+		void notifyArrival(WaitForSignalFlow IFlow, ElementInstance ei);
 	}
 }

@@ -9,7 +9,7 @@ import es.ull.simulation.model.ElementInstance;
 
 
 /**
- * A flow which merges a specified amount of element instances. It should be used with
+ * A IFlow which merges a specified amount of element instances. It should be used with
  * its counterpart, the Thread Split pattern (WFP 42).
  * Meets the Thread Merge pattern (WFP 41), but has also extra features. Works as
  * a thread discriminator, if <code>acceptValue</code> is set to 1; or as a thread 
@@ -21,9 +21,9 @@ import es.ull.simulation.model.ElementInstance;
 public class ThreadMergeFlow extends ANDJoinFlow {
 	
 	/**
-	 * Creates a new thread merge flow
-	 * @param model The simulation model this flow belongs to
-	 * @param nInstances Number of threads this flow waits for merging
+	 * Creates a new thread merge IFlow
+	 * @param model The simulation model this IFlow belongs to
+	 * @param nInstances Number of threads this IFlow waits for merging
 	 */
 	public ThreadMergeFlow(final Simulation model, final int nInstances) {
 		super(model);
@@ -32,9 +32,9 @@ public class ThreadMergeFlow extends ANDJoinFlow {
 	}
 	
 	/**
-	 * Creates a new thread merge flow
-	 * @param nInstances Number of threads this flow waits for resetting
-	 * @param acceptValue Number of threads this flow waits for passing the control
+	 * Creates a new thread merge IFlow
+	 * @param nInstances Number of threads this IFlow waits for resetting
+	 * @param acceptValue Number of threads this IFlow waits for passing the control
 	 */
 	public ThreadMergeFlow(final Simulation model, final int nInstances, final int acceptValue) {
 		super(model);
@@ -43,7 +43,7 @@ public class ThreadMergeFlow extends ANDJoinFlow {
 	}
 
 	@Override
-	public void addPredecessor(final Flow predecessor) {
+	public void addPredecessor(final IFlow predecessor) {
 	}
 
 	@Override

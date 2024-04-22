@@ -3,7 +3,7 @@ package es.ull.simulation.model.flow;
 import es.ull.simulation.model.Simulation;
 
 /**
- * An AND join flow which passes only when all the incoming branches have been activated once. 
+ * An AND join IFlow which passes only when all the incoming branches have been activated once. 
  * It is reset when all the incoming branches are activated exactly once (both true and false).
  * Meets the Synchronization pattern (WFP3). 
  * @author ycallero
@@ -18,7 +18,7 @@ public class SynchronizationFlow extends ANDJoinFlow {
 	}
 	
 	/**
-	 * Create a new Synchronization Flow which can be used in a safe context or a general one.
+	 * Create a new Synchronization IFlow which can be used in a safe context or a general one.
 	 * @param safe True for safe context; false in other case
 	 */
 	public SynchronizationFlow(Simulation model, boolean safe) {
@@ -31,7 +31,7 @@ public class SynchronizationFlow extends ANDJoinFlow {
 	 * @param newFlow The last step of the incoming branch. 
 	 */
 	@Override
-	public void addPredecessor(Flow newFlow) {
+	public void addPredecessor(IFlow newFlow) {
 		super.addPredecessor(newFlow);
 		acceptValue = incomingBranches;
 	}

@@ -5,13 +5,13 @@ package es.ull.simulation.sequential;
 
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.engine.ElementInstanceEngine;
+import es.ull.simulation.model.engine.IElementInstanceEngine;
 /**
  * @author Iv�n Castilla
  *
  */
 public class ElementInstanceEngine extends AbstractEngineObject
-		implements ElementInstanceEngine {
+		implements IElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static int counter = 1;

@@ -2,7 +2,7 @@ package es.ull.simulation.sequential;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import es.ull.simulation.model.ResourceList;
+import es.ull.simulation.model.AbstractResourceList;
 import es.ull.simulation.model.Resource;
 
 /**
@@ -12,7 +12,7 @@ import es.ull.simulation.model.Resource;
  * resources.
  * @author Iván Castilla Rodríguez
  */
-public class ResourceList extends ResourceList {
+public class ResourceList extends AbstractResourceList {
 	/** List of resources */
 	private final ArrayList<Resource> resources;
 	/** A count of how many times each resource has been put as available */

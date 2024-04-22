@@ -32,7 +32,7 @@ final class ConflictZone implements Comparable<ConflictZone> {
 	
 	/**
 	 * Creates a new conflict zone containing only one object.
-	 * @param fe The current flow executor using this conflict zone
+	 * @param fe The current IFlow executor using this conflict zone
 	 */
 	protected ConflictZone(ElementInstanceEngine ei) {
 		list = new TreeSet<ElementInstanceEngine>();

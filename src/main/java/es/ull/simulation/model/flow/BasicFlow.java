@@ -10,16 +10,16 @@ import es.ull.simulation.model.engine.SimulationEngine;
 
 
 /**
- * Basic implementation of a flow. Defines the default behavior of most methods. 
+ * Basic implementation of a IFlow. Defines the default behavior of most methods. 
  * @author Iván Castilla Rodríguez
  */
-public abstract class BasicFlow extends SimulationObject implements Flow {
-	/** The structured flow containing this flow. */
-	protected StructuredFlow parent = null;
+public abstract class BasicFlow extends SimulationObject implements IFlow {
+	/** The structured IFlow containing this IFlow. */
+	protected AbstractStructuredFlow parent = null;
 	
 	/**
-	 * Create a new basic flow.
-	 * @param model The simulation this flow belongs to.
+	 * Create a new basic IFlow.
+	 * @param model The simulation this IFlow belongs to.
 	 */
 	public BasicFlow(final Simulation model) {
 		super(model, model.getFlowList().size(), "F");
@@ -27,13 +27,13 @@ public abstract class BasicFlow extends SimulationObject implements Flow {
 	}
 	
 	@Override
-	public StructuredFlow getParent() {
+	public AbstractStructuredFlow getParent() {
 		return parent;
 	}
 	
 	@Override
-	public void setParent(final StructuredFlow parent) {
-		this.parent = (StructuredFlow)parent;
+	public void setParent(final AbstractStructuredFlow parent) {
+		this.parent = (AbstractStructuredFlow)parent;
 	}
 
 	/**
@@ -47,8 +47,8 @@ public abstract class BasicFlow extends SimulationObject implements Flow {
 	}
 
 	/**
-	 * Assigns this flow as the last flow visited by the element instance.
-	 * @param ei Element instance which requested this flow.
+	 * Assigns this IFlow as the last IFlow visited by the element instance.
+	 * @param ei Element instance which requested this IFlow.
 	 */
 	public void next(final ElementInstance ei) {
 		ei.setLastFlow(this);

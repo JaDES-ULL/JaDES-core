@@ -13,8 +13,8 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.engine.AbstractEngineObject;
-import es.ull.simulation.model.flow.ResourceHandlerFlow;
-import es.ull.simulation.model.engine.ResourceEngine;
+import es.ull.simulation.model.flow.IResourceHandlerFlow;
+import es.ull.simulation.model.engine.IResourceEngine;
 
 /**
  * A resource is an element that becomes available at a specific simulation time and 
@@ -24,7 +24,7 @@ import es.ull.simulation.model.engine.ResourceEngine;
  * TODO Comment
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceEngine extends AbstractEngineObject implements ResourceEngine {
+public class ResourceEngine extends AbstractEngineObject implements IResourceEngine {
     /** List of currently active roles and the timestamp which marks the end of their availability time */
     protected final TreeMap<ResourceType, Long> currentRoles;
     /** A counter of the valid timetable entries which this resource is following */
@@ -45,11 +45,11 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
     private final Resource modelRes;
 
     /**
-     * Creates a new ResourceEngine.
+     * Creates a new IResourceEngine.
      * @param simul ParallelSimulationEngine this resource is attached to.
      * @param description A short text describing this resource.
      */
-	public ResourceEngine(ParallelSimulationEngine simul, com.ull.simulation.model.Resource modelRes) {
+	public ResourceEngine(ParallelSimulationEngine simul, Resource modelRes) {
 		super(modelRes.getIdentifier(), simul, "RES");
         currentRoles = new TreeMap<ResourceType, Long>();
         notCanceled = true;
@@ -112,7 +112,7 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
 	 * the removal is silently skipped (that's because a resource can have several timetable 
 	 * entries for the same role, but the <code>currentRoles</code> list only contains 
 	 * one entry per role). However, checks if it's time for removing the role before doing it.
-	 * @param role ResourceEngine type removed
+	 * @param role IResourceEngine type removed
 	 */
 	@Override
 	public void removeRole(ResourceType role) {
@@ -162,7 +162,7 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
 	/**
 	 * Tentatively adds this resource to a solution built to carry out an activity. First checks if this 
 	 * resource is not being using yet in another solution.
-	 * @param rt ResourceEngine type to be assigned in this solution 
+	 * @param rt IResourceEngine type to be assigned in this solution 
 	 * @param ei Work item trying to catch this resource
 	 * @return <code>True</code> if this resource can be used in the solution; <code>false</code> otherwise.
 	 */
@@ -286,7 +286,9 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
 	 * @return The availability timestamp of this resource for this resource type 
 	 */
 	public long catchResource(ElementInstance ei) {
-		simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes, modelRes.getCurrentResourceType(), ei, ei.getElement(), (ResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.CAUGHT, simul.getTs()));
+		simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes,
+				modelRes.getCurrentResourceType(), ei, ei.getElement(), (IResourceHandlerFlow) ei.getCurrentFlow(),
+				ResourceUsageInfo.Type.CAUGHT, simul.getTs()));
 		if (inSeveralManagers()) {
 			waitSemaphore();
 			removeBook((ElementInstanceEngine) ei.getEngine());
@@ -307,7 +309,9 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
      */
     public boolean releaseResource(ElementInstance ei) {
 		waitSemaphore();
-    	simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(), modelRes, modelRes.getCurrentResourceType(), ei, currentElem, (ResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.RELEASED, simul.getTs()));
+    	simul.getSimulation().notifyInfo(new ResourceUsageInfo(simul.getSimulation(),
+				modelRes, modelRes.getCurrentResourceType(), ei, currentElem,
+				(IResourceHandlerFlow) ei.getCurrentFlow(), ResourceUsageInfo.Type.RELEASED, simul.getTs()));
         currentElem = null;
         modelRes.setCurrentResourceType(null);        
         if (modelRes.isTimeOut()) {
@@ -326,7 +330,7 @@ public class ResourceEngine extends AbstractEngineObject implements ResourceEngi
  	
     /**
      * Returns the availability of this resource for the specified resource type.
-     * @param rt ResourceEngine type
+     * @param rt IResourceEngine type
      * @return The availability of this resource for the specified resource type; 
      * <code>null</code> if the resource is not available for this resource type.
      */

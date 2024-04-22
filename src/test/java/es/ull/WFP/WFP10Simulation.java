@@ -8,7 +8,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.MultiChoiceFlow;
 
 /**
@@ -112,7 +112,7 @@ public class WFP10Simulation extends WFPTestSimulation {
     	};
         
         act0.link(mul1);
-        ArrayList<Flow> succList = new ArrayList<Flow>();
+        ArrayList<IFlow> succList = new ArrayList<IFlow>();
         succList.add(act0);
         succList.add(act1);
         ArrayList<Condition<ElementInstance>> condList = new ArrayList<>();

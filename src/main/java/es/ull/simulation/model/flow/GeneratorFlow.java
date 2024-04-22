@@ -10,7 +10,7 @@ import es.ull.simulation.model.Simulation;
  * @author Iv�n Castilla
  *
  */
-public class GeneratorFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {
+public class GeneratorFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {
     /** A brief description of the kind of generation performed */
     private final String description;
 
@@ -28,7 +28,7 @@ public class GeneratorFlow extends SingleSuccessorFlow implements TaskFlow, Acti
 	}
 
 	@Override
-	public void addPredecessor(Flow predecessor) {
+	public void addPredecessor(IFlow predecessor) {
 	}
 
 	public void create(ElementInstance ei) {		

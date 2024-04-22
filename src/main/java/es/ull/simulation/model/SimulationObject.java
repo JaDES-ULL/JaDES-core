@@ -10,7 +10,8 @@ import es.ull.simulation.model.engine.SimulationEngine;
  * @author Ivan Castilla Rodriguez
  *
  */
-public abstract class SimulationObject implements Comparable<SimulationObject>, Identifiable, Debuggable, TimeFunctionParams {
+public abstract class SimulationObject implements Comparable<SimulationObject>, IIdentifiable, IDebuggable,
+		TimeFunctionParams {
 	protected final Simulation simul;
 	private final String objectTypeId;
 	protected final int id;

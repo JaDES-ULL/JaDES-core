@@ -13,7 +13,7 @@ import es.ull.simulation.utils.cycle.PeriodicCycle;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationPeriodicCycle implements SimulationCycle {
+public class SimulationPeriodicCycle implements ISimulationCycle {
 	/** Inner {@link com.ull.util.cycle.PeriodicCycle PeriodicCycle} */
 	private final PeriodicCycle cycle;
 	
@@ -48,7 +48,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param subCycle Subcycle contained in this cycle
 	 */
 	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period,
-			TimeStamp endTs, SimulationCycle subCycle) {
+			TimeStamp endTs, ISimulationCycle subCycle) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, unit.convert(endTs), subCycle.getCycle());
 	}
 
@@ -61,7 +61,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param subCycle Subcycle contained in this cycle
 	 */
 	public SimulationPeriodicCycle(TimeUnit unit, TimeStamp startTs, AbstractTimeFunction period,
-			int iterations, SimulationCycle subCycle) {
+			int iterations, ISimulationCycle subCycle) {
 		cycle = new PeriodicCycle(unit.convert(startTs), period, iterations, subCycle.getCycle());
 	}
 
@@ -97,7 +97,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param subCycle Subcycle contained in this cycle
 	 */
 	public SimulationPeriodicCycle(TimeUnit unit, long startTs, SimulationTimeFunction period,
-			long endTs, SimulationCycle subCycle) {
+			long endTs, ISimulationCycle subCycle) {
 		this(unit, new TimeStamp(unit, startTs), period, new TimeStamp(unit, endTs), subCycle);
 	}
 
@@ -110,7 +110,7 @@ public class SimulationPeriodicCycle implements SimulationCycle {
 	 * @param subCycle Subcycle contained in this cycle
 	 */
 	public SimulationPeriodicCycle(TimeUnit unit, long startTs, SimulationTimeFunction period,
-			int iterations, SimulationCycle subCycle) {
+			int iterations, ISimulationCycle subCycle) {
 		this(unit, new TimeStamp(unit, startTs), period, iterations, subCycle);
 	}
 

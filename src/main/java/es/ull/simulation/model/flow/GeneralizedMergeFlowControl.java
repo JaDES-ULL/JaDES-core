@@ -15,13 +15,13 @@ import es.ull.simulation.model.WorkToken;
  *
  */
 public class GeneralizedMergeFlowControl extends MergeFlowControl {
-	protected Map<Flow, LinkedList<WorkToken>> incBranches;
+	protected Map<IFlow, LinkedList<WorkToken>> incBranches;
 
 	/**
-	 * @param flow
+	 * @param IFlow
 	 */
-	public GeneralizedMergeFlowControl(MergeFlow flow, Map<Flow, LinkedList<WorkToken>> control) {
-		super(flow);
+	public GeneralizedMergeFlowControl(AbstractMergeFlow IFlow, Map<IFlow, LinkedList<WorkToken>> control) {
+		super(IFlow);
 		incBranches = control;
 	}
 
@@ -53,9 +53,9 @@ public class GeneralizedMergeFlowControl extends MergeFlowControl {
 	@Override
 	public boolean reset() {
 		super.reset();
-		Iterator<Map.Entry<Flow, LinkedList<WorkToken>>> iter = incBranches.entrySet().iterator();
+		Iterator<Map.Entry<IFlow, LinkedList<WorkToken>>> iter = incBranches.entrySet().iterator();
 		while (iter.hasNext()) {
-			Map.Entry<Flow, LinkedList<WorkToken>> entry = iter.next();
+			Map.Entry<IFlow, LinkedList<WorkToken>> entry = iter.next();
 			entry.getValue().removeFirst();
 			if (!entry.getValue().isEmpty()) {
 				WorkToken token = entry.getValue().peek();

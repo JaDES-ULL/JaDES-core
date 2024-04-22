@@ -17,7 +17,7 @@ public class ExclusiveChoiceFlow extends ConditionalFlow {
 
 	/**
 	 * Creates a new ExclusiveChoiceFlow.
-	 * @param model The simulation model this flow belongs to
+	 * @param model The simulation model this IFlow belongs to
 	 */
 	public ExclusiveChoiceFlow(final Simulation model) {
 		super(model);

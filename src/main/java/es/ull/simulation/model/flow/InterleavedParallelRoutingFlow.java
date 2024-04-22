@@ -12,7 +12,7 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A structured flow which contains a set of activities which must be performed according to a
+ * A structured IFlow which contains a set of activities which must be performed according to a
  * predefined set of partial orderings. Partial orderings are defined using a collection of activity 
  * arrays. Each array [A1, A2, ... An] defines precedence relations; thus A1 must be excuted before
  * A2, A2 before A3 and so on. </br>If all the activities are presential, meets the Interleaved Parallel 
@@ -20,17 +20,18 @@ import es.ull.simulation.model.Simulation;
  * @author Iván Castilla Rodríguez
  *
  */
-public class InterleavedParallelRoutingFlow extends StructuredFlow {
+public class InterleavedParallelRoutingFlow extends AbstractStructuredFlow {
 	protected Collection<ActivityFlow> acts;
 	protected Collection<ActivityFlow[]> dependencies;
 	/**
-	 * Creates a flow which contains a set of activities that must be performed according to a
+	 * Creates a IFlow which contains a set of activities that must be performed according to a
 	 * predefined set of partial orderings.
 	 * @param acts The set of activities
 	 * @param dependencies A set of activity arrays, so that each array indicates precedence relations
 	 * among the activities.
 	 */
-	public InterleavedParallelRoutingFlow(Simulation model, Collection<ActivityFlow> acts, Collection<ActivityFlow[]> dependencies) {
+	public InterleavedParallelRoutingFlow(Simulation model, Collection<ActivityFlow> acts,
+										  Collection<ActivityFlow[]> dependencies) {
 		super(model);
 		initialFlow = new ParallelFlow(model);
 		initialFlow.setParent(this);
@@ -40,30 +41,30 @@ public class InterleavedParallelRoutingFlow extends StructuredFlow {
 		this.acts = acts;
 		this.dependencies = dependencies;
 		
-		TreeMap<ActivityFlow, Flow> succLink = new TreeMap<ActivityFlow, Flow>();
-		TreeMap<ActivityFlow, Flow> predLink = new TreeMap<ActivityFlow, Flow>();
+		TreeMap<ActivityFlow, IFlow> succLink = new TreeMap<ActivityFlow, IFlow>();
+		TreeMap<ActivityFlow, IFlow> predLink = new TreeMap<ActivityFlow, IFlow>();
 		// Counts predecessors and successors
 		for (ActivityFlow[] list : dependencies) {
 			for (int i = 0; i < list.length - 1; i++) {
 				ActivityFlow pred = list[i];
 				ActivityFlow succ = list[i + 1];
 					
-				Flow succFlow = succLink.get(pred);
+				IFlow succFlow = succLink.get(pred);
 				// If it has no successor, it's added as its own successor
 				if (succFlow == null) 
 					succLink.put(pred, pred);
-				// If it already has a single successor, a parallel flow is added as successor
+				// If it already has a single successor, a parallel IFlow is added as successor
 				else if (succFlow instanceof ActivityFlow) {
 					succLink.put(pred, new ParallelFlow(model));
 					pred.link(succLink.get(pred));
 				}
-				// else, the parallel flow is kept as the successor
+				// else, the parallel IFlow is kept as the successor
 
-				Flow predFlow = predLink.get(succ);
+				IFlow predFlow = predLink.get(succ);
 				// If it has no predecessor, it's added as its own predecessor
 				if (predFlow == null) 
 					predLink.put(succ, succ);
-				// If it already has a single predecessor, a sync flow is added as predecessor
+				// If it already has a single predecessor, a sync IFlow is added as predecessor
 				else if (predFlow instanceof ActivityFlow) {
 					predLink.put(succ, new SynchronizationFlow(model));
 					predLink.get(succ).link(succ);
@@ -80,7 +81,7 @@ public class InterleavedParallelRoutingFlow extends StructuredFlow {
 			}
 		}
 		
-		// Links the remainder activities to the initial and final flow
+		// Links the remainder activities to the initial and final IFlow
 		for (ActivityFlow f : acts) {
 			if (!predLink.containsKey(f))
 				initialFlow.link(f);
@@ -114,7 +115,7 @@ public class InterleavedParallelRoutingFlow extends StructuredFlow {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.ITaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(ElementInstance wThread) {
 		afterFinalize(wThread);

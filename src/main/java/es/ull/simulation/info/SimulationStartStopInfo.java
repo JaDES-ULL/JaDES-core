@@ -10,7 +10,7 @@ import es.ull.simulation.model.Simulation;
  */
 public class SimulationStartStopInfo extends AsynchronousInfo {
 	/** The types of information related to simulation time */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 		START	("SIMULATION STARTS"), 
 		END		("SIMULATION ENDS");
 		

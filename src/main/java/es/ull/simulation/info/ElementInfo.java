@@ -7,7 +7,7 @@ import es.ull.simulation.model.Simulation;
 public class ElementInfo extends AsynchronousInfo {
 
 	/** Possible types of element information */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 			START ("ELEMENT START"), 
 			FINISH ("ELEMENT FINISH");
 			

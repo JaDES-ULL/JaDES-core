@@ -4,7 +4,7 @@
 package es.ull.simulation.model;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.model.location.Location;
 
 /**
@@ -20,7 +20,7 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param nElem Number of objects created each time this creator is invoked.
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
 	}
 
@@ -30,7 +30,7 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
 	}
 
@@ -39,12 +39,12 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param model The simulation model this generator belongs to
 	 * @param nElem Number of objects created each time this creator is invoked.
 	 * @param et The type of the elements to be created
-	 * @param flow The description of the flow of the elements to be created.
+	 * @param IFlow The description of the IFlow of the elements to be created.
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et, final InitializerFlow flow, final SimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et, final IInitializerFlow IFlow, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
-		add(new StandardElementGenerationInfo(et, flow, 0, null, 1.0));
+		add(new StandardElementGenerationInfo(et, IFlow, 0, null, 1.0));
 	}
 	
 	/**
@@ -52,63 +52,63 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param model The simulation model this generator belongs to
 	 * @param nElem Number of objects created each time this creator is invoked.
 	 * @param et The type of the elements to be created
-	 * @param flow The description of the flow of the elements to be created.
+	 * @param IFlow The description of the IFlow of the elements to be created.
 	 * @param cycle A function to determine when are created the elements
 	 */
 	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ElementType et,
-									  final InitializerFlow flow, final SimulationCycle cycle) {
+									  final IInitializerFlow IFlow, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
-		add(new StandardElementGenerationInfo(et, flow, 0, null, 1.0));
+		add(new StandardElementGenerationInfo(et, IFlow, 0, null, 1.0));
 	}
 	
 	/**
-	 * Creates a generator of a single type of movable elements.
+	 * Creates a generator of a single type of IMovable elements.
 	 * @param model The simulation model this generator belongs to
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param et The type of the elements to be created
-	 * @param flow The first step in the flow of the elements to be created
+	 * @param IFlow The first step in the IFlow of the elements to be created
 	 * @param size A function to determine the size of the generated elements 
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
 	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ElementType et,
-									  final InitializerFlow flow, final AbstractTimeFunction size, final Location initLocation, final SimulationCycle cycle) {
+									  final IInitializerFlow IFlow, final AbstractTimeFunction size, final Location initLocation, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
-		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
+		add(new StandardElementGenerationInfo(et, IFlow, size, initLocation, 1.0));
 	}
 	
 	/**
-	 * Creates a generator of a single type of movable elements.
+	 * Creates a generator of a single type of IMovable elements.
 	 * @param model The simulation model this generator belongs to
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param et The type of the elements to be created
-	 * @param flow The first step in the flow of the elements to be created
+	 * @param IFlow The first step in the IFlow of the elements to be created
 	 * @param size A function to determine the size of the generated elements 
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
 	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et,
-									  final InitializerFlow flow, final AbstractTimeFunction size,
-									  final Location initLocation, final SimulationCycle cycle) {
+									  final IInitializerFlow IFlow, final AbstractTimeFunction size,
+									  final Location initLocation, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
-		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
+		add(new StandardElementGenerationInfo(et, IFlow, size, initLocation, 1.0));
 	}
 	
 	/**
-	 * Creates a generator of a single type of movable elements.
+	 * Creates a generator of a single type of IMovable elements.
 	 * @param model The simulation model this generator belongs to
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param et The type of the elements to be created
-	 * @param flow The first step in the flow of the elements to be created
+	 * @param IFlow The first step in the IFlow of the elements to be created
 	 * @param size The size of the generated elements 
 	 * @param initLocation The initial {@link Location} where the elements appear
 	 * @param cycle A function to determine when are created the elements
 	 */
 	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et,
-									  final InitializerFlow flow, final int size, final Location initLocation,
-									  final SimulationCycle cycle) {
+									  final IInitializerFlow IFlow, final int size, final Location initLocation,
+									  final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
-		add(new StandardElementGenerationInfo(et, flow, size, initLocation, 1.0));
+		add(new StandardElementGenerationInfo(et, IFlow, size, initLocation, 1.0));
 	}
 	
 	/**
@@ -118,7 +118,7 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param ind Index of the element created
 	 * @param info Information required to create the element  
 	 */
-	public EventSource createEventSource(final int ind, final StandardElementGenerationInfo info) {
+	public IEventSource createEventSource(final int ind, final StandardElementGenerationInfo info) {
 		return new Element(simul, info);
 	}
 

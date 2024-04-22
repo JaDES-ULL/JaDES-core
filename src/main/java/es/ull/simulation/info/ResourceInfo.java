@@ -9,7 +9,7 @@ import es.ull.simulation.model.ResourceType;
 public class ResourceInfo extends AsynchronousInfo {
 
 	/** Possible types of resource information */
-	public enum Type implements InfoType {
+	public enum Type implements IInfoType {
 			START	("RESOURCE START"), 
 			FINISH	("RESOURCE FINISH"), 
 			ROLON	("ROLE ON"), 

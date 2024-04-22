@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.variable.IntVariable;
-import es.ull.simulation.variable.Variable;
+import es.ull.simulation.variable.IVariable;
 
 /**
  * Generate Condition's instances. We can obtain a predefined Condition
@@ -38,7 +38,7 @@ public class ConditionFactory {
 		finalCode += "import " + AbstractCondition.class.getName() + ";";
 		finalCode += "import " + ElementInstance.class.getName() + ";";
 		finalCode += "import " + IntVariable.class.getName() + ";";
-		finalCode += "import " + Variable.class.getName() + ";";
+		finalCode += "import " + IVariable.class.getName() + ";";
 		
 		if (imports != null)
 			finalCode += imports;

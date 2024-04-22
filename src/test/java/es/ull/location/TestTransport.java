@@ -21,11 +21,11 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ReleaseResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.location.Location;
-import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.IMovable;
 import es.ull.simulation.model.location.MoveResourcesFlow;
 import es.ull.simulation.model.location.Node;
 import es.ull.simulation.model.location.Path;
-import es.ull.simulation.model.location.Router;
+import es.ull.simulation.model.location.IRouter;
 import es.ull.simulation.model.location.TransportFlow;
 
 /**
@@ -48,7 +48,7 @@ public class TestTransport extends Experiment {
 		super("Experiment with locations", NEXP);
 	}
 
-	class MyRouter implements Router {
+	class MyRouter implements IRouter {
 		final private Node home;
 		final private Node destination;
 		final private Path[] paths;
@@ -88,7 +88,7 @@ public class TestTransport extends Experiment {
 		}
 
 		@Override
-		public Location getNextLocationTo(Movable entity, Location finalLocation) {
+		public Location getNextLocationTo(IMovable entity, Location finalLocation) {
 			if (destination.equals(finalLocation)) {
 				final ArrayList<Location> links = entity.getLocation().getLinkedTo();
 				if (links.size() > 0)
@@ -99,7 +99,7 @@ public class TestTransport extends Experiment {
 				if (links.size() > 0)
 					return links.get(0);
 			}
-			return Router.UNREACHABLE_LOCATION;
+			return IRouter.UNREACHABLE_LOCATION;
 		}
 		
 	}
@@ -107,19 +107,19 @@ public class TestTransport extends Experiment {
 	class SimulLocation extends Simulation {
 		public SimulLocation(int id, long endTs) {
 			super(id, "Simulating locations " + id, 0, endTs);
-			final MyRouter router = new MyRouter(); 
+			final MyRouter IRouter = new MyRouter(); 
 			final ElementType et = new ElementType(this, "Pizza request from client");
 			final ResourceType rtMoto = new ResourceType(this, "Delivery moto");
-			rtMoto.addGenericResources(NMOTOS, NOSIZE ? 0 : MOTOSIZE, router.getHome());
+			rtMoto.addGenericResources(NMOTOS, NOSIZE ? 0 : MOTOSIZE, IRouter.getHome());
 			final WorkGroup wgMoto = new WorkGroup(this, rtMoto, 1);
 			final RequestResourcesFlow reqFlow = new RequestResourcesFlow(this, "Request moto");
 			reqFlow.newWorkGroupAdder(wgMoto).add();
-			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move moto to pizzeria", router.getHome(), router, wgMoto);
-			final TransportFlow moveFlow2 = new TransportFlow(this, "Take pizza to destination", router.getDestination(), router, rtMoto);
+			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move moto to pizzeria", IRouter.getHome(), IRouter, wgMoto);
+			final TransportFlow moveFlow2 = new TransportFlow(this, "Take pizza to destination", IRouter.getDestination(), IRouter, rtMoto);
 			final ReleaseResourcesFlow relFlow = new ReleaseResourcesFlow(this, "Release pizza", wgMoto);
 			reqFlow.link(moveFlow1).link(moveFlow2).link(relFlow);
 			
-			new TimeDrivenElementGenerator(this, NELEM, et, reqFlow, 0, router.getHome(), new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
+			new TimeDrivenElementGenerator(this, NELEM, et, reqFlow, 0, IRouter.getHome(), new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
 		}
 		
 	}

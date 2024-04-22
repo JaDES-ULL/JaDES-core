@@ -12,22 +12,22 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.WorkToken;
 import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.SimulationEngine;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.MergeFlowControl;
-import es.ull.simulation.model.engine.MergeFlowEngine;
+import es.ull.simulation.model.engine.IMergeFlowEngine;
 /**
  * @author Iv�n Castilla
  *
  */
-public class MergeFlowEngine extends AbstractEngineObject implements MergeFlowEngine {
-	final private MergeFlow modelFlow;
+public class MergeFlowEngine extends AbstractEngineObject implements IMergeFlowEngine {
+	final private AbstractMergeFlow modelFlow;
 	
 	/**
 	 * @param simul
 	 * @param objTypeId
 	 */
-	public MergeFlowEngine(SimulationEngine simul, MergeFlow modelFlow) {
+	public MergeFlowEngine(SimulationEngine simul, AbstractMergeFlow modelFlow) {
 		super(modelFlow.getIdentifier(), simul, modelFlow.getObjectTypeIdentifier());
 		this.modelFlow = modelFlow;
 	}
@@ -35,12 +35,12 @@ public class MergeFlowEngine extends AbstractEngineObject implements MergeFlowEn
 	/**
 	 * @return the modelFlow
 	 */
-	public MergeFlow getModelFlow() {
+	public AbstractMergeFlow getModelFlow() {
 		return modelFlow;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ull.simulation.model.engine.MergeFlowEngine#getControlStructureInstance()
+	 * @see com.ull.simulation.model.engine.IMergeFlowEngine#getControlStructureInstance()
 	 */
 	@Override
 	public Map<Element, MergeFlowControl> getControlStructureInstance() {
@@ -48,8 +48,8 @@ public class MergeFlowEngine extends AbstractEngineObject implements MergeFlowEn
 	}
 
 	@Override
-	public Map<Flow, LinkedList<WorkToken>> getGeneralizedBranchesControlInstance() {
-		return Collections.synchronizedSortedMap(new TreeMap<Flow, LinkedList<WorkToken>>());
+	public Map<IFlow, LinkedList<WorkToken>> getGeneralizedBranchesControlInstance() {
+		return Collections.synchronizedSortedMap(new TreeMap<IFlow, LinkedList<WorkToken>>());
 	}
 
 }

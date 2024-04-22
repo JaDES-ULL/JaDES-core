@@ -10,19 +10,19 @@ import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
  * @author Iván Castilla Rodríguez
  *
  */
-public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> implements EventSource {
+public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> implements IEventSource {
     /** Cycle that controls the generation of elements. */
-    protected final SimulationCycle cycle;
+    protected final ISimulationCycle cycle;
     /** The iterator which moves through the defined cycle */
     protected DiscreteCycleIterator cycleIter;
 
-	public TimeDrivenGenerator(final Simulation model, final int nElem, final SimulationCycle cycle) {
+	public TimeDrivenGenerator(final Simulation model, final int nElem, final ISimulationCycle cycle) {
 		super(model, model.getTimeDrivenGeneratorList().size(), nElem);
 		this.cycle = cycle;
 		model.add(this);
 	}
 
-	public TimeDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem, final SimulationCycle cycle) {
+	public TimeDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem, final ISimulationCycle cycle) {
 		super(model, model.getTimeDrivenGeneratorList().size(), nElem);
 		this.cycle = cycle;
 		model.add(this);
@@ -32,7 +32,7 @@ public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> 
 	 * Returns the cycle that drives the generation
 	 * @return the cycle that drives the generation
 	 */
-	public SimulationCycle getCycle() {
+	public ISimulationCycle getCycle() {
 		return cycle;
 	}
 

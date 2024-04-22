@@ -8,23 +8,23 @@ import es.ull.simulation.model.Simulation;
 
 
 /**
- * A merge flow which allows only one of the incoming branches to pass. Which one
+ * A merge IFlow which allows only one of the incoming branches to pass. Which one
  * passes depends on the <code>acceptValue</code>.
  * @author Iván Castilla Rodríguez
  */
-public abstract class ANDJoinFlow extends MergeFlow {
+public abstract class ANDJoinFlow extends AbstractMergeFlow {
 	/** The number of branches which have to arrive to pass the control thread */
 	protected int acceptValue;
 
 	/**
-	 * Creates a new AND flow.
+	 * Creates a new AND IFlow.
 	 */
 	public ANDJoinFlow(Simulation model) {
 		this(model, true, 0);
 	}
 	
 	/**
-	 * Creates a new AND flow
+	 * Creates a new AND IFlow
 	 * @param acceptValue The number of branches which have to arrive to pass the control thread
 	 */
 	public ANDJoinFlow(Simulation model, int acceptValue) {
@@ -32,7 +32,7 @@ public abstract class ANDJoinFlow extends MergeFlow {
 	}
 	
 	/**
-	 * Create a new AND Flow which can be used in a safe context or a general one.
+	 * Create a new AND IFlow which can be used in a safe context or a general one.
 	 * @param safe True for safe context; false in other case
 	 */
 	public ANDJoinFlow(Simulation model, boolean safe) {
@@ -40,7 +40,7 @@ public abstract class ANDJoinFlow extends MergeFlow {
 	}
 	
 	/**
-	 * Create a new AND Flow which can be used in a safe context or a general one.
+	 * Create a new AND IFlow which can be used in a safe context or a general one.
 	 * @param safe True for safe context; false in other case
 	 * @param acceptValue The number of branches which have to arrive to pass the control thread
 	 */
@@ -50,7 +50,7 @@ public abstract class ANDJoinFlow extends MergeFlow {
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.ull.simulation.MergeFlow#canPass(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.AbstractMergeFlow#canPass(com.ull.simulation.FlowExecutor)
 	 */
 	@Override
 	protected boolean canPass(ElementInstance wThread) {
@@ -59,8 +59,8 @@ public abstract class ANDJoinFlow extends MergeFlow {
 	}
 	
 	/**
-	 * Returns the acceptance value for this flow.
-	 * @return The acceptance value for this flow
+	 * Returns the acceptance value for this IFlow.
+	 * @return The acceptance value for this IFlow
 	 */
 	public int getAcceptValue() {
 		return acceptValue;

@@ -9,18 +9,18 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 
 /**
- * A flow that makes an element be delayed for a certain time
+ * A IFlow that makes an element be delayed for a certain time
  * @author Iv�n Castilla
  *
  */
-public abstract class DelayFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {
+public abstract class DelayFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {
     /** A brief description of the delay */
     private final String description;
 
     /**
-     * Creates a delay flow
-     * @param model The simulation model this flow belongs to
-     * @param description A short text describing this flow
+     * Creates a delay IFlow
+     * @param model The simulation model this IFlow belongs to
+     * @param description A short text describing this IFlow
      */
 	public DelayFlow(final Simulation model, final String description) {
 		super(model);
@@ -40,7 +40,7 @@ public abstract class DelayFlow extends SingleSuccessorFlow implements TaskFlow,
     public abstract long getDurationSample(final Element elem);
 
 	@Override
-	public void addPredecessor(final Flow predecessor) {
+	public void addPredecessor(final IFlow predecessor) {
 	}
 
 	@Override

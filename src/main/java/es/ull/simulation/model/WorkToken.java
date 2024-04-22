@@ -2,7 +2,7 @@ package es.ull.simulation.model;
 
 import java.util.TreeSet;
 
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 
 /**
  * The information of the current state of an {@link ElementInstance element instance}. In short, it indicates whether 
@@ -11,7 +11,7 @@ import es.ull.simulation.model.flow.Flow;
  */
 public class WorkToken {
 	/** The list of flows already visited during the current timestamp */ 
-	private final TreeSet<Flow> path = new TreeSet<Flow>();
+	private final TreeSet<IFlow> path = new TreeSet<IFlow>();
 	/** Validity of the element instance containing this token */
 	private boolean state;
 	
@@ -26,9 +26,9 @@ public class WorkToken {
 	/**
 	 * Creates a work token.
 	 * @param state The initial state of the work token
-	 * @param startPoint The first flow that this token passes by
+	 * @param startPoint The first IFlow that this token passes by
 	 */
-	public WorkToken(final boolean state, final Flow startPoint) {
+	public WorkToken(final boolean state, final IFlow startPoint) {
 		this(state);
 		path.add(startPoint);
 	}
@@ -52,29 +52,29 @@ public class WorkToken {
 	}
 	
 	/**
-	 * Adds a flow to the list of visited ones.
-	 * @param visited New flow visited by the element instance containing this token
+	 * Adds a IFlow to the list of visited ones.
+	 * @param visited New IFlow visited by the element instance containing this token
 	 */
-	public void addFlow(final Flow visited) {
+	public void addFlow(final IFlow visited) {
 		path.add(visited);
 	}
 	
 	/**
 	 * Adds a collection of flows to the list of visited ones.
-	 * @param path Collection of new flow visited by the element instance containing this token
+	 * @param path Collection of new IFlow visited by the element instance containing this token
 	 */
-	public void addFlow(final TreeSet<Flow> path) {
+	public void addFlow(final TreeSet<IFlow> path) {
 		this.path.addAll(path);
 	}
 	
 	/**
-	 * Returns true if the specified flow was already visited by the element instance containing this token.
-	 * @param flow Flow that has to be checked
-	 * @return True of the specified flow was already visited by the element instance containing this token;
+	 * Returns true if the specified IFlow was already visited by the element instance containing this token.
+	 * @param IFlow IFlow that has to be checked
+	 * @return True of the specified IFlow was already visited by the element instance containing this token;
 	 * false in other case.
 	 */
-	public boolean wasVisited(final Flow flow) {
-		return path.contains(flow);
+	public boolean wasVisited(final IFlow IFlow) {
+		return path.contains(IFlow);
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class WorkToken {
 	 * Returns the list of flows already visited by the element instance containing this token.
 	 * @return The list of flows already visited by the element instance containing this token
 	 */
-	public TreeSet<Flow> getPath() {
+	public TreeSet<IFlow> getPath() {
 		return path;
 	}
 }

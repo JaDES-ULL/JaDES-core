@@ -93,7 +93,7 @@ public class StandardCompilator {
 	}
 	
 	/**
-	 * Process the code looking for access variable's tags. If a tag is 
+	 * Process the code looking for access variable's tags. If a tag is
 	 * found it's changed to the java code traduction.
 	 * @param code Java code.
 	 * @return Parsed code.

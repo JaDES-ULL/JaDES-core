@@ -3,7 +3,7 @@
  */
 package es.ull.simulation.model.engine;
 
-import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.IIdentifiable;
 import es.ull.simulation.model.Simulation;
 
 /**
@@ -12,7 +12,7 @@ import es.ull.simulation.model.Simulation;
  * the same identifiers.
  * @author Iván Castilla Rodríguez
  */
-public abstract class AbstractEngineObject implements Identifiable, Comparable<AbstractEngineObject>{
+public abstract class AbstractEngineObject implements IIdentifiable, Comparable<AbstractEngineObject>{
     /** Unique object identifier  */
 	protected final int id;
     /** ParallelSimulationEngine this object belongs to */

@@ -17,14 +17,14 @@ public abstract class MergeFlowControl {
 	protected boolean activated = false;
 	/** Current amount of valid arrived branches */
 	protected int trueChecked;
-	/** The token that is sent to the following step is the flow has to be reset and
+	/** The token that is sent to the following step is the IFlow has to be reset and
 	 * has not been activated yet */
 	protected WorkToken outgoingFalseToken;
-	protected MergeFlow flow;
+	protected AbstractMergeFlow IFlow;
 
-	public MergeFlowControl(MergeFlow flow) {
-		outgoingFalseToken = new WorkToken(false, flow);
-		this.flow = flow;
+	public MergeFlowControl(AbstractMergeFlow IFlow) {
+		outgoingFalseToken = new WorkToken(false, IFlow);
+		this.IFlow = IFlow;
 	}
 	
 	public abstract void arrive(ElementInstance wThread);
@@ -34,7 +34,7 @@ public abstract class MergeFlowControl {
 	public boolean reset() {
 		trueChecked = 0;
 		outgoingFalseToken.reset();
-		outgoingFalseToken.addFlow(flow);
+		outgoingFalseToken.addFlow(IFlow);
 		activated = false;
 		return true;
 	}

@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * @author ycallero
  *
  */
-public class EnumVariable implements UserVariable{
+public class EnumVariable implements IUserVariable{
 	
 	/** Actual variable's value */
 	Integer value;
@@ -142,7 +142,7 @@ public class EnumVariable implements UserVariable{
 	 * @param arg0 The Variable which you want compare.
 	 * @return True if both are equal.
 	 */
-	public boolean equals(Variable arg0) {
+	public boolean equals(IVariable arg0) {
 		return value.equals(arg0.getValue().intValue());
 	}
 

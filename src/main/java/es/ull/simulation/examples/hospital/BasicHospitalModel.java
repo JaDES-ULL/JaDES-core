@@ -103,7 +103,7 @@ public class BasicHospitalModel extends Simulation {
 		actSurgery.newWorkGroupAdder(wgSurgery1).withDelay(40L).add();
 		actSurgery.newWorkGroupAdder(wgSurgery2).withDelay(60L).add();
 		
-		// Create a conditional flow to determine if a patient requires surgery
+		// Create a conditional IFlow to determine if a patient requires surgery
 		ExclusiveChoiceFlow fRequireSurgery = new ExclusiveChoiceFlow(this);
 		// Define 5% of patients requiring surgery
 		PercentageCondition<ElementInstance> requiresSurgeryCondition = new PercentageCondition<ElementInstance>(50.0);

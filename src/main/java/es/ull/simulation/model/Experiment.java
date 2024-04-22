@@ -7,7 +7,7 @@ package es.ull.simulation.model;
  * Controls a set of simulation experiments. 
  * @author Iván Castilla Rodríguez
  */
-public abstract class Experiment implements Describable {
+public abstract class Experiment implements IDescribable {
 	/** A short text describing this experiment */
 	protected String description = "";
 	/** Number of experiments to be carried out */

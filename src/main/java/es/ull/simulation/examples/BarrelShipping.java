@@ -3,7 +3,7 @@ package es.ull.simulation.examples;
 import java.util.ArrayList;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.factory.SimulationUserCode;
@@ -19,7 +19,7 @@ import es.ull.simulation.model.SimulationWeeklyPeriodicCycle;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
-import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.MultiChoiceFlow;
 import es.ull.simulation.parallel.ParallelSimulationEngine;
 import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle;
@@ -85,7 +85,7 @@ class BarrelShippingExperiment extends Experiment {
 		actShipping.newWorkGroupAdder(wgOperator).withDelay(20).add();
 
 		// Defines loop conditions	
-		Condition<ElementInstance> cond = factory.getCustomizedConditionInstance("", "<%GET(S.totalLiters)%> < <%GET(S.barrelCapacity)%>");
+		AbstractCondition<ElementInstance> cond = factory.getCustomizedConditionInstance("", "<%GET(S.totalLiters)%> < <%GET(S.barrelCapacity)%>");
 		NotCondition<ElementInstance> notCond = new NotCondition<ElementInstance>(cond);
 
 		// Declares a MultiChoice node	
@@ -94,10 +94,10 @@ class BarrelShippingExperiment extends Experiment {
 
 		// Defines the workflow
 		actFilling.link(mul1);
-		ArrayList<Flow> succList = new ArrayList<Flow>();
+		ArrayList<IFlow> succList = new ArrayList<IFlow>();
 		succList.add(actFilling);
 		succList.add(actShipping);
-		ArrayList<Condition<ElementInstance>> condList = new ArrayList<Condition<ElementInstance>>();
+		ArrayList<AbstractCondition<ElementInstance>> condList = new ArrayList<AbstractCondition<ElementInstance>>();
 		condList.add(cond);
 		condList.add(notCond);
 		mul1.link(succList, condList);

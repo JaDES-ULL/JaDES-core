@@ -12,33 +12,33 @@ import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.model.ActivityManager;
-import es.ull.simulation.model.Describable;
+import es.ull.simulation.model.IDescribable;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.IIdentifiable;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.WorkGroup;
-import es.ull.simulation.model.engine.RequestResourcesEngine;
+import es.ull.simulation.model.engine.IRequestResourcesEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.utils.Prioritizable;
 import es.ull.simulation.utils.PrioritizedTable;
 
 /**
- * A flow to request a set of resources, defined as {@link WorkGroup workgroups}. If all the resources from a workgroup are available, the element seizes 
- * them until a {@link ReleaseResourcesFlow} is used. The flow can use an identifier, so all the resources grouped under such identifier can be
+ * A IFlow to request a set of resources, defined as {@link WorkGroup workgroups}. If all the resources from a workgroup are available, the element seizes 
+ * them until a {@link ReleaseResourcesFlow} is used. The IFlow can use an identifier, so all the resources grouped under such identifier can be
  * released together later on. By default, all resources are grouped with a 0 identifier.<p> 
  * 
  * After seizing the resources, the element can suffer a delay.<p>
  * 
- * Each request flow is associated to an {@link ActivityManager}, which handles the way the resources are accessed.<p>
- * The flow is potentially feasible if there is no proof that none of the workgroups are available. The flow is feasible if it's potentially feasible 
+ * Each request IFlow is associated to an {@link ActivityManager}, which handles the way the resources are accessed.<p>
+ * The IFlow is potentially feasible if there is no proof that none of the workgroups are available. The IFlow is feasible if it's potentially feasible 
  * and there is at least one workgroup with enough available resources.<p>
- * An element requesting a request flow which is not feasible is added to a queue until new resources are available.
+ * An element requesting a request IFlow which is not feasible is added to a queue until new resources are available.
  * @author Iv�n Castilla
  *
  */
-public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlow, ResourceHandlerFlow, Prioritizable {
+public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IResourceHandlerFlow, Prioritizable {
     /** Priority. The lowest the value, the highest the priority */
     private final int priority;
     /** A brief description of the activity */
@@ -47,19 +47,19 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     private final PrioritizedTable<ActivityWorkGroup> workGroupTable;
     /** A unique identifier that serves to tell a ReleaseResourcesFlow which resources to release */
 	private final int resourcesId;
-    /** Activity manager this request flow belongs to. */
+    /** Activity manager this request IFlow belongs to. */
     protected ActivityManager manager;
     /** Indicates that the basic step is potentially feasible. */
     protected boolean stillFeasible = true;
-    /** Indicates whether the flow is the first step of an exclusive activity */
+    /** Indicates whether the IFlow is the first step of an exclusive activity */
     private boolean inExclusiveActivity = false; 
-    /** An engine to perform the simulation tasks associated to this flow */
-    private RequestResourcesEngine engine;
+    /** An engine to perform the simulation tasks associated to this IFlow */
+    private IRequestResourcesEngine engine;
 
 	/**
-	 * Creates a flow to seize a group of resources with the highest priority, and default identifier 
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a IFlow to seize a group of resources with the highest priority, and default identifier 
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 */
 	public RequestResourcesFlow(final Simulation model, final String description) {
 
@@ -67,9 +67,9 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	}
 
 	/**
-	 * Creates a flow to seize a group of resources, with the specified priority, default identifier 
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a IFlow to seize a group of resources, with the specified priority, default identifier 
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 * @param priority Priority. The lowest the value, the highest the priority
 	 */
 	public RequestResourcesFlow(final Simulation model, final String description, final int priority) {
@@ -77,9 +77,9 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	}
 
 	/**
-	 * Creates a flow to seize a group of resources non-exclusively, with the specified priority and identifier 
-	 * @param model The simulation model this flow belongs to
-	 * @param description A brief description of the flow
+	 * Creates a IFlow to seize a group of resources non-exclusively, with the specified priority and identifier 
+	 * @param model The simulation model this IFlow belongs to
+	 * @param description A brief description of the IFlow
 	 * @param resourcesId Identifier of the group of resources
 	 * @param priority Priority. The lowest the value, the highest the priority
 	 */
@@ -93,15 +93,15 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	}
 
 	@Override
-	public void setParent(final StructuredFlow parent) {
+	public void setParent(final AbstractStructuredFlow parent) {
 		super.setParent(parent);
 		if (parent instanceof ActivityFlow)
 			inExclusiveActivity = ((ActivityFlow)parent).isExclusive();
 	}
 	
 	/**
-	 * Returns true if the flow is descendant of an exclusive activity; false otherwise 
-	 * @return True if the flow is descendant of an exclusive activity; false otherwise
+	 * Returns true if the IFlow is descendant of an exclusive activity; false otherwise 
+	 * @return True if the IFlow is descendant of an exclusive activity; false otherwise
 	 */
 	public boolean isInExclusiveActivity() {
 		return inExclusiveActivity;
@@ -118,7 +118,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
 	
     /**
-     * Returns the activity manager this flow belongs to.
+     * Returns the activity manager this IFlow belongs to.
      * @return Value of property manager.
      */
     public ActivityManager getManager() {
@@ -126,8 +126,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
     
     /**
-     * Sets the activity manager this flow belongs to. It also
-     * adds this flow to the manager.
+     * Sets the activity manager this IFlow belongs to. It also
+     * adds this IFlow to the manager.
      * @param manager New value of manager.
      */
     public void setManager(final ActivityManager manager) {
@@ -136,8 +136,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
 
 	/**
-	 * Returns an identifier for the group of resources seized within this flow 
-	 * @return an identifier for the group of resources seized within this flow
+	 * Returns an identifier for the group of resources seized within this IFlow 
+	 * @return an identifier for the group of resources seized within this IFlow
 	 */
 	public int getResourcesId() {
 		return resourcesId;
@@ -146,7 +146,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     /**
      * Searches and returns a workgroup with the specified id.
      * @param wgId The id of the workgroup searched
-     * @return A workgroup contained in this flow with the specified id
+     * @return A workgroup contained in this IFlow with the specified id
      */
     public ActivityWorkGroup getWorkGroup(final int wgId) {
         Iterator<ActivityWorkGroup> iter = workGroupTable.iterator();
@@ -159,8 +159,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
 	
 	/**
-	 * Returns the amount of WGs associated to this flow
-	 * @return the amount of WGs associated to this flow
+	 * Returns the amount of WGs associated to this IFlow
+	 * @return the amount of WGs associated to this IFlow
 	 */
 	public int getWorkGroupSize() {
 		return workGroupTable.size();
@@ -175,11 +175,11 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
 
 	@Override
-	public void addPredecessor(final Flow newFlow) {}
+	public void addPredecessor(final IFlow newFlow) {}
     
 	/**
-	 * Returns true if this delay flow is being used as part of an interruptible activity
-	 * @return True if this delay flow is being used as part of an interruptible activity
+	 * Returns true if this delay IFlow is being used as part of an interruptible activity
+	 * @return True if this delay IFlow is being used as part of an interruptible activity
 	 */
 	public boolean partOfInterruptible() {
 		if (parent != null)
@@ -219,7 +219,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
      * workgroups looking for an appropriate one. If the basic step cannot be performed with 
      * any of the workgroups it's marked as not potentially feasible. 
      * @param ei Element instance wanting to perform the basic step 
-     * @return A set of resources that makes a valid solution for this request flow; null otherwise. 
+     * @return A set of resources that makes a valid solution for this request IFlow; null otherwise. 
      */
 	public ArrayDeque<Resource> isFeasible(final ElementInstance ei) {
     	if (!stillFeasible)
@@ -247,8 +247,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
     }
     
     /**
-     * Returns how many elements are waiting to seize resources with this flow
-     * @return how many elements are waiting to seize resources with this flow
+     * Returns how many elements are waiting to seize resources with this IFlow
+     * @return how many elements are waiting to seize resources with this IFlow
      */
     public int getQueueSize() {
     	return engine.getQueueSize();
@@ -264,7 +264,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.ull.simulation.Flow#request(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.IFlow#request(com.ull.simulation.FlowExecutor)
 	 */
 	public void request(final ElementInstance ei) {
 		if (!ei.wasVisited(this)) {
@@ -292,7 +292,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.ull.simulation.TaskFlow#finish(com.ull.simulation.FlowExecutor)
+	 * @see com.ull.simulation.ITaskFlow#finish(com.ull.simulation.FlowExecutor)
 	 */
 	public void finish(final ElementInstance wThread) {
 		wThread.endDelay(this);
@@ -306,9 +306,9 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	}
 
 	/**
-	 * Creates a builder object for adding workgroups to this flow. 
+	 * Creates a builder object for adding workgroups to this IFlow. 
 	 * @param wg The set of pairs <ResurceType, amount> which will be seized
-	 * @return The builder object for adding workgroups to this flow
+	 * @return The builder object for adding workgroups to this IFlow
 	 */
 	public WorkGroupAdder newWorkGroupAdder(final WorkGroup wg) {
 		return new WorkGroupAdder(wg);
@@ -355,7 +355,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 		}
 		
 	    /**
-	     * Creates a new workgroup for this flow. 
+	     * Creates a new workgroup for this IFlow. 
 	     * @return The new workgroup's identifier.
 	     */
 		public int add() {
@@ -375,7 +375,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	 * workgroup can be used or not, and the priority of the workgroup inside the basicStep.
 	 * @author Iván Castilla Rodríguez
 	 */
-	public class ActivityWorkGroup extends WorkGroup implements Prioritizable, Identifiable, Describable {
+	public class ActivityWorkGroup extends WorkGroup implements Prioritizable, IIdentifiable, IDescribable {
 		/** Priority of the workgroup */
 	    final private int priority;
 	    /** Availability condition */

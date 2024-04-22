@@ -2,7 +2,7 @@ package es.ull.simulation.model;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
 import es.ull.simulation.functions.TimeFunctionFactory;
-import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.model.location.Location;
 
 /**
@@ -12,8 +12,8 @@ import es.ull.simulation.model.location.Location;
 public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	/** Type of the created elements. */
 	protected final ElementType et;
-	/** Description of the flow that the elements carry out. */
-	protected final InitializerFlow flow;
+	/** Description of the IFlow that the elements carry out. */
+	protected final IInitializerFlow IFlow;
 	/** Function to determine the size of the elements created */ 
 	protected final AbstractTimeFunction size;
 	/** The initial {@link Location} where the elements appear */
@@ -22,27 +22,29 @@ public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	/**
 	 * Creates a new kind of elements to generate.
 	 * @param et Element type
-	 * @param flow Description of the activity flow that the elements carry out.
+	 * @param IFlow Description of the activity IFlow that the elements carry out.
 	 * @param size A function to determine the size of the generated elements 
 	 * @param initLocation The initial {@link Location} where the elements appear
-	 * @param prop Proportion of elements corresponding to this flow.
+	 * @param prop Proportion of elements corresponding to this IFlow.
 	 */
-	public StandardElementGenerationInfo(final ElementType et, final InitializerFlow flow, final int size, final Location initLocation, final double prop) {
-		this(et, flow, TimeFunctionFactory.getInstance("ConstantVariate", size), initLocation, prop);
+	public StandardElementGenerationInfo(final ElementType et, final IInitializerFlow IFlow, final int size,
+										 final Location initLocation, final double prop) {
+		this(et, IFlow, TimeFunctionFactory.getInstance("ConstantVariate", size), initLocation, prop);
 	}
 	
 	/**
 	 * Creates a new kind of elements to generate.
 	 * @param et Element type
-	 * @param flow Description of the activity flow that the elements carry out.
+	 * @param IFlow Description of the activity IFlow that the elements carry out.
 	 * @param size A function to determine the size of the generated elements 
 	 * @param initLocation The initial {@link Location} where the elements appear
-	 * @param prop Proportion of elements corresponding to this flow.
+	 * @param prop Proportion of elements corresponding to this IFlow.
 	 */
-	public StandardElementGenerationInfo(final ElementType et, final InitializerFlow flow, final AbstractTimeFunction size, final Location initLocation, final double prop) {
+	public StandardElementGenerationInfo(final ElementType et, final IInitializerFlow IFlow,
+										 final AbstractTimeFunction size, final Location initLocation, final double prop) {
 		super(prop);
 		this.et = et;
-		this.flow = flow;
+		this.IFlow = IFlow;
 		this.size = size;
 		this.initLocation = initLocation;
 	}
@@ -56,11 +58,11 @@ public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	}
 	
 	/**
-	 * Returns the flow.
-	 * @return the flow
+	 * Returns the IFlow.
+	 * @return the IFlow
 	 */
-	public InitializerFlow getFlow() {
-		return flow;
+	public IInitializerFlow getFlow() {
+		return IFlow;
 	}
 
 	/**

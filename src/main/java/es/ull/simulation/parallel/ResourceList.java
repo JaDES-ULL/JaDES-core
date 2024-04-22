@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 import es.ull.simulation.model.Resource;
-import es.ull.simulation.model.ResourceList;
+import es.ull.simulation.model.AbstractResourceList;
 
 /**
  * Handles the overlap of timetable entries for the same resource, i.e., a resource that has 
@@ -14,7 +14,7 @@ import es.ull.simulation.model.ResourceList;
  * resources.
  * @author Iván Castilla Rodríguez
  */
-public class ResourceList extends ResourceList {
+public class ResourceList extends AbstractResourceList {
 	/** A set of <resource - count> pairs, where the count value indicates how many times a 
 	 * resource has been added to this resource type. */
 	final private Map<Resource, Integer> counter;

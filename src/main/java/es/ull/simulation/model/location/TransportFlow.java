@@ -10,20 +10,20 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.flow.ActionFlow;
-import es.ull.simulation.model.flow.Flow;
-import es.ull.simulation.model.flow.SingleSuccessorFlow;
-import es.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.model.flow.IActionFlow;
+import es.ull.simulation.model.flow.IFlow;
+import es.ull.simulation.model.flow.AbstractSingleSuccessorFlow;
+import es.ull.simulation.model.flow.ITaskFlow;
 
 /**
  * A workflow step that selects a resource type as a transport, and moves an {@link Element} from one {@link Location} to another on that transport.
- * The route flow uses a {@link Router} to define the path of the element, ensures that the destination is reachable, and moves the 
+ * The route IFlow uses a {@link IRouter} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element and the transport from one location to another until reaching the destination. Only the size of the resource is used to check the capacity of 
  * the pathway. The element must have seized at least one resource belonging to the specified resource type.
  * @author Iv�n Castilla
  *
  */
-public class TransportFlow extends SingleSuccessorFlow implements TaskFlow, ActionFlow {
+public class TransportFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {
     /** A brief description of the route */
     private final String description;
     /** Final destination of the element */ 
@@ -31,21 +31,21 @@ public class TransportFlow extends SingleSuccessorFlow implements TaskFlow, Acti
     /** Resource type that will act as a transport for the element */
     private final ResourceType rtTransport;
     /** Instance that returns the path for the element */
-    private final Router router;
+    private final IRouter IRouter;
 
     /**
-     * Creates a flow to move an element
-     * @param model Model this flow belongs to
+     * Creates a IFlow to move an element
+     * @param model Model this IFlow belongs to
      * @param description A brief description of the route
      * @param destination Final destination of the element
-     * @param router Instance that returns the path for the element
+     * @param IRouter Instance that returns the path for the element
      */
-	public TransportFlow(Simulation model, String description, Location destination, Router router, ResourceType rtTransport) {
+	public TransportFlow(Simulation model, String description, Location destination, IRouter IRouter, ResourceType rtTransport) {
 		super(model);
 		this.description = description;
 		this.destination = destination;
 		this.rtTransport = rtTransport;
-		this.router = router;
+		this.IRouter = IRouter;
 	}
 
 
@@ -55,7 +55,7 @@ public class TransportFlow extends SingleSuccessorFlow implements TaskFlow, Acti
 	}
     
 	@Override
-	public void addPredecessor(final Flow predecessor) {
+	public void addPredecessor(final IFlow predecessor) {
 	}
 
 	@Override
@@ -114,10 +114,10 @@ public class TransportFlow extends SingleSuccessorFlow implements TaskFlow, Acti
 
 
 	/**
-	 * @return the router
+	 * @return the IRouter
 	 */
-	public Router getRouter() {
-		return router;
+	public IRouter getRouter() {
+		return IRouter;
 	}
 
 }

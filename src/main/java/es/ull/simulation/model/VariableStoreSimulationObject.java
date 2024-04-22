@@ -13,17 +13,17 @@ import es.ull.simulation.variable.FloatVariable;
 import es.ull.simulation.variable.IntVariable;
 import es.ull.simulation.variable.LongVariable;
 import es.ull.simulation.variable.ShortVariable;
-import es.ull.simulation.variable.UserVariable;
-import es.ull.simulation.variable.Variable;
+import es.ull.simulation.variable.IUserVariable;
+import es.ull.simulation.variable.IVariable;
 
 /**
- * A simulation object that can handle {@link Variable variables}. 
+ * A simulation object that can handle {@link Variable variables}.
  * @author Iván Castilla Rodríguez
  *
  */
-public abstract class VariableStoreSimulationObject extends SimulationObject implements VariableStore {
+public abstract class VariableStoreSimulationObject extends SimulationObject implements IVariableStore {
     /** Variable warehouse */
-	protected final TreeMap<String, Variable> varCollection = new TreeMap<String, Variable>();
+	protected final TreeMap<String, IVariable> varCollection = new TreeMap<String, IVariable>();
 
 	/**
 	 * Creates a simulation object capable of using {@link Variable variables}
@@ -36,18 +36,18 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	}
 
 	@Override
-	public Variable getVar(final String varName) {
+	public IVariable getVar(final String varName) {
 		return varCollection.get(varName);
 	}
 	
 	@Override
-	public void putVar(final String varName, final Variable value) {
+	public void putVar(final String varName, final IVariable value) {
 		varCollection.put(varName, value);
 	}
 	
 	@Override
 	public void putVar(final String varName, final double value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -57,7 +57,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	
 	@Override
 	public void putVar(final String varName, final int value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -67,7 +67,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 
 	@Override
 	public void putVar(final String varName, final boolean value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -77,7 +77,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 
 	@Override
 	public void putVar(final String varName, final char value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -87,7 +87,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	
 	@Override
 	public void putVar(final String varName, final byte value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -97,7 +97,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 
 	@Override
 	public void putVar(final String varName, final float value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -107,7 +107,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	
 	@Override
 	public void putVar(final String varName, final long value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
@@ -117,7 +117,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	
 	@Override
 	public void putVar(final String varName, final short value) {
-		UserVariable v = (UserVariable) varCollection.get(varName);
+		IUserVariable v = (IUserVariable) varCollection.get(varName);
 		if (v != null) {
 			v.setValue(value);
 			varCollection.put(varName, v);
