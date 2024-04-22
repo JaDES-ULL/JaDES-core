@@ -9,7 +9,7 @@ import es.ull.simulation.model.ElementInstance;
  * @author Yeray Callero
  *
  */
-public final class ElementTypeCondition extends Condition<ElementInstance>{
+public final class ElementTypeCondition extends AbstractCondition<ElementInstance>{
 
 	/** Type for the comparison */
 	private final ElementType type;

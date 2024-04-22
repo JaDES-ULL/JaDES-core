@@ -6,7 +6,7 @@ package es.ull.simulation.condition;
  * @author Yeray Callero
  *
  */
-public final class PercentageCondition<E> extends Condition<E> {
+public final class PercentageCondition<E> extends AbstractCondition<E> {
 	/** Probability of success */
 	final private double percentage;
 	

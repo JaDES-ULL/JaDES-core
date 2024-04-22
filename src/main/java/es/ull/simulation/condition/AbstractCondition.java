@@ -6,12 +6,12 @@ package es.ull.simulation.condition;
  * @author Yeray Callero
  */
 
-public abstract class Condition<E> {
+public abstract class AbstractCondition<E> {
 	
 	/** 
 	 * Creates a new Condition.
 	 */
-	public Condition(){
+	public AbstractCondition(){
 	}
 	
 	/**

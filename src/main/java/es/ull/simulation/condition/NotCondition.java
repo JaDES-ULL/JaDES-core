@@ -6,15 +6,15 @@ package es.ull.simulation.condition;
  * @author Yeray Callero
  *
  */
-public final class NotCondition<E> extends Condition<E> {
+public final class NotCondition<E> extends AbstractCondition<E> {
 	/** Associated Condition */
-	final private Condition<E> cond;
+	final private AbstractCondition<E> cond;
 	
 	/**
 	 * Create a new NotCondition
 	 * @param newCond Associated Condition
 	 */
-	public NotCondition(Condition<E> newCond){
+	public NotCondition(AbstractCondition<E> newCond){
 		cond = newCond;
 	}
 	
@@ -31,7 +31,7 @@ public final class NotCondition<E> extends Condition<E> {
 	 * Returns the associated Condition.
 	 * @return The associated Condition.
 	 */
-	public Condition<E> getCond() {
+	public AbstractCondition<E> getCond() {
 		return cond;
 	}
 

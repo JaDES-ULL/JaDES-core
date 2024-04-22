@@ -6,7 +6,7 @@ package es.ull.simulation.condition;
  * @author Yeray Callero
  *
  */
-public final class TrueCondition<E> extends Condition<E> {
+public final class TrueCondition<E> extends AbstractCondition<E> {
 	
 	/**
 	 * Creates a new TrueCondition

@@ -7,7 +7,7 @@ import es.ull.simulation.model.ResourceType;
  * @author Iv�n Castilla
  *
  */
-public class ResourceTypeAcquiredCondition extends Condition<ElementInstance> {
+public class ResourceTypeAcquiredCondition extends AbstractCondition<ElementInstance> {
 	final private ResourceType rt;
 	
 	/**
