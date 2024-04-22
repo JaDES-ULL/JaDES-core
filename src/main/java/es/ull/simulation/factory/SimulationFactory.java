@@ -4,7 +4,7 @@
 package es.ull.simulation.factory;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
@@ -135,7 +135,7 @@ public class SimulationFactory {
 		return FlowFactory.getInstance(flowId++, flowType, userMethods, simul, params);
 	}
 
-	public Condition<ElementInstance> getCustomizedConditionInstance(String imports, String condition) {
+	public AbstractCondition<ElementInstance> getCustomizedConditionInstance(String imports, String condition) {
 		return ConditionFactory.getInstance(condId++, imports, condition);
 	}
 }	

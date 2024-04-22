@@ -3,6 +3,7 @@ package es.ull.simulation.factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.Condition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.variable.IntVariable;
@@ -16,7 +17,7 @@ import es.ull.simulation.variable.Variable;
  *
  */
 public class ConditionFactory {
-	private final static String workingPkg = Condition.class.getPackage().getName();
+	private final static String workingPkg = AbstractCondition.class.getPackage().getName();
 	
 	/**
 	 * Generate a new condition through a logic expression. Parse the
@@ -35,7 +36,7 @@ public class ConditionFactory {
 		finalCode += "package " + workingPkg + ";";
 
 		// Include imports
-		finalCode += "import " + Condition.class.getName() + ";";	
+		finalCode += "import " + AbstractCondition.class.getName() + ";";
 		finalCode += "import " + ElementInstance.class.getName() + ";";
 		finalCode += "import " + IntVariable.class.getName() + ";";
 		finalCode += "import " + Variable.class.getName() + ";";
@@ -93,7 +94,7 @@ public class ConditionFactory {
 	 * @param condition Condition code.
 	 * @return A Condition's instance.
 	 */
-	static public Condition<ElementInstance> getInstance(int id, String imports, String condition){
+	static public AbstractCondition<ElementInstance> getInstance(int id, String imports, String condition){
 		String classCode = generateClass(id, imports, condition);
 		StringJFO src = null;
 		try {
@@ -106,7 +107,7 @@ public class ConditionFactory {
 		// Obtain the Class's constructors.
 		Constructor<?> cons = getConstructor(src);
 		try {
-			return (Condition<ElementInstance>) cons.newInstance();
+			return (AbstractCondition<ElementInstance>) cons.newInstance();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
