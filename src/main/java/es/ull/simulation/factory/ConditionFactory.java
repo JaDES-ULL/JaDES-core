@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import es.ull.simulation.condition.AbstractCondition;
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.variable.IntVariable;
 import es.ull.simulation.variable.Variable;
@@ -51,7 +51,8 @@ public class ConditionFactory {
 		finalCode += "public CompiledCondition" + id + 
 					"() {super();}";
 		
-		finalCode += "public boolean check(ElementInstance ei){" + "return(" + StandardCompilator.getCode(condition, "logicExp") + ");" + "}";
+		finalCode += "public boolean check(ElementInstance ei){" + "return("
+				+ StandardCompilator.getCode(condition, "logicExp") + ");" + "}";
 		
 		// Class close
 		finalCode += "}";
