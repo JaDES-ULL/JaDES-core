@@ -38,7 +38,7 @@
 
       <scope>system</scope>
 
-      <systemPath>${basedir}/src/lib/jbarrier.jar</systemPath>
+      <systemPath>${basedir}/lib/jbarrier.jar</systemPath>
 
     </dependency>
 
@@ -52,7 +52,7 @@
 
       <scope>system</scope>
 
-      <systemPath>${basedir}/src/lib/JFlex.jar</systemPath>
+      <systemPath>${basedir}/lib/JFlex.jar</systemPath>
 
     </dependency>
 
@@ -66,7 +66,7 @@
 
       <scope>system</scope>
 
-      <systemPath>${basedir}/src/lib/simkit-1.4.1.jar</systemPath>
+      <systemPath>${basedir}/lib/simkit-1.4.1.jar</systemPath>
 
     </dependency>
 
@@ -80,21 +80,21 @@
 
       <scope>system</scope>
 
-      <systemPath>${basedir}/src/lib/tools.jar</systemPath>
+      <systemPath>${basedir}/lib/tools.jar</systemPath>
 
     </dependency>
 
     <dependency>
 
-      <groupId>utils</groupId>
+      <groupId>simulation-utils</groupId>
 
-      <artifactId>utils</artifactId>
+      <artifactId>simulation-utils</artifactId>
 
-      <version>1.0</version>
+      <version>1.1</version>
 
       <scope>system</scope>
 
-      <systemPath>${basedir}/src/lib/utils.jar</systemPath>
+      <systemPath>${basedir}/lib/simulation-utils-1.1.jar</systemPath>
 
     </dependency>
 
