@@ -4,7 +4,7 @@
 package es.ull.simulation.model;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 
 /**
  * A generator of event sources which is activated every time a condition is met
@@ -13,7 +13,7 @@ import es.ull.simulation.condition.Condition;
  */
 public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> {
 	/** The condition that must be met to generate the event sources */
-	protected final Condition<ElementInstance> cond;
+	protected final AbstractCondition<ElementInstance> cond;
 
 	/**
 	 * Creates a condition-driven generator
@@ -21,7 +21,8 @@ public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationI
 	 * @param nElem A function to characterize the number of entities to create every time the generator is invoked 
 	 * @param cond The condition that must be met to generate the event sources
 	 */
-	public ConditionDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem, final Condition<ElementInstance> cond) {
+	public ConditionDrivenGenerator(final Simulation model, final AbstractTimeFunction nElem,
+									final AbstractCondition<ElementInstance> cond) {
 		super(model, model.getConditionDrivenGeneratorList().size(), nElem);
 		this.cond = cond;
 		model.add(this);
@@ -33,7 +34,8 @@ public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationI
 	 * @param nElem A fixed number of entities to create every time the generator is invoked 
 	 * @param cond The condition that must be met to generate the event sources
 	 */
-	public ConditionDrivenGenerator(final Simulation model, final int nElem, final Condition<ElementInstance> cond) {
+	public ConditionDrivenGenerator(final Simulation model, final int nElem,
+									final AbstractCondition<ElementInstance> cond) {
 		super(model, model.getConditionDrivenGeneratorList().size(), nElem);
 		this.cond = cond;
 		model.add(this);
@@ -43,7 +45,7 @@ public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationI
 	 * Returns the condition that fires the generator
 	 * @return the condition that fires the generator
 	 */
-	public Condition<ElementInstance> getCondition() {
+	public AbstractCondition<ElementInstance> getCondition() {
 		return cond;
 	}
 

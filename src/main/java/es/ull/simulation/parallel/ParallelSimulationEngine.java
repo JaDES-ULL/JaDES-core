@@ -21,7 +21,7 @@ import es.ull.simulation.model.SimulationObject;
 import es.ull.simulation.model.engine.EventSourceEngine;
 import es.ull.simulation.model.flow.MergeFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * Main parallel discrete event simulation class. A simulation uses all kind of 
