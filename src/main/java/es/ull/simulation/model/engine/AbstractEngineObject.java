@@ -12,7 +12,7 @@ import es.ull.simulation.model.Simulation;
  * the same identifiers.
  * @author Iván Castilla Rodríguez
  */
-public abstract class EngineObject implements Identifiable, Comparable<EngineObject>{
+public abstract class AbstractEngineObject implements Identifiable, Comparable<AbstractEngineObject>{
     /** Unique object identifier  */
 	protected final int id;
     /** ParallelSimulationEngine this object belongs to */
@@ -27,7 +27,7 @@ public abstract class EngineObject implements Identifiable, Comparable<EngineObj
      * @param id Unique identifier of the object
      * @param simul ParallelSimulationEngine this object belongs to
      */
-	public EngineObject(int id, SimulationEngine simul, String objTypeId) {
+	public AbstractEngineObject(int id, SimulationEngine simul, String objTypeId) {
 		this.simul = simul;
 		this.model = simul.getSimulation();
 		this.id = id;
@@ -63,7 +63,7 @@ public abstract class EngineObject implements Identifiable, Comparable<EngineObj
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(EngineObject o) {
+	public int compareTo(AbstractEngineObject o) {
 		if (id < o.getIdentifier())
 			return -1;
 		if (id > o.getIdentifier())

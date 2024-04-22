@@ -7,7 +7,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import es.ull.simulation.model.engine.RequestResourcesEngine;
@@ -34,7 +34,7 @@ import es.ull.simulation.model.engine.RequestResourcesEngine;
  * resource can't be used during a period of time after the activity finishes.
  * @author Carlos Mart�n Gal�n
  */
-public class RequestResourcesEngine extends EngineObject implements RequestResourcesEngine {
+public class RequestResourcesEngine extends AbstractEngineObject implements RequestResourcesEngine {
     /** Total amount of {@link ElementInstance} waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */

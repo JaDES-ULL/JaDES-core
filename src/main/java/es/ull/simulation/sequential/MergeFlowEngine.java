@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.WorkToken;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.Flow;
 import es.ull.simulation.model.flow.MergeFlow;
@@ -20,7 +20,7 @@ import es.ull.simulation.model.engine.MergeFlowEngine;
  * @author Iv�n Castilla
  *
  */
-public class MergeFlowEngine extends EngineObject implements MergeFlowEngine {
+public class MergeFlowEngine extends AbstractEngineObject implements MergeFlowEngine {
 	final private MergeFlow modelFlow;
 	
 	/**

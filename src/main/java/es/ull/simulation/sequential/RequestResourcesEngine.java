@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import es.ull.simulation.model.engine.RequestResourcesEngine;
@@ -15,7 +15,7 @@ import es.ull.simulation.model.engine.RequestResourcesEngine;
  * @author Iv�n Castilla
  *
  */
-public class RequestResourcesEngine extends EngineObject implements RequestResourcesEngine {
+public class RequestResourcesEngine extends AbstractEngineObject implements RequestResourcesEngine {
     /** Total of work items waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */

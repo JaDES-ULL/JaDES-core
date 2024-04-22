@@ -4,13 +4,13 @@
 package es.ull.simulation.sequential;
 
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.ElementInstanceEngine;
 /**
  * @author Iv�n Castilla
  *
  */
-public class ElementInstanceEngine extends EngineObject
+public class ElementInstanceEngine extends AbstractEngineObject
 		implements ElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows

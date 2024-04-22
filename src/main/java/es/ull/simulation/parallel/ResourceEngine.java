@@ -12,7 +12,7 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.ResourceHandlerFlow;
 import es.ull.simulation.model.engine.ResourceEngine;
 
@@ -24,7 +24,7 @@ import es.ull.simulation.model.engine.ResourceEngine;
  * TODO Comment
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceEngine extends EngineObject implements ResourceEngine {
+public class ResourceEngine extends AbstractEngineObject implements ResourceEngine {
     /** List of currently active roles and the timestamp which marks the end of their availability time */
     protected final TreeMap<ResourceType, Long> currentRoles;
     /** A counter of the valid timetable entries which this resource is following */

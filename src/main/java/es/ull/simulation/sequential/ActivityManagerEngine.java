@@ -7,7 +7,7 @@ import es.ull.simulation.model.ActivityManager;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.ActivityManagerEngine;
 
@@ -19,11 +19,11 @@ import es.ull.simulation.model.engine.ActivityManagerEngine;
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManagerEngine extends EngineObject implements ActivityManagerEngine {
+public class ActivityManagerEngine extends AbstractEngineObject implements ActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private boolean availableResource;
     /** This queue contains the flow executors that are waiting for activities of this AM */
-    private final FlowExecutorQueue waitingQueue;
+    private final es.ull.simulation.model.engine.ActivityManagerEngine.FlowExecutorQueue waitingQueue;
     /** This queue contains the element instances that have become available the current timestamp */
     private final FlowExecutorQueue currentQueue;
     /** The associated {@link ActivityManager} */

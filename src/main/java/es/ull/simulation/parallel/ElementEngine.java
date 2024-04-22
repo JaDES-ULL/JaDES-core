@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.Flow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.ElementEngine;
@@ -18,7 +18,7 @@ import es.ull.simulation.model.engine.ElementEngine;
  * TODO Comment
  * @author Iván Castilla Rodríguez
  */
-public class ElementEngine extends EngineObject implements ElementEngine {
+public class ElementEngine extends AbstractEngineObject implements ElementEngine {
 	/** Activity queues in which this element is. This list is used to notify the activities
 	 * when the element becomes available. */
 	protected final ArrayList<ElementInstance> inQueue;

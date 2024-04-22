@@ -7,7 +7,7 @@ import es.ull.simulation.model.ActivityManager;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.ActivityManagerEngine.FlowExecutorQueue;
 import es.ull.simulation.model.engine.ActivityManagerEngine;
@@ -19,7 +19,7 @@ import es.ull.simulation.model.engine.ActivityManagerEngine;
  * TODO Comment
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManagerEngine extends EngineObject implements ActivityManagerEngine {
+public class ActivityManagerEngine extends AbstractEngineObject implements ActivityManagerEngine {
     /** True if there is at least one new resource available the current timestamp */ 
     private volatile boolean avResource = false;
     /** This queue contains the flow executors that are waiting for activities of this AM */

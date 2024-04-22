@@ -8,14 +8,14 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.ElementInstanceEngine;
 
 /**
  * @author Iv�n Castilla
  *
  */
-public class ElementInstanceEngine extends EngineObject	implements ElementInstanceEngine {
+public class ElementInstanceEngine extends AbstractEngineObject	implements ElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static final AtomicInteger counter = new AtomicInteger(1);

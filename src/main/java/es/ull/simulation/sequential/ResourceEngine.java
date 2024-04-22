@@ -10,7 +10,7 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
-import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.flow.ResourceHandlerFlow;
 import es.ull.simulation.model.engine.ResourceEngine;
 
@@ -21,7 +21,7 @@ import es.ull.simulation.model.engine.ResourceEngine;
  * A resource finishes its execution when it has no longer valid timetable entries.
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceEngine extends EngineObject implements ResourceEngine {
+public class ResourceEngine extends AbstractEngineObject implements ResourceEngine {
     /** If true, indicates that this resource is being used after its availability time has expired */
     private boolean timeOut = false;
     /** List of currently active roles and the timestamp which marks the end of their availibity time. */
