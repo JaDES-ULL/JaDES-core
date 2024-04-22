@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull;
+package es.ull;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -161,7 +161,7 @@ class ResourceList2 {
 /**
  * Checks two different structures to control resource lists which requires sequential and random access.
  * ResourceList1 seems to be far much better  
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestRTStructure {

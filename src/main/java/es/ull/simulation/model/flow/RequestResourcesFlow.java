@@ -1,28 +1,28 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.condition.TrueCondition;
-import com.ull.simulation.info.ElementActionInfo;
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.Describable;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Identifiable;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.engine.RequestResourcesEngine;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.utils.Prioritizable;
-import com.ull.utils.PrioritizedTable;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.TrueCondition;
+import es.ull.simulation.info.ElementActionInfo;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.Describable;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.engine.RequestResourcesEngine;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.utils.Prioritizable;
+import es.ull.simulation.utils.PrioritizedTable;
 
 /**
  * A flow to request a set of resources, defined as {@link WorkGroup workgroups}. If all the resources from a workgroup are available, the element seizes 
@@ -369,7 +369,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	 * A set of resources needed for carrying out an activity. A workgroup (WG) consists on a 
 	 * set of (resource type, #needed resources) pairs, a condition which determines if the 
 	 * workgroup can be used or not, and the priority of the workgroup inside the basicStep.
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 */
 	public class ActivityWorkGroup extends WorkGroup implements Prioritizable, Identifiable, Describable {
 		/** Priority of the workgroup */

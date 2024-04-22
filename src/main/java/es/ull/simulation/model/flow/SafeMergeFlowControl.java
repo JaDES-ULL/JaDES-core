@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ElementInstance;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SafeMergeFlowControl extends MergeFlowControl {

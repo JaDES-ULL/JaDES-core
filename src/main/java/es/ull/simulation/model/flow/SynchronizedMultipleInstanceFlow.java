@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Simulation;
 
 /**
  * Meets the Multiple Instances with a Priori Design-Time Knowledge pattern (WFP13)
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SynchronizedMultipleInstanceFlow extends StaticPartialJoinMultipleInstancesFlow {

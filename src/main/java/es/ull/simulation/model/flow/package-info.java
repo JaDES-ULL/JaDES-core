@@ -5,4 +5,4 @@
  * @author Ivan Castilla Rodriguez
  *
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;

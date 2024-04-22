@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.WorkToken;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.WorkToken;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class GeneralizedMergeFlowControl extends MergeFlowControl {

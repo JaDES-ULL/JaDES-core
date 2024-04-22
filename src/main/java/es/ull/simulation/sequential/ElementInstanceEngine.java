@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.engine.EngineObject;
-
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.ElementInstanceEngine;
 /**
  * @author Iv�n Castilla
  *
  */
 public class ElementInstanceEngine extends EngineObject
-		implements com.ull.simulation.model.engine.ElementInstanceEngine {
+		implements ElementInstanceEngine {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static int counter = 1;

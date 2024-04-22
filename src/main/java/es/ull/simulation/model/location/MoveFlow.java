@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model.location;
+package es.ull.simulation.model.location;
 
-import com.ull.simulation.info.EntityLocationInfo;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.flow.ActionFlow;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.SingleSuccessorFlow;
-import com.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.info.EntityLocationInfo;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.flow.ActionFlow;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.SingleSuccessorFlow;
+import es.ull.simulation.model.flow.TaskFlow;
 
 /**
  * A workflow step that allows {@link Element elements} to move from one {@link Location} to another.

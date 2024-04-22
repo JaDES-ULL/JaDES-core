@@ -8,7 +8,7 @@
  * DEPRECATED?
  */
 
-package com.ull.simulation.factory;
+package es.ull.simulation.factory;
  
 import java_cup.runtime.Symbol;
  

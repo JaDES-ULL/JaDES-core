@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.info.ElementActionInfo;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.info.ElementActionInfo;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 /**
  * A flow that makes an element be delayed for a certain time

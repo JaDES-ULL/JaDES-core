@@ -1,11 +1,11 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * A logical AND condition among a collection of conditions
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class AndCondition<E> extends Condition<E> {
 	/** Collection of conditions */

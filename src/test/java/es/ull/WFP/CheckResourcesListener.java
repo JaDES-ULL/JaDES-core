@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
 import java.util.Arrays;
 
-import com.ull.simulation.info.ResourceInfo;
-import com.ull.simulation.info.ResourceUsageInfo;
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.info.ResourceInfo;
+import es.ull.simulation.info.ResourceUsageInfo;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.SimulationStartStopInfo;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class CheckResourcesListener extends CheckerListener {

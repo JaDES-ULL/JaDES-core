@@ -1,5 +1,5 @@
 import java_cup.runtime.*;
-import com.ull.simulation.factory.*;
+import es.ull.simulation.factory.*;
 import java.io.StringReader;
 
 action code {:

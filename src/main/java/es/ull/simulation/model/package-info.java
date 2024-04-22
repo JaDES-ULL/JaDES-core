@@ -5,4 +5,4 @@
  * @author Ivan Castilla Rodriguez
  *
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;

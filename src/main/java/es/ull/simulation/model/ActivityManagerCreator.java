@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 
 /**
  * A class to create sets of activity managers
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class ActivityManagerCreator {

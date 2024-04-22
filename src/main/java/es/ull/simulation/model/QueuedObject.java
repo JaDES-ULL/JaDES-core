@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 /**
  * A simulation object with an attached queue

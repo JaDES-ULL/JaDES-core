@@ -1,21 +1,21 @@
 /**
  * 
  */
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.ArrayDeque;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.engine.EngineObject;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
-
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import es.ull.simulation.model.engine.RequestResourcesEngine;
 /**
  * @author Iv�n Castilla
  *
  */
-public class RequestResourcesEngine extends EngineObject implements com.ull.simulation.model.engine.RequestResourcesEngine {
+public class RequestResourcesEngine extends EngineObject implements RequestResourcesEngine {
     /** Total of work items waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */

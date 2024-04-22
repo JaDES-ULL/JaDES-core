@@ -1,21 +1,21 @@
 /**
  * 
  */
-package com.ull.simulation.examples.hospital;
+package es.ull.simulation.examples.hospital;
 
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.condition.PercentageCondition;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.TimeDrivenElementGenerator;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.ExclusiveChoiceFlow;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.condition.PercentageCondition;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.TimeDrivenElementGenerator;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
 
 /**
  * The model of the hospital to be simulated.

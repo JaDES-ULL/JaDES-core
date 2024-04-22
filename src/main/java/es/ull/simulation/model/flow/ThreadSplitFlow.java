@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.Set;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 
 /**
@@ -14,7 +14,7 @@ import com.ull.simulation.model.Simulation;
  * works as a single successor flow, but functionally as a parallel flow. It should
  * be use with its counterpart Thread Merge pattern (WFP 41).
  * Meets the Thread Split pattern (WFP 42).
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ThreadSplitFlow extends BasicFlow implements SplitFlow {

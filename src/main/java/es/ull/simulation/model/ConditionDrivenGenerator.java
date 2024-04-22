@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.simulation.condition.Condition;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.condition.Condition;
 
 /**
  * A generator of event sources which is activated every time a condition is met
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class ConditionDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> {

@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.ArrayDeque;
 import java.util.TreeMap;
 
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.info.ElementActionInfo;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.ResourceType;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.info.ElementActionInfo;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.ResourceType;
 
 /**
  * A flow to release a set of previously seized resources. The resources to release can be identified by means of a unique identifier (resourcesId)

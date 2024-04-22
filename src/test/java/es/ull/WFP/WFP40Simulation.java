@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.InterleavedRoutingFlow;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.InterleavedRoutingFlow;
 
 /**
  * WFP 40. 

@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import simkit.random.RandomNumberFactory;
-import com.ull.functions.RandomFunction;
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.functions.TimeFunctionParams;
+import es.ull.simulation.functions.RandomFunction;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.functions.TimeFunctionParams;
 
 /**
  * A wrapper class for {@link com.ull.function.TimeFunction TimeFunction}.
  * Thus {@link TimeStamp} can be used to define the time function parameters.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class SimulationTimeFunction extends AbstractTimeFunction {
 	/** Inner {@link com.ull.function.TimeFunction TimeFunction} */

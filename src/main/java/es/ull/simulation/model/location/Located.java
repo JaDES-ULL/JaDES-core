@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model.location;
+package es.ull.simulation.model.location;
 
 /**
  * An object that can be located, i.e., has a spatial {@link Location} and a capacity
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface Located {

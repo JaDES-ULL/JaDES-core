@@ -1,7 +1,7 @@
-package com.ull;
+package es.ull;
 
-import com.ull.simulation.variable.EnumType;
-import com.ull.simulation.variable.EnumVariable;
+import es.ull.simulation.variable.EnumType;
+import es.ull.simulation.variable.EnumVariable;
 
 class EnumTest1 {
 

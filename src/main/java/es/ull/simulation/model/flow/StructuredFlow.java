@@ -1,7 +1,7 @@
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 /**
  * A flow which can contain other flows. This kind of flows have a single entry point

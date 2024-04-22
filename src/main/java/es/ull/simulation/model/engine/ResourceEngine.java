@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.SimulationCycle;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.SimulationCycle;
 
 /**
  * A simulation resource whose availability is controlled by means of timetable entries.
@@ -20,7 +20,7 @@ import com.ull.simulation.model.SimulationCycle;
  * can be overlapped in time, thus allowing the resource for being potentially available for
  * different resource types simultaneously.
  * A resource finishes its execution when it has no longer valid timetable entries.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface ResourceEngine extends EventSourceEngine {

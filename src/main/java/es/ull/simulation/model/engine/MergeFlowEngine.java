@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
 import java.util.LinkedList;
 import java.util.Map;
 
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.WorkToken;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.MergeFlowControl;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.WorkToken;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.MergeFlowControl;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface MergeFlowEngine {

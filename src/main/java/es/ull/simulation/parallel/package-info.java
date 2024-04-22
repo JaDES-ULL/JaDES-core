@@ -4,4 +4,4 @@
  * purely, the three-phase approach divides the events in Bs and Cs. Bs are events 
  * scheduled to be executed at a specific timestamp, whereas Cs are conditional events. 
  */
-package com.ull.simulation.parallel;
+package es.ull.simulation.parallel;

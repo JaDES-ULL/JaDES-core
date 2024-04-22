@@ -1,18 +1,18 @@
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import com.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceList;
+import es.ull.simulation.model.Resource;
 
 /**
  * Handles the overlap of timetable entries for the same resource, i.e., a resource that has 
  * several timetable entries at the same time interval with the same resource type. This list 
  * counts how many times it occurs to avoid incorrect behaviors of the amount of available
  * resources.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
-public class ResourceList extends com.ull.simulation.model.ResourceList {
+public class ResourceList extends ResourceList {
 	/** List of resources */
 	private final ArrayList<Resource> resources;
 	/** A count of how many times each resource has been put as available */

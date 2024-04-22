@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.inforeceiver;
+package es.ull.simulation.inforeceiver;
 
 import java.util.concurrent.TimeUnit;
 
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.TimeChangeInfo;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.TimeChangeInfo;
 
 /**
  * When used within a simulation, creates a delay each time the simulation clock is updated. The delay lasts {@link DelayListener#timeout} seconds.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class DelayListener extends Listener {
 	private final long timeout;

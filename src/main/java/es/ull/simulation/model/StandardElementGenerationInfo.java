@@ -1,13 +1,13 @@
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.model.flow.InitializerFlow;
-import com.ull.simulation.model.location.Location;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.location.Location;
 
 /**
  * Description of a set of {@link Element elements} a generator can create.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	/** Type of the created elements. */

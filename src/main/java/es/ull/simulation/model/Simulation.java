@@ -1,32 +1,32 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.SimulationStartStopInfo;
-import com.ull.simulation.inforeceiver.InfoReceiver;
-import com.ull.simulation.inforeceiver.SimulationInfoHandler;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.flow.BasicFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.simulation.sequential.SequentialSimulationEngine;
-import com.ull.simulation.variable.BooleanVariable;
-import com.ull.simulation.variable.ByteVariable;
-import com.ull.simulation.variable.CharacterVariable;
-import com.ull.simulation.variable.DoubleVariable;
-import com.ull.simulation.variable.FloatVariable;
-import com.ull.simulation.variable.IntVariable;
-import com.ull.simulation.variable.LongVariable;
-import com.ull.simulation.variable.ShortVariable;
-import com.ull.simulation.variable.UserVariable;
-import com.ull.simulation.variable.Variable;
-import com.ull.utils.Output;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.inforeceiver.InfoReceiver;
+import es.ull.simulation.inforeceiver.SimulationInfoHandler;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.flow.BasicFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.sequential.SequentialSimulationEngine;
+import es.ull.simulation.variable.BooleanVariable;
+import es.ull.simulation.variable.ByteVariable;
+import es.ull.simulation.variable.CharacterVariable;
+import es.ull.simulation.variable.DoubleVariable;
+import es.ull.simulation.variable.FloatVariable;
+import es.ull.simulation.variable.IntVariable;
+import es.ull.simulation.variable.LongVariable;
+import es.ull.simulation.variable.ShortVariable;
+import es.ull.simulation.variable.UserVariable;
+import es.ull.simulation.variable.Variable;
+import es.ull.simulation.utils.Output;Output;
 
 /**
  * The main simulation class. Defines all the components of the model and the logical structures required to simulate them.
@@ -677,7 +677,7 @@ public class Simulation implements Identifiable, Runnable, Describable, Variable
 	/**
 	 * A basic event which facilitates the control of the end of the simulation. Scheduling this event
 	 * ensures that there's always at least one event in the simulation. 
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 */
     class SimulationEndEvent extends DiscreteEvent {
     	/**

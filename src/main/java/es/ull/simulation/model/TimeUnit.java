@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 /**
  * Different time units that can be used in a simulation.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public enum TimeUnit {

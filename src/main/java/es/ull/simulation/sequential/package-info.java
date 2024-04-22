@@ -1,4 +1,4 @@
 /**
  * Provides the core classes necessary to create any model and to simulate it.
  */
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;

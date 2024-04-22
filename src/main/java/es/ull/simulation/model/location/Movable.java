@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model.location;
+package es.ull.simulation.model.location;
 
 /**
  * An object that can move from one location to another
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface Movable extends Located {

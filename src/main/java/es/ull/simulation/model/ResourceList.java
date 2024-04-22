@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.Collection;
 

@@ -1,9 +1,9 @@
-package com.ull.simulation.inforeceiver;
+package es.ull.simulation.inforeceiver;
 
 import java.util.ArrayList;
 
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.model.Simulation;
 
 public abstract class InfoReceiver {
 

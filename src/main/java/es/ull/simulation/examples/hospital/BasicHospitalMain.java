@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.examples.hospital;
+package es.ull.simulation.examples.hospital;
 
-import com.ull.simulation.inforeceiver.StdInfoView;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.TimeUnit;
+import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.TimeUnit;
 
 /**
  * Main class to execute the "hospital" tutorial example.
@@ -24,7 +24,7 @@ import com.ull.simulation.model.TimeUnit;
  * Surgical teams require 2 surgeons and 1 nurse. In some cases, only 1 surgeon and 1 nurse may carry out the surgical 
  * intervention, but only by incrementing its duration.
  *  
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class BasicHospitalMain extends Experiment {

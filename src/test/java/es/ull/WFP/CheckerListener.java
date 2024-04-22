@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
-import com.ull.simulation.info.SimulationStartStopInfo;
-import com.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.inforeceiver.Listener;
 
 /**
  * @author Iv�n Castilla

@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayDeque;
 
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.location.Location;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.location.Location;
 
 /**
  * The type of a resource. Defines roles or specializations of the resources.<p>
@@ -16,7 +16,7 @@ import com.ull.simulation.model.location.Location;
  * <li>When a resource is activated for this type: {@link #beforeRoleOn()}, {@link #afterRoleOn()}</li>
  * <li>When a resource is deactivated for this type: {@link #beforeRoleOff()}, {@link #afterRoleOff()}</li>
  * </ul>
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  * @author Carlos Mart�n Gal�n
  */
 public class ResourceType extends SimulationObject implements EntityType {

@@ -1,11 +1,11 @@
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.TreeSet;
 
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.condition.TrueCondition;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.TrueCondition;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 /**
  * A {@link StructuredFlow} whose initial step is a {@link MultiChoiceFlow} and whose final step

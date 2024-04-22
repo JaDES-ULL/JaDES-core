@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import com.ull.simulation.info.ElementActionInfo;
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.SimulationStartStopInfo;
-import com.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.info.ElementActionInfo;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.model.flow.ActivityFlow;
 /**
  * Checks the elements created and finished during the simulation
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class CheckActivitiesListener extends CheckerListener {

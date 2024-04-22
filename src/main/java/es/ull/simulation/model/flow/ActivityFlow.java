@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
-import com.ull.simulation.model.flow.RequestResourcesFlow.WorkGroupAdder;
-import com.ull.utils.Prioritizable;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import es.ull.simulation.model.flow.RequestResourcesFlow.WorkGroupAdder;
+import es.ull.simulation.utils.Prioritizable;
 
 /**
  * A flow which executes a single activity. An activity is characterized by a priority and a set of {@link WorkGroup workgropus}. 
@@ -27,7 +27,7 @@ import com.ull.utils.Prioritizable;
  * After performing the activity, some resources can be "cancelled", i.e., can become unavailable during certain amount of time. The cancellation can 
  * be condition-driven. 
  * 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow, Prioritizable {
 	private static int resourcesIdCounter = -1;

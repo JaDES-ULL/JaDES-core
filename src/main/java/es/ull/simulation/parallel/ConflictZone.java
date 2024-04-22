@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ull.simulation.parallel;
+package es.ull.simulation.parallel;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 
-import com.ull.simulation.model.Element;
+import es.ull.simulation.model.Element;
 
 
 /**
@@ -18,7 +18,7 @@ import com.ull.simulation.model.Element;
  * Conflict zones can be merged. One of the conflict zones absorbs the other. Once this happens,
  * the "absorbed" CZ is nullified and "substituted" by the "absorbing" CZ. 
  * TODO Comment
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 final class ConflictZone implements Comparable<ConflictZone> {
 	/** List of element work items which have a conflict. */

@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
-import com.ull.simulation.model.Identifiable;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.Simulation;
 
 /**
  * An {@link Identifiable} object associated to a {@link SimulationEngine}. The identifier is
  * unique per type of simulation object, thus different types of simulation objects can use 
  * the same identifiers.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class EngineObject implements Identifiable, Comparable<EngineObject>{
     /** Unique object identifier  */

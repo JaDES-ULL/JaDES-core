@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.TreeSet;
 
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Simulation;
 
 
 /**
  * An structured flow with predefined both entry and exit points.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class PredefinedStructuredFlow extends StructuredFlow {

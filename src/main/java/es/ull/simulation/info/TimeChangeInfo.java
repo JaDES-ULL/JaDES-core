@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.ull.simulation.info;
+package es.ull.simulation.info;
 
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Simulation;
 
 public class TimeChangeInfo extends AsynchronousInfo {
 

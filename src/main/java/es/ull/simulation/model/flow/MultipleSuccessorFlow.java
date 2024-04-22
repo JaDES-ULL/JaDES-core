@@ -1,20 +1,20 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 
 /**
  * A flow with multiple successors. Multiple successors are split nodes, that is,
  * new element instances are created from this flow on, when it's requested.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class MultipleSuccessorFlow extends BasicFlow implements SplitFlow {
 	/** Successor list */

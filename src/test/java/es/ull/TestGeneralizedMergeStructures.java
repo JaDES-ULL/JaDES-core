@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull;
+package es.ull;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -78,7 +78,7 @@ class IncomingBranchesControl {
 }
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestGeneralizedMergeStructures {

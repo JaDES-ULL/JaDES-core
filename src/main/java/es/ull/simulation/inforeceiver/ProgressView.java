@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ull.simulation.inforeceiver;
+package es.ull.simulation.inforeceiver;
 
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.SimulationStartStopInfo;
-import com.ull.simulation.info.TimeChangeInfo;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.info.TimeChangeInfo;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ProgressView extends Listener {

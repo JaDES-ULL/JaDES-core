@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.utils.cycle.Cycle;
-import com.ull.utils.cycle.TableCycle;
+import es.ull.simulation.utils.cycle.Cycle;
+import es.ull.simulation.utils.cycle.TableCycle;
 
 /**
  * A wrapper class for {@link com.ull.util.cycle.TableCycle TableCycle} to be used inside a simulation. 
  * Thus {@link TimeStamp} can be used to define the cycle parameters.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SimulationTableCycle implements SimulationCycle {

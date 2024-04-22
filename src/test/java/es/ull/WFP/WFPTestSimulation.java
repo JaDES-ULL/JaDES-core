@@ -1,24 +1,24 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import com.ull.simulation.inforeceiver.StdInfoView;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.SimulationTimeFunction;
-import com.ull.simulation.model.TimeDrivenElementGenerator;
-import com.ull.simulation.model.TimeStamp;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.SimulationTimeFunction;
+import es.ull.simulation.model.TimeDrivenElementGenerator;
+import es.ull.simulation.model.TimeStamp;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.InitializerFlow;
 
 /**
  * The base class to create tests for Workflow patterns.
@@ -29,7 +29,7 @@ import com.ull.simulation.model.flow.InitializerFlow;
  * - Resources must use a simple periodic cycle
  * - The preferred cycle is the TableCycle   
  * - All the elements must finish their tasks within the simulated time
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class WFPTestSimulation extends Simulation {

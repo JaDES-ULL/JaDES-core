@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
 /**
  * A class capable of generating events

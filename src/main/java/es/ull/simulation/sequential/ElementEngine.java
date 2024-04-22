@@ -1,20 +1,21 @@
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.ArrayList;
 
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.engine.EngineObject;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.engine.ElementEngine;
 
 /**
  * Represents case instances that make use of activity flows in order to carry out
  * their events.
  * 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
-public class ElementEngine extends EngineObject implements com.ull.simulation.model.engine.ElementEngine {
+public class ElementEngine extends EngineObject implements ElementEngine {
 	/** Activity queues in which this element is. This list is used to notify the activities
 	 * when the element becomes available. */
 	protected final ArrayList<ElementInstance> inQueue = new ArrayList<ElementInstance>();

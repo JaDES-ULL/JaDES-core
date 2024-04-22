@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.utils.concurrent.StandardThreadPool;
+import es.ull.simulation.utils.concurrent.StandardThreadPool;
 
 /**
  * A class to execute several simulations in parallel. It uses a pool of threads to execute the 
  * simulations
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class PooledExperiment extends Experiment {

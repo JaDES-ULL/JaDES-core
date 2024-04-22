@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 /**
  * A common interface for element and resource types. Useful for sharing functionalities
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface EntityType extends Describable {

@@ -1,29 +1,29 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.ull.simulation.info.EntityLocationInfo;
-import com.ull.simulation.info.ResourceInfo;
-import com.ull.simulation.model.engine.ResourceEngine;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.location.Location;
-import com.ull.simulation.model.location.Movable;
-import com.ull.simulation.model.location.MoveResourcesFlow;
-import com.ull.simulation.model.location.Router;
-import com.ull.simulation.model.location.TransportFlow;
-import com.ull.utils.cycle.DiscreteCycleIterator;
+import es.ull.simulation.info.EntityLocationInfo;
+import es.ull.simulation.info.ResourceInfo;
+import es.ull.simulation.model.engine.ResourceEngine;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.location.Location;
+import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.MoveResourcesFlow;
+import es.ull.simulation.model.location.Router;
+import es.ull.simulation.model.location.TransportFlow;
+import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
 
 /**
  * A simulation resource whose availability is controlled by means of {@link TimeTableEntry timetable entries}.
  * Timetable entries can overlap in time, thus allowing the resource for being potentially available for
  * different resource types simultaneously.
  * A resource finishes its execution when it has no longer valid timetable entries.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class Resource extends VariableStoreSimulationObject implements Describable, EventSource, Movable {
@@ -500,7 +500,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 	    
     /**
      * The event in charge of initializing the resource
-     * @author Iv�n Castilla Rodr�guez
+     * @author Iván Castilla Rodríguez
      *
      */
     protected class CreateResourceEvent extends DiscreteEvent {
@@ -728,7 +728,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 
 	/**
 	 * Event to move the resource to a different location
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	protected class MoveEvent extends DiscreteEvent {
@@ -791,7 +791,7 @@ public class Resource extends VariableStoreSimulationObject implements Describab
 
 	/**
 	 * Event to move the resource to a different location
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	protected class TransportEvent extends DiscreteEvent {

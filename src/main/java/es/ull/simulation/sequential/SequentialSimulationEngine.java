@@ -1,18 +1,19 @@
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 import java.util.concurrent.CountDownLatch;
 
-import com.ull.simulation.info.TimeChangeInfo;
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.DiscreteEvent;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.flow.MergeFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.info.TimeChangeInfo;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.DiscreteEvent;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * Main simulation class. A simulation needs a model (introduced by means of the
@@ -24,9 +25,9 @@ import com.ull.simulation.model.flow.RequestResourcesFlow;
  * <code>endTs</code> is reached, it stores its state. This state can be
  * obtained by using the <code>getState</code> method.
  * 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
-public class SequentialSimulationEngine extends com.ull.simulation.model.engine.SimulationEngine {
+public class SequentialSimulationEngine extends SimulationEngine {
 
 	/** End-of-simulation control */
 	private CountDownLatch endSignal;

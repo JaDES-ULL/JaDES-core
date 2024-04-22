@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.ull.simulation.parallel;
+package es.ull.simulation.parallel;
 
-import com.ull.simulation.model.DiscreteEvent;
+import es.ull.simulation.model.DiscreteEvent;
 
 /**
  * A class capable to run events. A class implementing this interface must include two local
@@ -12,7 +12,7 @@ import com.ull.simulation.model.DiscreteEvent;
  * Events with timestamp equal to the current simulation time are added to the local execution buffer
  * and subsequently executed. Events with timestamp higher than the current simulation time are added 
  * to the local future event buffer and later added to the global future event list.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public interface EventExecutor {
 	/**

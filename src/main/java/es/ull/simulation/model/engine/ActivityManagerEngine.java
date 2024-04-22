@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.utils.PrioritizedMap;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.utils.PrioritizedMap;
 
 /**
  * The engine of an {@link ActivityManager activity manager}. Useful for implementing different strategies, such as parallel and sequential.
@@ -70,7 +70,7 @@ public interface ActivityManagerEngine {
      * <li>the activity's priority</li>
      * <li>the arrival order</li>
      * </ol> 
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	public static final class FlowExecutorQueue extends PrioritizedMap<TreeSet<ElementInstance>, ElementInstance>{		

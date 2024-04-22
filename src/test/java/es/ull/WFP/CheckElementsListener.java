@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.WFP;
+package es.ull.WFP;
 
 import java.util.ArrayList;
 
-import com.ull.simulation.info.ElementInfo;
-import com.ull.simulation.info.SimulationStartStopInfo;
-import com.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.ElementInfo;
+import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.info.SimulationInfo;
 
 /**
  * Checks the elements created and finished during the simulation
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class CheckElementsListener extends CheckerListener {

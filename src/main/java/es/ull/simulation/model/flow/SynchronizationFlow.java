@@ -1,6 +1,6 @@
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Simulation;
 
 /**
  * An AND join flow which passes only when all the incoming branches have been activated once. 

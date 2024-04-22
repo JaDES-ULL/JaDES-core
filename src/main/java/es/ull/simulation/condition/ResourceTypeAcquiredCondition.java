@@ -1,7 +1,7 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ResourceType;
 
 /**
  * @author Iv�n Castilla

@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.Resource;
+import es.ull.simulation.model.Resource;
 
 /**
  * A flow step that can interact with {@link Resource resources} 

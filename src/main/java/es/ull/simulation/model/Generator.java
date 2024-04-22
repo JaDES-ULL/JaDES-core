@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayList;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.functions.TimeFunctionParams;
-import com.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.functions.TimeFunctionParams;
+import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * Defines the way a generator creates elements when it's time to create them.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject implements TimeFunctionParams {
 	/** Number of objects created each time this creator is invoked. */
@@ -138,7 +138,7 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 
 	/**
 	 * Description of a set of elements a generator can create.
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 */
     public static class GenerationInfo {
 		/** Proportion of elements corresponding to this flow. */

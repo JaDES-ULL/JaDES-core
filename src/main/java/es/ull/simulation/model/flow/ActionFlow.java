@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.Describable;
+import es.ull.simulation.model.Describable;
 
 /**
  * A flow that represents a step where some action is performed

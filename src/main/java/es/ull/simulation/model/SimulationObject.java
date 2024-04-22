@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.TimeFunctionParams;
-import com.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.functions.TimeFunctionParams;
+import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * @author Ivan Castilla Rodriguez

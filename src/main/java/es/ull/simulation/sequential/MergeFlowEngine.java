@@ -1,25 +1,26 @@
 /**
  * 
  */
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.WorkToken;
-import com.ull.simulation.model.engine.EngineObject;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.MergeFlow;
-import com.ull.simulation.model.flow.MergeFlowControl;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.WorkToken;
+import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.MergeFlowControl;
+import es.ull.simulation.model.engine.MergeFlowEngine;
 
 /**
  * @author Iv�n Castilla
  *
  */
-public class MergeFlowEngine extends EngineObject implements com.ull.simulation.model.engine.MergeFlowEngine {
+public class MergeFlowEngine extends EngineObject implements MergeFlowEngine {
 	final private MergeFlow modelFlow;
 	
 	/**

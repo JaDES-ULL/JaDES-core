@@ -1,10 +1,10 @@
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.simulation.variable.Variable;
+import es.ull.simulation.variable.Variable;
 
 /**
  * An object capable to store {@link Variable variables}
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface VariableStore 

@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.inforeceiver;
+package es.ull.simulation.inforeceiver;
 
-import com.ull.simulation.info.AsynchronousInfo;
-import com.ull.simulation.info.SimulationInfo;
-import com.ull.simulation.info.SynchronousInfo;
+import es.ull.simulation.info.AsynchronousInfo;
+import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.SynchronousInfo;
 
 /**
  * @author ycallero

@@ -1,4 +1,4 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 /**
  * Condition used to build NOT logical operations. This NotCondition 
  * returns <tt>true</tt> if the associated {@link Condition} returns <tt>false</tt>,

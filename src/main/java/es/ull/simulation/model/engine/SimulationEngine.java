@@ -4,26 +4,26 @@
  * Created on 8 de noviembre de 2005, 18:47
  */
 
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
-import com.ull.simulation.inforeceiver.InfoReceiver;
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.Debuggable;
-import com.ull.simulation.model.DiscreteEvent;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.Identifiable;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceList;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.TimeDrivenElementGenerator;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.MergeFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.utils.Output;
+import es.ull.simulation.inforeceiver.InfoReceiver;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.Debuggable;
+import es.ull.simulation.model.DiscreteEvent;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceList;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.TimeDrivenElementGenerator;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.MergeFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.utils.Output;
 
 /**
  * Main simulation class, identified by means of an identifier and a description.
@@ -59,7 +59,7 @@ import com.ull.utils.Output;
  * <p>
  * For debugging purposes, an {@link Output} can be associated to this simulation, thus
  * defining the destination for error and debug messages.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class SimulationEngine implements Identifiable, Debuggable {
 	/** Simulation's identifier */

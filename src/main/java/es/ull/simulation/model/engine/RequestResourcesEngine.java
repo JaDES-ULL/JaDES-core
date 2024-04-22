@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.simulation.model.engine;
+package es.ull.simulation.model.engine;
 
 import java.util.ArrayDeque;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.QueuedObject;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.QueuedObject;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface RequestResourcesEngine extends QueuedObject<ElementInstance> {

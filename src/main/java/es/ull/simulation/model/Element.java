@@ -1,26 +1,26 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import com.ull.simulation.info.ElementInfo;
-import com.ull.simulation.info.EntityLocationInfo;
-import com.ull.simulation.model.engine.ElementEngine;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.InitializerFlow;
-import com.ull.simulation.model.flow.ReleaseResourcesFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.simulation.model.flow.TaskFlow;
-import com.ull.simulation.model.location.Location;
-import com.ull.simulation.model.location.Movable;
-import com.ull.simulation.model.location.MoveFlow;
-import com.ull.simulation.variable.EnumVariable;
-import com.ull.utils.Prioritizable;
+import es.ull.simulation.info.ElementInfo;
+import es.ull.simulation.info.EntityLocationInfo;
+import es.ull.simulation.model.engine.ElementEngine;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.ReleaseResourcesFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.model.location.Location;
+import es.ull.simulation.model.location.Movable;
+import es.ull.simulation.model.location.MoveFlow;
+import es.ull.simulation.variable.EnumVariable;
+import es.ull.simulation.utils.Prioritizable;
 
 /**
  * An entity capable of following a {@link Flow workflow}. Elements have a {@link ElementType type} and interact with {@link Resource resources}
@@ -371,7 +371,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	
 	/**
 	 * An event to request a flow.
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 */
 	protected class RequestFlowEvent extends DiscreteEvent {
 		/** The element instance that executes the request */
@@ -394,7 +394,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	
 	/**
 	 * An event to finish a flow. 
-	 * @author Iv�n Castilla Rodr�guez
+	 * @author Iván Castilla Rodríguez
 	 */
 	protected class FinishFlowEvent extends DiscreteEvent {
 		/** The element instance that executes the finish */

@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 
 /**
  * A merge flow which allows only one of the incoming branches to pass. Which one
  * passes depends on the <code>acceptValue</code>.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class ANDJoinFlow extends MergeFlow {
 	/** The number of branches which have to arrive to pass the control thread */

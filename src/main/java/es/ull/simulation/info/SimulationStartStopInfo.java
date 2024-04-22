@@ -1,6 +1,6 @@
-package com.ull.simulation.info;
+package es.ull.simulation.info;
 
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Simulation;
 
 /**
  * Information related to the start, end and time advance during simulation. Collects the simulation timestamp, and the CPU time for the start and

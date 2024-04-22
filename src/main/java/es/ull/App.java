@@ -1,4 +1,4 @@
-package com.ull;
+package es.ull.
 
 /**
  * Hello world!

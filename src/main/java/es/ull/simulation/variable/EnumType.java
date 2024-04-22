@@ -1,4 +1,4 @@
-package com.ull.simulation.variable;
+package es.ull.simulation.variable;
 
 import java.util.TreeMap;
 

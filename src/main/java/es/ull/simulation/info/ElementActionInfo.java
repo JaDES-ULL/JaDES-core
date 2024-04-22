@@ -1,13 +1,13 @@
-package com.ull.simulation.info;
+package es.ull.simulation.info;
 
 import java.util.ArrayDeque;
 
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.flow.ActionFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.flow.ActionFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
 public class ElementActionInfo extends AsynchronousInfo {
 	

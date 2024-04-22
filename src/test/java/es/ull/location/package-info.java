@@ -5,4 +5,4 @@
  * @author Iván Castilla
  *
  */
-package com.ull.location;
+package es.ull.location;

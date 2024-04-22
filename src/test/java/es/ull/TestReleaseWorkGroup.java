@@ -1,19 +1,19 @@
 /**
  * 
  */
-package com.ull;
+package es.ull;
 
-import com.ull.simulation.inforeceiver.StdInfoView;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.TimeDrivenElementGenerator;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ReleaseResourcesFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.TimeDrivenElementGenerator;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ReleaseResourcesFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * @author Iv�n Castilla

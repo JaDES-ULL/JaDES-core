@@ -1,18 +1,18 @@
-package com.ull;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.factory.SimulationFactory;
-import com.ull.simulation.inforeceiver.StdInfoView;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.SimulationTimeFunction;
-import com.ull.simulation.model.TimeStamp;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.ProbabilitySelectionFlow;
+package es.ull;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.factory.SimulationFactory;
+import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.SimulationTimeFunction;
+import es.ull.simulation.model.TimeStamp;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.ProbabilitySelectionFlow;
 
 /**
  * 

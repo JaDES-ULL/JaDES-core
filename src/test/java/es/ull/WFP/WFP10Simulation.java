@@ -1,15 +1,15 @@
-package com.ull.WFP;
+package es.ull.WFP;
 
 import java.util.ArrayList;
 
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.condition.NotCondition;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.MultiChoiceFlow;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.NotCondition;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.MultiChoiceFlow;
 
 /**
  * WFP 10. Arbitrary Cycle

@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 /**
  * A timed value expressed as a pair &lt{@link TimeUnit}, long}&gt.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public final class TimeStamp {

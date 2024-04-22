@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 /**
  * A generic class for discrete events. Discrete events are instantaneous occurrences that execute one or more actions.
@@ -88,7 +88,7 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
     /**
      * The last event this element executes. It decrements the total amount of elements of the
      * simulation.
-     * @author Iv�n Castilla Rodr�guez
+     * @author Iván Castilla Rodríguez
      */
     public static class DefaultFinalizeEvent extends DiscreteEvent {
     	final protected EventSource source;
@@ -105,7 +105,7 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
 
     /**
      * The first event this element executes.
-     * @author Iv�n Castilla Rodr�guez
+     * @author Iván Castilla Rodríguez
      *
      */
     public static class DefaultStartEvent extends DiscreteEvent {

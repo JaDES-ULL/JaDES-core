@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.factory;
+package es.ull.simulation.factory;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.Generator;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.flow.FinalizerFlow;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.Generator;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.flow.FinalizerFlow;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
  * @author Iván Castilla Rodríguez

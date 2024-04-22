@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.ull.functions.ConstantFunction;
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.functions.ConstantFunction;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 
 /**
@@ -17,7 +17,7 @@ import com.ull.simulation.model.Simulation;
  * executed n times. n is defined by using the <code>iterations</code> attribute.
  * Be careful when using a continuous random distribution for defining the number
  * of iterations, since decimal values are rounded to the closest integer.  
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public class ForLoopFlow extends StructuredLoopFlow {
 	/** Loop iterations */

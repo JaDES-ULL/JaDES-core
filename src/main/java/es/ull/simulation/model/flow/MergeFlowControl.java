@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.WorkToken;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.WorkToken;
 
 /**
  * Control of incoming branches per element. Counts how many incoming branches have

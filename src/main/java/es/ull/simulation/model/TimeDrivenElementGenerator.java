@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.simulation.model.flow.InitializerFlow;
-import com.ull.simulation.model.location.Location;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.location.Location;
 
 /**
  * A time-driven generator for {@link Element elements}. Can create different proportions of elements that appear at different locations.

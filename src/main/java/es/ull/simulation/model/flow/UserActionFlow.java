@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 /**
  * A simple flow to execute user actions at some point of the workflow. The user specifies the actions in the {@link #userAction(ElementInstance)} method.

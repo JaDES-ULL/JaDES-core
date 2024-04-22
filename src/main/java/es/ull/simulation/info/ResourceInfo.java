@@ -1,10 +1,10 @@
-package com.ull.simulation.info;
+package es.ull.simulation.info;
 
 import java.util.EnumSet;
 
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceType;
 
 public class ResourceInfo extends AsynchronousInfo {
 

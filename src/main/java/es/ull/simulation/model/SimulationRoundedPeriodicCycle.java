@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.utils.cycle.Cycle;
-import com.ull.utils.cycle.RoundedPeriodicCycle;
-import com.ull.utils.cycle.RoundedPeriodicCycle.Type;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.utils.cycle.Cycle;
+import es.ull.simulation.utils.cycle.RoundedPeriodicCycle;
+import es.ull.simulation.utils.cycle.RoundedPeriodicCycle.Type;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SimulationRoundedPeriodicCycle implements SimulationCycle {

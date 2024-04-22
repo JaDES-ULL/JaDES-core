@@ -1,8 +1,8 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 /**
  * Default {@link Condition} used to define not conditional branches and situations 
  * without uncertainty. This {@link Condition} always returns false. 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public final class FalseCondition<E> extends Condition<E> {

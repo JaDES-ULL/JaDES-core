@@ -1,4 +1,4 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 
 /**
  * Default {@link Condition} used to define not conditional branches and situations 

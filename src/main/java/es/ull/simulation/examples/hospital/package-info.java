@@ -5,4 +5,4 @@
  * @author Iván Castilla
  *
  */
-package com.ull.simulation.examples.hospital;
+package es.ull.simulation.examples.hospital;

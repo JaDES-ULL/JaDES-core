@@ -1,4 +1,4 @@
-package com.ull.simulation.factory;
+package es.ull.simulation.factory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

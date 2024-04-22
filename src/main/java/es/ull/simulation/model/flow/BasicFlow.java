@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationObject;
-import com.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationObject;
+import es.ull.simulation.model.engine.SimulationEngine;
 
 
 /**
  * Basic implementation of a flow. Defines the default behavior of most methods. 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public abstract class BasicFlow extends SimulationObject implements Flow {
 	/** The structured flow containing this flow. */

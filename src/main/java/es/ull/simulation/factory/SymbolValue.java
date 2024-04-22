@@ -1,4 +1,4 @@
-package com.ull.simulation.factory;
+package es.ull.simulation.factory;
 
 /**
  * Class which define the symbols used in expressions parser. This class define the content and the access methods of each symbol.

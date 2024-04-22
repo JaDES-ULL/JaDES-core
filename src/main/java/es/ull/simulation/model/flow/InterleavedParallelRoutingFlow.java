@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeMap;
 
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Simulation;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Simulation;
 
 
 /**
@@ -17,7 +17,7 @@ import com.ull.simulation.model.Simulation;
  * arrays. Each array [A1, A2, ... An] defines precedence relations; thus A1 must be excuted before
  * A2, A2 before A3 and so on. </br>If all the activities are presential, meets the Interleaved Parallel 
  * Routing pattern (WFP17).
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class InterleavedParallelRoutingFlow extends StructuredFlow {

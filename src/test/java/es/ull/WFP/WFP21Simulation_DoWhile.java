@@ -1,12 +1,12 @@
-package com.ull.WFP;
+package es.ull.WFP;
 
-import com.ull.simulation.condition.Condition;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.DoWhileFlow;
+import es.ull.simulation.condition.Condition;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.DoWhileFlow;
 
 /**
  * WFP 21. Example 2: Revelado fotogr�fico (implemented with a do-while structure)

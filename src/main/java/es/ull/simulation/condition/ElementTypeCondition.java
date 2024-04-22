@@ -1,8 +1,8 @@
-package com.ull.simulation.condition;
+package es.ull.simulation.condition;
 
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.ElementInstance;
 
 /**
  * Condition used to check if an {@link Element} belongs to a specified {@link ElementType}.

@@ -1,23 +1,23 @@
 /**
  * 
  */
-package com.ull;
+package es.ull;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.ull.simulation.model.DiscreteEvent;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.ElementType;
-import com.ull.simulation.model.EventSource;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationObject;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.TimeDrivenElementGenerator;
-import com.ull.simulation.model.engine.SimulationEngine;
-import com.ull.simulation.model.flow.TimeFunctionDelayFlow;
-import com.ull.simulation.model.flow.WaitForSignalFlow;
+import es.ull.simulation.model.DiscreteEvent;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.ElementType;
+import es.ull.simulation.model.EventSource;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationObject;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.TimeDrivenElementGenerator;
+import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.flow.TimeFunctionDelayFlow;
+import es.ull.simulation.model.flow.WaitForSignalFlow;
 
 /**
  * A dummy example of using the WaitForSignalFlow class. We define a simple flow with a WaitForSignalFlow and a DelayFlow. Elements get to the wait... flow

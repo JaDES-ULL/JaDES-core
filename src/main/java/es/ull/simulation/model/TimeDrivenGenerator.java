@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.utils.cycle.DiscreteCycleIterator;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> implements EventSource {

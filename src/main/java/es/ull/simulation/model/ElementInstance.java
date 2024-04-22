@@ -1,24 +1,24 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import com.ull.simulation.info.ElementActionInfo;
-import com.ull.simulation.info.ResourceInfo;
-import com.ull.simulation.model.engine.ElementInstanceEngine;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.Flow;
-import com.ull.simulation.model.flow.InitializerFlow;
-import com.ull.simulation.model.flow.ReleaseResourcesFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow;
-import com.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
-import com.ull.simulation.model.flow.TaskFlow;
-import com.ull.utils.Prioritizable;
-import com.ull.utils.RandomPermutation;
+import es.ull.simulation.info.ElementActionInfo;
+import es.ull.simulation.info.ResourceInfo;
+import es.ull.simulation.model.engine.ElementInstanceEngine;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.Flow;
+import es.ull.simulation.model.flow.InitializerFlow;
+import es.ull.simulation.model.flow.ReleaseResourcesFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow;
+import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
+import es.ull.simulation.model.flow.TaskFlow;
+import es.ull.simulation.utils.Prioritizable;
+import es.ull.simulation.utils.RandomPermutation;
 
 /**
  * Represents an instance of an element, so multiple instances of the same element can be active at

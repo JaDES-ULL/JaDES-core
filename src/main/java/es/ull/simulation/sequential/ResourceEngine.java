@@ -1,17 +1,18 @@
-package com.ull.simulation.sequential;
+package es.ull.simulation.sequential;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import com.ull.simulation.info.ResourceUsageInfo;
-import com.ull.simulation.model.ActivityManager;
-import com.ull.simulation.model.Element;
-import com.ull.simulation.model.ElementInstance;
-import com.ull.simulation.model.Resource;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.engine.EngineObject;
-import com.ull.simulation.model.flow.ResourceHandlerFlow;
+import es.ull.simulation.info.ResourceUsageInfo;
+import es.ull.simulation.model.ActivityManager;
+import es.ull.simulation.model.Element;
+import es.ull.simulation.model.ElementInstance;
+import es.ull.simulation.model.Resource;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.engine.EngineObject;
+import es.ull.simulation.model.flow.ResourceHandlerFlow;
+import es.ull.simulation.model.engine.ResourceEngine;
 
 /**
  * A resource is an element that becomes available at a specific simulation time and 
@@ -20,7 +21,7 @@ import com.ull.simulation.model.flow.ResourceHandlerFlow;
  * A resource finishes its execution when it has no longer valid timetable entries.
  * @author Carlos Mart�n Gal�n
  */
-public class ResourceEngine extends EngineObject implements com.ull.simulation.model.engine.ResourceEngine {
+public class ResourceEngine extends EngineObject implements ResourceEngine {
     /** If true, indicates that this resource is being used after its availability time has expired */
     private boolean timeOut = false;
     /** List of currently active roles and the timestamp which marks the end of their availibity time. */

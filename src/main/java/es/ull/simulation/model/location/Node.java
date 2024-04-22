@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ull.simulation.model.location;
+package es.ull.simulation.model.location;
 
-import com.ull.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.AbstractTimeFunction;
 
 /**
  * A location representing a specific place.
  * 
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class Node extends Location {

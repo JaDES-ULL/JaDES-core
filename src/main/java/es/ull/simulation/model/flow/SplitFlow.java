@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.ull.simulation.model.flow;
+package es.ull.simulation.model.flow;
 
 /**
  * An {@link InitializerFlow} which can create several outgoing branches.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  */
 public interface SplitFlow extends InitializerFlow {
 }

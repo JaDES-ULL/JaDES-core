@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.ull.simulation.model;
+package es.ull.simulation.model;
 
 import java.util.EnumSet;
 
-import com.ull.utils.cycle.Cycle;
-import com.ull.utils.cycle.WeeklyPeriodicCycle;
-import com.ull.utils.cycle.WeeklyPeriodicCycle.WeekDays;
+import es.ull.simulation.utils.cycle.Cycle;
+import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle;
+import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle.WeekDays;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SimulationWeeklyPeriodicCycle implements SimulationCycle {

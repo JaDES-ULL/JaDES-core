@@ -1,7 +1,7 @@
-package com.ull.WFP;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
+package es.ull.WFP;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
 
 /**
  * WFP 1, Example 1: Tarjeta de Credito

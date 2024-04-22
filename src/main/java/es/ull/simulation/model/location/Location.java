@@ -1,23 +1,23 @@
 /**
  * 
  */
-package com.ull.simulation.model.location;
+package es.ull.simulation.model.location;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ull.functions.AbstractTimeFunction;
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.model.Identifiable;
-import com.ull.simulation.model.SimulationObject;
+import es.ull.simulation.functions.AbstractTimeFunction;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.model.Identifiable;
+import es.ull.simulation.model.SimulationObject;
 
 /**
  * A physical place where one or more entities can be at any time. Locations have a capacity, that determines how many entities fit in.
  * Entities leaving a location can suffer a delay. Such delay can also represents the time that the entity takes to go through the location.
  * Entities can move from one location to another linked location. Such connections are defined by using {@link #linkTo(Location)}, and have a direction,
  * i.e. an entity can move from a location to another, but not back, unless a explicit link is created in the opposite way.
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class Location implements Located, Identifiable, Comparable<Location> {

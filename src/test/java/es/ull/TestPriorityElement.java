@@ -1,24 +1,24 @@
 /**
  * 
  */
-package com.ull;
+package es.ull;
 
-import com.ull.functions.TimeFunctionFactory;
-import com.ull.simulation.factory.SimulationFactory;
-import com.ull.simulation.factory.SimulationType;
-import com.ull.simulation.inforeceiver.StdInfoView;
-import com.ull.simulation.model.Experiment;
-import com.ull.simulation.model.ResourceType;
-import com.ull.simulation.model.Simulation;
-import com.ull.simulation.model.SimulationPeriodicCycle;
-import com.ull.simulation.model.SimulationTimeFunction;
-import com.ull.simulation.model.TimeUnit;
-import com.ull.simulation.model.WorkGroup;
-import com.ull.simulation.model.flow.ActivityFlow;
-import com.ull.simulation.model.flow.ParallelFlow;
+import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.factory.SimulationFactory;
+import es.ull.simulation.factory.SimulationType;
+import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.model.Experiment;
+import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
+import es.ull.simulation.model.SimulationPeriodicCycle;
+import es.ull.simulation.model.SimulationTimeFunction;
+import es.ull.simulation.model.TimeUnit;
+import es.ull.simulation.model.WorkGroup;
+import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.ParallelFlow;
 
 /**
- * @author Iv�n Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestPriorityElement {
