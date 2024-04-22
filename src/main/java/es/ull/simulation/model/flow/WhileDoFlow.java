@@ -1,6 +1,6 @@
 package es.ull.simulation.model.flow;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 
@@ -13,7 +13,7 @@ import es.ull.simulation.model.Simulation;
  */
 public class WhileDoFlow extends StructuredLoopFlow {
 	/** Condition which controls the loop operation. */
-	protected final Condition<ElementInstance> cond;
+	protected final AbstractCondition<ElementInstance> cond;
 	
 	/**
 	 * Create a new WhileDoFlow.
@@ -21,7 +21,8 @@ public class WhileDoFlow extends StructuredLoopFlow {
 	 * @param finalSubFlow Last step of the internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public WhileDoFlow(Simulation model, InitializerFlow initialSubFlow, FinalizerFlow finalSubFlow, Condition<ElementInstance> postCondition) {
+	public WhileDoFlow(Simulation model, InitializerFlow initialSubFlow, FinalizerFlow finalSubFlow,
+					   AbstractCondition<ElementInstance> postCondition) {
 		super(model, initialSubFlow, finalSubFlow);
 		cond = postCondition;
 	}
@@ -31,7 +32,7 @@ public class WhileDoFlow extends StructuredLoopFlow {
 	 * @param subFlow A unique flow defining an internal subflow
 	 * @param postCondition Break loop condition.
  	 */
-	public WhileDoFlow(Simulation model, TaskFlow subFlow, Condition<ElementInstance> postCondition) {
+	public WhileDoFlow(Simulation model, TaskFlow subFlow, AbstractCondition<ElementInstance> postCondition) {
 		this(model, subFlow, subFlow, postCondition);
 	}
 
@@ -39,7 +40,7 @@ public class WhileDoFlow extends StructuredLoopFlow {
 	 * Returns the condition which controls the loop operation.
 	 * @return The condition which controls the loop operation
 	 */
-	public Condition<ElementInstance> getCondition() {
+	public AbstractCondition<ElementInstance> getCondition() {
 		return cond;
 	}
 

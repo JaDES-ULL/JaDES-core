@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
 import es.ull.simulation.functions.TimeFunctionFactory;
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.model.ActivityManager;
@@ -62,6 +62,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	 * @param description A brief description of the flow
 	 */
 	public RequestResourcesFlow(final Simulation model, final String description) {
+
 		this(model, description, 0, 0);
 	}
 
@@ -82,7 +83,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	 * @param resourcesId Identifier of the group of resources
 	 * @param priority Priority. The lowest the value, the highest the priority
 	 */
-	public RequestResourcesFlow(final Simulation model, final String description, final int resourcesId, final int priority) {
+	public RequestResourcesFlow(final Simulation model, final String description,
+								final int resourcesId, final int priority) {
 		super(model);
         this.description = description;
         this.priority = priority;
@@ -268,7 +270,8 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 		if (!ei.wasVisited(this)) {
 			if (ei.isExecutable()) {
 				if (beforeRequest(ei)) {
-					simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(), this, ei.getExecutionWG(), null, ElementActionInfo.Type.REQ, simul.getTs()));
+					simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(),
+							this, ei.getExecutionWG(), null, ElementActionInfo.Type.REQ, simul.getTs()));
 					if (ei.getElement().isDebugEnabled())
 						ei.getElement().debug("Requests\t" + this + "\t" + getDescription());
 					engine.queueAdd(ei); // The element is introduced in the queue
@@ -298,6 +301,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	
 	@Override
 	public void assignSimulation(final SimulationEngine simul) {
+
 		engine = simul.getRequestResourcesEngineInstance(this);
 	}
 
@@ -322,7 +326,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 		/** Priority of the workgroup */
 		private int priority = 0;
 		/** Availability condition */
-		private Condition<ElementInstance> cond = null;
+		private AbstractCondition<ElementInstance> cond = null;
 		/** Delay applied after seizing the resources */
 		private AbstractTimeFunction delay = null;
 		
@@ -335,7 +339,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 			return this;
 		}
 		
-		public WorkGroupAdder withCondition(final Condition<ElementInstance> cond) {
+		public WorkGroupAdder withCondition(final AbstractCondition<ElementInstance> cond) {
 			this.cond = cond;
 			return this;
 		}
@@ -375,7 +379,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 		/** Priority of the workgroup */
 	    final private int priority;
 	    /** Availability condition */
-	    final private Condition<ElementInstance> cond;
+	    final private AbstractCondition<ElementInstance> cond;
 	    /** A function to characterize the duration of the delay */
 	    final private AbstractTimeFunction duration;
 	    /** Precomputed string which identifies this WG */
@@ -390,7 +394,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	     * @param cond  Availability condition
 	     */    
 	    public ActivityWorkGroup(final Simulation model, final int id, final int priority, final WorkGroup wg,
-								 final Condition<ElementInstance> cond, final AbstractTimeFunction duration) {
+								 final AbstractCondition<ElementInstance> cond, final AbstractTimeFunction duration) {
 	    	super(model, wg.getResourceTypes(), wg.getNeeded());
 	        this.priority = priority;
 	        this.cond = cond;
@@ -434,7 +438,7 @@ public class RequestResourcesFlow extends SingleSuccessorFlow implements TaskFlo
 	     * Returns a condition to set the availability of the workgroup
 	     * @return a condition to set the availability of the workgroup
 	     */
-		public Condition<ElementInstance> getCondition() {
+		public AbstractCondition<ElementInstance> getCondition() {
 			return cond;
 		}
 	}

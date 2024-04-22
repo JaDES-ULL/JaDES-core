@@ -2,7 +2,7 @@ package es.ull.simulation.model.flow;
 
 import java.util.TreeSet;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
@@ -31,7 +31,7 @@ public class StructuredSynchroMergeFlow extends PredefinedStructuredFlow {
 	 * @param cond This branch's condition.
 	 */
 	
-	public void addBranch(TaskFlow branch, Condition<ElementInstance> cond) {
+	public void addBranch(TaskFlow branch, AbstractCondition<ElementInstance> cond) {
 		addBranch(branch, branch, cond);
 	}
 	
@@ -41,7 +41,8 @@ public class StructuredSynchroMergeFlow extends PredefinedStructuredFlow {
 	 * @param finalBranch Last step of the internal branch
 	 * @param cond This branch's condition.
 	 */
-	public void addBranch(InitializerFlow initialBranch, FinalizerFlow finalBranch, Condition<ElementInstance> cond) {
+	public void addBranch(InitializerFlow initialBranch, FinalizerFlow finalBranch,
+						  AbstractCondition<ElementInstance> cond) {
 		final TreeSet<Flow> visited = new TreeSet<Flow>(); 
 		initialBranch.setRecursiveStructureLink(this, visited);
 		((MultiChoiceFlow)initialFlow).link(initialBranch, cond);

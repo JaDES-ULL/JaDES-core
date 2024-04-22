@@ -3,7 +3,7 @@
  */
 package es.ull.simulation.model.flow;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -169,7 +169,7 @@ public class ActivityFlow extends StructuredFlow implements ResourceHandlerFlow,
 	 * @param duration Duration of the cancellation.
 	 * @param cond Condition that must be fulfilled to apply the cancellation 
 	 */
-	public void addResourceCancellation(final ResourceType rt, final long duration, final Condition<ElementInstance> cond) {
+	public void addResourceCancellation(final ResourceType rt, final long duration, final AbstractCondition<ElementInstance> cond) {
 		((ReleaseResourcesFlow)finalFlow).addResourceCancellation(rt, duration, cond);
 	}
 	

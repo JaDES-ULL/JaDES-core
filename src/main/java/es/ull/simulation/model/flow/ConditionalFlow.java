@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
@@ -19,7 +19,7 @@ import es.ull.simulation.model.Simulation;
  */
 public abstract class ConditionalFlow extends MultipleSuccessorFlow {
 	/** Condition list associated to the successor list. */
-	protected final ArrayList<Condition<ElementInstance>> conditionList;
+	protected final ArrayList<AbstractCondition<ElementInstance>> conditionList;
 	
 	/**
 	 * Creates a new ConditionalFlow.
@@ -32,7 +32,7 @@ public abstract class ConditionalFlow extends MultipleSuccessorFlow {
 	/**
 	 * @return the conditionList
 	 */
-	public ArrayList<Condition<ElementInstance>> getConditionList() {
+	public ArrayList<AbstractCondition<ElementInstance>> getConditionList() {
 		return conditionList;
 	}
 
@@ -51,7 +51,7 @@ public abstract class ConditionalFlow extends MultipleSuccessorFlow {
 	 * @param successor This flow's successor
 	 * @param cond The condition that has to be met to invoke the successor
 	 */
-	public Flow link(Flow successor, Condition<ElementInstance> cond) {
+	public Flow link(Flow successor, AbstractCondition<ElementInstance> cond) {
 		super.link(successor);
 		conditionList.add(cond);
 		return successor;
@@ -73,7 +73,7 @@ public abstract class ConditionalFlow extends MultipleSuccessorFlow {
 	 * @param succList This flow's successors
 	 * @param condList The conditions attached to each successor
 	 */
-	public void link(Collection<Flow> succList, Collection<Condition<ElementInstance>> condList) {
+	public void link(Collection<Flow> succList, Collection<AbstractCondition<ElementInstance>> condList) {
 		super.link(succList);
 		conditionList.addAll(condList);
 	}

@@ -6,7 +6,7 @@ package es.ull.simulation.model.flow;
 import java.util.ArrayDeque;
 import java.util.TreeMap;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
@@ -33,7 +33,7 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
     /** Resources cancellation table */
     protected final TreeMap<ResourceType, Long> cancellationList;
     /** Conditions associated to resource cancellations */
-    protected final TreeMap<ResourceType, Condition<ElementInstance>> cancellationConditionList;
+    protected final TreeMap<ResourceType, AbstractCondition<ElementInstance>> cancellationConditionList;
 	
 	/**
 	 * Creates a release resources flow
@@ -41,6 +41,7 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	 * @param description A brief description of the flow
 	 */
 	public ReleaseResourcesFlow(final Simulation model, final String description) {
+
 		this(model, description, 0, null);
 	}
 	
@@ -73,12 +74,13 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	 * @param wg Workgroup that identifies the resources to release
 	 * @param resourcesId Identifier of the group of resources
 	 */
-	public ReleaseResourcesFlow(final Simulation model, final String description, final int resourcesId, final WorkGroup wg) {
+	public ReleaseResourcesFlow(final Simulation model, final String description,
+								final int resourcesId, final WorkGroup wg) {
 		super(model);
         this.description = description;
 		this.resourcesId = resourcesId;
 		cancellationList = new TreeMap<ResourceType, Long>();
-		cancellationConditionList = new TreeMap<ResourceType, Condition<ElementInstance>>();
+		cancellationConditionList = new TreeMap<ResourceType, AbstractCondition<ElementInstance>>();
 		this.wg = wg;
 	}
 	
@@ -118,7 +120,8 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	 * @param duration Duration of the cancellation.
 	 * @param cond Condition that must be fulfilled to apply the cancellation 
 	 */
-	public void addResourceCancellation(final ResourceType rt, final long duration, final Condition<ElementInstance> cond) {
+	public void addResourceCancellation(final ResourceType rt, final long duration,
+										final AbstractCondition<ElementInstance> cond) {
 		cancellationList.put(rt, duration);	
 		cancellationConditionList.put(rt, cond);
 	}
@@ -132,7 +135,7 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
 	public long getResourceCancellation(final ResourceType rt, final ElementInstance ei) {
 		final Long duration = cancellationList.get(rt);
 		if (duration != null) {
-			final Condition<ElementInstance> cond = cancellationConditionList.get(rt);
+			final AbstractCondition<ElementInstance> cond = cancellationConditionList.get(rt);
 			if (cond == null) {
 				return duration;
 			}
@@ -160,7 +163,8 @@ public class ReleaseResourcesFlow extends SingleSuccessorFlow implements Resourc
      */
     public void releaseResources(final ElementInstance ei) {
     	final ArrayDeque<Resource> resources = ei.releaseCaughtResources();
-		simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(), this, ei.getExecutionWG(), resources, ElementActionInfo.Type.REL, simul.getTs()));
+		simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(),
+				this, ei.getExecutionWG(), resources, ElementActionInfo.Type.REL, simul.getTs()));
 		if (ei.getElement().isDebugEnabled())
 			ei.getElement().debug("Finishes\t" + this + "\t" + getDescription());
 		afterFinalize(ei);
