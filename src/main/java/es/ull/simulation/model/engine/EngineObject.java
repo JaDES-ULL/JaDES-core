@@ -63,7 +63,7 @@ public abstract class EngineObject implements Identifiable, Comparable<EngineObj
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(com.ull.simulation.model.engine.EngineObject o) {
+	public int compareTo(EngineObject o) {
 		if (id < o.getIdentifier())
 			return -1;
 		if (id > o.getIdentifier())
