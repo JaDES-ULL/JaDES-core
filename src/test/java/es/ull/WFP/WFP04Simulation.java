@@ -1,7 +1,6 @@
 package es.ull.WFP;
 
 import es.ull.simulation.condition.AbstractCondition;
-import es.ull.simulation.condition.Condition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.model.ElementInstance;
