@@ -1,6 +1,6 @@
 package es.ull.WFP;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.model.ElementInstance;
@@ -12,7 +12,7 @@ import es.ull.simulation.model.flow.MultiChoiceFlow;
 /**
  * WFP 6. Example 1: Llamadas emergencia
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP06Simulation extends WFPTestSimulation {
@@ -36,7 +36,7 @@ public class WFP06Simulation extends WFPTestSimulation {
         MultiChoiceFlow mulcho1 = new MultiChoiceFlow(this);
         
         act0.link(mulcho1);
-        Condition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
+        AbstractCondition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
         mulcho1.link(act1);
         mulcho1.link(act2, falseCond);
         mulcho1.link(act3);

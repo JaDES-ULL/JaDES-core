@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.Condition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
@@ -10,9 +11,9 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
 
 /**
- * WFP 4 Example 1: Sistema Votaci�n
+ * WFP 4 Example 1: Sistema Votación
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP04Simulation extends WFPTestSimulation {
@@ -35,7 +36,7 @@ public class WFP04Simulation extends WFPTestSimulation {
         ExclusiveChoiceFlow excho1 = new ExclusiveChoiceFlow(this);
         
         act0.link(excho1);
-        Condition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
+        AbstractCondition<ElementInstance> falseCond = new NotCondition<ElementInstance>(new TrueCondition<ElementInstance>());
         excho1.link(act1);
         excho1.link(act2, falseCond);
 

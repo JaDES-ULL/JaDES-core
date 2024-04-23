@@ -19,7 +19,7 @@ import es.ull.simulation.model.engine.IResourceEngine;
  * becomes unavailable at other simulation time. The availability of a resource is controlled
  * by means of timetable entries, which define a resource type and an availability cycle.
  * A resource finishes its execution when it has no longer valid timetable entries.
- * @author Carlos Mart�n Gal�n
+ * @author Carlos Martín Galán
  */
 public class ResourceEngine extends AbstractEngineObject implements IResourceEngine {
     /** If true, indicates that this resource is being used after its availability time has expired */
@@ -35,12 +35,14 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
     /** The associated {@link Resource} */
     private final Resource modelRes;
 
-    /**
-     * Creates a new instance of Resource.
-     * @param id This resource's identifier.
-     * @param simul ParallelSimulationEngine this resource is attached to.
-     * @param description A short text describing this resource.
-     */
+	/**
+	 * Constructs a new ResourceEngine object.
+	 * ResourceEngine represents an engine responsible for managing resources in a sequential simulation.
+	 * It tracks the availability of roles, the validity of timetable entries, and the elements holding this resource.
+	 *
+	 * @param simul       The SequentialSimulationEngine to which this resource engine belongs.
+	 * @param modelRes    The associated Resource object representing this resource engine.
+	 */
 	public ResourceEngine(SequentialSimulationEngine simul, Resource modelRes) {
 		super(modelRes.getIdentifier(), simul, "RES");
         currentRoles = new TreeMap<ResourceType, Long>();

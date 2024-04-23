@@ -113,9 +113,14 @@ public class StandardCompilator {
 	}
 
 	/**
-	 * Generate a new instance of the specified class with events code. 	 * @param id Identifier.
-	 * @param code Events code.
-	 * @return The Class code including the events.
+	 * Generate a new instance of the specified class with events code.
+	 *
+	 * @param workingPkg      The package where the class will be located.
+	 * @param objectType      The type of the object for which the class is being generated.
+	 * @param id              The unique identifier for the class.
+	 * @param constructorStr  The constructor string for the class.
+	 * @param userMethods     The user-defined methods for the class.
+	 * @return                The generated Java class code as a string.
 	 */
 	static private String generateClass(String workingPkg, String objectType, Integer id, String constructorStr,
 										SimulationUserCode userMethods) {
@@ -144,12 +149,13 @@ public class StandardCompilator {
 		
 		return finalCode;
 	}
-	
+
 	/**
-	 * Get the constructors of the class, compiled or not.
-	 * @param id Identifier.
-	 * @param code Events code.
-	 * @return An array of constructors.
+	 * Retrieves the constructors of a class, whether compiled or not.
+	 *
+	 * @param workingPkg The package where the class resides.
+	 * @param src        The StringJFO object containing class information.
+	 * @return           An array of constructors of the specified class.
 	 */
 	static private Constructor<?>[] getConstructors(String workingPkg, StringJFO src){
 		

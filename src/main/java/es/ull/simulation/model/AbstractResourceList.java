@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * A list of resources
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class AbstractResourceList {

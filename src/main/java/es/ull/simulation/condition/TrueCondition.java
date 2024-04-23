@@ -1,8 +1,8 @@
 package es.ull.simulation.condition;
 
 /**
- * Default {@link Condition} used to define not conditional branches and situations 
- * without uncertainty. This {@link Condition} always returns true. 
+ * Default {@link AbstractCondition} used to define not conditional branches and situations
+ * without uncertainty. This {@link AbstractCondition} always returns true.
  * @author Yeray Callero
  *
  */

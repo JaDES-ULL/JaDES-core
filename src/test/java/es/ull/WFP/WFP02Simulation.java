@@ -8,7 +8,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
 /**
  * WFP 2, example 2: Alarma
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP02Simulation extends WFPTestSimulation {
@@ -21,7 +21,7 @@ public class WFP02Simulation extends WFPTestSimulation {
         ResourceType rt = getDefResourceType("Operador");
         
         WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt}, new int[] {1});
-    	ActivityFlow act0 = getDefActivity("Detecci�n alarma", wg);
+    	ActivityFlow act0 = getDefActivity("Detección alarma", wg);
     	ActivityFlow act1 = getDefActivity("Mandar patrulla", wg, false);
     	ActivityFlow act2 = getDefActivity("Generar informe", wg, false);
    
@@ -38,7 +38,8 @@ public class WFP02Simulation extends WFPTestSimulation {
          
         getDefGenerator(getDefElementType("Activaciones de alarma"), act0);
 //        addInfoReceiver(new WFP02CheckView(this, detailed));
-//        getSimulation().addInfoReceiver(new CheckFlowsView(getSimulation(), act0, new long[] {DEFACTDURATION[0], DEFACTDURATION[0], DEFACTDURATION[0]}, detailed));
+//        getSimulation().addInfoReceiver(new CheckFlowsView(getSimulation(),
+//        act0, new long[] {DEFACTDURATION[0], DEFACTDURATION[0], DEFACTDURATION[0]}, detailed));
     }
 	
 }

@@ -7,7 +7,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.flow.IFlow;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface IElementEngine extends IEventSourceEngine {

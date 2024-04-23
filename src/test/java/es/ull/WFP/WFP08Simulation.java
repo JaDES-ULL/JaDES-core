@@ -9,7 +9,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
 /**
  * WFP 8. Control de calidad
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  */
 public class WFP08Simulation extends WFPTestSimulation {
 	public WFP08Simulation(int id) {

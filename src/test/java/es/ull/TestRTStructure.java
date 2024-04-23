@@ -48,7 +48,7 @@ class ResourceList1 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	Integer val = tree.get(res);
-    	// FIXME Deber�a crearme un tipo personalizado de excepci�n
+    	// FIXME Debería crearme un tipo personalizado de excepción
     	if (val == null)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (val > 1) {
@@ -122,7 +122,7 @@ class ResourceList2 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	int pos = resources.indexOf(res);
-    	// FIXME Deber�a crearme un tipo personalizado de excepci�n
+    	// FIXME Debería crearme un tipo personalizado de excepción
     	if (pos == -1)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (counter.get(pos).intValue() > 1) {
@@ -187,7 +187,8 @@ public class TestRTStructure {
 		for (Integer i : list)
 			rList1.remove(i);
 		t4 = System.nanoTime();
-		System.out.println("Time List 1: " + (t4 - t1) + "\tADD: " + (t2 - t1) + "\tGET: " + (t3 - t2) + "\tREMOVE: " + (t4 - t3));
+		System.out.println("Time List 1: " + (t4 - t1) + "\tADD: " + (t2 - t1) + "\tGET: " + (t3 - t2)
+				+ "\tREMOVE: " + (t4 - t3));
 
 		t1 = System.nanoTime();
 		ResourceList2 rList2 = new ResourceList2();
@@ -200,7 +201,8 @@ public class TestRTStructure {
 		for (Integer i : list)
 			rList2.remove(i);
 		t4 = System.nanoTime();
-		System.out.println("Time List 2: " + (t4 - t1) + "\tADD: " + (t2 - t1) + "\tGET: " + (t3 - t2) + "\tREMOVE: " + (t4 - t3));
+		System.out.println("Time List 2: " + (t4 - t1) + "\tADD: " + (t2 - t1) + "\tGET: " + (t3 - t2)
+				+ "\tREMOVE: " + (t4 - t3));
 	}
 
 }

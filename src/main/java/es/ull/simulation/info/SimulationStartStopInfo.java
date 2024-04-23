@@ -5,7 +5,7 @@ import es.ull.simulation.model.Simulation;
 /**
  * Information related to the start, end and time advance during simulation. Collects the simulation timestamp, and the CPU time for the start and
  * end of the simulation.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class SimulationStartStopInfo extends AsynchronousInfo {

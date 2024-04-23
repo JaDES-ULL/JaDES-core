@@ -9,7 +9,7 @@ import es.ull.simulation.model.flow.PartialJoinFlow;
 /**
  * WFP 31. Banco
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP31Simulation extends WFPTestSimulation {

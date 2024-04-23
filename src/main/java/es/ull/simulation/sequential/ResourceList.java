@@ -49,7 +49,7 @@ public class ResourceList extends AbstractResourceList {
      */
     public boolean remove(Resource res) {
     	int pos = resources.indexOf(res);
-    	// FIXME Deber�a crearme un tipo personalizado de excepci�n
+    	// FIXME Debería crearme un tipo personalizado de excepción
     	if (pos == -1)
     		throw new RuntimeException("Unexpected error: Resource not found in resource type");
     	if (counter.get(pos).intValue() > 1) {

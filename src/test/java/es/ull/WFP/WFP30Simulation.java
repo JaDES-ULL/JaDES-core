@@ -6,9 +6,9 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.StructuredPartialJoinFlow;
 
 /**
- * WFP 30. Expedici�n Cheques
+ * WFP 30. Expedición Cheques
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 // TODO: Check carefully

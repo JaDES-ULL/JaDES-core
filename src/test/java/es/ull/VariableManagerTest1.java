@@ -26,7 +26,8 @@ class ExperimentTest1 extends Experiment {
 	}
 
 	public Simulation getSimulation(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "Ej", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "Ej", unit, TimeStamp.getZero(),
+				new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
 
 		factory.getFlowInstance("ActivityFlow", "Verificar cuenta", 0, false, false);

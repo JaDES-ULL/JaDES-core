@@ -4,7 +4,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ResourceType;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ResourceTypeAcquiredCondition extends AbstractCondition<ElementInstance> {

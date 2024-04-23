@@ -259,7 +259,8 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	 * @param token The token to be cloned in case the current instance is not valid and the token is also not valid. 
 	 * @return A new instance of an element created to carry out a new IFlow after a split IFlow
 	 */
-	public ElementInstance getSubsequentElementInstance(final boolean executable, final IFlow newFlow, final WorkToken token) {
+	public ElementInstance getSubsequentElementInstance(final boolean executable, final IFlow newFlow,
+														final WorkToken token) {
 		final WorkToken newToken;
 		if (!executable)
 			if (!token.isExecutable())
@@ -344,18 +345,21 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     	}
     	engine.notifyResourcesAcquired();
     	final long ts = elem.getTs();
-		elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow, executionWG, solution, ElementActionInfo.Type.ACQ, ts));
+		elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
+				executionWG, solution, ElementActionInfo.Type.ACQ, ts));
 		elem.debug("Resources acquired\t" + this + "\t" + reqFlow.getDescription());			
 		reqFlow.afterAcquire(this);
 		long delay = Math.round(executionWG.getDurationSample(elem) * remainingTask);
 		auxTs -= ts;
 		if (delay > 0) {
 			if (remainingTask == 1.0) {
-				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow, executionWG, null, ElementActionInfo.Type.START, ts));
+				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
+						executionWG, null, ElementActionInfo.Type.START, ts));
 				elem.debug("Start delay\t" + this + "\t" + reqFlow.getDescription());
 			}
 			else {
-				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow, executionWG, null, ElementActionInfo.Type.RESACT, ts));
+				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
+						executionWG, null, ElementActionInfo.Type.RESACT, ts));
 				elem.debug("Continues\t" + this + "\t" + reqFlow.getDescription());			
 			}
 			// The required time for finishing the activity is reduced (useful only for interruptible activities)
@@ -392,7 +396,8 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
         	if (cancellationDuration > 0) {
 				final long actualTs = elem.getTs();
 				res.setNotCanceled(false);
-				elem.getSimulation().notifyInfo(new ResourceInfo(elem.getSimulation(), res, res.getCurrentResourceType(), ResourceInfo.Type.CANCELON, actualTs));
+				elem.getSimulation().notifyInfo(new ResourceInfo(elem.getSimulation(), res,
+						res.getCurrentResourceType(), ResourceInfo.Type.CANCELON, actualTs));
 				res.generateCancelPeriodOffEvent(actualTs, cancellationDuration);
 			}
 			elem.debug("Returned " + res);
@@ -423,15 +428,18 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
    
     public void endDelay(final RequestResourcesFlow f) {
 		if (remainingTask == 0.0) {
-			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f, executionWG, null, ElementActionInfo.Type.END, elem.getTs()));
+			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f,
+					executionWG, null, ElementActionInfo.Type.END, elem.getTs()));
 			if (elem.isDebugEnabled())
 				elem.debug("Finishes\t" + this + "\t" + f.getDescription());
 			f.afterFinalize(this);
 		}
 		else {
-			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f, executionWG, null, ElementActionInfo.Type.INTACT, elem.getTs()));
+			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f,
+					executionWG, null, ElementActionInfo.Type.INTACT, elem.getTs()));
 			if (elem.isDebugEnabled())
-				elem.debug("Finishes part of \t" + this + "\t" + f.getDescription() + "\t" + remainingTask * 100 + "% Left");
+				elem.debug("Finishes part of \t" + this + "\t" + f.getDescription() + "\t" +
+						remainingTask * 100 + "% Left");
 			// Notifies the parent workthread that the activity was interrupted
 			parent.remainingTask = remainingTask;
 		}

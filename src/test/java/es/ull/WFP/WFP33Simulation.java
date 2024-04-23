@@ -7,9 +7,9 @@ import es.ull.simulation.model.flow.ParallelFlow;
 import es.ull.simulation.model.flow.SynchronizationFlow;
 
 /**
- * WFP 33. Env�o Mercanc�as
+ * WFP 33. Envío Mercancías
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP33Simulation extends WFPTestSimulation {

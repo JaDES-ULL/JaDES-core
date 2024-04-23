@@ -8,7 +8,7 @@ import es.ull.simulation.model.Simulation;
 
 /**
  * A simple IFlow to execute user actions at some point of the workflow. The user specifies the actions in the {@link #userAction(ElementInstance)} method.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class UserActionFlow extends AbstractSingleSuccessorFlow implements IActionFlow {

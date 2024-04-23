@@ -35,7 +35,7 @@ import es.ull.simulation.utils.PrioritizedTable;
  * The IFlow is potentially feasible if there is no proof that none of the workgroups are available. The IFlow is feasible if it's potentially feasible 
  * and there is at least one workgroup with enough available resources.<p>
  * An element requesting a request IFlow which is not feasible is added to a queue until new resources are available.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IResourceHandlerFlow, Prioritizable {
@@ -317,7 +317,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
 	/**
 	 * A builder for adding workgroups. By default, workgroups have the highest priority, unconditionally available and have not delay.
 	 * The priority, condition and delay can be modified by using the "with..." methods.
-	 * @author Iv�n Castilla
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	public final class WorkGroupAdder {

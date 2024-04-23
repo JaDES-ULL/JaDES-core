@@ -20,7 +20,7 @@ import es.ull.simulation.model.ResourceType;
  * 
  * The IFlow can also define resource-type-related cancellation periods. If an element releases a resource belonging to one of the resource types, this 
  * resource can't be used during a period of time after the release.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ReleaseResourcesFlow extends AbstractSingleSuccessorFlow implements IResourceHandlerFlow, IFinalizerFlow {

@@ -21,26 +21,27 @@ import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
  * The model of the hospital to be simulated.
  * 
  * The "hospital" is simply a set of operating theatres and consultation rooms. 
- * Patients arrive at the hospital to be seen by a doctor. If the doctor decides so, a surgical team operates on the patient. 
- * After the surgical intervention, the doctor assesses the result of the intervention. 
- * In case the intervention failed, the surgical team reoperates on the patient, and further reassessments are performed.
+ * Patients arrive at the hospital to be seen by a doctor. If the doctor decides so, a surgical team operates on
+ * the patient. After the surgical intervention, the doctor assesses the result of the intervention.
+ * In case the intervention failed, the surgical team reoperates on the patient, and further reassessments
+ * are performed.
  * 
  * The hospital has 6 doctors (3 of them are also surgeons), and 3 nurses. Doctors and nurses work from 8:00 to 15:00. 
  * Surgical interventions are scheduled from 11:00 to 14:00.
  * 
- * 5% of the patients that attend to an appointment require surgery, independently of the previous history of the patient.
+ * 5% of the patients that attend to an appointment require surgery, independently of the previous history
+ * of the patient.
  * 
  * Surgical teams require 2 surgeons and 1 nurse. In some cases, only 1 surgeon and 1 nurse may carry out the surgical 
  * intervention, but only by incrementing its duration.
  *  
- * @author Iván Castilla Rodr�guez
+ * @author Iván Castilla Rodríguez
  *
  */
 public class BasicHospitalModel extends Simulation {
 
 	/**
 	 * @param id
-	 * @param description
 	 * @param unit
 	 * @param startTs
 	 * @param endTs
@@ -99,7 +100,8 @@ public class BasicHospitalModel extends Simulation {
 		WorkGroup wgSurgery2 = new WorkGroup(this, new ResourceType[] {rtSurgeon, rtNurse}, new int[] {1, 1});
 		
 		// Assign duration and workgroups to activities
-		actAppointment.newWorkGroupAdder(wgAppointment).withDelay(TimeFunctionFactory.getInstance("UniformVariate", 7, 10)).add();
+		actAppointment.newWorkGroupAdder(wgAppointment).withDelay(TimeFunctionFactory.getInstance(
+				"UniformVariate", 7, 10)).add();
 		actSurgery.newWorkGroupAdder(wgSurgery1).withDelay(40L).add();
 		actSurgery.newWorkGroupAdder(wgSurgery2).withDelay(60L).add();
 		

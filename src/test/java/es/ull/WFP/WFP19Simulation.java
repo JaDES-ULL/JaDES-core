@@ -8,16 +8,17 @@ import es.ull.simulation.model.flow.ActivityFlow;
 /**
  * WFP 19. Cancel Task: Credit card
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP19Simulation extends WFPTestSimulation {
 	private boolean pass;
 
 	/**
-	 * @param type
-	 * @param id
-	 * @param detailed
+	 * Constructs a new WFP19Simulation object.
+	 * WFP19Simulation represents a simulation specific to the WFP 19 scenario: Cancel Task - Credit Card.
+	 *
+	 * @param id  The identifier for this simulation.
 	 */
 	public WFP19Simulation(int id) {
 		super(id, "WFP19: Cancel Task. EjTarjetaCredito");

@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Iván Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 package es.ull.simulation.examples.hospital;

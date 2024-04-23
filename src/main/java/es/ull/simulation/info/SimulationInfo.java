@@ -6,7 +6,7 @@ import es.ull.simulation.model.Simulation;
 public abstract class SimulationInfo {
 	/**
 	 * A common interface for all the Type enums that appear in each {@link SimulationInfo} class 
-	 * @author Iv�n Castilla
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	public interface IInfoType extends IDescribable {	}

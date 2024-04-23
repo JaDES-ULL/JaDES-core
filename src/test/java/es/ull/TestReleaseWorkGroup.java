@@ -16,7 +16,7 @@ import es.ull.simulation.model.flow.ReleaseResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestReleaseWorkGroup extends Experiment {
@@ -42,14 +42,20 @@ public class TestReleaseWorkGroup extends Experiment {
 			rtLocationA.addGenericResources(1);
 			
 			// Define the workgroups
-			final WorkGroup wgLocationA = new WorkGroup(this, new ResourceType[] {rtLocationA, rtOperatorA, rtMachine}, new int[] {1,2,2});
-			final WorkGroup wgRelLocationA1 = new WorkGroup(this, new ResourceType[] {rtLocationA, rtMachine}, new int[] {1,1});
-			final WorkGroup wgRelLocationA2 = new WorkGroup(this, new ResourceType[] {rtMachine, rtOperatorA}, new int[] {1,2});
+			final WorkGroup wgLocationA = new WorkGroup(this, new ResourceType[] {rtLocationA,
+					rtOperatorA, rtMachine}, new int[] {1,2,2});
+			final WorkGroup wgRelLocationA1 = new WorkGroup(this, new ResourceType[] {rtLocationA,
+					rtMachine}, new int[] {1,1});
+			final WorkGroup wgRelLocationA2 = new WorkGroup(this, new ResourceType[] {rtMachine,
+					rtOperatorA}, new int[] {1,2});
 
 			// Create basic steps of the IFlow
-			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A", 0);
-			final ReleaseResourcesFlow relLocationA1 = new ReleaseResourcesFlow(this, "Release location A 1", 0, wgRelLocationA1);
-			final ReleaseResourcesFlow relLocationA2 = new ReleaseResourcesFlow(this, "Release location A 2", 0, wgRelLocationA2);
+			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this,
+					"Request location A", 0);
+			final ReleaseResourcesFlow relLocationA1 = new ReleaseResourcesFlow(this,
+					"Release location A 1", 0, wgRelLocationA1);
+			final ReleaseResourcesFlow relLocationA2 = new ReleaseResourcesFlow(this,
+					"Release location A 2", 0, wgRelLocationA2);
 			
 			// Assign duration and workgroups to activities
 			reqLocationA.newWorkGroupAdder(wgLocationA).add();

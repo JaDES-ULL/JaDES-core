@@ -75,7 +75,8 @@ public class BenchmarkTest {
 			
 			@Override
 			public Simulation getSimulation(int ind) {
-				BenchmarkModel config = new BenchmarkModel(ind, simType, modType, ovType, nThreads, nIter, nElem, nAct, mixFactor, workLoad);
+				BenchmarkModel config = new BenchmarkModel(ind, simType, modType, ovType, nThreads, nIter, nElem,
+						nAct, mixFactor, workLoad);
 				config.setRtXact(rtXact);
 				config.setRtXres(rtXres);
 				System.out.println(config);

@@ -9,9 +9,9 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ForLoopFlow;
 
 /**
- * WFP 21. Example 2: Revelado fotogr�fico (implemented with a for structure)
+ * WFP 21. Example 2: Revelado fotográfico (implemented with a for structure)
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP21Simulation_For extends WFPTestSimulation {

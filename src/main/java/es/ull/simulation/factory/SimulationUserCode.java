@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 /**
  * A structure to store user code to be used as the body of the user methods defined in the simulator.
- * @author Yeray Callero and Iv�n Castilla
+ * @author Yeray Callero and Iván Castilla Rodríguez
  *
  */
 public class SimulationUserCode {

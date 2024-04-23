@@ -9,7 +9,7 @@ import es.ull.simulation.model.flow.SimpleMergeFlow;
 /**
  * WFP 5. Example 1: Excavaciones
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP05Simulation extends WFPTestSimulation {

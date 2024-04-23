@@ -9,7 +9,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
 /**
  * WFP 28. Comprobacion credenciales
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP28Simulation extends WFPTestSimulation {

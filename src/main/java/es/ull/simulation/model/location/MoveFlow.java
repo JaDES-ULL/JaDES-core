@@ -16,7 +16,7 @@ import es.ull.simulation.model.flow.ITaskFlow;
  * A workflow step that allows {@link Element elements} to move from one {@link Location} to another.
  * The route IFlow uses a {@link IRouter} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element from one location to another until reaching the destination.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class MoveFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {

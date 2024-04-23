@@ -22,7 +22,7 @@ import es.ull.simulation.model.engine.IResourceEngine;
  * by means of timetable entries, which define a resource type and an availability cycle.
  * A resource finishes its execution when it has no longer valid timetable entries.
  * TODO Comment
- * @author Carlos Mart�n Gal�n
+ * @author Carlos Martín Galán
  */
 public class ResourceEngine extends AbstractEngineObject implements IResourceEngine {
     /** List of currently active roles and the timestamp which marks the end of their availability time */
@@ -44,11 +44,15 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
     /** The associated {@link Resource} */
     private final Resource modelRes;
 
-    /**
-     * Creates a new IResourceEngine.
-     * @param simul ParallelSimulationEngine this resource is attached to.
-     * @param description A short text describing this resource.
-     */
+	/**
+	 * Constructs a new ResourceEngine object.
+	 * ResourceEngine represents a resource in the simulation that becomes available at a specific time and becomes
+	 * unavailable at other times. It manages the availability of roles, the validity of timetable entries, and the
+	 * elements attempting to book this resource.
+	 *
+	 * @param simul       The ParallelSimulationEngine to which this resource is attached.
+	 * @param modelRes    The associated Resource object representing this resource.
+	 */
 	public ResourceEngine(ParallelSimulationEngine simul, Resource modelRes) {
 		super(modelRes.getIdentifier(), simul, "RES");
         currentRoles = new TreeMap<ResourceType, Long>();
@@ -137,7 +141,8 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 */
 	@Override
 	public ArrayList<ActivityManager> getCurrentManagers() {
-		return new ArrayList<ActivityManager>(currentAMs.keySet());		
+
+		return new ArrayList<ActivityManager>(currentAMs.keySet());
 	}
 	
 	/**
@@ -186,7 +191,8 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	    		signalSemaphore();
 	    	}
 	    	else {
-	    		// Simply checks if the resource is available and has not been used in another RT of the same activity yet.
+				//Simply checks if the resource is available and has not been used in another RT of the
+				// same activity yet.
 	    		// TODO: Check if "isAvailable" is required in this condition
 	            if (isAvailable(rt) && (modelRes.getCurrentResourceType() == null)) {
 	    	        // This resource belongs to the solution...
@@ -198,10 +204,14 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Removes this resource from a solution it was tentatively added to. 
-	 * @param wi Work item which won't use this resource to carry out an activity.
+	 * Removes this resource from a solution it was tentatively added to.
+	 * This method removes the resource from a solution it was tentatively added to by a work item.
+	 * If the resource is currently allocated to multiple activity managers, it waits for a semaphore before proceeding.
+	 *
+	 * @param solution The solution (ArrayDeque) from which to remove this resource.
+	 * @param ei       The ElementInstance representing the work item that won't use this resource.
 	 */
 	public void removeFromSolution(ArrayDeque<Resource> solution, ElementInstance ei) {
     	if (inSeveralManagers()) {
@@ -228,7 +238,7 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	/**
 	 * Checks if this resource, which was tentatively added to a solution, is still valid, i.e. has 
 	 * not been used to carry out another activity.
-	 * @param wi Work item trying to catch this resource
+	 * @param ei Work item trying to catch this resource
 	 * @return <code>True</code> if this resource is still valid for a solution; <code>false</code> otherwise.
 	 */
 	protected boolean checkSolution(ElementInstanceEngine ei) {
@@ -249,7 +259,7 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	/**
 	 * Makes a reservation on this resource. This step is required when a resource is being used from several activity
 	 * managers.
-	 * @param wi The work item booking this resource
+	 * @param ei The work item booking this resource
 	 * @param rt The resource type to be assigned to this resource.
 	 */
 	protected void addBook(ElementInstanceEngine ei, ResourceType rt) {
@@ -263,7 +273,7 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	/**
 	 * Releases a reservation previously made on this resource. This step is required when a resource is being used 
 	 * from several activity managers.
-	 * @param wi The work item releasing the book over this resource.
+	 * @param ei The work item releasing the book over this resource.
 	 */
 	protected void removeBook(ElementInstanceEngine ei) {
 		bookList.remove(ei); 

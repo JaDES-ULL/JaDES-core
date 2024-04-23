@@ -1,6 +1,6 @@
 package es.ull.WFP;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
@@ -9,9 +9,9 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.DoWhileFlow;
 
 /**
- * WFP 21. Example 2: Revelado fotogr�fico (implemented with a do-while structure)
+ * WFP 21. Example 2: Revelado fotográfico (implemented with a do-while structure)
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP21Simulation_DoWhile extends WFPTestSimulation {
@@ -25,7 +25,7 @@ public class WFP21Simulation_DoWhile extends WFPTestSimulation {
 		super(id, "WFP21: Structured Loop (DoWhile). EjReveladoFotografico");
 	}
 
-	class WFP21Condition extends Condition<ElementInstance> {
+	class WFP21Condition extends AbstractCondition<ElementInstance> {
 		
 		public WFP21Condition() {
 			super();
@@ -49,13 +49,15 @@ public class WFP21Simulation_DoWhile extends WFPTestSimulation {
         getDefResource("Maquina 1", rt0);        
         getDefResource("Maquina 2", rt0);
         
-        final Condition<ElementInstance> cond = new WFP21Condition();
+        final AbstractCondition<ElementInstance> cond = new WFP21Condition();
         
     	ActivityFlow act0 = new TestActivityFlow("Revelar foto", 0, wg, false) {
     		@Override
     		public void afterFinalize(ElementInstance fe) {
-    			fe.getElement().putVar("fotosReveladas", fe.getElement().getVar("fotosReveladas").getValue(fe).intValue() + 1);
-//    			System.out.println(fe.getElement() + ": " + fe.getElement().getVar("fotosReveladas").getValue(fe) + " fotos reveladas.");
+    			fe.getElement().putVar("fotosReveladas", fe.getElement().getVar(
+						"fotosReveladas").getValue(fe).intValue() + 1);
+//    			System.out.println(fe.getElement() + ": " + fe.getElement().getVar("fotosReveladas").getValue(fe) +
+//    			" fotos reveladas.");
     		}
     	};
 

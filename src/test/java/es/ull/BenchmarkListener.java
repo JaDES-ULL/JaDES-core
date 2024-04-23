@@ -96,8 +96,10 @@ public class BenchmarkListener extends Listener {
 			}
 			else if (SimulationStartStopInfo.Type.END.equals(tInfo.getType())) {
 				cpuTime = (tInfo.getCpuTime() - cpuTime) / 1000000;
-				out.println("T:\t" + cpuTime + " ms\tElem Events:\t" + elemEvents + "\tRes Events:\t" + resEvents + "\nMax. concurrent Events:\t" + maxConcurrentEvents);
-				out.println("STA:\t" + startEv + "\tEND:\t" + endEv + "\tREQ:\t" + reqActEv + "\tSAC\t" + startActEv + "\tEAC\t" + endActEv);
+				out.println("T:\t" + cpuTime + " ms\tElem Events:\t" + elemEvents + "\tRes Events:\t" +
+						resEvents + "\nMax. concurrent Events:\t" + maxConcurrentEvents);
+				out.println("STA:\t" + startEv + "\tEND:\t" + endEv + "\tREQ:\t" + reqActEv + "\tSAC\t" +
+						startActEv + "\tEAC\t" + endActEv);
 			}
 		}
 	}

@@ -35,7 +35,8 @@ class BarrelShippingExperiment extends Experiment {
 	
 	@Override
 	public Simulation getSimulation(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "Barrel shipping", TimeUnit.MINUTE, 0, NDAYS * 24 * 60);
+		SimulationFactory factory = new SimulationFactory(
+				ind, "Barrel shipping", TimeUnit.MINUTE, 0, NDAYS * 24 * 60);
 		Simulation simul = factory.getSimulation();
 		
 		// Declares global model variables
@@ -47,7 +48,8 @@ class BarrelShippingExperiment extends Experiment {
 		ResourceType rtOperator = factory.getResourceTypeInstance("rtOperator");
     	
 		// Defines the resource timetables: Operators work only the weekdays, starting at 8 am 
-		SimulationWeeklyPeriodicCycle resCycle = new SimulationWeeklyPeriodicCycle(simul.getTimeUnit(), WeeklyPeriodicCycle.WEEKDAYS, 480, 0);
+		SimulationWeeklyPeriodicCycle resCycle = new SimulationWeeklyPeriodicCycle(
+				simul.getTimeUnit(), WeeklyPeriodicCycle.WEEKDAYS, 480, 0);
 
 		// Declares two operators who work 8 hours a day
 		Resource operator1 = factory.getResourceInstance("Operator1");
@@ -68,14 +70,16 @@ class BarrelShippingExperiment extends Experiment {
 				"}");
 			
 		// Declares activities (Tasks)
-		ActivityFlow actFilling = (ActivityFlow)factory.getFlowInstance("ActivityFlow", userMethods, "Barrel Filling", 0, false, false);
+		ActivityFlow actFilling = (ActivityFlow)factory.getFlowInstance(
+				"ActivityFlow", userMethods, "Barrel Filling", 0, false, false);
 		// Defines the way the variables are updated when shipping the barrels
 		userMethods.clear();
 		userMethods.add(UserMethod.BEFORE_REQUEST, "<%SET(S.totalLiters, 0)%>;" +
 					"<%SET(S.shipments, <%GET(S.shipments)%> + 1)%>;" +
 					"return true;");
 
-		ActivityFlow actShipping = (ActivityFlow)factory.getFlowInstance("ActivityFlow", userMethods, "Barrel Shipping", 0, false, false);
+		ActivityFlow actShipping = (ActivityFlow)factory.getFlowInstance(
+				"ActivityFlow", userMethods, "Barrel Shipping", 0, false, false);
 
 		// Declares variables for the Barrel Filling activity
 		simul.putVar("barrelCapacity", 100);
@@ -85,7 +89,8 @@ class BarrelShippingExperiment extends Experiment {
 		actShipping.newWorkGroupAdder(wgOperator).withDelay(20).add();
 
 		// Defines loop conditions	
-		AbstractCondition<ElementInstance> cond = factory.getCustomizedConditionInstance("", "<%GET(S.totalLiters)%> < <%GET(S.barrelCapacity)%>");
+		AbstractCondition<ElementInstance> cond = factory.getCustomizedConditionInstance(
+				"", "<%GET(S.totalLiters)%> < <%GET(S.barrelCapacity)%>");
 		NotCondition<ElementInstance> notCond = new NotCondition<ElementInstance>(cond);
 
 		// Declares a MultiChoice node	
@@ -103,8 +108,10 @@ class BarrelShippingExperiment extends Experiment {
 		mul1.link(succList, condList);
 
 		// Defines the way the processes are created
-		SimulationWeeklyPeriodicCycle cGen = new SimulationWeeklyPeriodicCycle(simul.getTimeUnit(), WeeklyPeriodicCycle.WEEKDAYS, 0, NDAYS);
-		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", 1.0), etShipping, actFilling, cGen);
+		SimulationWeeklyPeriodicCycle cGen = new SimulationWeeklyPeriodicCycle(
+				simul.getTimeUnit(), WeeklyPeriodicCycle.WEEKDAYS, 0, NDAYS);
+		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
+				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
 		simul.addInfoReceiver(new StdInfoView());
 		if (NTHREADS > 1)

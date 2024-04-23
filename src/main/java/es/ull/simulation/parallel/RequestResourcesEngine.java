@@ -13,7 +13,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import es.ull.simulation.model.engine.IRequestResourcesEngine;
 
 /**
- * A task which could be carried out by a {@link WorkItem} and requires certain amount and 
+ * A task which could be carried out by a WorkItem and requires certain amount and
  * type of {@link Resource resources} to be performed.  An activity is characterized by its 
  * priority and a set of {@link WorkGroup Workgroups} (WGs). Each WG represents a combination 
  * of {@link ResourceType resource types} required to carry out the activity.<p>
@@ -24,7 +24,7 @@ import es.ull.simulation.model.engine.IRequestResourcesEngine;
  * order according to some priorities, and can also have an associated condition which must be 
  * accomplished to be selected.<p>
  * An activity can be requested (that is, check if the activity is feasible) by a valid 
- * {@link WorkItem}. 
+ * WorkItem.
  * If the activity is not feasible, the work item is added to a queue until new resources are 
  * available. If the activity is feasible, the work item "carries out" the activity, that is, 
  * catches the resources needed to perform the activity. Whenever it is determined that the 
@@ -32,7 +32,7 @@ import es.ull.simulation.model.engine.IRequestResourcesEngine;
  * An activity can also define cancellation periods for each one of the resource types it uses. 
  * If a work item takes a resource belonging to one of the cancellation periods of the activity, this
  * resource can't be used during a period of time after the activity finishes.
- * @author Carlos Mart�n Gal�n
+ * @author Carlos Martín Galán
  */
 public class RequestResourcesEngine extends AbstractEngineObject implements IRequestResourcesEngine {
     /** Total amount of {@link ElementInstance} waiting for carrying out this activity */
@@ -41,10 +41,14 @@ public class RequestResourcesEngine extends AbstractEngineObject implements IReq
     final protected RequestResourcesFlow modelReq;
 
 	/**
-     * Creates a new activity with the highest priority.
-     * @param simul The {@link ParallelSimulationEngine} where this activity is used
-     * @param description A short text describing this activity
-     */
+	 * Constructs a new RequestResourcesEngine object.
+	 * RequestResourcesEngine represents an activity that can be carried out by a WorkItem and requires a certain
+	 * amount and type of resources to be performed. It manages the queue of ElementInstances waiting to carry out
+	 * this activity and is associated with a specific RequestResourcesFlow.
+	 *
+	 * @param simul        The ParallelSimulationEngine where this activity is used.
+	 * @param modelReq     The associated RequestResourcesFlow object representing this activity.
+	 */
     public RequestResourcesEngine(ParallelSimulationEngine simul, RequestResourcesFlow modelReq) {
     	super(modelReq.getIdentifier(), simul,"REQ");
         this.modelReq = modelReq;

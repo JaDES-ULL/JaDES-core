@@ -103,13 +103,16 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 	@Override
 	public void setLocation(final Location location) {
 		if (currentLocation == null) {
-			simul.notifyInfo(new EntityLocationInfo(simul, this, location, EntityLocationInfo.Type.START, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, location,
+					EntityLocationInfo.Type.START, getTs()));
 			currentLocation = location;
 		}
 		else {
-			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation, EntityLocationInfo.Type.LEAVE, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation,
+					EntityLocationInfo.Type.LEAVE, getTs()));
 			currentLocation = location;
-			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation, EntityLocationInfo.Type.ARRIVE, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation,
+					EntityLocationInfo.Type.ARRIVE, getTs()));
 		}
 	}
 
@@ -136,7 +139,9 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 				initLocation.enter(this);
 			}
 			else {
-				error("Unable to initialize resource. Not enough space in location " + initLocation + " (available: " + initLocation.getAvailableCapacity() + " - required: " + size + ")");				
+				error("Unable to initialize resource. Not enough space in location " +
+						initLocation + " (available: " + initLocation.getAvailableCapacity() +
+						" - required: " + size + ")");
 				return onDestroy(ts);
 			}
 		}
@@ -156,7 +161,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     }
     
     /**
-     * Returns the {@link ResourceType resource type} currently assigned to this resource, in case it is in use. Returns null otherwise.
+     * Returns the {@link ResourceType resource type} currently assigned to this resource, in case it is in use.
+	 * Returns null otherwise.
      * @return Value of property currentResourceType.
      */
     public ResourceType getCurrentResourceType() {
@@ -164,7 +170,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     }
 
     /**
-     * Assigns a {@link ResourceType resource type} for this resource, whenever it is going to be used by an {@link Element}.
+     * Assigns a {@link ResourceType resource type} for this resource,
+	 * whenever it is going to be used by an {@link Element}.
      * @param rt Value of property currentResourceType.
      */
     public void setCurrentResourceType(final ResourceType rt) {
@@ -198,7 +205,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     }
     
 	/**
-	 * Checks if a resource is available for a specific {@link ResourceType resource type}. The resource type is used to prevent 
+	 * Checks if a resource is available for a specific {@link ResourceType resource type}.
+	 * The resource type is used to prevent
 	 * using a resource when it's becoming unavailable right at this timestamp. 
 	 * @param rt Resource type
 	 * @return True if the resource is available.
@@ -247,7 +255,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     /**
      * Releases this resource
 	 * @param ei The element instance in charge of executing the current IFlow
-     * @return True if the resource could be correctly released. False if the availability time of the resource had already expired.
+     * @return True if the resource could be correctly released. False if the availability time of the resource
+	 * had already expired.
      */
     protected boolean releaseResource(final ElementInstance ei) {
     	return engine.releaseResource(ei);
@@ -270,13 +279,14 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     	final CancelPeriodOffEvent aEvent = new CancelPeriodOffEvent(ts + duration, null, 0);
         simul.addEvent(aEvent);
     }
-    
-    /**
-     * Creates a move event to move to destination using the specified IRouter.
-     * @param ei Element instance that initiates the move
-     * @param destination Destination location
-     * @param IRouter Instance that returns the path for the element
-     */
+
+	/**
+	 * Initiates the movement of the specified element instance.
+	 * This method begins the process of moving an element instance to its destination. It determines the next location
+	 * on the route using the provided router, creates a MoveEvent accordingly, and schedules it in the simulation.
+	 *
+	 * @param ei The ElementInstance to be moved.
+	 */
     public void startMove(final ElementInstance ei) {
     	final MoveResourcesFlow flow = (MoveResourcesFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
@@ -297,13 +307,15 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 			}
     	}
     }
-    
-    /**
-     * Creates a transport event to move to destination using the specified IRouter.
-     * @param ei Element instance that initiates the move
-     * @param destination Destination location
-     * @param IRouter Instance that returns the path for the element
-     */
+
+	/**
+	 * Initiates a transport event to move to a destination using the specified router.
+	 *
+	 * This method begins the process of transporting an element instance to its destination. It determines the next location
+	 * on the route using the provided router, creates a TransportEvent accordingly, and schedules it in the simulation.
+	 *
+	 * @param ei           The ElementInstance initiating the move.
+	 */
     public void startTransport(final ElementInstance ei) {
     	final TransportFlow flow = (TransportFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
@@ -325,26 +337,34 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 			}
     	}
     }
-    
-    /**
-     * Notifies the IFlow that the move has finished
-     * @param ei IFlow driving the movement
-     * @param success True if the resource arrived at destination; false if the destination was unreachable
-     */
+
+	/**
+	 * Notifies the MoveResourcesFlow that the movement has finished.
+	 * This method notifies the specified MoveResourcesFlow about the completion of the movement, indicating whether
+	 * the resource successfully arrived at its destination or if the destination was unreachable.
+	 *
+	 * @param flow     The MoveResourcesFlow driving the movement.
+	 * @param success  A boolean value indicating whether the resource arrived at its destination (true) or if the
+	 *                 destination was unreachable (false).
+	 */
     private void endMove(final MoveResourcesFlow flow, final boolean success) {
 		flow.notifyArrival(movingInstance, success);
     	movingInstance = null;
     	if (success)
 			debug("Finishes route\t" + this + "\t" + flow.getDestination());
     	else
-			error("Destination unreachable. Current: " + currentLocation + "; destination: " + flow.getDestination());
+			error("Destination unreachable. Current: " + currentLocation + "; destination: " +
+					flow.getDestination());
     }
 
-    /**
-     * Notifies the IFlow that the transport has finished
-     * @param ei IFlow driving the movement
-     * @param success True if the resource arrived at destination; false if the destination was unreachable
-     */
+	/**
+	 * Notifies the TransportFlow that the transport has finished.
+	 * This method notifies the specified TransportFlow about the completion of the transport, indicating whether
+	 * the resource successfully arrived at its destination or if the destination was unreachable.
+	 *
+	 * @param flow     The TransportFlow driving the transport.
+	 * @param success  A boolean value indicating whether the resource arrived at its destination (true) or if the destination was unreachable (false).
+	 */
     private void endTransport(final TransportFlow flow, final boolean success) {
     	if (success) {
 			flow.finish(movingInstance);
@@ -355,7 +375,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 			movingInstance.cancel(flow);
 			flow.next(movingInstance);
 	    	movingInstance = null;
-    		error("Destination unreachable. Current: " + currentLocation + "; destination: " + flow.getDestination());
+    		error("Destination unreachable. Current: " + currentLocation + "; destination: " +
+					flow.getDestination());
     	}
     }
 
@@ -424,11 +445,12 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 	}
 	
 	/**
-	 * A builder class to build time table or cancellation entries. With one builder you can create several entries with the same cycle and duration for
-	 * one or more resource types. If you don't use the {@link #withDuration(ISimulationCycle, TimeStamp)} method, the entries are assumed to last for
-	 * the whole duration of the simulation. You can also use the same builder for time table or cancellation entries, by invoking, respectively, 
-	 * {@link #addTimeTableEntry()} or {@link #addCancelEntry()}
-	 * @author Iv�n Castilla
+	 * A builder class to build time table or cancellation entries. With one builder you can create several entries
+	 * with the same cycle and duration forone or more resource types. If you don't use the
+	 * {@link #withDuration(ISimulationCycle, TimeStamp)} method, the entries are assumed to last for the whole
+	 * duration of the simulation. You can also use the same builder for time table or cancellation entries,
+	 * by invoking, respectively, {@link #addTimeTableEntry()} or {@link #addCancelEntry()}
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	public final class TimeTableOrCancelEntriesAdder {
@@ -518,16 +540,19 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 			for (int i = 0 ; i < timeTable.size(); i++) {
 				TimeTableEntry tte = timeTable.get(i);
 				if (tte.isPermanent()) {
-		            final RoleOnEvent rEvent = new RoleOnEvent(getTs(), tte.getRole(), null, Long.MAX_VALUE - getTs());
+		            final RoleOnEvent rEvent = new RoleOnEvent(getTs(), tte.getRole(), null,
+							Long.MAX_VALUE - getTs());
 		            simul.addEvent(rEvent);
 		            engine.incValidTimeTableEntries();
 				}
 				else {
-					// FIXME: Check whether it works when using a condition to end simulation: should I use simul.getEndTs() instead of Long.MAX_VALUE?
+					/* FIXME: Check whether it works when using a condition to end simulation:
+					should I use simul.getEndTs() instead of Long.MAX_VALUE?*/
 			        DiscreteCycleIterator iter = tte.getCycle().getCycle().iterator(getTs(), Long.MAX_VALUE);
 			        final long nextTs = iter.next();
 			        if (nextTs != -1) {
-			            RoleOnEvent rEvent = new RoleOnEvent(nextTs, tte.getRole(), iter, simul.simulationTime2Long(tte.getDuration()));
+			            RoleOnEvent rEvent = new RoleOnEvent(nextTs, tte.getRole(), iter,
+								simul.simulationTime2Long(tte.getDuration()));
 			            simul.addEvent(rEvent);
 			            engine.incValidTimeTableEntries();
 			        }
@@ -535,11 +560,13 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 			}
 			for (int i = 0 ; i < cancelPeriodTable.size(); i++) {
 				final TimeTableEntry tte = cancelPeriodTable.get(i);
-				// FIXME: Check whether it works when using a condition to end simulation: should I use simul.getEndTs() instead of Long.MAX_VALUE?
+				/* FIXME: Check whether it works when using a condition to end simulation:
+				 should I use simul.getEndTs() instead of Long.MAX_VALUE?*/
 		        final DiscreteCycleIterator iter = tte.getCycle().getCycle().iterator(getTs(), Long.MAX_VALUE);
 		        long nextTs = iter.next();
 		        if (nextTs != -1) {
-		            final CancelPeriodOnEvent aEvent = new CancelPeriodOnEvent(nextTs, iter, simul.simulationTime2Long(tte.getDuration()));
+		            final CancelPeriodOnEvent aEvent = new CancelPeriodOnEvent(nextTs, iter,
+							simul.simulationTime2Long(tte.getDuration()));
 		            simul.addEvent(aEvent);
 		            engine.incValidTimeTableEntries();
 		        }
@@ -568,7 +595,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
          * @param iter The cycle iterator that handles the availability of this resource
          * @param duration The duration of the availability.
          */        
-        public RoleOnEvent(final long ts, final ResourceType role, final DiscreteCycleIterator iter, final long duration) {
+        public RoleOnEvent(final long ts, final ResourceType role, final DiscreteCycleIterator iter,
+						   final long duration) {
             super(ts);
             this.iter = iter;
             this.role = role;
@@ -619,7 +647,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
          * @param iter The cycle iterator that handles the availability of this resource
          * @param duration The duration of the availability.
          */        
-        public RoleOffEvent(final long ts, final ResourceType role, final DiscreteCycleIterator iter, final long duration) {
+        public RoleOffEvent(final long ts, final ResourceType role, final DiscreteCycleIterator iter,
+							final long duration) {
             super(ts);
             this.role = role;
             this.iter = iter;
@@ -683,7 +712,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 
 		@Override
 		public void event() {
-			simul.notifyInfo(new ResourceInfo(simul, Resource.this, getCurrentResourceType(), ResourceInfo.Type.CANCELON, ts));
+			simul.notifyInfo(new ResourceInfo(simul, Resource.this, getCurrentResourceType(),
+					ResourceInfo.Type.CANCELON, ts));
 			engine.setNotCanceled(false);
 			CancelPeriodOffEvent aEvent = new CancelPeriodOffEvent(ts + duration, iter, duration);
 			simul.addEvent(aEvent);
@@ -716,7 +746,8 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 
 		@Override
 		public void event() {
-			simul.notifyInfo(new ResourceInfo(simul, Resource.this, getCurrentResourceType(), ResourceInfo.Type.CANCELOFF, ts));
+			simul.notifyInfo(new ResourceInfo(simul, Resource.this, getCurrentResourceType(),
+					ResourceInfo.Type.CANCELOFF, ts));
 			engine.setNotCanceled(true);
 			engine.notifyCurrentManagers();
 			long nextTs = -1;
@@ -753,11 +784,16 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 		}
 
 		/**
-		 * Creates a move event that makes an intermediate step in the way to destination
-		 * @param ts Timestamp when the resource will arrive at the intermediate location
-		 * @param nextLocation Intermediate location 
-		 * @param destination Final destination
-		 * @param IRouter Instance that returns the path for the resource
+		 * Constructs a MoveEvent representing an intermediate step towards a destination.
+		 * This constructor creates a MoveEvent object that signifies an intermediate step in the journey towards
+		 * a final destination. It specifies the timestamp when the resource will arrive at the intermediate location,
+		 * the intermediate location itself, the final destination, and the router responsible for determining the
+		 * path for the resource.
+		 *
+		 * @param ts            The timestamp when the resource will arrive at the intermediate location.
+		 * @param nextLocation  The intermediate location.
+		 * @param destination   The final destination.
+		 * @param router        The IRouter instance responsible for determining the path for the resource.
 		 */
 		public MoveEvent(final long ts, final Location nextLocation, final Location destination, final IRouter router) {
 			super(ts);
@@ -818,13 +854,20 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 		}
 
 		/**
-		 * Creates a transport event that makes an intermediate step in the way to destination
-		 * @param ts Timestamp when the resource will arrive at the intermediate location
-		 * @param nextLocation Intermediate location 
-		 * @param destination Final destination
-		 * @param IRouter Instance that returns the path for the resource
+		 * Constructs a TransportEvent representing an intermediate step towards a destination.
+		 *
+		 * This constructor creates a TransportEvent object that signifies an intermediate step in the journey towards
+		 * a final destination. It specifies the timestamp when the resource will arrive at the intermediate location,
+		 * the intermediate location itself, the final destination, and the router responsible for determining
+		 * the path for the resource.
+		 *
+		 * @param ts            The timestamp when the resource will arrive at the intermediate location.
+		 * @param nextLocation  The intermediate location.
+		 * @param destination   The final destination.
+		 * @param router        The IRouter instance responsible for determining the path for the resource.
 		 */
-		public TransportEvent(final long ts, final Location nextLocation, final Location destination, final IRouter router) {
+		public TransportEvent(final long ts, final Location nextLocation, final Location destination,
+							  final IRouter router) {
 			super(ts);
 			this.destination = destination;
 			this.nextLocation = nextLocation;

@@ -29,10 +29,16 @@ final class ConflictZone implements Comparable<ConflictZone> {
 	private final Semaphore semBook = new Semaphore(1);
 	/** If this CZ is absorbed by another one, the "absorbing" CZ */
 	private ConflictZone substitute = null;
-	
+
 	/**
-	 * Creates a new conflict zone containing only one object.
-	 * @param fe The current IFlow executor using this conflict zone
+	 * Constructs a new ConflictZone object with a single element.
+	 * A conflict zone serves as a MUTEX region for elements that have booked the same resource.
+	 * It stores a list of elements and builds a stack of semaphores to control access to the MUTEX region.
+	 * The access to the zone is controlled by a semaphore.
+	 * Conflict zones can be merged, where one absorbs the other.
+	 * Once absorption occurs, the absorbed conflict zone is nullified and substituted by the absorbing one.
+	 *
+	 * @param ei The ElementInstanceEngine representing the element associated with this conflict zone.
 	 */
 	protected ConflictZone(ElementInstanceEngine ei) {
 		list = new TreeSet<ElementInstanceEngine>();
@@ -134,7 +140,7 @@ final class ConflictZone implements Comparable<ConflictZone> {
 	/**
 	 * Removes an item from this conflict zone, thus indicating that this item is
 	 * no longer in conflict. 
-	 * @param fe Work item to be removed
+	 * @param ei Work item to be removed
 	 * @return True if the item existed in the list; false in other case.
 	 */
 	protected boolean remove(ElementInstanceEngine ei) {

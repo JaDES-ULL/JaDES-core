@@ -10,7 +10,7 @@ import es.ull.simulation.model.Simulation;
 
 /**
  * A IFlow that makes an element be delayed for a certain time
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class DelayFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {

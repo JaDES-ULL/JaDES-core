@@ -42,16 +42,14 @@ public class SequentialSimulationEngine extends SimulationEngine {
 
 	/** A timestamp-ordered list of events whose timestamp is in the future. */
 	protected final PriorityQueue<DiscreteEvent> waitQueue = new PriorityQueue<DiscreteEvent>();
-	
+
 	/**
-	 * Creates a new instance of Simulation
+	 * Constructs a new SequentialSimulationEngine object.
+	 * SequentialSimulationEngine represents the main class for a sequential simulation.
+	 * It requires a model to create various structures such as activity managers and logical processes.
 	 *
-	 * @param id
-	 *            This simulation's identifier
-	 * @param startTs
-	 *            Simulation's start timestamp expresed in Simulation Time Units
-	 * @param endTs
-	 *            Simulation's end timestamp expresed in Simulation Time Units
+	 * @param id      The identifier of this simulation.
+	 * @param simul   The Simulation object representing the model associated with this simulation engine.
 	 */
 	public SequentialSimulationEngine(int id, Simulation simul) {
 		super(id, simul);
@@ -169,6 +167,7 @@ public class SequentialSimulationEngine extends SimulationEngine {
 
 	@Override
 	public ResourceEngine getResourceEngineInstance(Resource modelRes) {
+
 		return new ResourceEngine(this, modelRes);
 	}
 
@@ -179,6 +178,7 @@ public class SequentialSimulationEngine extends SimulationEngine {
 
 	@Override
 	public ElementEngine getElementEngineInstance(Element modelElem) {
+
 		return new ElementEngine(this, modelElem);
 	}
     

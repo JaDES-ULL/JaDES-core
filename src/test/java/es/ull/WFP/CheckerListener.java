@@ -7,7 +7,7 @@ import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public abstract class CheckerListener extends Listener {

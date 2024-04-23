@@ -41,7 +41,8 @@ public class EntityLocationInfo extends AsynchronousInfo {
 	 * @param model
 	 * @param ts
 	 */
-	public EntityLocationInfo(final Simulation model, final IMovable entity, final Location location, final Type type, final long ts) {
+	public EntityLocationInfo(final Simulation model, final IMovable entity,
+							  final Location location, final Type type, final long ts) {
 		super(model, ts);
 		this.entity = entity;
 		this.location = location;
@@ -74,6 +75,7 @@ public class EntityLocationInfo extends AsynchronousInfo {
 	}
 
 	public String toString() {
-		return "" + simul.long2SimulationTime(getTs()) + "\t" + entity.toString() + "\t" + type.getDescription() + "\t" + location; 
+		return "" + simul.long2SimulationTime(getTs()) + "\t" + entity.toString() +
+				"\t" + type.getDescription() + "\t" + location;
 	}
 }

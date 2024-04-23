@@ -8,7 +8,8 @@ public class VarViewValueRequestInfo extends SynchronousInfo {
 	private final Object requestObject;
 	private Object[] params;
 	
-	public VarViewValueRequestInfo(final Simulation model, final String varName, final Object requestObject, final Object[] params, final long ts) {
+	public VarViewValueRequestInfo(final Simulation model, final String varName,
+								   final Object requestObject, final Object[] params, final long ts) {
 		super(model, ts);
 		this.varName = varName;
 		this.requestObject = requestObject;
@@ -34,7 +35,8 @@ public class VarViewValueRequestInfo extends SynchronousInfo {
 	@Override
 	public String toString() {
 		String message = new String();
-		message += simul.long2SimulationTime(ts) + "\tVARVIEWVALUEREQUEST:\t" + varName + "\tREQOBJ: " + requestObject.toString() + "\t" + simul.toString() + "\n";
+		message += simul.long2SimulationTime(ts) + "\tVARVIEWVALUEREQUEST:\t" + varName +
+				"\tREQOBJ: " + requestObject.toString() + "\t" + simul.toString() + "\n";
 		for (int i = 0; i < params.length; i++)
 			message += "\tPARAM" + (i+1) + ": " + params[i].toString();
 		return message;

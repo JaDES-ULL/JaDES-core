@@ -12,7 +12,7 @@ import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.IElementInstanceEngine;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ElementInstanceEngine extends AbstractEngineObject implements IElementInstanceEngine {
@@ -30,9 +30,14 @@ public class ElementInstanceEngine extends AbstractEngineObject implements IElem
 	private final ElementInstance modelInstance;
 
 	/**
-	 * @param id
-	 * @param simul
-	 * @param objTypeId
+	 * Constructs a new ElementInstanceEngine object.
+	 * ElementInstanceEngine represents individual instances of elements within a simulation, each with its own counter
+	 * for identification.
+	 * It manages conflict zones to avoid deadlocks, maintains a stack of semaphores for nested synchronization, and is
+	 * associated with a specific ElementInstance.
+	 *
+	 * @param simul          The ParallelSimulationEngine object to which this element instance belongs.
+	 * @param modelInstance The associated ElementInstance object.
 	 */
 	public ElementInstanceEngine(ParallelSimulationEngine simul, ElementInstance modelInstance) {
 		super(counter.getAndIncrement(), simul, "EI");
@@ -103,13 +108,14 @@ public class ElementInstanceEngine extends AbstractEngineObject implements IElem
 	protected ConflictZone getConflictZone() {
 		return conflicts;
 	}
-	
+
 	/**
-	 * Merges the conflict list of this work item and other one. Since one conflict zone must
-	 * be merged into the other, the election of the work item which "receives" the merging 
-	 * operation depends on the id of the work item: the item with lower id "receives" 
-	 * the merging, and the other one "produces" the operation.
-	 * @param wi The work item whose conflict zone must be merged. 
+	 * Merges the conflict zone of this work item with another one.
+	 * Since one conflict zone must be merged into the other, the decision of which work item "receives" the merging
+	 * operation depends on their identifiers: the work item with the lower identifier "receives" the merging,
+	 * and the other one "produces" the operation.
+	 *
+	 * @param ei The ElementInstanceEngine whose conflict zone must be merged with this one.
 	 */
 	protected void mergeConflictList(ElementInstanceEngine ei) {
 		final int result = conflicts.compareTo(ei.getConflictZone());

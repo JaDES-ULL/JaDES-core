@@ -8,7 +8,8 @@ import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.model.location.Location;
 
 /**
- * A time-driven generator for {@link Element elements}. Can create different proportions of elements that appear at different locations.
+ * A time-driven generator for {@link Element elements}. Can create different proportions of elements that
+ * appear at different locations.
  * @author Ivan Castilla Rodriguez
  *
  */
@@ -30,7 +31,8 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param nElem Number of objects created each time this generator is invoked
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ISimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem,
+									  final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
 	}
 
@@ -42,7 +44,8 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param IFlow The description of the IFlow of the elements to be created.
 	 * @param cycle A function to determine when are created the elements
 	 */
-	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et, final IInitializerFlow IFlow, final ISimulationCycle cycle) {
+	public TimeDrivenElementGenerator(final Simulation model, final int nElem, final ElementType et,
+									  final IInitializerFlow IFlow, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, IFlow, 0, null, 1.0));
 	}
@@ -72,7 +75,8 @@ public class TimeDrivenElementGenerator extends TimeDrivenGenerator<StandardElem
 	 * @param cycle A function to determine when are created the elements
 	 */
 	public TimeDrivenElementGenerator(final Simulation model, final AbstractTimeFunction nElem, final ElementType et,
-									  final IInitializerFlow IFlow, final AbstractTimeFunction size, final Location initLocation, final ISimulationCycle cycle) {
+									  final IInitializerFlow IFlow, final AbstractTimeFunction size,
+									  final Location initLocation, final ISimulationCycle cycle) {
 		super(model, nElem, cycle);
 		add(new StandardElementGenerationInfo(et, IFlow, size, initLocation, 1.0));
 	}

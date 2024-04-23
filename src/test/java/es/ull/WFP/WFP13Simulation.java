@@ -11,16 +11,18 @@ import es.ull.simulation.model.flow.SynchronizedMultipleInstanceFlow;
 /**
  * WFP 13. Multiple Instances with a priori design-time knowledge
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP13Simulation extends WFPTestSimulation {
 	final static int RES = 6;
 
 	/**
-	 * @param type
-	 * @param id
-	 * @param detailed
+	 * Constructs a new WFP13Simulation object.
+	 * WFP13Simulation represents a simulation specific to the WFP 13 scenario: Multiple Instances
+	 * with a priori design-time knowledge.
+	 *
+	 * @param id  The identifier for this simulation.
 	 */
 	public WFP13Simulation(int id) {
 		super(id, "WFP13: Multiple Instances with a priori design-time knowledge");

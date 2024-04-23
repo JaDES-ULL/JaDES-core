@@ -22,10 +22,11 @@ public class CheckElementsListener extends CheckerListener {
 	private int[] elemFinished;
 
 	/**
-	 * 
-	 * @param simul The simulation to view
-	 * @param elements An array where each position is an element type, and each value is the amount of 
-	 * elements which should be created per type.
+	 * Constructs a new CheckElementsListener object.
+	 * CheckElementsListener represents a listener used to monitor elements in a simulation.
+	 *
+	 * @param elements  An ArrayList where each element represents the number of elements of a specific type
+	 *                  to be created.
 	 */
 	public CheckElementsListener(final ArrayList<Integer> elements) {
 		super("Element checker ");

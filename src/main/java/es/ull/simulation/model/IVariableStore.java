@@ -3,7 +3,7 @@ package es.ull.simulation.model;
 import es.ull.simulation.variable.IVariable;
 
 /**
- * An object capable to store {@link Variable variables}
+ * An object capable to store {@link IVariable variables}
  * @author Iván Castilla Rodríguez
  *
  */

@@ -28,7 +28,8 @@ public class SimulationWeeklyPeriodicCycle implements ISimulationCycle {
 	 * @param endTs
 	 */
 	public SimulationWeeklyPeriodicCycle(TimeUnit unit, EnumSet<WeekDays> daySet, TimeStamp startTs, TimeStamp endTs) {
-		cycle = new WeeklyPeriodicCycle(daySet, unit.convert(TimeStamp.getDay()), unit.convert(startTs), unit.convert(endTs));
+		cycle = new WeeklyPeriodicCycle(daySet, unit.convert(TimeStamp.getDay()), unit.convert(startTs),
+				unit.convert(endTs));
 	}
 
 	/**

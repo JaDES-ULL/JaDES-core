@@ -12,7 +12,7 @@ import es.ull.simulation.model.flow.ThreadSplitFlow;
 /**
  * WFP 41 - 42. 
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP41_42Simulation extends WFPTestSimulation {

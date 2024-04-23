@@ -19,7 +19,7 @@ import es.ull.simulation.model.flow.ReleaseResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestResourcesManagement extends Experiment {
@@ -60,14 +60,22 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgEmpty = new WorkGroup(this);
 			
 			// Create basic steps of the IFlow
-			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A", 0);
-			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this, "Request location B", 1);
-			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this, "Request operator A", 2);
-			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport", 3);
-			final ReleaseResourcesFlow relLocationA = new ReleaseResourcesFlow(this, "Request location A", 0);
-			final ReleaseResourcesFlow relLocationB = new ReleaseResourcesFlow(this, "Release location B", 1);
-			final ReleaseResourcesFlow relOperatorA = new ReleaseResourcesFlow(this, "Release operator A", 2);
-			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", 3);
+			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this,
+					"Request location A", 0);
+			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this,
+					"Request location B", 1);
+			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this,
+					"Request operator A", 2);
+			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this,
+					"Request transport", 3);
+			final ReleaseResourcesFlow relLocationA = new ReleaseResourcesFlow(this,
+					"Request location A", 0);
+			final ReleaseResourcesFlow relLocationB = new ReleaseResourcesFlow(this,
+					"Release location B", 1);
+			final ReleaseResourcesFlow relOperatorA = new ReleaseResourcesFlow(this,
+					"Release operator A", 2);
+			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this,
+					"Release transport", 3);
 			
 			final ActivityFlow actWorkAtLocationA = new ActivityFlow(this, "Work at location A");
 			final ActivityFlow actWorkAtLocationB = new ActivityFlow(this, "Work at location B");
@@ -83,8 +91,10 @@ public class TestResourcesManagement extends Experiment {
 			actMoveFromAToB.newWorkGroupAdder(wgEmpty).withDelay(5L).add();
 
 			// Create IFlow
-			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA).link(reqTransport).link(relLocationA);
-			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport).link(actWorkAtLocationB).link(relLocationB);
+			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA)
+					.link(reqTransport).link(relLocationA);
+			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport)
+					.link(actWorkAtLocationB).link(relLocationB);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
 			new TimeDrivenElementGenerator(this, 2, et, reqLocationA, cycle);
 		}
@@ -123,14 +133,22 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgEmpty = new WorkGroup(this);
 			
 			// Create basic steps of the IFlow
-			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this, "Request location A");
-			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this, "Request location B");
-			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this, "Request operator A");
-			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport");
-			final ReleaseResourcesFlow relLocationA = new ReleaseResourcesFlow(this, "Request location A", wgLocationA);
-			final ReleaseResourcesFlow relLocationB = new ReleaseResourcesFlow(this, "Release location B", wgLocationB);
-			final ReleaseResourcesFlow relOperatorA = new ReleaseResourcesFlow(this, "Release operator A", wgOperatorA);
-			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", wgTransport);
+			final RequestResourcesFlow reqLocationA = new RequestResourcesFlow(this,
+					"Request location A");
+			final RequestResourcesFlow reqLocationB = new RequestResourcesFlow(this,
+					"Request location B");
+			final RequestResourcesFlow reqOperatorA = new RequestResourcesFlow(this,
+					"Request operator A");
+			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this,
+					"Request transport");
+			final ReleaseResourcesFlow relLocationA = new ReleaseResourcesFlow(this,
+					"Request location A", wgLocationA);
+			final ReleaseResourcesFlow relLocationB = new ReleaseResourcesFlow(this,
+					"Release location B", wgLocationB);
+			final ReleaseResourcesFlow relOperatorA = new ReleaseResourcesFlow(this,
+					"Release operator A", wgOperatorA);
+			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this,
+					"Release transport", wgTransport);
 			
 			final ActivityFlow actWorkAtLocationA = new ActivityFlow(this, "Work at location A");
 			final ActivityFlow actWorkAtLocationB = new ActivityFlow(this, "Work at location B");
@@ -146,8 +164,10 @@ public class TestResourcesManagement extends Experiment {
 			actMoveFromAToB.newWorkGroupAdder(wgEmpty).withDelay(5L).add();
 
 			// Create IFlow
-			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA).link(reqTransport).link(relLocationA);
-			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport).link(actWorkAtLocationB).link(relLocationB);
+			reqLocationA.link(reqOperatorA).link(actWorkAtLocationA).link(relOperatorA)
+					.link(reqTransport).link(relLocationA);
+			relLocationA.link(actMoveFromAToB).link(reqLocationB).link(relTransport)
+					.link(actWorkAtLocationB).link(relLocationB);
 			SimulationPeriodicCycle cycle = SimulationPeriodicCycle.newDailyCycle(UNIT, 0);
 			new TimeDrivenElementGenerator(this, 2, et, reqLocationA, cycle);
 		}
@@ -173,8 +193,10 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgTransport = new WorkGroup(this, rtTransport, 1);
 			
 			// Create basic steps of the IFlow
-			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport", 1);
-			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", 1);
+			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this,
+					"Request transport", 1);
+			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this,
+					"Release transport", 1);
 			
 			final ActivityFlow actWorkAtLocationA = new ActivityFlow(this, "Work at location A");
 			
@@ -191,7 +213,8 @@ public class TestResourcesManagement extends Experiment {
 	
 	class ModelResourceManagementCheckingRTs extends Simulation {
 		public ModelResourceManagementCheckingRTs(int ind) {
-			super(ind, "Testing simple resource management with several different resource types" + ind, UNIT, 0, END_TIME);
+			super(ind, "Testing simple resource management with several different resource types"
+					+ ind, UNIT, 0, END_TIME);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -215,8 +238,10 @@ public class TestResourcesManagement extends Experiment {
 			final WorkGroup wgTransportB = new WorkGroup(this, rtTransportB, 1);
 			
 			// Create basic steps of the IFlow
-			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this, "Request transport", 1);
-			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this, "Release transport", 1);
+			final RequestResourcesFlow reqTransport = new RequestResourcesFlow(this,
+					"Request transport", 1);
+			final ReleaseResourcesFlow relTransport = new ReleaseResourcesFlow(this,
+					"Release transport", 1);
 			
 			final ActivityFlow actWorkAtLocationA = new ActivityFlow(this, "Work at location A");
 			final ActivityFlow actWorkAtLocationB = new ActivityFlow(this, "Work at location B");

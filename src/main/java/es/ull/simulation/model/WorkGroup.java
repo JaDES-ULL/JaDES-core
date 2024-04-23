@@ -6,6 +6,7 @@ package es.ull.simulation.model;
 import java.util.ArrayDeque;
 
 import es.ull.simulation.model.engine.SimulationEngine;
+import es.ull.simulation.model.flow.ActivityFlow;
 
 /**
  * A set of pairs &lt{@link ResourceType}, {@link Integer}&gt which defines how many resources 
@@ -29,23 +30,26 @@ public class WorkGroup extends SimulationObject implements IDescribable {
 	}
 
     /**
-     * Creates a new instance of work group initializing the list of pairs
-     * <resource type, needed resources> with one pair. 
-	 * @param simul The simulation this work group belongs to
-     * @param rt Resource Type
-     * @param needed Resources needed
-     */    
+     * Constructs a new instance of a work group.
+     * This constructor initializes a new work group with one pair in the list of resource type and needed resources.
+     *
+     * @param model   The simulation to which this work group belongs.
+     * @param rt      The resource type required by the work group.
+     * @param needed  The number of resources needed.
+     */
     public WorkGroup(final Simulation model, final ResourceType rt, final int needed) {
         this(model, new ResourceType[] {rt}, new int[] {needed});
     }
 
     /**
-     * Creates a new instance of work group, initializing the list of pairs
-     * <resource type, needed resources>.
-	 * @param simul The simulation this work group belongs to
-     * @param rts The resource types which compounds this work group.
-     * @param needs The amounts of resource types required by this work group.
-     */    
+     * Constructs a new instance of a work group.
+     * This constructor initializes a new work group with the specified resource types and their corresponding
+     * required amounts.
+     *
+     * @param model   The simulation to which this work group belongs.
+     * @param rts     An array containing the resource types that comprise this work group.
+     * @param needs   An array containing the amounts of each resource type required by this work group.
+     */
     public WorkGroup(final Simulation model, final ResourceType[] rts, final int []needs) {
     	super(model, model.getWorkGroupList().size(), "WG");
     	this.resourceTypes = rts;
@@ -124,7 +128,8 @@ public class WorkGroup extends SimulationObject implements IDescribable {
      * @return [ResourceType, Resource] where the next valid solution can be found; or
      * <code>null</code> if no solution was found. 
      */
-    private int []searchNext(final ArrayDeque<Resource> solution, final int[] pos, final int []nec, final ElementInstance ei) {
+    private int []searchNext(final ArrayDeque<Resource> solution, final int[] pos, final int []nec,
+                             final ElementInstance ei) {
         final int []aux = new int[2];
         aux[0] = pos[0];
         aux[1] = pos[1];
@@ -155,7 +160,8 @@ public class WorkGroup extends SimulationObject implements IDescribable {
      * @param ei The element instance trying to seize the resources
      * @return True if a valid solution exists. False in other case.
      */
-    public boolean findSolution(final ArrayDeque<Resource> solution, int []pos, final int []ned, final ElementInstance ei) {
+    public boolean findSolution(final ArrayDeque<Resource> solution, int []pos, final int []ned,
+                                final ElementInstance ei) {
         pos = searchNext(solution, pos, ned, ei);
         // No solution
         if (pos == null)

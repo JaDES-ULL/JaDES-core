@@ -48,7 +48,8 @@ public class TestConditionalResourceGenerator extends Experiment {
 		final ResourceType[] rts;
 		
 		public TestModel(int id) {
-			super(id, "Testing conditional generation of resources " + id, TimeUnit.MINUTE, 0L, 24 * 60);
+			super(id, "Testing conditional generation of resources " + id, TimeUnit.MINUTE, 0L,
+					24 * 60);
 			final ElementType et = new ElementType(this, "Crane");
 			rts = new ResourceType[NRT];
 			final WorkGroup[] wgs = new WorkGroup[NRT];
@@ -65,7 +66,8 @@ public class TestConditionalResourceGenerator extends Experiment {
 			final Resource res0 = new Resource(this, "Container " + 0);
 			res0.newTimeTableOrCancelEntriesAdder(rts[0]).addTimeTableEntry();
 			
-			new TimeDrivenElementGenerator(this, 1, et, pf, SimulationPeriodicCycle.newDailyCycle(getTimeUnit()));
+			new TimeDrivenElementGenerator(this, 1, et, pf,
+					SimulationPeriodicCycle.newDailyCycle(getTimeUnit()));
 		}
 		
 	}

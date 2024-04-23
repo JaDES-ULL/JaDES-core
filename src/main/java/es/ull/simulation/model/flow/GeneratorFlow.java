@@ -7,7 +7,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class GeneratorFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {

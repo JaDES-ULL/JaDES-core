@@ -2,7 +2,7 @@ package es.ull.WFP;
 
 import java.util.ArrayList;
 
-import es.ull.simulation.condition.Condition;
+import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ResourceType;
@@ -14,7 +14,7 @@ import es.ull.simulation.model.flow.MultiChoiceFlow;
 /**
  * WFP 10. Arbitrary Cycle
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP10Simulation extends WFPTestSimulation {
@@ -23,9 +23,11 @@ public class WFP10Simulation extends WFPTestSimulation {
 	private int deliveries;
 
 	/**
-	 * @param type
-	 * @param id
-	 * @param detailed
+	 * Constructs a new WFP10Simulation object.
+	 * WFP10Simulation represents a simulation specific to the WFP 10: Arbitrary Cycle scenario.
+	 * This simulation includes functionality to track capacity and deliveries.
+	 *
+	 * @param id The identifier for this simulation.
 	 */
 	public WFP10Simulation(int id) {
 		super(id, "WFP10: Arbitrary Cycle. Ej");
@@ -57,7 +59,7 @@ public class WFP10Simulation extends WFPTestSimulation {
 		this.deliveries++;
 	}
 	
-	private class WFP10Condition extends Condition<ElementInstance> {
+	private class WFP10Condition extends AbstractCondition<ElementInstance> {
 		
 		public WFP10Condition() {
 			super();
@@ -84,7 +86,7 @@ public class WFP10Simulation extends WFPTestSimulation {
         getDefResource("Operator1", rt0);
         getDefResource("Special_operator1", rt1);
         
-        final Condition<ElementInstance> cond = new WFP10Condition();
+        final AbstractCondition<ElementInstance> cond = new WFP10Condition();
         
         final MultiChoiceFlow mul1 = new MultiChoiceFlow(this) {
         	@Override
@@ -115,7 +117,7 @@ public class WFP10Simulation extends WFPTestSimulation {
         ArrayList<IFlow> succList = new ArrayList<IFlow>();
         succList.add(act0);
         succList.add(act1);
-        ArrayList<Condition<ElementInstance>> condList = new ArrayList<>();
+        ArrayList<AbstractCondition<ElementInstance>> condList = new ArrayList<>();
         condList.add(cond);
         condList.add(new NotCondition<ElementInstance>(cond));
         mul1.link(succList, condList);

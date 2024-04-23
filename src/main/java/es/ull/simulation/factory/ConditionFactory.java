@@ -22,9 +22,8 @@ public class ConditionFactory {
 	 * Generate a new condition through a logic expression. Parse the
 	 * expression and generate the string with the new Condition's code.  
 	 * @param id Identifier.
-	 * @param code Container which can house: 
-	 *                  - Imports code indexed by "imports".
-	 *                  - Logic expression indexed by "logicExp".
+	 * @param imports Imports code indexed by "imports".
+	 * @param condition Logic expression indexed by "logicExp".
 	 * @return A string with the new class code.
 	 */
 	static private String generateClass(Integer id, String imports, String condition) {
@@ -61,8 +60,7 @@ public class ConditionFactory {
 	
 	/**
 	 * Get the constructors of the class, compiled or not.
-	 * @param id Identifier.
-	 * @param code Events code.
+	 * @param src Identifier of Java File Object used to store the java code
 	 * @return An array of constructors.
 	 */
 	static private Constructor<?> getConstructor(StringJFO src) {
@@ -88,7 +86,6 @@ public class ConditionFactory {
 	
 	/**
 	 * Get a Condition's instance.
-	 * @param sim Actual simulation.
 	 * @param id Identifier.
 	 * @param imports Imports of the Condition code.
 	 * @param condition Condition code.

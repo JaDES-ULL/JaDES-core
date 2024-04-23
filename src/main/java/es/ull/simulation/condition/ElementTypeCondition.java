@@ -25,7 +25,7 @@ public final class ElementTypeCondition extends AbstractCondition<ElementInstanc
 	/**
 	 * Checks the condition, returning <tt>true</tt> if the {@link ElementType} of the specified 
 	 * {@link Element} is the one set in this condition, and <tt>false</tt> otherwise. 
-	 * @param e {@link Element} to be checked with the condition.
+	 * @param fe {@link Element} to be checked with the condition.
 	 * @return The result of the logical condition.
 	 */
 	public boolean check(ElementInstance fe) {

@@ -11,7 +11,7 @@ import es.ull.simulation.model.flow.InterleavedRoutingFlow;
 /**
  * WFP 40. 
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP40Simulation extends WFPTestSimulation {

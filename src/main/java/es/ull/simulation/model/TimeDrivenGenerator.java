@@ -10,7 +10,8 @@ import es.ull.simulation.utils.cycle.DiscreteCycleIterator;
  * @author Iván Castilla Rodríguez
  *
  */
-public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> extends Generator<INF> implements IEventSource {
+public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo>
+		extends Generator<INF> implements IEventSource {
     /** Cycle that controls the generation of elements. */
     protected final ISimulationCycle cycle;
     /** The iterator which moves through the defined cycle */
@@ -65,11 +66,12 @@ public abstract class TimeDrivenGenerator<INF extends Generator.GenerationInfo> 
             return new GenerateEvent(newTs);
         }
 	}
-	
-    /**
-     * This event is invoked every time a new set of elements has to be generated. 
-     * It simply invokes the {@link Generator#create(long)} method.
-     */
+
+	/**
+	 * Represents an event for generating a new set of elements.
+	 * This event is invoked every time a new set of elements needs to be generated.
+	 * It simply invokes the create() method of the associated Generator object.
+	 */
     public class GenerateEvent extends DiscreteEvent {
         /**
          * Creates a new element-generation event.

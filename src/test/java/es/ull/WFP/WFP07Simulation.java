@@ -1,7 +1,6 @@
 package es.ull.WFP;
 
 import es.ull.simulation.condition.AbstractCondition;
-import es.ull.simulation.condition.Condition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.model.ElementInstance;
@@ -13,7 +12,7 @@ import es.ull.simulation.model.flow.StructuredSynchroMergeFlow;
 /**
  * WFP 7. Example 1: Transferencia Pacientes
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP07Simulation extends WFPTestSimulation {

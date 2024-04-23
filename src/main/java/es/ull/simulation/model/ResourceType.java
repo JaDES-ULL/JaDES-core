@@ -17,7 +17,7 @@ import es.ull.simulation.model.location.Location;
  * <li>When a resource is deactivated for this type: {@link #beforeRoleOff()}, {@link #afterRoleOff()}</li>
  * </ul>
  * @author Iván Castilla Rodríguez
- * @author Carlos Mart�n Gal�n
+ * @author Carlos Martín Galán
  */
 public class ResourceType extends SimulationObject implements IEntityType {
     /** A list of the currently available resources. */

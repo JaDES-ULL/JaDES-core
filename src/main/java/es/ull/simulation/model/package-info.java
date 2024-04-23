@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Ivan Castilla Rodriguez
+ * @author Iván Castilla Rodríguez
  *
  */
 package es.ull.simulation.model;

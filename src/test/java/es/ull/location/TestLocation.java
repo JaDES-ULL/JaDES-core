@@ -47,14 +47,19 @@ public class TestLocation extends Experiment {
 		final private Path[] paths;
 		
 		public MyRouter() {
-			home = NOSIZE ? new Node("Home", TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME)) :
-				new Node("Home", TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME), NELEM * ELEMSIZE);
+			home = NOSIZE ? new Node("Home",
+					TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME)) :
+				new Node("Home", TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME),
+						NELEM * ELEMSIZE);
 			paths = new Path[NPATHS];
 			for (int i = 0; i < NPATHS; i++) {
-				paths[i] = NOSIZE ? new Path("Path " + i, TimeFunctionFactory.getInstance("ConstantVariate", DELAY_PATH)) :
-					new Path("Path " + i, TimeFunctionFactory.getInstance("ConstantVariate", DELAY_PATH), 1, 1);
+				paths[i] = NOSIZE ? new Path("Path " + i, TimeFunctionFactory.getInstance(
+						"ConstantVariate", DELAY_PATH)) :
+					new Path("Path " + i, TimeFunctionFactory.getInstance(
+							"ConstantVariate", DELAY_PATH), 1, 1);
 			}
-			destination = NOSIZE ? new Node("Destination", TimeFunctionFactory.getInstance("ConstantVariate", 0)) :
+			destination = NOSIZE ? new Node("Destination", TimeFunctionFactory.getInstance(
+					"ConstantVariate", 0)) :
 				new Node("Destination", NELEM * ELEMSIZE);
 
 			home.linkTo(paths[0]);
@@ -94,9 +99,12 @@ public class TestLocation extends Experiment {
 		public SimulLocation(int id, long endTs) {
 			super(id, "Simulating locations " + id, 0, endTs);
 			final MyRouter IRouter = new MyRouter(); 
-			final MoveFlow initFlow = new MoveFlow(this, "From home to destination", IRouter.getDestination(), IRouter);
+			final MoveFlow initFlow = new MoveFlow(this, "From home to destination",
+					IRouter.getDestination(), IRouter);
 			final ElementType et = new ElementType(this, "Car");
-			new TimeDrivenElementGenerator(this, NELEM, et, initFlow, NOSIZE ? 0 : ELEMSIZE, IRouter.getHome(), new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
+			new TimeDrivenElementGenerator(this, NELEM, et, initFlow, NOSIZE ? 0 : ELEMSIZE, IRouter.getHome(),
+					new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(
+							getTimeUnit(), "ConstantVariate", getEndTs()), 1));
 		}
 		
 	}

@@ -97,7 +97,8 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
      * @see com.ull.simulation.Debuggable#error(java.lang.String)
      */
 	public void error(String description) {
-		Simulation.error(this.toString() + "\t" + getTs() + "\t" + description);
+		Simulation.error(this.toString() +
+				"\t" + getTs() + "\t" + description);
 	}
     
 	/*

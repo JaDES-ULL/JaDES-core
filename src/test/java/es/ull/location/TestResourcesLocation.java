@@ -53,14 +53,19 @@ public class TestResourcesLocation extends Experiment {
 		final private Path[] paths;
 		
 		public MyRouter() {
-			home = NOSIZE ? new Node("Home", TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME)) :
-				new Node("Home", TimeFunctionFactory.getInstance("ConstantVariate", DELAY_HOME), NELEM * TRUCKSIZE);
+			home = NOSIZE ? new Node("Home", TimeFunctionFactory.getInstance(
+					"ConstantVariate", DELAY_HOME)) :
+				new Node("Home", TimeFunctionFactory.getInstance(
+						"ConstantVariate", DELAY_HOME), NELEM * TRUCKSIZE);
 			paths = new Path[NPATHS];
 			for (int i = 0; i < NPATHS; i++) {
-				paths[i] = NOSIZE ? new Path("Path " + i, TimeFunctionFactory.getInstance("ConstantVariate", DELAY_PATH)) :
-					new Path("Path " + i, TimeFunctionFactory.getInstance("ConstantVariate", DELAY_PATH), 1, 1);
+				paths[i] = NOSIZE ? new Path("Path " + i, TimeFunctionFactory.getInstance(
+						"ConstantVariate", DELAY_PATH)) :
+					new Path("Path " + i, TimeFunctionFactory.getInstance(
+							"ConstantVariate", DELAY_PATH), 1, 1);
 			}
-			destination = NOSIZE ? new Node("Destination", TimeFunctionFactory.getInstance("ConstantVariate", 0)) :
+			destination = NOSIZE ? new Node("Destination", TimeFunctionFactory.getInstance(
+					"ConstantVariate", 0)) :
 				new Node("Destination", NELEM * TRUCKSIZE);
 
 			home.linkTo(paths[0]);
@@ -113,12 +118,17 @@ public class TestResourcesLocation extends Experiment {
 			final WorkGroup wgTruck = new WorkGroup(this, rtTruck, 1);
 			final RequestResourcesFlow reqFlow = new RequestResourcesFlow(this, "Request truck");
 			reqFlow.newWorkGroupAdder(wgTruck).add();
-			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move truck to home", IRouter.getHome(), IRouter, wgTruck);
-			final MoveResourcesFlow moveFlow2 = new MoveResourcesFlow(this, "Move truck to destination", IRouter.getDestination(), IRouter, wgTruck);
-			final ReleaseResourcesFlow relFlow = new ReleaseResourcesFlow(this, "Release truck", wgTruck);
+			final MoveResourcesFlow moveFlow1 = new MoveResourcesFlow(this, "Move truck to home",
+					IRouter.getHome(), IRouter, wgTruck);
+			final MoveResourcesFlow moveFlow2 = new MoveResourcesFlow(this, "Move truck to destination",
+					IRouter.getDestination(), IRouter, wgTruck);
+			final ReleaseResourcesFlow relFlow = new ReleaseResourcesFlow(this, "Release truck",
+					wgTruck);
 			reqFlow.link(moveFlow1).link(moveFlow2).link(relFlow);
 			
-			new TimeDrivenElementGenerator(this, NELEM, et, reqFlow, new SimulationPeriodicCycle(getTimeUnit(), 0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()), 1));
+			new TimeDrivenElementGenerator(this, NELEM, et, reqFlow, new SimulationPeriodicCycle(getTimeUnit(),
+					0L, new SimulationTimeFunction(getTimeUnit(), "ConstantVariate", getEndTs()),
+					1));
 		}
 		
 	}

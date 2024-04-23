@@ -12,16 +12,18 @@ import es.ull.simulation.model.flow.ThreadSplitFlow;
 /**
  * WFP 12. Multiple Instances without Synchronization
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP12Simulation extends WFPTestSimulation {
 	static final int RES = 5;
 
 	/**
-	 * @param type
-	 * @param id
-	 * @param detailed
+	 * Constructs a new WFP12Simulation object.
+	 * WFP12Simulation represents a simulation specific to the WFP 12: Multiple Instances without
+	 * Synchronization scenario.This scenario explores the behavior of multiple instances without synchronization.
+	 *
+	 * @param id  The identifier for this simulation.
 	 */
 	public WFP12Simulation(int id) {
 		super(id, "WFP12: Multiple Instances without Synchronization");

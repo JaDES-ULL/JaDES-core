@@ -25,8 +25,7 @@ public class ElementEngine extends AbstractEngineObject implements IElementEngin
 	/**
 	 * Creates a new element.
 	 * @param simul ParallelSimulationEngine object
-	 * @param et Element type this element belongs to
-	 * @param IFlow First step of this element's IFlow
+	 * @param modelElem Element type this element belongs to
 	 */
 	public ElementEngine(SequentialSimulationEngine simul, Element modelElem) {
 		super(modelElem.getIdentifier(), simul, "E");

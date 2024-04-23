@@ -13,7 +13,7 @@ import es.ull.simulation.utils.PrioritizedMap;
 
 /**
  * The engine of an {@link ActivityManager activity manager}. Useful for implementing different strategies, such as parallel and sequential.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface IActivityManagerEngine {

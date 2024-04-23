@@ -20,7 +20,7 @@ import es.ull.simulation.model.flow.ITaskFlow;
  * The route IFlow uses a {@link IRouter} to define the path of the element, ensures that the destination is reachable, and moves the 
  * element and the transport from one location to another until reaching the destination. Only the size of the resource is used to check the capacity of 
  * the pathway. The element must have seized at least one resource belonging to the specified resource type.
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TransportFlow extends AbstractSingleSuccessorFlow implements ITaskFlow, IActionFlow {

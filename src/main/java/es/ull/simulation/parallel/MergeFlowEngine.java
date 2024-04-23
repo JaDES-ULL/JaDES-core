@@ -17,15 +17,19 @@ import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.MergeFlowControl;
 import es.ull.simulation.model.engine.IMergeFlowEngine;
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class MergeFlowEngine extends AbstractEngineObject implements IMergeFlowEngine {
 	final private AbstractMergeFlow modelFlow;
-	
+
 	/**
-	 * @param simul
-	 * @param objTypeId
+	 * Constructs a new MergeFlowEngine object.
+	 * MergeFlowEngine represents the engine responsible for managing the merging of flow instances in a simulation.
+	 * It is associated with a specific AbstractMergeFlow object.
+	 *
+	 * @param simul      The SimulationEngine object to which this merge flow engine belongs.
+	 * @param modelFlow  The associated AbstractMergeFlow object.
 	 */
 	public MergeFlowEngine(SimulationEngine simul, AbstractMergeFlow modelFlow) {
 		super(modelFlow.getIdentifier(), simul, modelFlow.getObjectTypeIdentifier());

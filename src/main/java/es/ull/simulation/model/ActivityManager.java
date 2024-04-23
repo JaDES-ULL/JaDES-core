@@ -26,7 +26,7 @@ public class ActivityManager extends SimulationObject implements IDescribable {
     
    /**
 	* Creates a new instance of ActivityManager.
-	* @param simul ParallelSimulationEngine this activity manager belongs to
+	* @param model ParallelSimulationEngine this activity manager belongs to
     */
     public ActivityManager(final Simulation model) {
         super(model, nextid++, "AM");
@@ -116,6 +116,6 @@ public class ActivityManager extends SimulationObject implements IDescribable {
 	
 	@Override
 	protected void assignSimulation(SimulationEngine simul) {
-		engine = simul.getActivityManagerEngineInstance(this);
+        engine = simul.getActivityManagerEngineInstance(this);
 	}
 }

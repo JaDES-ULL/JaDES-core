@@ -62,11 +62,17 @@ class ExpConflict extends Experiment {
 		r1.newTimeTableOrCancelEntriesAdder(rts[1]).withDuration(c, 480).addTimeTableEntry();
 
 
-		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
-		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
-		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
+		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1),
+				new SimulationTimeFunction(unit, "ConstantVariate", 1440),
+				new TimeStamp(TimeUnit.MINUTE, 480));
+		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
+				"ConstantVariate", NELEM),
+						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance(
+								"SingleFlow", acts[0]), c1);
+		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate",
+						NELEM),
+						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance(
+								"SingleFlow", acts[1]), c1);
     }
     
     /**
@@ -107,18 +113,25 @@ class ExpConflict extends Experiment {
 		r2.newTimeTableOrCancelEntriesAdder(rts[4]).withDuration(c, 480).addTimeTableEntry();
 		r2.newTimeTableOrCancelEntriesAdder(rts[5]).withDuration(c, 480).addTimeTableEntry();
 
-		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1), new SimulationTimeFunction(unit, "ConstantVariate", 1440), new TimeStamp(TimeUnit.MINUTE, 480));
+		ISimulationCycle c1 = new SimulationPeriodicCycle(unit, new TimeStamp(TimeUnit.MINUTE, 1),
+				new SimulationTimeFunction(unit, "ConstantVariate", 1440),
+				new TimeStamp(TimeUnit.MINUTE, 480));
+		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
+				"ConstantVariate", NELEM),
+						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance(
+								"SingleFlow", acts[0]), c1);
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET0"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[0]), c1);
+						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance(
+								"SingleFlow", acts[1]), c1);
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET1"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[1]), c1);
-		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
-						factory.getElementTypeInstance("ET2"), (IInitializerFlow)factory.getFlowInstance("SingleFlow", acts[2]), c1);
+						factory.getElementTypeInstance("ET2"), (IInitializerFlow)factory.getFlowInstance(
+								"SingleFlow", acts[2]), c1);
     }
     
 	@Override
 	public Simulation getSimulation(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "TestConflicts", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "TestConflicts", unit, TimeStamp.getZero(),
+				new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
 		createSimulation1(factory);
 		Simulation.setOutput(new Output(true));

@@ -7,9 +7,9 @@ import es.ull.simulation.model.flow.ParallelFlow;
 import es.ull.simulation.model.flow.SynchronizationFlow;
 
 /**
- * WFP 3, example 1: Env�o de mercancias
+ * WFP 3, example 1: Envío de mercancias
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP03Simulation extends WFPTestSimulation {
@@ -43,7 +43,8 @@ public class WFP03Simulation extends WFPTestSimulation {
         getDefGenerator(getDefElementType("Cliente"), root);
 
 //        addInfoReceiver(new WFP03CheckView(this, detailed));
-//        getSimulation().addInfoReceiver(new CheckFlowsView(getSimulation(), root, new Time[] {DEFACTDURATION[0], DEFACTDURATION[1], DEFACTDURATION[0]}, detailed));
+//        getSimulation().addInfoReceiver(new CheckFlowsView(getSimulation(), root,
+//        new Time[] {DEFACTDURATION[0], DEFACTDURATION[1], DEFACTDURATION[0]}, detailed));
     }
 	
 }

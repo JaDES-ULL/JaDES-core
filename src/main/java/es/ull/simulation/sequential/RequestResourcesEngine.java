@@ -12,7 +12,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import es.ull.simulation.model.engine.IRequestResourcesEngine;
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class RequestResourcesEngine extends AbstractEngineObject implements IRequestResourcesEngine {
@@ -20,10 +20,15 @@ public class RequestResourcesEngine extends AbstractEngineObject implements IReq
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */
     final protected RequestResourcesFlow modelReq;
-    
+
 	/**
-	 * @param simul
-	 * @param description
+	 * Constructs a new RequestResourcesEngine object.
+	 * RequestResourcesEngine represents an engine responsible for managing activities that require specific
+	 * resources in a sequential simulation. It tracks the total number of work items waiting to carry out this
+	 * activity and is associated with a specific RequestResourcesFlow.
+	 *
+	 * @param simul       The SequentialSimulationEngine to which this request resources engine belongs.
+	 * @param modelReq    The associated RequestResourcesFlow object representing this request resources engine.
 	 */
 	public RequestResourcesEngine(SequentialSimulationEngine simul, RequestResourcesFlow modelReq) {
 		super(modelReq.getIdentifier(), simul, "REQ");

@@ -23,10 +23,11 @@ import es.ull.simulation.variable.EnumVariable;
 import es.ull.simulation.utils.Prioritizable;
 
 /**
- * An entity capable of following a {@link IFlow workflow}. Elements have a {@link ElementType type} and interact with {@link Resource resources}
- * by means of {@link com.ull.simulation.model.IFlow.ResourceHandlerFlow resource handler flows}
+ * An entity capable of following a {@link IFlow workflow}. Elements have a {@link ElementType type} and
+ * interact with {@link Resource resources}by means of
+ * {@link es.ull.simulation.model.flow.IResourceHandlerFlow resource handler flows}
  * Elements can also move from a {@link Location} to another.   
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class Element extends VariableStoreSimulationObject implements Prioritizable, IEventSource, IMovable {
@@ -113,8 +114,8 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 	
 	/**
-	 * Returns the associated {@link com.ull.simulation.model.IFlow.IInitializerFlow IFlow}.
-	 * @return the associated {@link com.ull.simulation.model.IFlow.IInitializerFlow IFlow}
+	 * Returns the associated {@link es.ull.simulation.model.flow.IInitializerFlow IFlow}.
+	 * @return the associated {@link es.ull.simulation.model.flow.IInitializerFlow IFlow}
 	 */
 	public IInitializerFlow getFlow() {
 		return initialFlow;
@@ -153,9 +154,11 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 
 	/**
-	 * Sets the element instance performing the current exclusive activity. If such instance is null, it means that the element is available to 
-	 * perform other exclusive activity. Hence, creates the events to notify the activities that this element is now available. 
-	 * @param current The element instance performing the current exclusive activity; null if the element has finished performing the activity
+	 * Sets the element instance performing the current exclusive activity. If such instance is null, it means that
+	 * the element is available to perform other exclusive activity. Hence, creates the events to notify the activities
+	 * that this element is now available.
+	 * @param exclusive The element instance performing the current exclusive activity;
+	 *                     null if the element has finished performing the activity
 	 */
 	public void setExclusive(final boolean exclusive) {
 		this.exclusive = exclusive;
@@ -219,7 +222,8 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 
 	/**
-	 * Returns <code>true</code> if the element has currently acquired any resource of type <code>rt</code>; <code>false</code> otherwise. 
+	 * Returns <code>true</code> if the element has currently acquired any resource of type
+	 * <code>rt</code>; <code>false</code> otherwise.
 	 * @param rt ResourceType been searched
 	 * @return <code>true</code> if the element has currently acquired any resource of type <code>rt</code>
 	 */
@@ -253,8 +257,9 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 
 	/**
-	 * Initializes the element by requesting the <code>initialFlow</code>, and placing the element in its initial location. If there's no initial IFlow 
-	 * or the element does not fit into the initial location, the element finishes immediately.
+	 * Initializes the element by requesting the <code>initialFlow</code>, and placing the element in its
+	 * initial location. If there's no initial Flow or the element does not fit into the initial location,
+	 * the element finishes immediately.
 	 */
 	@Override
 	public DiscreteEvent onCreate(final long ts) {
@@ -265,7 +270,8 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 			}
 			else {
 				error("Unable to initialize element. Not enough space in location "
-						+ initLocation + " (available: " + initLocation.getAvailableCapacity() + " - required: " + size + ")");
+						+ initLocation + " (available: " + initLocation.getAvailableCapacity() +
+						" - required: " + size + ")");
 				return onDestroy(ts);
 			}
 		}
@@ -337,13 +343,16 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	@Override
 	public void setLocation(final Location location) {
 		if (currentLocation == null) {
-			simul.notifyInfo(new EntityLocationInfo(simul, this, location, EntityLocationInfo.Type.START, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, location,
+					EntityLocationInfo.Type.START, getTs()));
 			currentLocation = location;
 		}
 		else {
-			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation, EntityLocationInfo.Type.LEAVE, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation,
+					EntityLocationInfo.Type.LEAVE, getTs()));
 			currentLocation = location;
-			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation, EntityLocationInfo.Type.ARRIVE, getTs()));
+			simul.notifyInfo(new EntityLocationInfo(simul, this, currentLocation,
+					EntityLocationInfo.Type.ARRIVE, getTs()));
 		}
 	}
 
@@ -418,9 +427,10 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	}
 
     /**
-     * An event to perform a move. The element try to move to the next location in its path to its final destination. The element only leaves 
-     * its current location if there is enough free space for the element in the new location; otherwise, it waits. 
-     * @author Iv�n Castilla
+     * An event to perform a move. The element try to move to the next location in its path to its final destination.
+	 * The element only leaves its current location if there is enough free space for the element in the new location;
+	 * otherwise, it waits.
+     * @author Iván Castilla Rodríguez
      *
      */
 	protected class MoveEvent extends DiscreteEvent {
@@ -428,13 +438,14 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 		private final ElementInstance ei;
 		/** The instance that computes the path to the final destination */
 		private final MoveFlow IFlow;
-		
+
 		/**
-		 * Creates a move event that makes an intermediate step in the way to destination
-		 * @param ts Timestamp when the resource will arrive at the intermediate location
-		 * @param nextLocation Intermediate location 
-		 * @param destination Final destination
-		 * @param IRouter Instance that returns the path for the resource
+		 * Constructs a MoveEvent object representing an intermediate step in a resource's journey.
+		 * This event signifies the movement of a resource to an intermediate location on its way to a final destination.
+		 *
+		 * @param ts              The timestamp indicating when the resource will arrive at the intermediate location.
+		 * @param IFlow           The MoveFlow instance responsible for determining the path for the resource.
+		 * @param ei              The ElementInstance representing the resource.
 		 */
 		public MoveEvent(final long ts, final MoveFlow IFlow, final ElementInstance ei) {
 			super(ts);
@@ -452,7 +463,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	 * A collection of resources that have been seized by this element. They are arranged in two levels: the
 	 * first level represents resource groups, as logically defined by the modeler; the second level represents
 	 * resource types.
-	 * @author Iv�n Castilla
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	protected final class SeizedResourcesCollection {

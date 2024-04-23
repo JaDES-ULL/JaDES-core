@@ -23,7 +23,8 @@ public abstract class Experiment implements IDescribable {
 	 * @param nExperiments Number of experiments to be carried out
 	 */
 	public Experiment(String description, int nExperiments) {
-		this(description, nExperiments, false, 1);
+		this(description, nExperiments,
+				false, 1);
 	}
 	
 	/**
@@ -70,7 +71,8 @@ public abstract class Experiment implements IDescribable {
 		else {
 			try {
 				for (int i = 0; i < nThreads; i++) {
-					final Thread th = new Thread(new SimulationLauncher(nExperiments * i, Math.min(nExperiments, nExperiments * (i + 1) - 1)));
+					final Thread th = new Thread(new SimulationLauncher(nExperiments * i,
+							Math.min(nExperiments, nExperiments * (i + 1) - 1)));
 					th.start();
 					th.join();
 				}

@@ -7,7 +7,7 @@ import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.engine.AbstractEngineObject;
 import es.ull.simulation.model.engine.IElementInstanceEngine;
 /**
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class ElementInstanceEngine extends AbstractEngineObject
@@ -19,9 +19,13 @@ public class ElementInstanceEngine extends AbstractEngineObject
 	private final ElementInstance modelInstance;
 
 	/**
-	 * @param id
-	 * @param simul
-	 * @param objTypeId
+	 * Constructs a new ElementInstanceEngine object.
+	 * ElementInstanceEngine represents individual instances of elements within a simulation, each with its own
+	 * counter for identification.It is associated with a specific ElementInstance and is used in a
+	 * SequentialSimulationEngine.
+	 *
+	 * @param simul         The SequentialSimulationEngine to which this element instance engine belongs.
+	 * @param modelInstance The associated ElementInstance object representing this element instance.
 	 */
 	public ElementInstanceEngine(SequentialSimulationEngine simul, ElementInstance modelInstance) {
 		super(counter++, simul, "EI");

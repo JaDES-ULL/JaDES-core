@@ -14,7 +14,8 @@ import es.ull.simulation.model.engine.SimulationEngine;
  * Defines the way a generator creates elements when it's time to create them.
  * @author Iván Castilla Rodríguez
  */
-public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject implements TimeFunctionParams {
+public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject
+		implements TimeFunctionParams {
 	/** Number of objects created each time this creator is invoked. */
 	protected final AbstractTimeFunction nElem;
 	/** Each IFlow that will be generated */
@@ -28,11 +29,15 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 		super(model, id, "GEN");
 		this.nElem = nElem;
 	}
-	
+
 	/**
-	 * Creates a creator of elements.
-	 * @param sim Simulation this object belongs to.
-	 * @param nElem Number of objects created each time this creator is invoked.
+	 * Constructs a generator of elements.
+	 *
+	 * This method creates a generator object responsible for creating a specified number of elements each time it is invoked.
+	 *
+	 * @param model The Simulation object to which this generator belongs.
+	 * @param id    The identifier of this generator.
+	 * @param nElem The number of objects created each time this creator is invoked.
 	 */
 	public Generator(final Simulation model, final int id, final int nElem) {
 		this(model, id, TimeFunctionFactory.getInstance("ConstantVariate", nElem));
@@ -72,7 +77,8 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	// End of user methods
 
 	/**
-	 * Creates a single event source. Every class extending this one must fill in this method to describe how new event sources, such as
+	 * Creates a single event source. Every class extending this one must fill in this method to describe
+	 * how new event sources, such as
 	 * {@link Element}, or {@link Resource} are created. 
 	 * @param ind The index of the new event source to be created
 	 * @param info The information used to create the event source
@@ -108,8 +114,10 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 	}
 	
 	/**
-	 * Returns the function that characterizes the total number of entities to be created each time the {@link #create(long)} method is invoked
-	 * @return the function that characterizes the total number of entities to be created each time the {@link #create(long)} method is invoked
+	 * Returns the function that characterizes the total number of entities to be created each
+	 * time the {@link #create(long)} method is invoked
+	 * @return the function that characterizes the total number of entities to be created each
+	 * time the {@link #create(long)} method is invoked
 	 */
 	public AbstractTimeFunction getNElem() {
 		return nElem;
@@ -153,7 +161,7 @@ public abstract class Generator<INF extends Generator.GenerationInfo> extends Si
 		}
 		
 		/**
-		 * Returns the proportion of elements to be created of this kind of elements.
+		 * Returns the proportion of elements to be created of this kind of element.
 		 * @return Returns the proportion.
 		 */
 		public double getProp() {

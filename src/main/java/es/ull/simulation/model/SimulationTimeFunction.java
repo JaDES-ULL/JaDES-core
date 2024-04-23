@@ -10,19 +10,19 @@ import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.functions.TimeFunctionParams;
 
 /**
- * A wrapper class for {@link com.ull.function.TimeFunction TimeFunction}.
+ * A wrapper class for {@link es.ull.simulation.functions.TimeFunctionParams TimeFunctionParams}.
  * Thus {@link TimeStamp} can be used to define the time function parameters.
  * @author Iván Castilla Rodríguez
  */
 public class SimulationTimeFunction extends AbstractTimeFunction {
-	/** Inner {@link com.ull.function.TimeFunction TimeFunction} */
+	/** Inner {@link es.ull.simulation.functions.TimeFunctionParams TimeFunctionParams} */
 	private final AbstractTimeFunction function;
 
 	/**
 	 * Creates a time function to be used in a simulation.
 	 * @param unit ParallelSimulationEngine time unit
 	 * @param className Name of the time function (must be a class accepted by 
-	 * {@link com.ull.function.TimeFunctionFactory TimeFunctionFactory} 
+	 * {@link es.ull.simulation.functions.TimeFunctionFactory TimeFunctionFactory}
 	 * @param parameters Parameters of the time function to be created
 	 */
 	public SimulationTimeFunction(TimeUnit unit, String className, Object... parameters) {

@@ -17,16 +17,23 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  *
  */
 public enum UserMethod {
-	BEFORE_CREATE_ELEMENTS("beforeCreateElements", Generator.class, "public int beforeCreateElements(int n)", Integer.class),
-	AFTER_CREATE_ELEMENTS("afterCreateElements", Generator.class, "public void afterCreateElements()"),
+	BEFORE_CREATE_ELEMENTS(
+			"beforeCreateElements", Generator.class,
+			"public int beforeCreateElements(int n)", Integer.class),
+	AFTER_CREATE_ELEMENTS("afterCreateElements", Generator.class,
+			"public void afterCreateElements()"),
 	BEFORE_ROLE_ON("beforeRoleOn", ResourceType.class, "public long beforeRoleOn()"),
 	BEFORE_ROLE_OFF("beforeRoleOff", ResourceType.class, "public long beforeRoleOff()"),
 	AFTER_ROLE_ON("afterRoleOn", ResourceType.class, "public void afterRoleOn()"),
 	AFTER_ROLE_OFF("afterRoleOff", ResourceType.class, "public void afterRoleOff()"),
-	BEFORE_REQUEST("beforeRequest", IFlow.class, "public boolean beforeRequest(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
-	AFTER_FINALIZE("afterFinalize", IFinalizerFlow.class, "public void afterFinalize(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
-	AFTER_START("afterAcquire", RequestResourcesFlow.class, "public void afterStart(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
-	IN_QUEUE("inqueue", RequestResourcesFlow.class, "public void inqueue(" + ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	BEFORE_REQUEST("beforeRequest", IFlow.class, "public boolean beforeRequest("
+			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	AFTER_FINALIZE("afterFinalize", IFinalizerFlow.class, "public void afterFinalize("
+			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	AFTER_START("afterAcquire", RequestResourcesFlow.class, "public void afterStart("
+			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
+	IN_QUEUE("inqueue", RequestResourcesFlow.class, "public void inqueue("
+			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
 	EXP_END("end", Experiment.class, "public void end()"),
 	SIM_INI("init", Simulation.class, "public void init()"),
 	SIM_END("end", Simulation.class, "public void end()"),

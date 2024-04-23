@@ -23,11 +23,12 @@ import es.ull.simulation.model.flow.AbstractSingleSuccessorFlow;
  */
 public class CheckFlowsListener extends CheckerListener {
 	private final NodeInfo[] checkStructure;
+
 	/**
-	 * 
-	 * @param simul The simulation to view
-	 * @param elements An array where each position is an element type, and each value is the amount of 
-	 * elements which should be created per type.
+	 * Constructs a new CheckFlowsListener object.
+	 * CheckFlowsListener represents a listener used to monitor flows in a simulation.
+	 *
+	 * @param nElem  The total number of elements in the simulation.
 	 */
 	public CheckFlowsListener(int nElem) {
 		super("Activity checker ");

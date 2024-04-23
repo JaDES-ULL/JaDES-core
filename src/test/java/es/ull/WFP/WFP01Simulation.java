@@ -6,7 +6,7 @@ import es.ull.simulation.model.flow.ActivityFlow;
 /**
  * WFP 1, Example 1: Tarjeta de Credito
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP01Simulation extends WFPTestSimulation {
@@ -30,8 +30,9 @@ public class WFP01Simulation extends WFPTestSimulation {
         act0.link(act1);
          
         getDefGenerator(getDefElementType("Cliente"), act0);
-//        addInfoReceiver(new WFP01CheckView(this, detailed));
-//        model.addInfoReceiver(new CheckFlowsView(model, act0, new long[] {DEFACTDURATION[0], DEFACTDURATION[0]}, detailed));
+//      addInfoReceiver(new WFP01CheckView(this, detailed));
+//      model.addInfoReceiver(new CheckFlowsView(model, act0,
+//      new long[] {DEFACTDURATION[0], DEFACTDURATION[0]}, detailed));
     }
 	
 }

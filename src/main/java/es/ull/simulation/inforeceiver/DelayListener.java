@@ -9,14 +9,16 @@ import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.TimeChangeInfo;
 
 /**
- * When used within a simulation, creates a delay each time the simulation clock is updated. The delay lasts {@link DelayListener#timeout} seconds.
+ * When used within a simulation, creates a delay each time the simulation clock is updated.
+ * The delay lasts {@link DelayListener#timeout} seconds.
  * @author Iván Castilla Rodríguez
  */
 public class DelayListener extends Listener {
 	private final long timeout;
 	
 	/**
-	 * Creates a listener that delays the simulation {@link DelayListener#timeout} seconds every time the simulation clock is updated.
+	 * Creates a listener that delays the simulation {@link DelayListener#timeout} seconds every
+	 * time the simulation clock is updated.
 	 * @param timeout Seconds of delay.
 	 */
 	public DelayListener(long timeout) {

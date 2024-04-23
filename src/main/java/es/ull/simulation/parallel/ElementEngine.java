@@ -30,13 +30,15 @@ public class ElementEngine extends AbstractEngineObject implements IElementEngin
 	private final Element modelElem;
     /** Flag that indicates if the element has finished its execution */
     final private AtomicBoolean endFlag;
-	
+
 	/**
-	 * Creates a new element.
-	 * @param id Element's identifier
-	 * @param simul ParallelSimulationEngine object
-	 * @param et Element type this element belongs to
-	 * @param IFlow First step of this element's IFlow
+	 * Constructs a new ElementEngine object.
+	 * ElementEngine represents case instances that utilize activity flows to execute their events.
+	 * It maintains activity queues to notify activities when the element becomes available and protects access to
+	 * shared flows.
+	 *
+	 * @param simul     The ParallelSimulationEngine object to which this element belongs.
+	 * @param modelElem The associated Element object.
 	 */
 	public ElementEngine(ParallelSimulationEngine simul, Element modelElem) {
 		super(modelElem.getIdentifier(), simul, "E");

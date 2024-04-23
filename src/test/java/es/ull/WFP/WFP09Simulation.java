@@ -8,15 +8,16 @@ import es.ull.simulation.model.flow.StructuredDiscriminatorFlow;
 /**
  * WFP 9. Paro cardiaco
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP09Simulation extends WFPTestSimulation {
 
 	/**
-	 * @param type
-	 * @param id
-	 * @param detailed
+	 * Constructs a new WFP09Simulation object.
+	 * WFP09Simulation represents a simulation specific to the WFP9: Structured Discriminator. EjParoCardiaco scenario.
+	 *
+	 * @param id  The identifier for this simulation.
 	 */
 	public WFP09Simulation(int id) {
 		super(id, "WFP9: Structured Discriminator. EjParoCardiaco");

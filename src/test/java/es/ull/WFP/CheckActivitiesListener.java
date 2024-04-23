@@ -33,10 +33,12 @@ public class CheckActivitiesListener extends CheckerListener {
 	private final boolean []exclusive;
 
 	/**
-	 * 
-	 * @param simul The simulation to view
-	 * @param elements An array where each position is an element type, and each value is the amount of 
-	 * elements which should be created per type.
+	 * Constructs a new CheckActivitiesListener object.
+	 * CheckActivitiesListener represents a listener used to monitor activities in a simulation.
+	 *
+	 * @param nElems        The total number of elements in the simulation.
+	 * @param actIndex      A TreeMap where each key is an ActivityFlow and the value is the index of the activity.
+	 * @param actDuration   An ArrayList containing the duration of each activity.
 	 */
 	public CheckActivitiesListener(final int nElems, final TreeMap<ActivityFlow, Integer> actIndex,
 								   final ArrayList<Long> actDuration) {
@@ -91,7 +93,8 @@ public class CheckActivitiesListener extends CheckerListener {
 				}
 				else {
 					if (start[actId].get(indexStart).getTs() + actDuration.get(actId) != eInfo.getTs())
-						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_DURATION + " " + act.getDescription());
+						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_DURATION + " " +
+								act.getDescription());
 					start[actId].remove(indexStart);
 				}
 				if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
@@ -116,7 +119,8 @@ public class CheckActivitiesListener extends CheckerListener {
 				start[actId].add(eInfo);
 				if (act.isExclusive()) {
 					if (exclusive[eInfo.getElement().getIdentifier()]) {
-						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_EXCLUSIVE + " " + act.getDescription());					
+						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_EXCLUSIVE + " " +
+								act.getDescription());
 					}
 					else {
 						exclusive[eInfo.getElement().getIdentifier()] = true;

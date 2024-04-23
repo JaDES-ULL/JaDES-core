@@ -8,7 +8,7 @@ import es.ull.simulation.model.IDescribable;
 /**
  * A IFlow that represents a step where some action is performed
  * 
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface IActionFlow extends IFlow, IDescribable {

@@ -41,7 +41,8 @@ public class StandardElementGenerationInfo extends Generator.GenerationInfo {
 	 * @param prop Proportion of elements corresponding to this IFlow.
 	 */
 	public StandardElementGenerationInfo(final ElementType et, final IInitializerFlow IFlow,
-										 final AbstractTimeFunction size, final Location initLocation, final double prop) {
+										 final AbstractTimeFunction size, final Location initLocation,
+										 final double prop) {
 		super(prop);
 		this.et = et;
 		this.IFlow = IFlow;

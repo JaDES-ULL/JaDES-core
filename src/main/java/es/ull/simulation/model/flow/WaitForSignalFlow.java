@@ -11,7 +11,7 @@ import es.ull.simulation.model.Simulation;
 /**
  * An element that requests this IFlow has to wait until a special class (implementing the {@link Listener} interface) sends a signal. Useful for implementing
  * conditional waitings.  
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WaitForSignalFlow extends AbstractSingleSuccessorFlow implements IInitializerFlow, IActionFlow {
@@ -77,7 +77,7 @@ public class WaitForSignalFlow extends AbstractSingleSuccessorFlow implements II
 	
 	/**
 	 * A class capable to listen to this IFlow and send a signal to element instances within this IFlow
-	 * @author Iv�n Castilla
+	 * @author Iván Castilla Rodríguez
 	 *
 	 */
 	public static interface Listener {

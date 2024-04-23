@@ -1,8 +1,9 @@
 package es.ull.simulation.condition;
 
 /**
- * A logical condition which is used for creating restrictions or uncertain situations. A {@link Condition} is "checked" by using the 
- * {@link #check(E)} method and returns <tt>true</tt> if the condition is satisfied and <tt>false</tt> otherwise.
+ * A logical condition which is used for creating restrictions or uncertain situations. A {@link AbstractCondition} is
+ * "checked" by using the {@link #check(E)} method and returns <tt>true</tt> if the condition is satisfied and
+ * <tt>false</tt> otherwise.
  * @author Yeray Callero
  */
 

@@ -18,7 +18,11 @@ import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 public class StandardActivityManagerCreator extends ActivityManagerCreator {
 
 	/**
-	 * @param simul
+	 * Constructs a StandardActivityManagerCreator object with the specified Simulation model.
+	 * This constructor initializes a StandardActivityManagerCreator with the given Simulation model.
+	 * It serves as a creator for ActivityManagers in a simulation environment.
+	 *
+	 * @param model The Simulation model to which this creator belongs.
 	 */
 	public StandardActivityManagerCreator(Simulation model) {
 		super(model);

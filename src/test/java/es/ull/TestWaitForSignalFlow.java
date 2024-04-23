@@ -20,10 +20,11 @@ import es.ull.simulation.model.flow.TimeFunctionDelayFlow;
 import es.ull.simulation.model.flow.WaitForSignalFlow;
 
 /**
- * A dummy example of using the WaitForSignalFlow class. We define a simple IFlow with a WaitForSignalFlow and a DelayFlow. Elements get to the wait... IFlow
- * and waits until a special object ({@link SimListener}) tells them to continue. The {@link SimListener} is a class that checks the waiting list every 5 minutes
- * and let pass a random number of elements.  
- * @author Iv�n Castilla
+ * A dummy example of using the WaitForSignalFlow class. We define a simple IFlow with a WaitForSignalFlow and a
+ * DelayFlow. Elements get to the wait... IFlow and waits until a special object ({@link SimListener}) tells them to
+ * continue. The {@link SimListener} is a class that checks the waiting list every 5 minutes and let pass a random
+ * number of elements.
+ * @author Iván Castilla Rodríguez
  *
  */
 public class TestWaitForSignalFlow extends Experiment {
@@ -53,7 +54,8 @@ public class TestWaitForSignalFlow extends Experiment {
 		public TestSimulation() {
 			super(0, "Test wait for signal simulation", 0L, ENDTS);
 			final ElementType et = new ElementType(this, "Message");
-			final TimeFunctionDelayFlow delayFlow = new TimeFunctionDelayFlow(this, "Little delay", DELAY) {
+			final TimeFunctionDelayFlow delayFlow = new TimeFunctionDelayFlow(this,
+					"Little delay", DELAY) {
 				@Override
 				public void afterFinalize(ElementInstance ei) {
 					super.afterFinalize(ei);
@@ -75,7 +77,8 @@ public class TestWaitForSignalFlow extends Experiment {
 				}
 			};
 			waitFlow.link(delayFlow);
-			new TimeDrivenElementGenerator(this, NELEM, et, waitFlow, SimulationPeriodicCycle.newHourlyCycle(getTimeUnit()));
+			new TimeDrivenElementGenerator(this, NELEM, et, waitFlow,
+					SimulationPeriodicCycle.newHourlyCycle(getTimeUnit()));
 		}
 		
 		@Override

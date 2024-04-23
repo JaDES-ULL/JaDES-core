@@ -37,7 +37,8 @@ public class TestInterruptibleActivities {
 			@Override
 			public Simulation getSimulation(int ind) {
 				Simulation sim = null;
-				SimulationFactory factory = new SimulationFactory(ind, "Testing interruptible activities", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.MINUTE, 400));
+				SimulationFactory factory = new SimulationFactory(ind, "Testing interruptible activities",
+						unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.MINUTE, 400));
 				sim = factory.getSimulation();
 				
 		        ResourceType rt = factory.getResourceTypeInstance("RT0");
@@ -45,19 +46,24 @@ public class TestInterruptibleActivities {
 
 				ActivityFlow acts[] = new ActivityFlow[NACT];
 				for (int i = 0; i < NACT; i++) {
-					acts[i] = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "ACT" + i, i / 2, false, true);
+					acts[i] = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "ACT" + i, i / 2,
+							false, true);
 			    	acts[i].newWorkGroupAdder(wg).withDelay(101).add();
 				}
-				SimulationPeriodicCycle c1 = new SimulationPeriodicCycle(unit, 0, new SimulationTimeFunction(unit, "ConstantVariate", 200), 0);
-				SimulationPeriodicCycle c2 = new SimulationPeriodicCycle(unit, 20, new SimulationTimeFunction(unit, "ConstantVariate", 100), 0);
+				SimulationPeriodicCycle c1 = new SimulationPeriodicCycle(unit, 0, new SimulationTimeFunction(
+						unit, "ConstantVariate", 200), 0);
+				SimulationPeriodicCycle c2 = new SimulationPeriodicCycle(unit, 20, new SimulationTimeFunction(
+						unit, "ConstantVariate", 100), 0);
 				for (int i = 0; i < NRES; i++)
-					factory.getResourceInstance("RES" + i).newTimeTableOrCancelEntriesAdder(rt).withDuration(c2, 40).addTimeTableEntry();;
+					factory.getResourceInstance("RES" + i).newTimeTableOrCancelEntriesAdder(rt).withDuration(
+							c2, 40).addTimeTableEntry();;
 				ParallelFlow meta = (ParallelFlow)factory.getFlowInstance("ParallelFlow");
 				for (int i = 0; i < NACT; i++) {
 					meta.link(acts[i]);
 				}
 				for (int i = 0; i < NELEMT; i++)
-					factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance("ConstantVariate", NELEM), 
+					factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
+							"ConstantVariate", NELEM),
 									factory.getElementTypeInstance("ET" + i, i), meta, c1);
 				
 				sim.addInfoReceiver(new StdInfoView());

@@ -7,7 +7,7 @@ import es.ull.simulation.model.Resource;
 
 /**
  * A IFlow step that can interact with {@link Resource resources} 
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface IResourceHandlerFlow extends IActionFlow {

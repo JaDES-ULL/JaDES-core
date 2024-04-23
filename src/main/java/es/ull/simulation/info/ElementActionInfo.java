@@ -40,7 +40,9 @@ public class ElementActionInfo extends AsynchronousInfo {
 	final private Type type;
 	final private ArrayDeque<Resource> resources;
 	
-	public ElementActionInfo(final Simulation model, final ElementInstance instance, final Element elem, final IActionFlow act, final ActivityWorkGroup wg, final ArrayDeque<Resource> resources, final Type type, final long ts) {
+	public ElementActionInfo(final Simulation model, final ElementInstance instance,
+							 final Element elem, final IActionFlow act, final ActivityWorkGroup wg,
+							 final ArrayDeque<Resource> resources, final Type type, final long ts) {
 		super(model, ts);
 		this.instance = instance;
 		this.act = act;

@@ -19,6 +19,7 @@ import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationObject;
 import es.ull.simulation.model.engine.IEventSourceEngine;
+import es.ull.simulation.model.engine.IRequestResourcesEngine;
 import es.ull.simulation.model.flow.AbstractMergeFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.engine.SimulationEngine;
@@ -29,13 +30,14 @@ import es.ull.simulation.model.engine.SimulationEngine;
  * Two important simulation objects are {@link IRequestResourcesEngine activities} and {@link ResourceType 
  * resource types}. Both are grouped in different {@link ActivityManager activity managers}, 
  * which serve as an initial partition for parallelism.<p>
- * The simulation is feed with {@link EventSourceEngine.DiscreteEvent discrete events} produced by 
- * {@link EventSourceEngine Basic elements}.
+ * The simulation is feed with {@link IEventSourceEngine.DiscreteEvent discrete events} produced by
+ * {@link IEventSourceEngine Basic elements}.
  * @author Iván Castilla Rodríguez
  */
 public class ParallelSimulationEngine extends SimulationEngine {
 	/** List of active elements */
-	private final Map<Integer, ElementEngine> activeElementList = Collections.synchronizedMap(new TreeMap<Integer, ElementEngine>());
+	private final Map<Integer, ElementEngine> activeElementList = Collections.synchronizedMap(
+			new TreeMap<Integer, ElementEngine>());
 	/** Local virtual time. Represents the current simulation time */
 	private volatile long lvt;
     /** A counter to know how many events are in execution */
@@ -50,15 +52,17 @@ public class ParallelSimulationEngine extends SimulationEngine {
 	private AbstractBarrier barrier;
 	/** Number of worker threads which run the simulation events */
 	private final int nThreads;
-	
-	
+
+
 	/**
-	 * Creates a new ParallelSimulationEngine which starts at <code>startTs</code> and finishes at <code>endTs</code>.
-	 * @param id This simulation's identifier
-	 * @param description A short text describing this simulation
-	 * @param unit Time unit used to define the simulation time
-	 * @param startTs Timestamp of simulation's start
-	 * @param endTs Timestamp of simulation's end
+	 * Constructs a new ParallelSimulationEngine object.
+	 * ParallelSimulationEngine represents a simulation engine that runs multiple events concurrently using parallel
+	 * execution. It maintains lists of active elements and future events, manages local virtual time, and controls
+	 * event execution using multiple threads.
+	 *
+	 * @param id           The identifier of this simulation engine.
+	 * @param simul        The Simulation object associated with this engine.
+	 * @param nThreads     The number of worker threads to run simulation events concurrently.
 	 */
 	public ParallelSimulationEngine(int id, Simulation simul, int nThreads) {
 		super(id, simul);
@@ -166,7 +170,7 @@ public class ParallelSimulationEngine extends SimulationEngine {
 	 * An event executor used by the simulation. A simulation normally declares as many "slaves" as available
 	 * cores in the computer.<p>
 	 * Event's execution is divided into two phases. First, the events assigned by the main simulation thread  
-	 * (by using {@link #notifyEvents(List)} are executed. If the execution of the events produces new events, 
+	 * are executed. If the execution of the events produces new events,
 	 * they are added to the local buffers of the executor. <p>Once the execution of all the current events has
 	 * finished, the second phase is started, and the AM events are executed.  
 	 * @author Iván Castilla Rodríguez
@@ -233,7 +237,8 @@ public class ParallelSimulationEngine extends SimulationEngine {
 	    			myEventsCount = totalEvents;
 	    		}
 	    		else if (totalEvents >= nThreads) {
-	    			final int lastEvent = (threadId + 1 == nThreads) ? totalEvents : (totalEvents * (threadId + 1) / nThreads);
+	    			final int lastEvent = (threadId + 1 == nThreads) ? totalEvents : (
+							totalEvents * (threadId + 1) / nThreads);
 	    			for (int i = totalEvents * threadId / nThreads; i < lastEvent; i++)
 	    				currentEvents.get(i).run();
 	    			myEventsCount = lastEvent - (totalEvents * threadId / nThreads); 
@@ -343,11 +348,13 @@ public class ParallelSimulationEngine extends SimulationEngine {
 
 	@Override
 	public ResourceEngine getResourceEngineInstance(Resource modelRes) {
+
 		return new ResourceEngine(this, modelRes);
 	}
 
 	@Override
 	public ElementEngine getElementEngineInstance(Element modelElem) {
+
 		return new ElementEngine(this, modelElem);
 	}
 

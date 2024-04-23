@@ -16,19 +16,23 @@ public abstract class PooledExperiment extends Experiment {
 	final private StandardThreadPool<Simulation> pool;
 
 	/**
-	 * @param description
-	 * @param nExperiments
-	 * @param parallel
+	 * Constructs a PooledExperiment with the given description.
+	 * This constructor initializes a PooledExperiment with the specified description and defaults the number of experiments
+	 * to the number of available processors, running them in parallel.
+	 *
+	 * @param description   A description of the experiment.
 	 */
 	public PooledExperiment(String description) {
 		this(description, Runtime.getRuntime().availableProcessors());
 	}
 
 	/**
-	 * @param description
-	 * @param nExperiments
-	 * @param parallel
-	 * @param nThreads
+	 * Constructs a PooledExperiment with the given description and number of threads.
+	 * This constructor initializes a PooledExperiment with the specified description and number of threads.
+	 * It sets up the experiment to run with a pool of threads to execute experiments in parallel.
+	 *
+	 * @param description   A description of the experiment.
+	 * @param nThreads      The number of threads to be used for running experiments in parallel.
 	 */
 	public PooledExperiment(String description, int nThreads) {
 		super(description, 1, true, nThreads);

@@ -17,7 +17,7 @@ import es.ull.simulation.variable.IUserVariable;
 import es.ull.simulation.variable.IVariable;
 
 /**
- * A simulation object that can handle {@link Variable variables}.
+ * A simulation object that can handle {@link IVariable variables}.
  * @author Iván Castilla Rodríguez
  *
  */
@@ -26,7 +26,7 @@ public abstract class VariableStoreSimulationObject extends SimulationObject imp
 	protected final TreeMap<String, IVariable> varCollection = new TreeMap<String, IVariable>();
 
 	/**
-	 * Creates a simulation object capable of using {@link Variable variables}
+	 * Creates a simulation object capable of using {@link IVariable variables}
 	 * @param simul Simulation this object belongs to
 	 * @param id Object identifier
      * @param objectTypeId a String that identifies the type of simulation object

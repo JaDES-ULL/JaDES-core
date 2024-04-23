@@ -6,7 +6,7 @@ package es.ull.simulation.model;
 /**
  * A simulation object with an attached queue
  * 
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public interface IQueuedObject<T> {

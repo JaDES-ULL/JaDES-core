@@ -9,8 +9,8 @@ import es.ull.simulation.model.AbstractResourceList;
 
 /**
  * Handles the overlap of timetable entries for the same resource, i.e., a resource that has 
- * several timetable entries at the same time interval with the same resource type. This resources 
- * counts how many times it occurs to avoid incorrect behaviors of the amount of available
+ * several timetable entries at the same time interval with the same resource type. These resources
+ * count how many times it occurs to avoid incorrect behaviors of the amount of available
  * resources.
  * @author Iván Castilla Rodríguez
  */

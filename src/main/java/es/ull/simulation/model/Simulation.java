@@ -37,7 +37,8 @@ import es.ull.simulation.utils.Output;
 public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore {
 	/** The default time unit used by the simulation */
 	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
-	/** If true, notifies Activity Managers that an element is available randomly; otherwise, the notification is purely sequential */
+	/** If true, notifies Activity Managers that an element is available randomly; otherwise,
+	 * the notification is purely sequential */
 	private final static boolean RANDOM_NOTIFY_AMS = false;
 	
 	/** A short text describing this simulation. */
@@ -110,7 +111,8 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * @param startTs Simulation start timestamp
 	 * @param endTs Simulation end timestamp
 	 */
-	public Simulation(final int id, final String description, final TimeUnit unit, final TimeStamp startTs, final TimeStamp endTs) {
+	public Simulation(final int id, final String description, final TimeUnit unit, final TimeStamp startTs,
+					  final TimeStamp endTs) {
 		this(id, description, unit, unit.convert(startTs), unit.convert(endTs));
 	}
 	
@@ -123,7 +125,8 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * @param startTs Simulation start expressed in simulation time units
 	 * @param endTs Simulation end expressed in simulation time units
 	 */
-	public Simulation(final int id, final String description, final TimeUnit unit, final long startTs, final long endTs) {
+	public Simulation(final int id, final String description, final TimeUnit unit, final long startTs,
+					  final long endTs) {
 		this.id = id;
 		this.unit = unit;
 		this.description = description;
@@ -331,7 +334,8 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	}
 
 	/**
-	 * Checks the conditions stated in the condition-driven generators. If the condition meets, creates the corresponding event sources.
+	 * Checks the conditions stated in the condition-driven generators. If the condition meets,
+	 * creates the corresponding event sources.
 	 */
 	public void checkConditions() {
 		for (ConditionDrivenGenerator<?> gen : cGenList) {
@@ -341,7 +345,8 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	}
 	
 	/**
-	 * Resets variables or contents of the model. It should be invoked by the user when the same model is used for multiple replicas
+	 * Resets variables or contents of the model. It should be invoked by the user when the same model
+	 * is used for multiple replicas
 	 * and contains variables that must be initialized among replicas.
 	 */
 	public void reset() {		
@@ -405,7 +410,8 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	}
 	
 	/**
-	 * Adds an {@link ActivityManager} to the simulation. The activity managers are  automatically added from their constructor.
+	 * Adds an {@link ActivityManager} to the simulation. The activity managers are  automatically added from
+	 * their constructor.
 	 * @param am Activity manager.
 	 */
 	public void add(final ActivityManager am) {

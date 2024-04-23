@@ -11,7 +11,7 @@ import es.ull.simulation.model.flow.StaticPartialJoinMultipleInstancesFlow;
 /**
  * WFP 34. 
  * @author Yeray Callero
- * @author Iv�n Castilla
+ * @author Iván Castilla Rodríguez
  *
  */
 public class WFP34Simulation extends WFPTestSimulation {
