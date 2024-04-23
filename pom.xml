@@ -44,48 +44,6 @@
 
     <dependency>
 
-      <groupId>jflex</groupId>
-
-      <artifactId>jflex</artifactId>
-
-      <version>1.0</version>
-
-      <scope>system</scope>
-
-      <systemPath>${basedir}/lib/JFlex.jar</systemPath>
-
-    </dependency>
-
-    <dependency>
-
-      <groupId>simkit</groupId>
-
-      <artifactId>simkit</artifactId>
-
-      <version>1.0</version>
-
-      <scope>system</scope>
-
-      <systemPath>${basedir}/lib/simkit-1.4.1.jar</systemPath>
-
-    </dependency>
-
-    <dependency>
-
-      <groupId>tools</groupId>
-
-      <artifactId>tools</artifactId>
-
-      <version>1.0</version>
-
-      <scope>system</scope>
-
-      <systemPath>${basedir}/lib/tools.jar</systemPath>
-
-    </dependency>
-
-    <dependency>
-
       <groupId>simulation-utils</groupId>
 
       <artifactId>simulation-utils</artifactId>
@@ -96,6 +54,18 @@
 
       <systemPath>${basedir}/lib/simulation-utils-1.1.jar</systemPath>
 
+    </dependency>
+
+    <dependency>
+      <groupId>de.jflex</groupId>
+      <artifactId>jflex</artifactId>
+      <version>1.4.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.zenuevo.simkit</groupId>
+      <artifactId>simkit</artifactId>
+      <version>1.4.1</version>
     </dependency>
 
   </dependencies>
