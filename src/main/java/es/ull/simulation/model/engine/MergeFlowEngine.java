@@ -17,7 +17,7 @@ import es.ull.simulation.model.flow.MergeFlowControl;
  * @author Iván Castilla Rodríguez
  *
  */
-public class MergeFlowEngine extends AbstractEngineObject implements IMergeFlowEngine {
+public class MergeFlowEngine extends AbstractEngineObject {
 	final private AbstractMergeFlow modelFlow;
 
 	/**
@@ -43,12 +43,10 @@ public class MergeFlowEngine extends AbstractEngineObject implements IMergeFlowE
 	/* (non-Javadoc)
 	 * @see com.ull.simulation.model.engine.IMergeFlowEngine#getControlStructureInstance()
 	 */
-	@Override
 	public Map<Element, MergeFlowControl> getControlStructureInstance() {
 		return new TreeMap<Element, MergeFlowControl>();
 	}
 
-	@Override
 	public Map<IFlow, LinkedList<WorkToken>> getGeneralizedBranchesControlInstance() {
 		return new TreeMap<IFlow, LinkedList<WorkToken>>();
 	}

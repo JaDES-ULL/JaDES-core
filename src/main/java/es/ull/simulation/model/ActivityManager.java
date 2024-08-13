@@ -2,7 +2,7 @@ package es.ull.simulation.model;
 
 import java.util.ArrayList;
 
-import es.ull.simulation.model.engine.IActivityManagerEngine;
+import es.ull.simulation.model.engine.ActivityManagerEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
 
@@ -22,7 +22,7 @@ public class ActivityManager extends SimulationObject implements IDescribable {
     /** A list of resorce types */
     protected final ArrayList<ResourceType> resourceTypeList;
     /** The specific implementation of the behavior of the activity manager */
-    private IActivityManagerEngine engine;
+    private ActivityManagerEngine engine;
     
    /**
 	* Creates a new instance of ActivityManager.

@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ResourceInfo;
-import es.ull.simulation.model.engine.IElementInstanceEngine;
+import es.ull.simulation.model.engine.ElementInstanceEngine;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.IInitializerFlow;
@@ -65,7 +65,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 	/** The proportion of time left to finish the activity. Used in interruptible activities. */
 	protected double remainingTask = 0.0;
 	/** The engine with the specific functioning of the element instance */
-	final private IElementInstanceEngine engine;
+	final private ElementInstanceEngine engine;
 	
     /** 
      * Creates a new element instance. The constructor is private since it must be invoked from the 
@@ -91,7 +91,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     /**
 	 * @return the engine
 	 */
-	public IElementInstanceEngine getEngine() {
+	public ElementInstanceEngine getEngine() {
 		return engine;
 	}
 

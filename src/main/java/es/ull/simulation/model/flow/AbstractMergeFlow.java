@@ -5,7 +5,7 @@ import java.util.Map;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.engine.IMergeFlowEngine;
+import es.ull.simulation.model.engine.MergeFlowEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
@@ -26,7 +26,7 @@ public abstract class AbstractMergeFlow extends AbstractSingleSuccessorFlow impl
 	/** A structure to control the arrival of incoming branches */
 	protected Map<Element, MergeFlowControl> control;
 	/** The engine that implements the functioning of the IFlow */
-	private IMergeFlowEngine engine;
+	private MergeFlowEngine engine;
 	/** Indicates if the node is safe or it has to control several triggers for 
 	 * the same element through the same incoming branch before reset */ 
 	protected final boolean safe;

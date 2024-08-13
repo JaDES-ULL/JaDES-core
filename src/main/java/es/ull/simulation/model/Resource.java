@@ -9,7 +9,7 @@ import java.util.Collection;
 
 import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.info.ResourceInfo;
-import es.ull.simulation.model.engine.IResourceEngine;
+import es.ull.simulation.model.engine.ResourceEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.location.Location;
 import es.ull.simulation.model.location.IMovable;
@@ -46,7 +46,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     /** The resource type which this resource is being booked for */
     protected ResourceType currentResourceType = null;
     /** The engine in charge of executing specific actions */
-    private IResourceEngine engine;
+    private ResourceEngine engine;
 
     /**
      * Creates a resource with size 0
@@ -81,7 +81,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 	 * Returns the associated {@link IResourceEngine}
 	 * @return the associated {@link IResourceEngine}
 	 */
-	public IResourceEngine getEngine() {
+	public ResourceEngine getEngine() {
 		return engine;
 	}
 

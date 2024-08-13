@@ -19,7 +19,7 @@ import es.ull.simulation.model.flow.IResourceHandlerFlow;
  * A resource finishes its execution when it has no longer valid timetable entries.
  * @author Carlos Martín Galán
  */
-public class ResourceEngine extends AbstractEngineObject implements IResourceEngine {
+public class ResourceEngine extends AbstractEngineObject {
     /** If true, indicates that this resource is being used after its availability time has expired */
     private boolean timeOut = false;
     /** List of currently active roles and the timestamp which marks the end of their availibity time. */
@@ -62,7 +62,6 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 * @param role New resource type added
 	 * @param ts Timestamp when the availability of this resource finishes for this resource type. 
 	 */
-	@Override
 	public void addRole(ResourceType role, long ts) {
 		Long avEnd = currentRoles.get(role);
 		if ((avEnd == null) || (ts > avEnd))
@@ -78,7 +77,6 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 * one entry per role). However, checks if it's time for removing the role before doing it.
 	 * @param role Resource type removed
 	 */
-	@Override
 	public void removeRole(ResourceType role) {
 		Long avEnd = currentRoles.get(role);
 		if (avEnd != null)
@@ -90,7 +88,6 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 * Builds a list of activity managers referenced by the roles of the resource. 
 	 * @return Returns the currentManagers.
 	 */
-	@Override
 	public ArrayList<ActivityManager> getCurrentManagers() {
 		ArrayList <ActivityManager> currentManagers = new ArrayList<ActivityManager>();
 		for (ResourceType role : currentRoles.keySet())
@@ -143,7 +140,6 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 		return currentElem;
 	}
  	
-	@Override
 	public void notifyCurrentManagers() {
 		for (ActivityManager am : getCurrentManagers()) {
 			// The activity manger is informed of new available resources
@@ -165,17 +161,14 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 		return currentRoles;
 	}
 
-	@Override
 	public int incValidTimeTableEntries() {
 		return ++validTTEs;
 	}
 
-	@Override
 	public int decValidTimeTableEntries() {
 		return --validTTEs;
 	}
 
-	@Override
 	public int getValidTimeTableEntries() {
 		return validTTEs;
 	}
@@ -185,7 +178,6 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 * using a resource when it's becoming unavailable right at this timestamp. 
 	 * @return True if the resource is available.
 	 */
-	@Override
 	public boolean isAvailable(ResourceType rt) {
 		return ((currentElem == null) && (notCanceled) && (getAvailability(rt) > simul.getTs()));
 	}
@@ -194,12 +186,10 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 	 * Sets the available flag of a resource.
 	 * @param available The availability state of the resource.
 	 */
-	@Override
 	public void setNotCanceled(boolean available) {
 		notCanceled = available;
 	}
 
-	@Override
 	public boolean add2Solution(ArrayDeque<Resource> solution, ResourceType rt, ElementInstance ei) {
         // Checks if the resource is busy (taken by other element or conflict in the same activity)
 		// TODO: Check if "isAvailable" is required in this condition
@@ -212,13 +202,11 @@ public class ResourceEngine extends AbstractEngineObject implements IResourceEng
 		return false;
 	}
 
-	@Override
 	public void removeFromSolution(ArrayDeque<Resource> solution, ElementInstance ei) {
 		modelRes.setCurrentResourceType(null);
 		solution.remove(modelRes);
 	}
 	
-	@Override
     public void notifyEnd() {
         simul.addEvent(modelRes.onDestroy(simul.getTs()));
     }

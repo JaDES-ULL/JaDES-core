@@ -13,7 +13,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  * 
  * @author Iván Castilla Rodríguez
  */
-public class ElementEngine extends AbstractEngineObject implements IElementEngine {
+public class ElementEngine extends AbstractEngineObject {
 	/** Activity queues in which this element is. This list is used to notify the activities
 	 * when the element becomes available. */
 	protected final ArrayList<ElementInstance> inQueue = new ArrayList<ElementInstance>();
@@ -54,7 +54,6 @@ public class ElementEngine extends AbstractEngineObject implements IElementEngin
 		inQueue.remove(fe);
 	}
 
-	@Override
 	public void notifyAvailableElement() {
 		for (final ElementInstance fe : inQueue) {
             final RequestResourcesFlow act = (RequestResourcesFlow) fe.getCurrentFlow();
@@ -64,7 +63,6 @@ public class ElementEngine extends AbstractEngineObject implements IElementEngin
 		}
 	}
 
-	@Override
     public void notifyEnd() {
         simul.addEvent(modelElem.onDestroy(simul.getTs()));
     }
@@ -87,7 +85,6 @@ public class ElementEngine extends AbstractEngineObject implements IElementEngin
 		// Nothing to do		
 	}
 
-	@Override
 	public ElementInstanceEngine getElementInstance(ElementInstance ei) {
 		return new ElementInstanceEngine(simul, ei);
 	}

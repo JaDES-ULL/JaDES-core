@@ -20,7 +20,7 @@ import es.ull.simulation.utils.PrioritizedMap;
  * finishes, the <code>signalSemaphore()</code> method must be invoked.  
  * @author Iván Castilla Rodríguez
  */
-public class ActivityManagerEngine extends AbstractEngineObject implements IActivityManagerEngine {
+public class ActivityManagerEngine extends AbstractEngineObject {
     /**
 	 * A queue which stores the activity requests of the elements. The element instances are
 	 * stored by following this order: <ol>

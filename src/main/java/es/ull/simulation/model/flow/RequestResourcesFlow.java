@@ -12,14 +12,12 @@ import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.TrueCondition;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.model.ActivityManager;
-import es.ull.simulation.model.IDescribable;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.IIdentifiable;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.WorkGroup;
-import es.ull.simulation.model.engine.IRequestResourcesEngine;
+import es.ull.simulation.model.engine.RequestResourcesEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.utils.Prioritizable;
 import es.ull.simulation.utils.PrioritizedTable;
@@ -54,7 +52,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
     /** Indicates whether the IFlow is the first step of an exclusive activity */
     private boolean inExclusiveActivity = false; 
     /** An engine to perform the simulation tasks associated to this IFlow */
-    private IRequestResourcesEngine engine;
+    private RequestResourcesEngine engine;
 
 	/**
 	 * Creates a IFlow to seize a group of resources with the highest priority, and default identifier 
@@ -375,7 +373,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
 	 * workgroup can be used or not, and the priority of the workgroup inside the basicStep.
 	 * @author Iván Castilla Rodríguez
 	 */
-	public class ActivityWorkGroup extends WorkGroup implements Prioritizable, IIdentifiable, IDescribable {
+	public class ActivityWorkGroup extends WorkGroup implements Prioritizable {
 		/** Priority of the workgroup */
 	    final private int priority;
 	    /** Availability condition */

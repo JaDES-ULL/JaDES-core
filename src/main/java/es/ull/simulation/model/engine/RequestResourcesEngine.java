@@ -13,7 +13,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
  * @author Iván Castilla Rodríguez
  *
  */
-public class RequestResourcesEngine extends AbstractEngineObject implements IRequestResourcesEngine {
+public class RequestResourcesEngine extends AbstractEngineObject {
     /** Total of work items waiting for carrying out this activity */
     protected int queueSize = 0;
     /** The associated {@link RequestResourcesFlow} */
@@ -37,7 +37,6 @@ public class RequestResourcesEngine extends AbstractEngineObject implements IReq
 		return modelReq;
 	}
 	
-	@Override
 	public void queueAdd(ElementInstance fe) {
         modelReq.getManager().queueAdd(fe);
     	queueSize++;
@@ -45,7 +44,6 @@ public class RequestResourcesEngine extends AbstractEngineObject implements IReq
 		modelReq.inqueue(fe);
     }
     
-	@Override
     public void queueRemove(ElementInstance fe) {
 		modelReq.getManager().queueRemove(fe);
     	queueSize--;

@@ -8,8 +8,7 @@ import es.ull.simulation.model.ElementInstance;
  * @author Iván Castilla Rodríguez
  *
  */
-public class ElementInstanceEngine extends AbstractEngineObject
-		implements IElementInstanceEngine {
+public class ElementInstanceEngine extends AbstractEngineObject {
 	/** Element instance's counter. Useful for identifying each instance */
 	// Must start in 1 to avoid problems with internal control of request flows
 	private static int counter = 1;
@@ -37,7 +36,6 @@ public class ElementInstanceEngine extends AbstractEngineObject
 		return modelInstance;
 	}
 
-	@Override
 	public void notifyResourcesAcquired() {
 		// Nothing to do
 	}

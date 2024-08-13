@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.EntityLocationInfo;
-import es.ull.simulation.model.engine.IElementEngine;
+import es.ull.simulation.model.engine.ElementEngine;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.IInitializerFlow;
@@ -50,7 +50,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
     /** List of seized resources indexed as groups by an identifier */
     final protected SeizedResourcesCollection seizedResources;
 	/** The engine that executes specific behavior of the element */
-	private IElementEngine engine;
+	private ElementEngine engine;
 	
 	/**
 	 * Creates an element with a type and initial IFlow; and 0 size.
@@ -325,7 +325,7 @@ public class Element extends VariableStoreSimulationObject implements Prioritiza
 	 * Returns the engine that helps the simulation processing the element actions
 	 * @return the engine
 	 */
-	public IElementEngine getEngine() {
+	public ElementEngine getEngine() {
 		return engine;
 	}
 	
