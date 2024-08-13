@@ -21,7 +21,6 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.MultiChoiceFlow;
-import es.ull.simulation.parallel.ParallelSimulationEngine;
 import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle;
 
 class BarrelShippingExperiment extends Experiment {
@@ -114,8 +113,6 @@ class BarrelShippingExperiment extends Experiment {
 				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
 		simul.addInfoReceiver(new StdInfoView());
-		if (NTHREADS > 1)
-			simul.setSimulationEngine(new ParallelSimulationEngine(ind, simul, NTHREADS));
 		
     	return simul;
 	}

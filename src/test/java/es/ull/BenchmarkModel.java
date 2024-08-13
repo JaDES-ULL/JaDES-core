@@ -13,7 +13,6 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ForLoopFlow;
 import es.ull.simulation.model.flow.InterleavedRoutingFlow;
-import es.ull.simulation.parallel.ParallelSimulationEngine;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.factory.SimulationUserCode;
@@ -187,9 +186,6 @@ public class BenchmarkModel {
 			case MIXCONFLICT: sim = getTestMixConflict(); break;
 			case TOTALCONFLICT: sim = getTestTotalConflict(); break;
 			case PARALLEL: sim = getTestParallelSimResources(); break;
-		}
-		if (SimulationType.PARALLEL.equals(simType)) {
-			sim.setSimulationEngine(new ParallelSimulationEngine(sim.getIdentifier(), sim, nThread));
 		}
 		return sim;
 	}
