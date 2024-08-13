@@ -5,7 +5,6 @@ package es.ull;
 
 import java.io.PrintStream;
 
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 
@@ -14,7 +13,7 @@ import es.ull.simulation.model.Simulation;
  *
  */
 public class BenchmarkTest {
-	private static final int MINARGS = 9;
+	private static final int MINARGS = 8;
 	static int nThreads = 1;
 	static int nElem = 512;
 	static int nAct = 512;
@@ -28,7 +27,6 @@ public class BenchmarkTest {
 	static BenchmarkModel.ModelType modType = BenchmarkModel.ModelType.CONFLICT;
 	static boolean debug = true;
 	static PrintStream out = System.out;
-	static SimulationType simType = SimulationType.SEQUENTIAL;
 
 	/**
 	 * @param args
@@ -36,7 +34,6 @@ public class BenchmarkTest {
 	public static void main(String[] args) {
 		int argCounter = 0;
 		if (args.length >= MINARGS) {
-			simType = SimulationType.valueOf(args[argCounter++]);
 			modType = BenchmarkModel.ModelType.valueOf(args[argCounter++]);
 			ovType = BenchmarkModel.OverlappingType.valueOf(args[argCounter++]);
 			nAct = Integer.parseInt(args[argCounter++]);
@@ -75,7 +72,7 @@ public class BenchmarkTest {
 			
 			@Override
 			public Simulation getSimulation(int ind) {
-				BenchmarkModel config = new BenchmarkModel(ind, simType, modType, ovType, nThreads, nIter, nElem,
+				BenchmarkModel config = new BenchmarkModel(ind, modType, ovType, nThreads, nIter, nElem,
 						nAct, mixFactor, workLoad);
 				config.setRtXact(rtXact);
 				config.setRtXres(rtXres);

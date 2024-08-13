@@ -14,7 +14,6 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ForLoopFlow;
 import es.ull.simulation.model.flow.InterleavedRoutingFlow;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.factory.SimulationUserCode;
 import es.ull.simulation.factory.UserMethod;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -57,7 +56,6 @@ public class BenchmarkModel {
 	final static private SimulationTimeFunction oneFunction = new SimulationTimeFunction(unit,
 			"ConstantVariate", 1);
 	final int id;
-	final SimulationType simType;
 	final ModelType modType;
 	final OverlappingType ovType;
 	final int nThread;
@@ -86,11 +84,10 @@ public class BenchmarkModel {
 	 * @param mixFactor
 	 * @param workLoad
 	 */
-	public BenchmarkModel(int id, SimulationType simType, ModelType modType,
+	public BenchmarkModel(int id, ModelType modType,
 			OverlappingType ovType, int nThread, int nIter, int nElem,
 			int nAct, int mixFactor, long workLoad) {
 		this.id = id;
-		this.simType = simType;
 		this.modType = modType;
 		this.ovType = ovType;
 		this.nThread = nThread;
@@ -132,10 +129,10 @@ public class BenchmarkModel {
 	 * @param nAct
 	 * @param workLoad
 	 */
-	public BenchmarkModel(int id, SimulationType simType, ModelType modType,
+	public BenchmarkModel(int id, ModelType modType,
 			OverlappingType ovType, int nThread, int nIter, int nElem,
 			int nAct, long workLoad) {
-		this(id, simType, modType, ovType, nThread, nIter, nElem, nAct, 2, workLoad);
+		this(id, modType, ovType, nThread, nIter, nElem, nAct, 2, workLoad);
 	}
 
  	/**
@@ -148,20 +145,20 @@ public class BenchmarkModel {
 	 * @param nElem
 	 * @param nAct
 	 */
-	public BenchmarkModel(int id, SimulationType simType, ModelType modType,
+	public BenchmarkModel(int id, ModelType modType,
 			OverlappingType ovType, int nThread, int nIter, int nElem,
 			int nAct) {
-		this(id, simType, modType, ovType, nThread, nIter, nElem, nAct, 2, 0);
+		this(id, modType, ovType, nThread, nIter, nElem, nAct, 2, 0);
 	}
 	
 	@Override
 	public String toString() {
 		String text = "";
 		if (modType == ModelType.CONFLICT)
-			text += simType + "\t" + modType + "\t" + ovType + "\t" + nThread + "\t" + nIter + "\t" + rtXact + "\t"
+			text += modType + "\t" + ovType + "\t" + nThread + "\t" + nIter + "\t" + rtXact + "\t"
 					+ rtXres;
 		else
-			text += simType + "\t" + modType + "\t" + ovType + "\t" + nThread + "\t" + nIter;
+			text += modType + "\t" + ovType + "\t" + nThread + "\t" + nIter;
 		if (workLoad > 0)
 			text += "\t" + workLoad;
 		if (ovType == OverlappingType.MIXED)

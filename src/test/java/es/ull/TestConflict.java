@@ -2,7 +2,6 @@ package es.ull;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
@@ -20,7 +19,6 @@ import es.ull.simulation.utils.Output;
 class ExpConflict extends Experiment {
     static final int NDAYS = 1;
     static final int NTESTS = 1;
-	static SimulationType simType = SimulationType.PARALLEL;
 	static final TimeUnit unit = TimeUnit.MINUTE;
     
     ExpConflict() {

@@ -4,7 +4,6 @@
 package es.ull;
 
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.TimeStamp;
@@ -15,7 +14,6 @@ import es.ull.simulation.model.TimeUnit;
  *
  */
 public class TestPerformance {
-	final static SimulationType simType = SimulationType.PARALLEL;
 	final static TimeUnit unit = TimeUnit.MINUTE;
 	final static TimeStamp STARTTS = TimeStamp.getZero();
 	final static TimeStamp ENDTS = TimeStamp.getZero();

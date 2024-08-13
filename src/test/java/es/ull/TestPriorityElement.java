@@ -5,7 +5,6 @@ package es.ull;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ResourceType;
@@ -26,7 +25,6 @@ public class TestPriorityElement {
 	static final int NELEMT = 4;
 	static final int NELEM = 100;
 	static final int NRES = 20;
-	static SimulationType simType = SimulationType.PARALLEL;
 	static final TimeUnit unit = TimeUnit.MINUTE;
 
 	/**

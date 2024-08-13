@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.factory.SimulationType;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
@@ -22,7 +21,6 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * 
  */
 class ExpOverlapped extends Experiment {
-	final static SimulationType simType = SimulationType.SEQUENTIAL;
 	final static TimeUnit unit = TimeUnit.MINUTE;
     static final int NDAYS = 1;
     static final int NTESTS = 2;
