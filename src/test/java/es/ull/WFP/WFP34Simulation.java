@@ -17,8 +17,8 @@ import es.ull.simulation.model.flow.StaticPartialJoinMultipleInstancesFlow;
 public class WFP34Simulation extends WFPTestSimulation {
 	final static int RES = 6;
 
-	public WFP34Simulation(int id) {
-		super(id, "WFP34: Static Partial Join for Multiple Instances");
+	public WFP34Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP34: Static Partial Join for Multiple Instances", args);
 	}
 
 	@Override

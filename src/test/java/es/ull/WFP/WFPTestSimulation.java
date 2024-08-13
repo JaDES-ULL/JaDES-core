@@ -43,17 +43,17 @@ public abstract class WFPTestSimulation extends Simulation {
 	public final static long []DEFACTDURATION = new long [] {5, 10, 15, 20, 25, 30, 120};
 	public final static long SIMSTART = 0L;
 	public final static long SIMEND = 1440L;
-	private final ArrayList<CheckerListener> listeners;
 	private final ArrayList<Integer> nElems;
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex; 
+	private final TestWFP.CommonArguments args;
 	
-	public WFPTestSimulation(int id, String description) {
+	public WFPTestSimulation(int id, String description, TestWFP.CommonArguments args) {
 		super(id, description, SIMSTART, SIMEND);
-		listeners = new ArrayList<CheckerListener>();
 		nElems = new ArrayList<Integer>();
 		actDuration = new ArrayList<Long>();
 		actIndex = new TreeMap<ActivityFlow, Integer>();
+		this.args = args;
 		createModel();
 		addCheckers();
 	}
@@ -61,46 +61,19 @@ public abstract class WFPTestSimulation extends Simulation {
 	protected abstract void createModel();
 	
 	private void addCheckers() {
-		if (WFPTestMain.ENABLE_STD_OUTPUT)
+		if (args.stdOutput)
 			addInfoReceiver(new StdInfoView());
-		if (WFPTestMain.ENABLE_CHECKRESOURCES) {
-			listeners.add(new CheckResourcesListener(this.getResourceList().size()));
+		if (args.checkResources) {
+			addInfoReceiver(new CheckResourcesListener(this.getResourceList().size()));
 		}
-		if (WFPTestMain.ENABLE_CHECKELEMENTS) {
-			listeners.add(new CheckElementsListener(nElems));
+		if (args.checkElements) {
+			addInfoReceiver(new CheckElementsListener(nElems));
 		}
-		if (WFPTestMain.ENABLE_CHECKACTIVITIES) {
+		if (args.checkActivities) {
 			int n = 0;
 			for (int count : nElems) 
 				n += count;
-			listeners.add(new CheckActivitiesListener(n, actIndex, actDuration));
-		}
-		for (final CheckerListener l : listeners) {
-			addInfoReceiver(l);
-		}
-	}
-	
-	protected void addCustomChecker(final CheckerListener listener) {
-		listeners.add(listener);
-	}
-	
-	@Override
-	public void init() {
-		super.init();
-		System.out.println("Testing " + description + "...");
-	}
-	
-	@Override
-	public void end() {
-		super.end();
-		for (final CheckerListener l : listeners) {
-			if (l.testPassed()) {
-				System.out.println(l + "\tPassed");
-			}
-			else {
-				System.out.println(l + "\tErrors");
-				System.out.println(l.testProblems());
-			}
+			addInfoReceiver(new CheckActivitiesListener(n, actIndex, actDuration));
 		}
 	}
 	

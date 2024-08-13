@@ -17,8 +17,8 @@ import es.ull.simulation.model.flow.ThreadSplitFlow;
  */
 public class WFP41_42Simulation extends WFPTestSimulation {
 
-	public WFP41_42Simulation(int id) {
-		super(id, "WFP41_42: Thread Split-Merge");
+	public WFP41_42Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP41_42: Thread Split-Merge", args);
 	}
 
 	@Override

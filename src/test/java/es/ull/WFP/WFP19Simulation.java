@@ -20,8 +20,8 @@ public class WFP19Simulation extends WFPTestSimulation {
 	 *
 	 * @param id  The identifier for this simulation.
 	 */
-	public WFP19Simulation(int id) {
-		super(id, "WFP19: Cancel Task. EjTarjetaCredito");
+	public WFP19Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP19: Cancel Task. EjTarjetaCredito", args);
 		pass = false;
 	}
 

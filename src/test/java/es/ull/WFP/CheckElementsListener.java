@@ -3,10 +3,13 @@
  */
 package es.ull.WFP;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 
 import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.info.SimulationInfo;
 
 /**
@@ -14,7 +17,7 @@ import es.ull.simulation.info.SimulationInfo;
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckElementsListener extends CheckerListener {
+public class CheckElementsListener extends Listener {
 	private final static String ERROR_FINISHED = "Wrong number of elements finished";
 	private final static String ERROR_CREATED = "Wrong number of elements created";
 	private ArrayList<Integer> elements;
@@ -56,12 +59,8 @@ public class CheckElementsListener extends CheckerListener {
 			final SimulationStartStopInfo tInfo = (SimulationStartStopInfo) info;
 			if (SimulationStartStopInfo.Type.END.equals(tInfo.getType()))  {
 				for (int i = 0; i < elements.size(); i++) {
-					if (elemFinished[i] != elemCreated[i]) {
-						addProblem("GENERAL", tInfo.getTs(), ERROR_FINISHED + "\tType:" + i);
-					}
-					if (elemCreated[i] != elements.get(i)) {
-						addProblem("GENERAL", tInfo.getTs(), ERROR_CREATED + "\tType:" + i);						
-					}
+					assertEquals(elemFinished[i], elemCreated[i], ERROR_FINISHED + "\tType:" + i);
+					assertEquals(elemCreated[i], elements.get(i), ERROR_CREATED + "\tType:" + i);
 				}
 			}
 		}

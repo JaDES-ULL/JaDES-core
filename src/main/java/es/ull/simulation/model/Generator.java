@@ -7,15 +7,13 @@ import java.util.ArrayList;
 
 import es.ull.simulation.functions.AbstractTimeFunction;
 import es.ull.simulation.functions.TimeFunctionFactory;
-import es.ull.simulation.functions.TimeFunctionParams;
 import es.ull.simulation.model.engine.SimulationEngine;
 
 /**
  * Defines the way a generator creates elements when it's time to create them.
  * @author Iván Castilla Rodríguez
  */
-public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject
-		implements TimeFunctionParams {
+public abstract class Generator<INF extends Generator.GenerationInfo> extends SimulationObject {
 	/** Number of objects created each time this creator is invoked. */
 	protected final AbstractTimeFunction nElem;
 	/** Each IFlow that will be generated */

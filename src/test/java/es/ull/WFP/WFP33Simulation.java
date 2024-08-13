@@ -14,8 +14,8 @@ import es.ull.simulation.model.flow.SynchronizationFlow;
  */
 public class WFP33Simulation extends WFPTestSimulation {
 
-	public WFP33Simulation(int id) {
-		super(id, "WFP33: Generalized AND-Join. EjEnvioMercacias");
+	public WFP33Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP33: Generalized AND-Join. EjEnvioMercacias", args);
 	}
 
 	@Override

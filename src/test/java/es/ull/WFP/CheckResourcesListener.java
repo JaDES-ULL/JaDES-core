@@ -3,18 +3,23 @@
  */
 package es.ull.WFP;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.inforeceiver.Listener;
 
 /**
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckResourcesListener extends CheckerListener {
+public class CheckResourcesListener extends Listener {
 	private final static String ERROR_ROLON = "Wrong activation time of resource role";
 	private final static String ERROR_ROLOFF = "Wrong deactivation time of resource role";
 	private final static String ERROR_RESCREATED = "Not all the resources were created";
@@ -44,15 +49,11 @@ public class CheckResourcesListener extends CheckerListener {
 			final ResourceInfo rInfo = (ResourceInfo)info;
 			switch(rInfo.getType()) {
 			case ROLON:
-				if (rInfo.getTs() != WFPTestSimulation.RESSTART) {
-					addProblem(rInfo.getResource().toString(), rInfo.getTs(), ERROR_ROLON);
-				}
+				assertEquals(rInfo.getTs(),  WFPTestSimulation.RESSTART, rInfo.getResource().toString() + "\t" + ERROR_ROLON);
 				resCreated++;
 				break;
 			case ROLOFF:
-				if (rInfo.getTs() != WFPTestSimulation.RESSTART + WFPTestSimulation.RESAVAILABLE) {
-					addProblem(rInfo.getResource().toString(), rInfo.getTs(), ERROR_ROLOFF);
-				}
+				assertEquals(rInfo.getTs(), WFPTestSimulation.RESSTART + WFPTestSimulation.RESAVAILABLE, rInfo.getResource().toString() + "\t" + ERROR_ROLOFF);
 				resFinished++;
 				break;
 			default:
@@ -64,15 +65,11 @@ public class CheckResourcesListener extends CheckerListener {
 			final int resId = rInfo.getResource().getIdentifier();
 			switch(rInfo.getType()) {
 				case CAUGHT:
-					if (inUse[resId]) {
-						addProblem(rInfo.getResource().toString(), rInfo.getTs(), ERROR_SEIZE);
-					}
+					assertFalse(inUse[resId], rInfo.getResource().toString() + "\t" + ERROR_SEIZE);
 					inUse[resId] = true;
 					break;
 				case RELEASED:
-					if (!inUse[resId]) {
-						addProblem(rInfo.getResource().toString(), rInfo.getTs(), ERROR_RELEASE);
-					}
+					assertTrue(inUse[resId], rInfo.getResource().toString() + "\t" + ERROR_RELEASE);
 					inUse[resId] = false;
 					break;
 				default:
@@ -82,14 +79,9 @@ public class CheckResourcesListener extends CheckerListener {
 		else if (info instanceof SimulationStartStopInfo) {
 			final SimulationStartStopInfo tInfo = (SimulationStartStopInfo) info;
 			if (SimulationStartStopInfo.Type.END.equals(tInfo.getType()))  {
-				if (resCreated != resources) {
-					addProblem("GENERAL", tInfo.getTs(), ERROR_RESCREATED);
-				}
-				if (resFinished != resources) {
-					addProblem("GENERAL", tInfo.getTs(), ERROR_RESFINISHED);
-				}
+				assertEquals(resCreated, resources, ERROR_RESCREATED);
+				assertEquals(resFinished, resources, ERROR_RESFINISHED);
 			}
 		}
-		
 	}
 }

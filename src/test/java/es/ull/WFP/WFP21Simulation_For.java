@@ -21,8 +21,8 @@ public class WFP21Simulation_For extends WFPTestSimulation {
 	 * @param id
 	 * @param detailed
 	 */
-	public WFP21Simulation_For(int id) {
-		super(id, "WFP21: Structured Loop (For). EjReveladoFotografico");
+	public WFP21Simulation_For(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP21: Structured Loop (For). EjReveladoFotografico", args);
 	}
 
 	/* (non-Javadoc)

@@ -3,19 +3,24 @@
  */
 package es.ull.WFP;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.ArrayList;
 import java.util.TreeMap;
 
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
+import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.flow.ActivityFlow;
 /**
  * Checks the elements created and finished during the simulation
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckActivitiesListener extends CheckerListener {
+public class CheckActivitiesListener extends Listener {
 	private final static String ERROR_ACQ_NOT_REQ = "Resources acquired but not requested";
 	private final static String ERROR_START_NOT_REQ = "Activity started but not requested";
 	private final static String ERROR_END_NOT_REQ = "Activity ended but not requested";
@@ -67,6 +72,7 @@ public class CheckActivitiesListener extends CheckerListener {
 		}
 		return -1;
 	}
+	
 	@Override
 	public void infoEmited(SimulationInfo info) {
 		if (info instanceof ElementActionInfo) {
@@ -75,26 +81,19 @@ public class CheckActivitiesListener extends CheckerListener {
 			final int actId = actIndex.get(act);
 			switch(eInfo.getType()) {
 			case ACQ:
-				if (find(request[actId], eInfo) == -1)
-					addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_ACQ_NOT_REQ);
+				assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_ACQ_NOT_REQ);
 				acquire[actId].add(eInfo);
 				break;
 			case END:
 				final int indexReq = find(request[actId], eInfo);
-				if (indexReq == -1) {
-					addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_END_NOT_REQ);
-				}
-				else {
+				assertNotEquals(indexReq, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_REQ);
+				if (indexReq != -1) {
 					request[actId].remove(indexReq);
 				}
 				final int indexStart = find(start[actId], eInfo);
-				if (indexStart == -1) {
-					addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_END_NOT_START);
-				}
-				else {
-					if (start[actId].get(indexStart).getTs() + actDuration.get(actId) != eInfo.getTs())
-						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_DURATION + " " +
-								act.getDescription());
+				assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
+				if (indexStart != -1) {
+					assertEquals(start[actId].get(indexStart).getTs() + actDuration.get(actId), eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
 					start[actId].remove(indexStart);
 				}
 				if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
@@ -103,10 +102,8 @@ public class CheckActivitiesListener extends CheckerListener {
 				break;
 			case REL:
 				final int indexAcq = find(acquire[actId], eInfo);
-				if (indexAcq == -1) {
-					addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_REL_NOT_ACQ);
-				}
-				else {
+				assertNotEquals(indexAcq, -1, eInfo.getElement().toString() + "\t" + ERROR_REL_NOT_ACQ);
+				if (indexAcq != -1) {
 					acquire[actId].remove(indexAcq);
 				}
 				break;
@@ -114,15 +111,11 @@ public class CheckActivitiesListener extends CheckerListener {
 				request[actId].add(eInfo);
 				break;
 			case START:
-				if (find(request[actId], eInfo) == -1)
-					addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_START_NOT_REQ);
+				assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_START_NOT_REQ);
 				start[actId].add(eInfo);
 				if (act.isExclusive()) {
-					if (exclusive[eInfo.getElement().getIdentifier()]) {
-						addProblem(eInfo.getElement().toString(), eInfo.getTs(), ERROR_EXCLUSIVE + " " +
-								act.getDescription());
-					}
-					else {
+					assertFalse(exclusive[eInfo.getElement().getIdentifier()], eInfo.getElement().toString() + "\t" + ERROR_EXCLUSIVE + " " + act.getDescription());
+					if (!exclusive[eInfo.getElement().getIdentifier()]) {
 						exclusive[eInfo.getElement().getIdentifier()] = true;
 					}
 				}
@@ -138,8 +131,7 @@ public class CheckActivitiesListener extends CheckerListener {
 			final SimulationStartStopInfo tInfo = (SimulationStartStopInfo) info;
 			if (SimulationStartStopInfo.Type.END.equals(tInfo.getType()))  {
 				for (int actId = 0; actId < request.length; actId++) {
-					if (request[actId].size() > 0)
-						addProblem("[ACT" + actId + "]", tInfo.getTs(), ERROR_FINISHED);
+					assertFalse(request[actId].size() == 0, "[ACT" + actId + "]" + "\t" + ERROR_FINISHED);
 				}
 			}
 		}

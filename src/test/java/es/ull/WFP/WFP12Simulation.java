@@ -25,8 +25,8 @@ public class WFP12Simulation extends WFPTestSimulation {
 	 *
 	 * @param id  The identifier for this simulation.
 	 */
-	public WFP12Simulation(int id) {
-		super(id, "WFP12: Multiple Instances without Synchronization");
+	public WFP12Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP12: Multiple Instances without Synchronization", args);
 	}
 
 	/* (non-Javadoc)

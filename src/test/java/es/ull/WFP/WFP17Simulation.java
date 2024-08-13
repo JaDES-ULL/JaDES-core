@@ -27,8 +27,8 @@ public class WFP17Simulation extends WFPTestSimulation {
 	 *
 	 * @param id  The identifier for this simulation.
 	 */
-	public WFP17Simulation(int id) {
-		super(id, "WFP17: Interleaved Parallel Routing");
+	public WFP17Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP17: Interleaved Parallel Routing", args);
 	}
 
 	/* (non-Javadoc)

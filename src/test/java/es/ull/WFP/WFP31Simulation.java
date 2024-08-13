@@ -14,8 +14,8 @@ import es.ull.simulation.model.flow.PartialJoinFlow;
  */
 public class WFP31Simulation extends WFPTestSimulation {
 
-	public WFP31Simulation(int id) {
-		super(id, "WFP31: Blocking Partial Join. EjBanco");
+	public WFP31Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP31: Blocking Partial Join. EjBanco", args);
 	}
 
 	@Override

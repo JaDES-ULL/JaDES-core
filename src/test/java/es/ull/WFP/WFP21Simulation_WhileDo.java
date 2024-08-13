@@ -21,8 +21,8 @@ public class WFP21Simulation_WhileDo extends WFPTestSimulation {
 	 * @param id
 	 * @param detailed
 	 */
-	public WFP21Simulation_WhileDo(int id) {
-		super(id, "WFP21: Structured Loop (WhileDo). EjReveladoFotografico");
+	public WFP21Simulation_WhileDo(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP21: Structured Loop (WhileDo). EjReveladoFotografico", args);
 	}
 
 	class WFP21Condition extends AbstractCondition<ElementInstance> {

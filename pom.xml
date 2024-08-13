@@ -44,6 +44,34 @@
       <artifactId>simkit</artifactId>
       <version>1.4.1</version>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+  	<dependency>
+    	<groupId>org.junit.jupiter</groupId>
+    	<artifactId>junit-jupiter-params</artifactId>
+    	<version>5.7.2</version>
+    	<scope>test</scope>
+	</dependency>
+
+	<dependency>
+		<groupId>com.beust</groupId>
+		<artifactId>jcommander</artifactId>
+		<version>1.82</version>
+	</dependency>
 
   </dependencies>
 </project>

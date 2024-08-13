@@ -11,8 +11,8 @@ import es.ull.simulation.model.flow.ActivityFlow;
  */
 public class WFP01Simulation extends WFPTestSimulation {
 	
-	public WFP01Simulation(int id) {
-		super(id, "WFP1: Sequence. EjTarjetaCredito");
+	public WFP01Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP1: Sequence. EjTarjetaCredito", args);
     }
     
     protected void createModel() {

@@ -17,8 +17,8 @@ import es.ull.simulation.model.flow.StructuredSynchroMergeFlow;
  */
 public class WFP07Simulation extends WFPTestSimulation {
 	
-	public WFP07Simulation(int id) {
-		super(id, "WFP7: Structured Synchronizing Merge. EjTransferenciaPacientes");
+	public WFP07Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP7: Structured Synchronizing Merge. EjTransferenciaPacientes", args);
     }
     
     protected void createModel() {

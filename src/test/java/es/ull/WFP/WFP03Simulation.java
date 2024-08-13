@@ -14,8 +14,8 @@ import es.ull.simulation.model.flow.SynchronizationFlow;
  */
 public class WFP03Simulation extends WFPTestSimulation {
 	
-	public WFP03Simulation(int id) {
-		super(id, "WFP3: Synchronization. EjEnvioMercacias");
+	public WFP03Simulation(int id, TestWFP.CommonArguments args) {
+		super(id, "WFP3: Synchronization. EjEnvioMercacias", args);
     }
     
     protected void createModel() {
