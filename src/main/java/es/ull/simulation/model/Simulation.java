@@ -15,7 +15,6 @@ import es.ull.simulation.inforeceiver.SimulationInfoHandler;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.BasicFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
-import es.ull.simulation.sequential.SequentialSimulationEngine;
 import es.ull.simulation.variable.BooleanVariable;
 import es.ull.simulation.variable.ByteVariable;
 import es.ull.simulation.variable.CharacterVariable;
@@ -302,7 +301,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		debugPrintActManager();					
 		// Sets default simulation engine
 		if (simulationEngine == null) {
-			setSimulationEngine(new SequentialSimulationEngine(id, this));
+			setSimulationEngine(new SimulationEngine(id, this));
 		}
 		simulationEngine.initializeEngine();
 		init();
