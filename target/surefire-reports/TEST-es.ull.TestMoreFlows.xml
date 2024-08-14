@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="es.ull.AppTest" time="0.005" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="es.ull.TestMoreFlows" time="0.08" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,5 +56,47 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testApp" classname="es.ull.AppTest" time="0.001"/>
+  <testcase name="tests" classname="es.ull.TestMoreFlows" time="0.066">
+    <system-out><![CDATA[0	[E0]	Trying to pass
+0	[E1]	Trying to pass
+0	[E11]	Trying to pass
+0	[E10]	Trying to pass
+0	[E5]	Trying to pass
+0	[E8]	Trying to pass
+0	[E7]	Trying to pass
+0	[E6]	Trying to pass
+0	[E2]	Trying to pass
+0	[E4]	Trying to pass
+0	[E9]	Trying to pass
+0	[E3]	Trying to pass
+5	[LIS0]	Allowing 6 elements to pass
+5	[E0]	Passed
+5	[E1]	Passed
+5	[E8]	Passed
+5	[E11]	Passed
+5	[E10]	Passed
+5	[E5]	Passed
+10	[LIS0]	Allowing 3 elements to pass
+10	[E7]	Passed
+10	[E6]	Passed
+10	[E2]	Passed
+15	[E10]	Finished
+15	[E1]	Finished
+15	[E0]	Finished
+15	[E5]	Finished
+15	[E11]	Finished
+15	[LIS0]	Allowing 2 elements to pass
+15	[E4]	Passed
+15	[E9]	Passed
+15	[E8]	Finished
+20	[E6]	Finished
+20	[E7]	Finished
+20	[LIS0]	Allowing 1 elements to pass
+20	[E3]	Passed
+20	[E2]	Finished
+25	[E4]	Finished
+25	[E9]	Finished
+30	[E3]	Finished
+]]></system-out>
+  </testcase>
 </testsuite>

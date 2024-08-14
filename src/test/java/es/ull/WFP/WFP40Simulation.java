@@ -17,7 +17,7 @@ import es.ull.simulation.model.flow.InterleavedRoutingFlow;
 public class WFP40Simulation extends WFPTestSimulation {
 	static final int RES = 4;
 
-	public WFP40Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP40Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP40: Interleaved Routing", args);
 	}
 

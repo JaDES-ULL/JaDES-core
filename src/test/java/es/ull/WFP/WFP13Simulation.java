@@ -24,7 +24,7 @@ public class WFP13Simulation extends WFPTestSimulation {
 	 *
 	 * @param id  The identifier for this simulation.
 	 */
-	public WFP13Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP13Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP13: Multiple Instances with a priori design-time knowledge", args);
 	}
 

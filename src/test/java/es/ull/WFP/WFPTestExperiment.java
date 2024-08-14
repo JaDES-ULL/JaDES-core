@@ -5,25 +5,25 @@ package es.ull.WFP;
 
 import com.beust.jcommander.JCommander;
 
-import es.ull.simulation.model.Experiment;
+import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.model.Simulation;
 
 /**
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFPTestExperiment extends Experiment {
-	final TestWFP.CommonArguments args;
+public class WFPTestExperiment extends BaseExperiment {
+	final TestWFP.TestWFPArguments args;
 	final int wfp;
 	
-	public WFPTestExperiment(TestWFP.CommonArguments args) {
-		super("Testing WFP " + args.wfp, 1);
+	public WFPTestExperiment(TestWFP.TestWFPArguments args) {
+		super("Testing WFP " + args.wfp, args);
 		this.wfp = args.wfp;
 		this.args = args;
 	}
 	
 	@Override
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		Simulation simul = null;
 		switch (wfp) {
 			case 1:		simul = new WFP01Simulation(ind, args);	break;
@@ -47,27 +47,20 @@ public class WFPTestExperiment extends Experiment {
 			case 30:	simul = new WFP30Simulation(ind, args);	break;
 			case 40:	simul = new WFP40Simulation(ind, args);	break;
 			default: 
-				System.err.println(description + " - Invalid WFP number: " + wfp);
+				System.err.println(getDescription() + " - Invalid WFP number: " + wfp);
 			break;
 		}
-		return simul;
+		simul.run();
 	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		final TestWFP.CommonArguments arguments = new TestWFP.CommonArguments();
-		try {
-			final JCommander jc = JCommander.newBuilder()
-					.addObject(arguments)
-					.build();
-			jc.parse(args);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+		final TestWFP.TestWFPArguments arguments = new TestWFP.TestWFPArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
 
-		new WFPTestExperiment(arguments).start();
+		new WFPTestExperiment(arguments).run();
 	}
 
 }

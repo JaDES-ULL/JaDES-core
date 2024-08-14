@@ -18,7 +18,7 @@ import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
 public class WFP04Simulation extends WFPTestSimulation {
 	int ndays;
 	
-	public WFP04Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP04Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP4: Exclusive Choice. EjSistemaVotacion", args);
     }
     

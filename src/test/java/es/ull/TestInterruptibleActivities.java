@@ -4,9 +4,10 @@
 package es.ull;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.inforeceiver.StdInfoView;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -32,10 +33,11 @@ public class TestInterruptibleActivities {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Experiment("Testing interruptible activities", 1) {
+        final CommonArguments arguments = new CommonArguments();
+		new BaseExperiment("Testing interruptible activities", arguments) {
 
 			@Override
-			public Simulation getSimulation(int ind) {
+			public void runExperiment(int ind) {
 				Simulation sim = null;
 				SimulationFactory factory = new SimulationFactory(ind, "Testing interruptible activities",
 						unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.MINUTE, 400));
@@ -67,10 +69,10 @@ public class TestInterruptibleActivities {
 									factory.getElementTypeInstance("ET" + i, i), meta, c1);
 				
 				sim.addInfoReceiver(new StdInfoView());
-				return sim;
+				sim.run();
 			}
 			
-		}.start();
+		}.run();
 	}
 
 }

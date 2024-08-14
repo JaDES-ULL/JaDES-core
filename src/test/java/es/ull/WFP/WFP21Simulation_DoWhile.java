@@ -21,7 +21,7 @@ public class WFP21Simulation_DoWhile extends WFPTestSimulation {
 	 * @param id
 	 * @param detailed
 	 */
-	public WFP21Simulation_DoWhile(int id, TestWFP.CommonArguments args) {
+	public WFP21Simulation_DoWhile(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP21: Structured Loop (DoWhile). EjReveladoFotografico", args);
 	}
 

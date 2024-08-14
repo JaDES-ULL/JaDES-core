@@ -1,9 +1,10 @@
 package es.ull;
 import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -17,15 +18,14 @@ import es.ull.simulation.model.flow.ProbabilitySelectionFlow;
 /**
  * 
  */
-class ExperimentProbSel extends Experiment {
-	static final int NEXP = 1;
+class ExperimentProbSel extends BaseExperiment {
     static final int NDAYS = 1;
 	
-	public ExperimentProbSel() {
-		super("Banco", NEXP);
+	public ExperimentProbSel(CommonArguments arguments) {
+		super("Banco", arguments);
 	}
 
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		Simulation sim = null;
 		TimeUnit unit = TimeUnit.MINUTE;
 		SimulationFactory factory = new SimulationFactory(ind, "EjProbabilidades", TimeUnit.MINUTE,
@@ -77,7 +77,7 @@ class ExperimentProbSel extends Experiment {
 		
 		StdInfoView debugView = new StdInfoView();
 		sim.addInfoReceiver(debugView);
-		return sim;
+		sim.run();
 	}
 	
 
@@ -90,8 +90,8 @@ public class TestProbabilitySelectionFlow {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new ExperimentProbSel().start();
+        final CommonArguments arguments = new CommonArguments();
+		new ExperimentProbSel(arguments).run();
 	}
 
 }

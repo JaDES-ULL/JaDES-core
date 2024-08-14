@@ -5,25 +5,25 @@ package es.ull;
 
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
-import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 
-class TestDynamicGenerationExperiment extends Experiment {
+class TestDynamicGenerationExperiment extends BaseExperiment {
 	
-	public TestDynamicGenerationExperiment() {
-		super("Test Dynamic Generation", 1);
+	public TestDynamicGenerationExperiment(CommonArguments arguments) {
+		super("Test Dynamic Generation", arguments);
 	}
 
 	@Override
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		TimeUnit unit = TimeUnit.MINUTE;
 		SimulationFactory factory = new SimulationFactory(ind, "Test Dynamic", unit, 0, 1);
 		
@@ -45,7 +45,7 @@ class TestDynamicGenerationExperiment extends Experiment {
 		
 		factory.getElementTypeInstance("ET0");
 		factory.getFlowInstance("SingleFlow", act0);
-		return factory.getSimulation();
+		factory.getSimulation().run();
 	}
 }
 
@@ -59,7 +59,9 @@ public class TestDynamicGeneration {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestDynamicGenerationExperiment().start();
+        final CommonArguments arguments = new CommonArguments();
+
+		new TestDynamicGenerationExperiment(arguments).run();
 
 	}
 

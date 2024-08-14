@@ -5,13 +5,16 @@ package es.ull.location;
 
 import java.util.ArrayList;
 
+import com.beust.jcommander.JCommander;
+
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -32,20 +35,19 @@ import es.ull.simulation.model.location.TransportFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class TestTransport extends Experiment {
+public class TestTransport extends BaseExperiment {
 	private static final long ENDTS = 200;
 	private static final int NELEM = 3;
 	private static final int NMOTOS = 2;
 	private static final int MOTOSIZE = 1;
-	private static final int NEXP = 1;
 	private static final int NPATHS = 3;
 	private static final long DELAY_HOME = 5;
 	private static final long DELAY_PATH = 10;
 	private static final boolean NOSIZE = false;
 	private static final boolean UNREACHABLE = false;
 
-	public TestTransport() {
-		super("Experiment with locations", NEXP);
+	public TestTransport(CommonArguments arguments) {
+		super("Experiment with locations", arguments);
 	}
 
 	class MyRouter implements IRouter {
@@ -149,18 +151,22 @@ public class TestTransport extends Experiment {
 		
 	}
 
-		@Override
-		public Simulation getSimulation(int ind) {
-			final SimulLocation sim =  new SimulLocation(ind, ENDTS);
-			sim.addInfoReceiver(new LocationListener());
-			return sim;
-		}
+	@Override
+	public void runExperiment(int ind) {
+		final SimulLocation sim =  new SimulLocation(ind, ENDTS);
+		sim.addInfoReceiver(new LocationListener());
+		sim.run();;
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestTransport().start();;
+		final CommonArguments arguments = new CommonArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
+
+		new TestTransport(arguments).run();;
 
 	}
 

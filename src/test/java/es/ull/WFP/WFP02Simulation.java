@@ -13,7 +13,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  */
 public class WFP02Simulation extends WFPTestSimulation {
 	
-	public WFP02Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP02Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP2: Parallel Split. EjAlarma", args);
     }
     

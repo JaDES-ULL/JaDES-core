@@ -19,7 +19,7 @@ public class WFP09Simulation extends WFPTestSimulation {
 	 *
 	 * @param id  The identifier for this simulation.
 	 */
-	public WFP09Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP09Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP9: Structured Discriminator. EjParoCardiaco", args);
 	}
 

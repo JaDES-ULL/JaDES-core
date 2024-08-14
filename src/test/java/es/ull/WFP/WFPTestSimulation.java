@@ -46,9 +46,9 @@ public abstract class WFPTestSimulation extends Simulation {
 	private final ArrayList<Integer> nElems;
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex; 
-	private final TestWFP.CommonArguments args;
+	private final TestWFP.TestWFPArguments args;
 	
-	public WFPTestSimulation(int id, String description, TestWFP.CommonArguments args) {
+	public WFPTestSimulation(int id, String description, TestWFP.TestWFPArguments args) {
 		super(id, description, SIMSTART, SIMEND);
 		nElems = new ArrayList<Integer>();
 		actDuration = new ArrayList<Long>();
@@ -61,7 +61,7 @@ public abstract class WFPTestSimulation extends Simulation {
 	protected abstract void createModel();
 	
 	private void addCheckers() {
-		if (args.stdOutput)
+		if (!args.quiet)
 			addInfoReceiver(new StdInfoView());
 		if (args.checkResources) {
 			addInfoReceiver(new CheckResourcesListener(this.getResourceList().size()));

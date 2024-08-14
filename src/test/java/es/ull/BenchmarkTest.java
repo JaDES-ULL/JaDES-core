@@ -5,7 +5,10 @@ package es.ull;
 
 import java.io.PrintStream;
 
-import es.ull.simulation.model.Experiment;
+import com.beust.jcommander.JCommander;
+
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.model.Simulation;
 
 /**
@@ -32,6 +35,10 @@ public class BenchmarkTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+        final BenchmarkArguments arguments = new BenchmarkArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
+
 		int argCounter = 0;
 		if (args.length >= MINARGS) {
 			modType = BenchmarkModel.ModelType.valueOf(args[argCounter++]);
@@ -55,23 +62,23 @@ public class BenchmarkTest {
 			System.exit(0);
 		} 
 		
-		new Experiment("Same Time", nExp) {
+		BaseExperiment exp = new BaseExperiment("Same Time", arguments) {
 			long t1;
 
 			@Override
-			public void start() {
+			public void beforeStart() {
 				t1 = System.nanoTime();
-				super.start();
+				super.beforeStart();
 			}
 			
 			@Override
-			protected void end() {
-				super.end();
+			public void afterFinalize() {
+				super.afterFinalize();
 				System.out.println("TOTAL EXPERIMENT: " + ((System.nanoTime() - t1) / 1000000) + " miliseconds");
 			}
 			
 			@Override
-			public Simulation getSimulation(int ind) {
+			public void runExperiment(int ind) {
 				BenchmarkModel config = new BenchmarkModel(ind, modType, ovType, nThreads, nIter, nElem,
 						nAct, mixFactor, workLoad);
 				config.setRtXact(rtXact);
@@ -81,11 +88,15 @@ public class BenchmarkTest {
 				
 				if (debug)
 					sim.addInfoReceiver(new BenchmarkListener(System.out));
-				return sim;
+				sim.run();;
 			}
 			
-		}.start();
+		};
 		
+		exp.run();		
 	}
 	
+	public static class BenchmarkArguments extends CommonArguments {
+
+	}
 }

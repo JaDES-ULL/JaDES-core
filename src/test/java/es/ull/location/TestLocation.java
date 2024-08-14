@@ -5,12 +5,15 @@ package es.ull.location;
 
 import java.util.ArrayList;
 
+import com.beust.jcommander.JCommander;
+
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.SimulationTimeFunction;
@@ -26,19 +29,18 @@ import es.ull.simulation.model.location.IRouter;
  * @author Iván Castilla Rodríguez
  *
  */
-public class TestLocation extends Experiment {
+public class TestLocation extends BaseExperiment {
 	private static final long ENDTS = 100;
 	private static final int NELEM = 3;
 	private static final int ELEMSIZE = 1;	
-	private static final int NEXP = 1;
 	private static final int NPATHS = 3;
 	private static final long DELAY_HOME = 5;
 	private static final long DELAY_PATH = 10;
 	private static final boolean NOSIZE = false;
 	private static final boolean UNREACHABLE = false;
 
-	public TestLocation() {
-		super("Experiment with locations", NEXP);
+	public TestLocation(CommonArguments arguments) {
+		super("Experiment with locations", arguments);
 	}
 
 	class MyRouter implements IRouter {
@@ -125,17 +127,21 @@ public class TestLocation extends Experiment {
 	}
 
 		@Override
-		public Simulation getSimulation(int ind) {
+		public void runExperiment(int ind) {
 			final SimulLocation sim =  new SimulLocation(ind, ENDTS);
 			sim.addInfoReceiver(new LocationListener());
-			return sim;
+			sim.run();
 		}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestLocation().start();;
+		final CommonArguments arguments = new CommonArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
+
+		new TestLocation(arguments).run();;
 
 	}
 

@@ -2,16 +2,19 @@ package es.ull.simulation.examples;
 
 import java.util.ArrayList;
 
+import com.beust.jcommander.JCommander;
+
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.factory.SimulationUserCode;
 import es.ull.simulation.factory.UserMethod;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -23,17 +26,17 @@ import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.MultiChoiceFlow;
 import es.ull.simulation.utils.cycle.WeeklyPeriodicCycle;
 
-class BarrelShippingExperiment extends Experiment {
+class BarrelShippingExperiment extends BaseExperiment {
 
 	static final int NDAYS = 1;
 	static final int NTHREADS = 2;
 	
-	public BarrelShippingExperiment() {
-		super("Barrel Shipping Experiment", 1);
+	public BarrelShippingExperiment(CommonArguments arguments) {
+		super("Barrel Shipping Experiment", arguments);
 	}
 	
 	@Override
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		SimulationFactory factory = new SimulationFactory(
 				ind, "Barrel shipping", TimeUnit.MINUTE, 0, NDAYS * 24 * 60);
 		Simulation simul = factory.getSimulation();
@@ -113,8 +116,7 @@ class BarrelShippingExperiment extends Experiment {
 				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
 		simul.addInfoReceiver(new StdInfoView());
-		
-    	return simul;
+		simul.run();
 	}
 
 }
@@ -125,7 +127,11 @@ public class BarrelShipping {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new BarrelShippingExperiment().start();
+		final CommonArguments arguments = new CommonArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
+
+		new BarrelShippingExperiment(arguments).run();
 	}
 
 }

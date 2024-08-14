@@ -19,7 +19,7 @@ public class WFP28Simulation extends WFPTestSimulation {
 	 * @param id
 	 * @param detailed
 	 */
-	public WFP28Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP28Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP28: Blocking Discriminator. EjComprobacionCredenciales", args);
 	}
 

@@ -3,8 +3,11 @@
  */
 package es.ull.simulation.examples.hospital;
 
+import com.beust.jcommander.JCommander;
+
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.inforeceiver.StdInfoView;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.TimeUnit;
 
@@ -29,27 +32,30 @@ import es.ull.simulation.model.TimeUnit;
  * @author Iván Castilla Rodríguez
  *
  */
-public class BasicHospitalMain extends Experiment {
+public class BasicHospitalMain extends BaseExperiment {
 	/**
 	 * @param nExperiments
 	 */
-	public BasicHospitalMain(int nExperiments) {
-		super("Basic Hospital Experiment", nExperiments);
+	public BasicHospitalMain(CommonArguments arguments) {
+		super("Basic Hospital Experiment", arguments);
 	}
 
 	@Override
-	public Simulation getSimulation(int ind) {
-		final Simulation model = new BasicHospitalModel(ind, TimeUnit.MINUTE, 0, 7 * 24 * 60);
-		model.addInfoReceiver(new StdInfoView());
-		return model;
+	public void runExperiment(int ind) {
+		final Simulation simul = new BasicHospitalModel(ind, TimeUnit.MINUTE, 0, 7 * 24 * 60);
+		simul.addInfoReceiver(new StdInfoView());
+		simul.run();
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		final CommonArguments arguments = new CommonArguments();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		jc.parse(args);
 		// Runs a single experiment
-		new BasicHospitalMain(1).start();
+		new BasicHospitalMain(arguments).run();
 	}
 
 }

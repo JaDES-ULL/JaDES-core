@@ -3,9 +3,10 @@ package es.ull;
 import java.util.ArrayList;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.inforeceiver.StdInfoView;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -20,19 +21,18 @@ import es.ull.simulation.model.flow.ParallelFlow;
 /**
  * 
  */
-class ExpOverlapped extends Experiment {
+class ExpOverlapped extends BaseExperiment {
 	final static TimeUnit unit = TimeUnit.MINUTE;
     static final int NDAYS = 1;
-    static final int NTESTS = 2;
 	final static int NELEM = 3;
 	final static int NRESOURCES = 2;
 	final static int NEEDED = 1;
 
-	public ExpOverlapped(String description) {
-		super(description, NTESTS);
+	public ExpOverlapped(CommonArguments arguments) {
+		super("Overlapped", arguments);
 	}
 
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		SimulationFactory factory = new SimulationFactory(ind, "Sistema de análisis", unit,
 				TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
@@ -99,7 +99,7 @@ class ExpOverlapped extends Experiment {
 						factory.getElementTypeInstance("ET0"), metaFlow, c);
 		
 		sim.addInfoReceiver(new StdInfoView());
-		return sim;
+		sim.run();
 	}
 }
 
@@ -108,7 +108,8 @@ public class TestOverlapped {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new ExpOverlapped("Solapados").start();
+        final CommonArguments arguments = new CommonArguments();
+		new ExpOverlapped(arguments).run();
 	}
 
 }

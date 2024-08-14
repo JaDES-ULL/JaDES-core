@@ -29,7 +29,7 @@ public class WFP10Simulation extends WFPTestSimulation {
 	 *
 	 * @param id The identifier for this simulation.
 	 */
-	public WFP10Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP10Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP10: Arbitrary Cycle. Ej", args);
 		capacity = 0.0;
 		deliveries = 0;

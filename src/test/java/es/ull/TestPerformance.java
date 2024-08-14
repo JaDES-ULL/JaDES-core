@@ -3,8 +3,9 @@
  */
 package es.ull;
 
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.TimeStamp;
 import es.ull.simulation.model.TimeUnit;
@@ -22,10 +23,12 @@ public class TestPerformance {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Experiment("EXP", 1) {
+		final CommonArguments arguments = new CommonArguments();
+
+		new BaseExperiment("EXP", arguments) {
 
 			@Override
-			public Simulation getSimulation(int ind) {
+			public void runExperiment(int ind) {
 				SimulationFactory factory = new SimulationFactory(ind, "SimTest", unit, STARTTS, ENDTS);
 				Simulation sim = factory.getSimulation();
 				int i = 0;
@@ -42,9 +45,9 @@ public class TestPerformance {
 //					System.out.println("Not enough memory with " + i + " activities");
 //				}
 				
-				return sim;
+				sim.run();
 			}			
-		}.start();
+		}.run();
 
 	}
 

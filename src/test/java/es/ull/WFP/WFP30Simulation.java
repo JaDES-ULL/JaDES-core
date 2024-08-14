@@ -19,7 +19,7 @@ public class WFP30Simulation extends WFPTestSimulation {
 	 * @param id
 	 * @param detailed
 	 */
-	public WFP30Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP30Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP30: EjExpedicionCheques", args);
 	}
 

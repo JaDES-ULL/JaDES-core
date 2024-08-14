@@ -4,7 +4,6 @@ es\ull\simulation\model\flow\package-info.class
 es\ull\simulation\info\SimulationStartStopInfo$Type.class
 es\ull\simulation\model\Resource$RoleOffEvent.class
 es\ull\simulation\model\flow\IFlow.class
-es\ull\simulation\model\Experiment$SimulationLauncher.class
 es\ull\simulation\model\engine\ActivityManagerEngine$FlowExecutorQueue.class
 es\ull\simulation\model\package-info.class
 es\ull\simulation\model\flow\SafeMergeFlowControl.class
@@ -51,7 +50,6 @@ es\ull\App.class
 es\ull\simulation\variable\ByteVariable.class
 es\ull\simulation\factory\TagProcessLexer.class
 es\ull\simulation\info\ElementInfo$Type.class
-es\ull\simulation\model\PooledExperiment.class
 es\ull\simulation\info\VarViewValueRequestInfo.class
 es\ull\simulation\model\engine\AbstractEngineObject.class
 es\ull\simulation\model\flow\SynchronizedMultipleInstanceFlow.class
@@ -74,7 +72,6 @@ es\ull\simulation\model\ActivityManager.class
 es\ull\simulation\model\DiscreteEvent$DefaultStartEvent.class
 es\ull\simulation\model\flow\AbstractStructuredFlow.class
 es\ull\simulation\examples\BarrelShippingExperiment.class
-es\ull\simulation\model\flow\RequestResourcesFlow$1.class
 es\ull\simulation\factory\FlowFactory.class
 es\ull\simulation\model\engine\MergeFlowEngine.class
 es\ull\simulation\model\Generator$GenerationInfo.class
@@ -181,7 +178,6 @@ es\ull\simulation\model\WorkGroup.class
 es\ull\simulation\examples\hospital\package-info.class
 es\ull\simulation\model\TimeStamp.class
 es\ull\simulation\examples\hospital\BasicHospitalMain.class
-es\ull\simulation\model\Experiment.class
 es\ull\simulation\model\TimeTableEntry.class
 es\ull\simulation\model\Element$FinishFlowEvent.class
 es\ull\simulation\model\flow\AbstractMergeFlow.class
@@ -201,7 +197,6 @@ es\ull\simulation\model\flow\WhileDoFlow.class
 es\ull\simulation\condition\ResourceTypeAcquiredCondition.class
 es\ull\simulation\factory\SimulationUserCode.class
 es\ull\simulation\condition\AndCondition.class
-es\ull\simulation\factory\SimulationType.class
 es\ull\simulation\inforeceiver\package-info.class
 es\ull\simulation\model\location\package-info.class
 es\ull\simulation\model\Generator.class

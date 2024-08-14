@@ -12,7 +12,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Iván Castilla Rodríguez
  */
 public class WFP08Simulation extends WFPTestSimulation {
-	public WFP08Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP08Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP8: Multi-Merge. EjControlCalidad", args);
 	}
 

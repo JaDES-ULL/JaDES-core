@@ -8,19 +8,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import com.beust.jcommander.Parameter;
 
+import es.ull.simulation.experiment.CommonArguments;
+
 /**
  * @author Iván Castilla Rodríguez
  *
  */
 public class TestWFP {
 
-    private final CommonArguments arguments = new CommonArguments();
+    private final TestWFPArguments arguments = new TestWFPArguments();
     @BeforeEach
     public void setUp() {
         arguments.checkActivities = true;
         arguments.checkElements = true;
         arguments.checkResources = true;
-        arguments.stdOutput = true;
+        arguments.quiet = true;
     }
 
     @ParameterizedTest
@@ -29,7 +31,7 @@ public class TestWFP {
     public void testAllWFP(int wfp) {
         arguments.wfp = wfp;
         final WFPTestExperiment exp = new WFPTestExperiment(arguments);
-        exp.start();
+        exp.run();
     }
 
     @Test
@@ -37,12 +39,10 @@ public class TestWFP {
     public void testWFP1() {
         arguments.wfp = 1;
         final WFPTestExperiment exp = new WFPTestExperiment(arguments);
-        exp.start();
+        exp.run();
     }
     
-    public static class CommonArguments {
-    	@Parameter(names = { "--output", "-o" }, description = "Enables printing to the standard output", order = 1)
-    	public boolean stdOutput = false;
+    public static class TestWFPArguments extends CommonArguments{
     	@Parameter(names = { "--checkresources", "-cr" }, description = "Enables checking resources", order = 2)
     	public boolean checkResources = false;
     	@Parameter(names = { "--checkelements", "-ce" }, description = "Enables checking elements", order = 3)

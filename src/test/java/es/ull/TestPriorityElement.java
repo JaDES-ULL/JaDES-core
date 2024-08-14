@@ -4,9 +4,10 @@
 package es.ull;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.inforeceiver.StdInfoView;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -31,10 +32,11 @@ public class TestPriorityElement {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Experiment("Testing priority", 1) {
+        final CommonArguments arguments = new CommonArguments();
+		new BaseExperiment("Testing priority", arguments) {
 
 			@Override
-			public Simulation getSimulation(int ind) {
+			public void runExperiment(int ind) {
 				SimulationFactory factory = new SimulationFactory(ind, "Testing Elements with priority", unit,
 						0, 200);
 				Simulation sim = factory.getSimulation();
@@ -66,10 +68,10 @@ public class TestPriorityElement {
 				
 				StdInfoView debugView = new StdInfoView();
 				sim.addInfoReceiver(debugView);
-				return sim;
+				sim.run();
 			}
 			
-		}.start();
+		}.run();
 	}
 
 }

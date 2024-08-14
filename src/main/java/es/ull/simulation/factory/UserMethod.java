@@ -3,8 +3,8 @@
  */
 package es.ull.simulation.factory;
 
+import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.model.ElementInstance;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Generator;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -34,7 +34,7 @@ public enum UserMethod {
 			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
 	IN_QUEUE("inqueue", RequestResourcesFlow.class, "public void inqueue("
 			+ ElementInstance.class.getName() + " ei)", ElementInstance.class),
-	EXP_END("end", Experiment.class, "public void end()"),
+	EXP_END("end", BaseExperiment.class, "public void end()"),
 	SIM_INI("init", Simulation.class, "public void init()"),
 	SIM_END("end", Simulation.class, "public void end()"),
 	BEFORE_CLOCK_TICK("beforeClockTick", Simulation.class, "public void beforeClockTick()"),

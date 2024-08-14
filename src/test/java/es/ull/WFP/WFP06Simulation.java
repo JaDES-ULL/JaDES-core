@@ -17,7 +17,7 @@ import es.ull.simulation.model.flow.MultiChoiceFlow;
  */
 public class WFP06Simulation extends WFPTestSimulation {
 	
-	public WFP06Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP06Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP6: Multichoice. EjLamadasEmergencia", args);
     }
     

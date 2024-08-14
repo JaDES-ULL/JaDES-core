@@ -4,9 +4,10 @@
 package es.ull;
 
 import es.ull.simulation.condition.ResourceTypeAcquiredCondition;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.ResourceType;
@@ -22,8 +23,7 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class TestResourcesManagement extends Experiment {
-	final static int N_EXP = 1;
+public class TestResourcesManagement extends BaseExperiment {
 	final static TimeUnit UNIT = TimeUnit.MINUTE;
 	final static long END_TIME = 100;
 
@@ -266,22 +266,23 @@ public class TestResourcesManagement extends Experiment {
 	/**
 	 * 
 	 */
-	public TestResourcesManagement(int nExperiments) {
-		super("Testing resource management", nExperiments);
+	public TestResourcesManagement(CommonArguments args) {
+		super("Testing resource management", args);
 	}
 
 	@Override
-	public Simulation getSimulation(int ind) {
-		final Simulation model = new ModelResourceManagementDefaultGroup(ind);
-		model.addInfoReceiver(new StdInfoView());
-		return model;
+	public void runExperiment(int ind) {
+		final Simulation simul = new ModelResourceManagementDefaultGroup(ind);
+		simul.addInfoReceiver(new StdInfoView());
+		simul.run();;
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestResourcesManagement(N_EXP).start();
+        final CommonArguments arguments = new CommonArguments();
+		new TestResourcesManagement(arguments).run();
 
 	}
 

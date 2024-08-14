@@ -14,7 +14,7 @@ import es.ull.simulation.model.flow.SimpleMergeFlow;
  */
 public class WFP05Simulation extends WFPTestSimulation {
 	
-	public WFP05Simulation(int id, TestWFP.CommonArguments args) {
+	public WFP05Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP5: Simple Merge. EjExcavaciones", args);
     }
     

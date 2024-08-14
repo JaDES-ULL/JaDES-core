@@ -3,9 +3,10 @@
  */
 package es.ull;
 
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementType;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -21,7 +22,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class TestConditionalResourceGenerator extends Experiment {
+public class TestConditionalResourceGenerator extends BaseExperiment {
 	private final static int NRT = 5;
 	private final static long []DURATIONS = new long[] {5,6,7,8,9};
 
@@ -75,25 +76,27 @@ public class TestConditionalResourceGenerator extends Experiment {
 	 * @param description
 	 * @param nExperiments
 	 */
-	public TestConditionalResourceGenerator(int nExperiments) {
-		super("Testing conditional generation of resources", nExperiments);
+	public TestConditionalResourceGenerator(CommonArguments arguments) {
+		super("Testing conditional generation of resources", arguments);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.ull.simulation.model.Experiment#getModel(int)
 	 */
 	@Override
-	public Simulation getSimulation(int ind) {
-		Simulation model = new TestModel(ind);
-		model.addInfoReceiver(new StdInfoView());
-		return model;
+	public void runExperiment(int ind) {
+		Simulation simul = new TestModel(ind);
+		simul.addInfoReceiver(new StdInfoView());
+		simul.run();
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestConditionalResourceGenerator(1).start();
+        final CommonArguments arguments = new CommonArguments();
+
+		new TestConditionalResourceGenerator(arguments).run();
 
 	}
 

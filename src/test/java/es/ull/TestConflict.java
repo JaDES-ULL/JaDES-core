@@ -1,8 +1,9 @@
 package es.ull;
 
 import es.ull.simulation.functions.TimeFunctionFactory;
+import es.ull.simulation.experiment.BaseExperiment;
+import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.model.Experiment;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -16,13 +17,12 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.IInitializerFlow;
 import es.ull.simulation.utils.Output;
 
-class ExpConflict extends Experiment {
+class ExpConflict extends BaseExperiment {
     static final int NDAYS = 1;
-    static final int NTESTS = 1;
 	static final TimeUnit unit = TimeUnit.MINUTE;
     
-    ExpConflict() {
-    	super("CHECKING CONFLICTS", NTESTS);
+    ExpConflict(CommonArguments arguments) {
+    	super("CHECKING CONFLICTS", arguments);
     }
     
     /**
@@ -127,13 +127,13 @@ class ExpConflict extends Experiment {
     }
     
 	@Override
-	public Simulation getSimulation(int ind) {
+	public void runExperiment(int ind) {
 		SimulationFactory factory = new SimulationFactory(ind, "TestConflicts", unit, TimeStamp.getZero(),
 				new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
 		createSimulation1(factory);
 		Simulation.setOutput(new Output(true));
-		return sim;
+		sim.run();
 	}	
 }
 /**
@@ -145,7 +145,8 @@ public class TestConflict {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new ExpConflict().start();
+        final CommonArguments arguments = new CommonArguments();
+		new ExpConflict(arguments).run();
 	}
 
 }
