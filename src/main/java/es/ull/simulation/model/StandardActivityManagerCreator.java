@@ -44,9 +44,9 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 		int nManagers = graph.DFS(marks);
 		// The activity managers are created
 		for (int i = 0; i < nManagers; i++)
-			new ActivityManager(model);
+			new ActivityManager(simul);
 		// The activities are associated to the activity managers
-		for (RequestResourcesFlow f : model.getRequestFlowList()) {
+		for (RequestResourcesFlow f : simul.getRequestFlowList()) {
 			Iterator<ActivityWorkGroup> iter = f.iterator();
 			// This step is for non-resource-types activities
 			boolean found = false;
@@ -59,10 +59,10 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 			}
 			if (!found) {
 				nManagers++;
-				f.setManager(new ActivityManager(model));
+				f.setManager(new ActivityManager(simul));
 			}
 		}
-		for (ResourceType rt : model.getResourceTypeList())
+		for (ResourceType rt : simul.getResourceTypeList())
 			rt.setManager(marks.get(rt));
 	}
 
@@ -83,10 +83,10 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 		SimulationGraph() {
 			ResourceType ind1 = null, ind2 = null;
 			// Starts by creating one node per resource type
-			for (ResourceType rt : model.getResourceTypeList())
+			for (ResourceType rt : simul.getResourceTypeList())
 				put(rt, new TreeSet<ResourceType>());
 			// Goes through the activity list to built the adyacent list 
-			for (RequestResourcesFlow f : model.getRequestFlowList()) {
+			for (RequestResourcesFlow f : simul.getRequestFlowList()) {
 				Iterator<ActivityWorkGroup> iter = f.iterator();
 				// Looks for the first WorkGroup that contains at least one resource type
 				int firstWG = 1;
@@ -119,10 +119,10 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 		 *            The amount of activity managers to be created.
 		 */
 		int DFS(TreeMap<ResourceType, ActivityManager> marks) {
-			ActivityManager am = new ActivityManager(model);
+			ActivityManager am = new ActivityManager(simul);
 			int nManagers = 0;
 			Stack<ResourceType> toVisit = new Stack<ResourceType>();
-			for (ResourceType rt : model.getResourceTypeList())
+			for (ResourceType rt : simul.getResourceTypeList())
 				marks.put(rt, null);// Not-visited mark
 			for (ResourceType key : marks.keySet())
 				if (marks.get(key) == null) {
@@ -134,7 +134,7 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 							if (marks.get(nnode) == null)
 								toVisit.push(nnode);					
 					}
-					am = new ActivityManager(model);
+					am = new ActivityManager(simul);
 					nManagers++;
 				}
 			return nManagers;
@@ -145,7 +145,7 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 		 * the links.
 		 */
 		void debug() {
-			if (Simulation.isDebugEnabled()) {
+			if (simul.isDebugEnabled()) {
 				StringBuffer str = new StringBuffer();
 				// Pinto el graph para chequeo
 				for (ResourceType rt : keySet()) {
@@ -156,7 +156,7 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 						str.append(nodo + "\t");
 					str.append("\r\n");
 				}
-				Simulation.debug("Graph created\r\n" + str.toString());
+				simul.debug("Graph created\r\n" + str.toString());
 			}
 		}
 	}

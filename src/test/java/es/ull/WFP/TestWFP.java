@@ -2,7 +2,6 @@ package es.ull.WFP;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,7 +21,6 @@ public class TestWFP {
         arguments.checkActivities = true;
         arguments.checkElements = true;
         arguments.checkResources = true;
-        arguments.quiet = true;
     }
 
     @ParameterizedTest
@@ -30,14 +28,6 @@ public class TestWFP {
     @DisplayName("Test all WFP")
     public void testAllWFP(int wfp) {
         arguments.wfp = wfp;
-        final WFPTestExperiment exp = new WFPTestExperiment(arguments);
-        exp.run();
-    }
-
-    @Test
-    @DisplayName("Test WFP 1")
-    public void testWFP1() {
-        arguments.wfp = 1;
         final WFPTestExperiment exp = new WFPTestExperiment(arguments);
         exp.run();
     }

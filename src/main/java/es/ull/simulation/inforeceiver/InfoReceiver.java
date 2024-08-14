@@ -3,7 +3,6 @@ package es.ull.simulation.inforeceiver;
 import java.util.ArrayList;
 
 import es.ull.simulation.info.SimulationInfo;
-import es.ull.simulation.model.Simulation;
 
 public abstract class InfoReceiver {
 
@@ -26,10 +25,6 @@ public abstract class InfoReceiver {
 
 	public ArrayList<Class<?>> getEntrance() {
 		return entrance;
-	}
-
-    public boolean isDebugMode() {
-    	return (Simulation.isDebugEnabled());
 	}
     
     public void debug (String message) {

@@ -11,14 +11,14 @@ package es.ull.simulation.model;
  */
 public abstract class ActivityManagerCreator {
 	/** The simulation model the activity managers belong to */ 
-	protected final Simulation model;
+	protected final Simulation simul;
 
 	/**
 	 * Creates an activity manager creator
 	 * @param model The simulation model the activity managers belong to
 	 */
 	public ActivityManagerCreator(final Simulation model) {
-		this.model = model;
+		this.simul = model;
 	}
 
 	/**

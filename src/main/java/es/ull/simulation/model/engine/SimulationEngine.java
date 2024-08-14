@@ -14,7 +14,6 @@ import java.util.concurrent.CountDownLatch;
 import es.ull.simulation.info.TimeChangeInfo;
 import es.ull.simulation.inforeceiver.InfoReceiver;
 import es.ull.simulation.model.ActivityManager;
-import es.ull.simulation.model.IDebuggable;
 import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementType;
@@ -66,7 +65,7 @@ import es.ull.simulation.utils.Output;
  * defining the destination for error and debug messages.
  * @author Iván Castilla Rodríguez
  */
-public class SimulationEngine implements IIdentifiable, IDebuggable {
+public class SimulationEngine implements IIdentifiable {
 	/** Simulation's identifier */
 	protected final int id;
 	/** The associated {@link Simulation} */
@@ -110,21 +109,6 @@ public class SimulationEngine implements IIdentifiable, IDebuggable {
 	@Override
 	public int getIdentifier() {
 		return id;
-	}
-
-	@Override
-	public void debug(String description) {
-		Simulation.debug(description);
-	}
-
-	@Override
-	public void error(String description) {
-		Simulation.error(description);
-	}
-
-	@Override
-	public boolean isDebugEnabled() {
-		return Simulation.isDebugEnabled();
 	}
 	
     /**
@@ -204,14 +188,14 @@ public class SimulationEngine implements IIdentifiable, IDebuggable {
 	 * time, the contents of the future event list and the execution queue. 
 	 */
 	public void printState() {
-		if (isDebugEnabled()) {
+		if (simul.isDebugEnabled()) {
 			StringBuffer strLong = new StringBuffer("------    LP STATE    ------");
 			strLong.append("LVT: " + lvt + "\r\n");
 	        strLong.append(waitQueue.size() + " waiting elements: ");
 	        for (DiscreteEvent e : waitQueue)
 	            strLong.append(e + " ");
 	        strLong.append("\r\n------ LP STATE FINISHED ------\r\n");
-			debug(strLong.toString());
+			simul.debug(strLong.toString());
 		}
 	}
 
@@ -290,14 +274,14 @@ public class SimulationEngine implements IIdentifiable, IDebuggable {
 	            // Updates the simulation clock
 	            lvt = newLVT;
 	    		simul.notifyInfo(new TimeChangeInfo(simul, lvt));
-	            debug("SIMULATION TIME ADVANCING " + lvt);
+	            simul.debug("SIMULATION TIME ADVANCING " + lvt);
 			}
 		}
 	}
 
 	public void addEvent(DiscreteEvent ev) {
 		if (ev.getTs() < lvt) {
-			error("Causal restriction broken\t" + lvt + "\t" + ev);
+			simul.error("Causal restriction broken\t" + lvt + "\t" + ev);
 		}
         else {
             addWait(ev);

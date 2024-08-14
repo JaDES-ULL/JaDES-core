@@ -15,7 +15,6 @@ import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.IInitializerFlow;
-import es.ull.simulation.utils.Output;
 
 class ExpConflict extends BaseExperiment {
     static final int NDAYS = 1;
@@ -23,6 +22,7 @@ class ExpConflict extends BaseExperiment {
     
     ExpConflict(CommonArguments arguments) {
     	super("CHECKING CONFLICTS", arguments);
+		setDebugEnabled(true); 
     }
     
     /**
@@ -132,7 +132,6 @@ class ExpConflict extends BaseExperiment {
 				new TimeStamp(TimeUnit.DAY, NDAYS));
 		Simulation sim = factory.getSimulation();
 		createSimulation1(factory);
-		Simulation.setOutput(new Output(true));
 		sim.run();
 	}	
 }

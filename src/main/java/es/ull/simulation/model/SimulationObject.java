@@ -88,8 +88,7 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
 	 * @see com.ull.simulation.Debuggable#debug(java.lang.String)
 	 */
     public void debug(String message) {
-    	if (Simulation.isDebugEnabled())
-    		Simulation.debug(this.toString() + "\t" + getTs() + "\t" + message);
+    	IDebuggable.super.debug(this.toString() + "\t" + getTs() + "\t" + message);
 	}
 	
     /*
@@ -97,16 +96,8 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
      * @see com.ull.simulation.Debuggable#error(java.lang.String)
      */
 	public void error(String description) {
-		Simulation.error(this.toString() +
+		IDebuggable.super.error(this.toString() +
 				"\t" + getTs() + "\t" + description);
-	}
-    
-	/*
-	 * (non-Javadoc)
-	 * @see com.ull.simulation.Debuggable#isDebugEnabled()
-	 */
-	public boolean isDebugEnabled() {
-		return Simulation.isDebugEnabled();
 	}
 
 	/**

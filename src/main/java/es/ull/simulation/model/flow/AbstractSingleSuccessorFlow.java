@@ -37,7 +37,7 @@ public abstract class AbstractSingleSuccessorFlow extends BasicFlow {
 	@Override
 	public IFlow link(final IFlow succ) {
 		if (successor != null) {
-			Simulation.error("Trying to link already linked IFlow " + this.getClass() + " " + this);
+			simul.error("Trying to link already linked IFlow " + this.getClass() + " " + this);
 		}
 		else {
 			successor = (IFlow) succ;

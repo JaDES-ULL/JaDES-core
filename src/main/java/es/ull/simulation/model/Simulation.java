@@ -25,7 +25,6 @@ import es.ull.simulation.variable.LongVariable;
 import es.ull.simulation.variable.ShortVariable;
 import es.ull.simulation.variable.IUserVariable;
 import es.ull.simulation.variable.IVariable;
-import es.ull.simulation.utils.Output;
 
 /**
  * The main simulation class. Defines all the components of the model and the logical structures required to simulate them.
@@ -33,7 +32,7 @@ import es.ull.simulation.utils.Output;
  * @author Ivan Castilla Rodriguez
  *
  */
-public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore {
+public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, IDebuggable {
 	/** The default time unit used by the simulation */
 	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
 	/** If true, notifies Activity Managers that an element is available randomly; otherwise,
@@ -68,10 +67,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	/** List of activity managers that partition the simulation. */
 	private final ArrayList<ActivityManager> amList = new ArrayList<ActivityManager>();
 
-	/** Output for printing debug and error messages */
-	protected static Output out = new Output();
-	
-    /** Variable store */
+	/** Variable store */
 	protected final Map<String, IVariable> varCollection = new TreeMap<String, IVariable>();
 	
 	/** A handler for the information produced by the execution of this simulation */
@@ -220,39 +216,17 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	public static boolean isRandomNotifyAMs() {
 		return RANDOM_NOTIFY_AMS;
 	}
-	
-	/**
-	 * Sets an output for debugging and error messages.
-	 * @param out The new output for debugging and error messages
-	 */
-	public static void setOutput(final Output out) {
-		Simulation.out = out;
+
+	@Override
+	public void debug(final String description) {
+		IDebuggable.super.debug(this.toString() + "\t" + getTs() + "\t" + description);
 	}
 
-	/**
-	 * Prints a debug message
-	 * @param description Debug message
-	 */
-	public static void debug(final String description) {
-		out.debug(description);
+	@Override
+	public void error(final String description) {
+		IDebuggable.super.error(this.toString() + "\t" + getTs() + "\t" + description);
 	}
 
-	/**
-	 * Prints an error message
-	 * @param description Error message
-	 */
-	public static void error(final String description) {
-		out.error(description);
-	}
-
-	/**
-	 * Returns true if debug is enable; false otherwise
-	 * @return true if debug is enable; false otherwise
-	 */
-	public static boolean isDebugEnabled() {
-		return out.isDebugEnabled();
-	}
-	
 	/**
 	 * Returns a unique identifier for a newly created element. 
 	 * @return a unique identifier for a newly created element.
@@ -293,17 +267,17 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
      */ 
 	@Override
 	public void run() {
-		debug("SIMULATION MODEL CREATED");
+		// Sets default simulation engine
+		if (simulationEngine == null) {
+			setSimulationEngine(new SimulationEngine(id, this));
+		}
 		// Sets default AM creator
 		if (amCreator == null)
 			amCreator = new StandardActivityManagerCreator(this);
 		amCreator.createActivityManagers();
 		debugPrintActManager();					
-		// Sets default simulation engine
-		if (simulationEngine == null) {
-			setSimulationEngine(new SimulationEngine(id, this));
-		}
 		simulationEngine.initializeEngine();
+		debug("SIMULATION MODEL CREATED");
 		init();
 
 		infoHandler.notifyInfo(new SimulationStartStopInfo(this, SimulationStartStopInfo.Type.START, startTs));
@@ -320,9 +294,9 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		
 		simulationEngine.simulationLoop();
 
-		debug("SIMULATION FINISHES\r\nSimulation time = "
-            	+ getTs() + "\r\nPreviewed simulation time = " 
-    			+ endTs);
+		debug("SIMULATION FINISHES");
+		debug("Simulation time = " + getTs());
+		debug("Previewed simulation time = " + endTs);
     	simulationEngine.printState();
 		
 		infoHandler.notifyInfo(new SimulationStartStopInfo(this, SimulationStartStopInfo.Type.END, endTs));
@@ -511,7 +485,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 
 	@Override
 	public String toString() {
-		return description;
+		return "[SIM" + id + "]";
 	}
 
 	@Override

@@ -49,12 +49,12 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 			@Override
 			public void afterFinalize(ElementInstance ei) {
 				super.afterFinalize(ei);
-				System.out.println(getTs() + "\t" + ei.getElement() + "\tFinished");
+				ei.getElement().debug("Finished");
 			}
 			
 			@Override
 			public boolean beforeRequest(ElementInstance ei) {
-				System.out.println(getTs() + "\t" + ei.getElement() + "\tPassed");
+				ei.getElement().debug("Passed");
 				if (elementsPassedPerTime.get(getTs()) == null) {
 					elementsPassedPerTime.put(getTs(), 1);
 				} else {
@@ -67,7 +67,7 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 		final WaitForSignalFlow waitFlow = new WaitForSignalFlow(this, "Wait", listener) {
 			@Override
 			public boolean beforeRequest(ElementInstance ei) {
-				System.out.println(getTs() + "\t" + ei.getElement() + "\tTrying to pass");
+				ei.getElement().debug("Trying to pass");
 				return super.beforeRequest(ei);
 			}
 		};
@@ -130,7 +130,7 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 			public void event() {
 				final int n = (int)Math.ceil(waiting.size() / 2.0);
 				if (n > 0)
-					System.out.println(getTs() + "\t" + SimListener.this + "\tAllowing " + n + " elements to pass");
+					SimListener.this.debug("Allowing " + n + " elements to pass");
 				for (int i = 0; i < n; i++) {
 					IFlow.signal(waiting.remove(0));
 				}
