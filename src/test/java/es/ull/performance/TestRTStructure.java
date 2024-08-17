@@ -122,7 +122,6 @@ class ResourceList2 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	int pos = resources.indexOf(res);
-    	// FIXME Debería crearme un tipo personalizado de excepción
     	if (pos == -1)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (counter.get(pos).intValue() > 1) {

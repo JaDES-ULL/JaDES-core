@@ -13,6 +13,7 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ForLoopFlow;
 import es.ull.simulation.model.flow.InterleavedRoutingFlow;
+import es.ull.performance.BenchmarkTest.BenchmarkArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.factory.SimulationUserCode;
 import es.ull.simulation.factory.UserMethod;
@@ -67,35 +68,27 @@ public class BenchmarkModel {
 	final long workLoad;
 	final TimeStamp endTs;
 	final SimulationPeriodicCycle allCycle;
-	int rtXact = 4;
-	int rtXres = 1;
-	double resAvailabilityFactor = 1;
+	final int rtXact;
+	final int rtXres;
+	final double resAvailabilityFactor;
 
 	
 	/**
 	 * @param id
-	 * @param simType
-	 * @param modType
-	 * @param ovType
-	 * @param nThread
-	 * @param nIter
-	 * @param nElem
-	 * @param nAct
-	 * @param mixFactor
-	 * @param workLoad
 	 */
-	public BenchmarkModel(int id, ModelType modType,
-			OverlappingType ovType, int nThread, int nIter, int nElem,
-			int nAct, int mixFactor, long workLoad) {
+	public BenchmarkModel(int id, BenchmarkArguments arguments) {
 		this.id = id;
-		this.modType = modType;
-		this.ovType = ovType;
-		this.nThread = nThread;
-		this.nIter = nIter;
-		this.nElem = nElem;
-		this.nAct = nAct;
-		this.mixFactor = mixFactor;
-		this.workLoad = workLoad;
+		this.modType = ModelType.values()[arguments.modType];
+		this.ovType = OverlappingType.values()[arguments.ovType];
+		this.nThread = arguments.nThreads;
+		this.nIter = arguments.nIter;
+		this.nElem = arguments.nElem;
+		this.nAct = arguments.nAct;
+		this.mixFactor = arguments.mixFactor;
+		this.workLoad = arguments.workLoad;
+		this.rtXact = arguments.rtXAct;
+		this.rtXres = arguments.rtXRes;
+		this.resAvailabilityFactor = arguments.resAvailabilityFactor;
 		switch(modType) {
 			case PARALLEL: this.endTs = new TimeStamp(TimeUnit.MINUTE, nElem * nAct * (nIter + 1) + 1); break;
 			case NORESOURCES:
@@ -116,39 +109,6 @@ public class BenchmarkModel {
 		head = auxHead;
 		this.allCycle = new SimulationPeriodicCycle(unit, TimeStamp.getZero(), new SimulationTimeFunction(unit,
 				"ConstantVariate", endTs.getValue()), 0);
-	}
-
-	/**
-	 * @param id
-	 * @param simType
-	 * @param modType
-	 * @param ovType
-	 * @param nThread
-	 * @param nIter
-	 * @param nElem
-	 * @param nAct
-	 * @param workLoad
-	 */
-	public BenchmarkModel(int id, ModelType modType,
-			OverlappingType ovType, int nThread, int nIter, int nElem,
-			int nAct, long workLoad) {
-		this(id, modType, ovType, nThread, nIter, nElem, nAct, 2, workLoad);
-	}
-
- 	/**
-	 * @param id
-	 * @param simType
-	 * @param modType
-	 * @param ovType
-	 * @param nThread
-	 * @param nIter
-	 * @param nElem
-	 * @param nAct
-	 */
-	public BenchmarkModel(int id, ModelType modType,
-			OverlappingType ovType, int nThread, int nIter, int nElem,
-			int nAct) {
-		this(id, modType, ovType, nThread, nIter, nElem, nAct, 2, 0);
 	}
 	
 	@Override
@@ -390,27 +350,6 @@ public class BenchmarkModel {
 		stdBuildElementGenerators(factory, smfs, acts, wgs);
 
 		return factory.getSimulation();		
-	}
-
-	/**
-	 * @param rtXact the rtXact to set
-	 */
-	public void setRtXact(int rtXact) {
-		this.rtXact = rtXact;
-	}
-
-	/**
-	 * @param rtXres the rtXres to set
-	 */
-	public void setRtXres(int rtXres) {
-		this.rtXres = rtXres;
-	}
-
-	/**
-	 * @param resAvailabilityFactor the resAvailabilityFactor to set
-	 */
-	public void setResAvailabilityFactor(double resAvailabilityFactor) {
-		this.resAvailabilityFactor = resAvailabilityFactor;
 	}
 
 	private Simulation getTestConflict() {

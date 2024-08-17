@@ -6,6 +6,8 @@ package es.ull.performance;
 import java.io.PrintStream;
 
 import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
@@ -16,19 +18,6 @@ import es.ull.simulation.model.Simulation;
  *
  */
 public class BenchmarkTest {
-	private static final int MINARGS = 8;
-	static int nThreads = 1;
-	static int nElem = 512;
-	static int nAct = 512;
-	static int nIter = 100;
-	static int nExp = 1;
-	static int rtXact = 4;
-	static int rtXres = 1;
-	static int mixFactor = 2;
-	static long workLoad = 0;
-	static BenchmarkModel.OverlappingType ovType = BenchmarkModel.OverlappingType.SAMETIME;
-	static BenchmarkModel.ModelType modType = BenchmarkModel.ModelType.CONFLICT;
-	static boolean debug = true;
 	static PrintStream out = System.out;
 
 	/**
@@ -38,30 +27,13 @@ public class BenchmarkTest {
         final BenchmarkArguments arguments = new BenchmarkArguments();
 		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
 		jc.parse(args);
+		if (arguments.modType < 0 || arguments.modType >= BenchmarkModel.ModelType.values().length) {
+			throw new ParameterException("Invalid model type. Must be a number >= 0 and < " + BenchmarkModel.ModelType.values().length);
+		}
+		if (arguments.ovType < 0 || arguments.ovType >= BenchmarkModel.OverlappingType.values().length) {
+			throw new ParameterException("Invalid overlapping type. Must be a number >= 0 and < " + BenchmarkModel.OverlappingType.values().length);
+		}
 
-		int argCounter = 0;
-		if (args.length >= MINARGS) {
-			modType = BenchmarkModel.ModelType.valueOf(args[argCounter++]);
-			ovType = BenchmarkModel.OverlappingType.valueOf(args[argCounter++]);
-			nAct = Integer.parseInt(args[argCounter++]);
-			nElem = Integer.parseInt(args[argCounter++]);
-			nIter = Integer.parseInt(args[argCounter++]);
-			nThreads = Integer.parseInt(args[argCounter++]);
-			nExp = Integer.parseInt(args[argCounter++]);
-			workLoad = Long.parseLong(args[argCounter++]);
-			if (args.length > argCounter) {
-				if (ovType == BenchmarkModel.OverlappingType.MIXED) {
-					mixFactor = Integer.parseInt(args[argCounter++]);
-				}
-				// Debug is always the last parameter
-				if (args.length > argCounter)
-					debug = "D".equals(args[args.length - 1]);
-			}
-		} else if (args.length > 0) { 
-			System.err.println("Wrong number of arguments.\n Arguments expected: " + MINARGS);
-			System.exit(0);
-		} 
-		
 		BaseExperiment exp = new BaseExperiment("Same Time", arguments) {
 			long t1;
 
@@ -74,19 +46,17 @@ public class BenchmarkTest {
 			@Override
 			public void afterFinalize() {
 				super.afterFinalize();
-				System.out.println("TOTAL EXPERIMENT: " + ((System.nanoTime() - t1) / 1000000) + " miliseconds");
+				if (!arguments.quiet)
+					System.out.println("TOTAL EXPERIMENT: " + ((System.nanoTime() - t1) / 1000000) + " miliseconds");
 			}
 			
 			@Override
 			public void runExperiment(int ind) {
-				BenchmarkModel config = new BenchmarkModel(ind, modType, ovType, nThreads, nIter, nElem,
-						nAct, mixFactor, workLoad);
-				config.setRtXact(rtXact);
-				config.setRtXres(rtXres);
+				BenchmarkModel config = new BenchmarkModel(ind, arguments);
 				System.out.println(config);
 				Simulation sim = config.getTestModel(); 
 				
-				if (debug)
+				if (arguments.debug)
 					sim.addInfoReceiver(new BenchmarkListener(System.out));
 				sim.run();;
 			}
@@ -97,6 +67,27 @@ public class BenchmarkTest {
 	}
 	
 	public static class BenchmarkArguments extends CommonArguments {
-
+		@Parameter(names = { "--Bmodel", "-Bm" }, description = "Model type", order = 1)
+		public int modType = 0;
+		@Parameter(names = { "--Boverlap", "-Bo" }, description = "Overlapping type", order = 2)
+		public int ovType = 0;
+		@Parameter(names = { "--Bnthreads", "-Bt" }, description = "Number of threads", order = 3)
+		public int nThreads = 1;
+		@Parameter(names = { "--Bniter", "-Bn" }, description = "Number of iterations", order = 4)
+		public int nIter = 100;
+		@Parameter(names = { "--Bnelem", "-Be" }, description = "Number of elements", order = 5)
+		public int nElem = 512;
+		@Parameter(names = { "--Bnact", "-Ba" }, description = "Number of activities", order = 6)
+		public int nAct = 512;
+		@Parameter(names = { "--Bmix", "-Bx" }, description = "Mix factor", order = 7)
+		public int mixFactor = 2;
+		@Parameter(names = { "--Bworkload", "-Bw" }, description = "Workload", order = 8)
+		public long workLoad = 0;
+		@Parameter(names = { "--BrtXAct", "-Bra" }, description = "Resource types per activity", order = 9)
+		public int rtXAct = 4;
+		@Parameter(names = { "--BrtXRes", "-Brr" }, description = "Resource types per resource", order = 10)
+		public int rtXRes = 1;
+		@Parameter(names = { "--BrAvailFactor", "-Bf" }, description = "Resource availability factor", order = 11)
+		public double resAvailabilityFactor = 1.0;
 	}
 }
