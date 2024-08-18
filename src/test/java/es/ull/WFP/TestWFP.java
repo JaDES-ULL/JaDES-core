@@ -1,6 +1,5 @@
 package es.ull.WFP;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,12 +15,6 @@ import es.ull.simulation.experiment.CommonArguments;
 public class TestWFP {
 
     private final TestWFPArguments arguments = new TestWFPArguments();
-    @BeforeEach
-    public void setUp() {
-        arguments.checkActivities = true;
-        arguments.checkElements = true;
-        arguments.checkResources = true;
-    }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 17, 19, 21, 211, 212, 28, 30, 40})
@@ -33,12 +26,6 @@ public class TestWFP {
     }
     
     public static class TestWFPArguments extends CommonArguments{
-    	@Parameter(names = { "--checkresources", "-cr" }, description = "Enables checking resources", order = 2)
-    	public boolean checkResources = false;
-    	@Parameter(names = { "--checkelements", "-ce" }, description = "Enables checking elements", order = 3)
-    	public boolean checkElements = false;
-    	@Parameter(names = { "--checkactivities", "-ca" }, description = "Enables checking activities", order = 4)
-    	public boolean checkActivities = false;
     	@Parameter(names = { "--wfp", "-wfp" }, description = "Selects a specific WFP to test with", order = 5)
     	public int wfp = -1;
     }

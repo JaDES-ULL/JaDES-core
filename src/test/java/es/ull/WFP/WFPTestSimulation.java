@@ -6,6 +6,9 @@ package es.ull.WFP;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import es.ull.CheckActivitiesListener;
+import es.ull.CheckElementsListener;
+import es.ull.CheckResourcesListener;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
@@ -46,6 +49,8 @@ public abstract class WFPTestSimulation extends Simulation {
 	private final ArrayList<Integer> nElems;
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex; 
+	private final ArrayList<TreeMap<Integer, Long>> roleOns;
+	private final ArrayList<TreeMap<Integer, Long>> roleOffs;
 	private final TestWFP.TestWFPArguments args;
 	
 	public WFPTestSimulation(int id, String description, TestWFP.TestWFPArguments args) {
@@ -53,34 +58,36 @@ public abstract class WFPTestSimulation extends Simulation {
 		nElems = new ArrayList<Integer>();
 		actDuration = new ArrayList<Long>();
 		actIndex = new TreeMap<ActivityFlow, Integer>();
+		roleOffs = new ArrayList<TreeMap<Integer, Long>>();
+		roleOns = new ArrayList<TreeMap<Integer, Long>>();
 		this.args = args;
 		createModel();
 		addCheckers();
 	}
 	
 	protected abstract void createModel();
-	
+
 	private void addCheckers() {
 		if (!args.quiet)
 			addInfoReceiver(new StdInfoView());
-		if (args.checkResources) {
-			addInfoReceiver(new CheckResourcesListener(this.getResourceList().size()));
-		}
-		if (args.checkElements) {
-			addInfoReceiver(new CheckElementsListener(nElems));
-		}
-		if (args.checkActivities) {
-			int n = 0;
-			for (int count : nElems) 
-				n += count;
-			addInfoReceiver(new CheckActivitiesListener(n, actIndex, actDuration));
-		}
+		addInfoReceiver(new CheckResourcesListener(this.getResourceList().size(), roleOns, roleOffs));
+		addInfoReceiver(new CheckElementsListener(nElems));
+		int n = 0;
+		for (int count : nElems) 
+			n += count;
+		addInfoReceiver(new CheckActivitiesListener(n, actIndex, actDuration));
 	}
 	
 	public Resource getDefResource(String description, ResourceType rt) {
 		final Resource res = new Resource(this, description);
 		final SimulationPeriodicCycle cycle = new SimulationPeriodicCycle(SIMUNIT, RESSTART, new SimulationTimeFunction(SIMUNIT, "ConstantVariate", RESPERIOD), 0);
 		res.newTimeTableOrCancelEntriesAdder(rt).withDuration(cycle, RESAVAILABLE).addTimeTableEntry();
+		final TreeMap<Integer, Long> roleOn = new TreeMap<>();
+		roleOn.put(rt.getIdentifier(), RESSTART);
+		roleOns.add(roleOn);
+		final TreeMap<Integer, Long> roleOff = new TreeMap<>();
+		roleOff.put(rt.getIdentifier(), RESSTART + RESAVAILABLE);
+		roleOffs.add(roleOff);
 		return res;
 	}
 	

@@ -75,6 +75,9 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 		new TimeDrivenElementGenerator(this, NELEM, et, waitFlow,
 				SimulationPeriodicCycle.newDailyCycle(getTimeUnit()));
 		addInfoReceiver(new CheckerListener());
+		ArrayList<Integer> nElems = new ArrayList<>();
+		nElems.add(NELEM);
+		addInfoReceiver(new CheckElementsListener(nElems));
 	}
 	
 	@Override
