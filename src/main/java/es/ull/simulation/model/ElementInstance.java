@@ -426,8 +426,14 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
         return resources;
 	}
    
+	/**
+	 * Sends the information and executes the tasks required when the delay of a request flow finishes.
+	 * @param f The request flow that has been delayed
+	 */
     public void endDelay(final RequestResourcesFlow f) {
-		if (remainingTask == 0.0) {
+		// Checks time and not percentage of time to avoid rounding errors
+		if (Math.round(executionWG.getDurationSample(elem) * remainingTask) == 0) {
+			remainingTask = 0.0;
 			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f,
 					executionWG, null, ElementActionInfo.Type.END, elem.getTs()));
 			if (elem.isDebugEnabled())
@@ -456,7 +462,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 		final int id2 = o.engine.getIdentifier();
 		if (id1 > id2)
 			return -1;
-		if (id2 < id1)
+		if (id1 < id2)
 			return 1;
 		return 0;
 	}

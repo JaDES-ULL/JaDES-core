@@ -14,6 +14,7 @@ import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.flow.ActivityFlow;
 /**
  * Checks the elements created and finished during the simulation
@@ -36,8 +37,7 @@ public class CheckActivitiesListener extends Listener {
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex;
 	private final boolean []exclusive;
-	private final ArrayList<TreeMap<ActivityFlow, Long>> interruptions;
-	private final ArrayList<TreeMap<ActivityFlow, Long>> expectedTerminations;
+	private final TrioQueue[] expectedTerminations;
 
 	/**
 	 * Constructs a new CheckActivitiesListener object.
@@ -56,16 +56,12 @@ public class CheckActivitiesListener extends Listener {
 		request = new PairQueue[actDuration.size()];
 		start = new PairQueue[actDuration.size()];
 		acquire = new PairQueue[actDuration.size()];
+		expectedTerminations = new TrioQueue[actDuration.size()];
 		for (int i = 0; i < actDuration.size(); i++) {
 			request[i] = new PairQueue();
 			start[i] = new PairQueue();
 			acquire[i] = new PairQueue();
-		}
-		this.interruptions = new ArrayList<TreeMap<ActivityFlow, Long>>();
-		this.expectedTerminations = new ArrayList<TreeMap<ActivityFlow, Long>>();
-		for (int i = 0; i < nElems; i++) {
-			interruptions.add(new TreeMap<ActivityFlow, Long>());
-			expectedTerminations.add(new TreeMap<ActivityFlow, Long>());
+			expectedTerminations[i] = new TrioQueue();
 		}
 		addEntrance(ElementActionInfo.class);
 	}
@@ -101,7 +97,8 @@ public class CheckActivitiesListener extends Listener {
 				final int indexStart = find(start[actId], eInfo);
 				assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
 				if (indexStart != -1) {
-					assertEquals(start[actId].get(indexStart).getTs() + actDuration.get(actId), eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
+					assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
+					expectedTerminations[actId].remove(eInfo.getElementInstance());
 					start[actId].remove(indexStart);
 				}
 				if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
@@ -127,15 +124,22 @@ public class CheckActivitiesListener extends Listener {
 						exclusive[eInfo.getElement().getIdentifier()] = true;
 					}
 				}
-				expectedTerminations.get(eInfo.getElement().getIdentifier()).put(act, eInfo.getTs() + actDuration.get(actId));
+				Long[] expected = new Long[2];
+				expected[0] = eInfo.getTs() + actDuration.get(actId);
+				expected[1] = eInfo.getTs();
+				expectedTerminations[actId].put(eInfo.getElementInstance(), expected);
 				break;
 			case RESACT:
-				long expectedTs = expectedTerminations.get(eInfo.getElement().getIdentifier()).get(act);
-				long delay = eInfo.getTs() - interruptions.get(eInfo.getElement().getIdentifier()).get(act);
-				expectedTerminations.get(eInfo.getElement().getIdentifier()).put(act, expectedTs + delay);
+				long expectedTs = expectedTerminations[actId].get(eInfo.getElementInstance())[0];
+				long delay = eInfo.getTs() - expectedTerminations[actId].get(eInfo.getElementInstance())[1];
+				expectedTerminations[actId].get(eInfo.getElementInstance())[0] = expectedTs + delay;
+				start[actId].add(eInfo);
 			break;
 			case INTACT:
-				interruptions.get(eInfo.getElement().getIdentifier()).put(act, eInfo.getTs());
+				expectedTerminations[actId].get(eInfo.getElementInstance())[1] = eInfo.getTs();
+				final int indexPreviousStart = find(start[actId], eInfo);
+				assertNotEquals(indexPreviousStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
+				start[actId].remove(eInfo);
 				break;
 			default:
 				break;
@@ -157,6 +161,14 @@ public class CheckActivitiesListener extends Listener {
 		private static final long serialVersionUID = 1L;
 
 		public PairQueue() {
+			super();
+		}
+	}
+
+	private static class TrioQueue extends TreeMap<ElementInstance, Long[]> {
+		private static final long serialVersionUID = 1L;
+
+		public TrioQueue() {
 			super();
 		}
 	}
