@@ -441,8 +441,8 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 				elem.debug("Finishes part of \t" + this + "\t" + f.getDescription() + "\t" +
 						remainingTask * 100 + "% Left");
 			// Notifies the parent workthread that the activity was interrupted
-			parent.remainingTask = remainingTask;
 		}
+		parent.remainingTask = remainingTask;
     }
 
     public boolean wasInterrupted(final ActivityFlow f) {
