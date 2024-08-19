@@ -26,6 +26,9 @@ public class TestMoreFlows {
                 case 1:
                     simul = new ConditionalResourceGeneratorTestSimulation();
                     break;
+                case 2:
+                    simul = new InterruptibleActivitiesTestSimulation();
+                    break;
                 default:
                     break;
             }
@@ -45,6 +48,14 @@ public class TestMoreFlows {
     public void test2() {
         final MoreArguments arguments = new MoreArguments();
         arguments.expId = 1;
+        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(arguments);
+        experiment.run();
+    }
+
+    @Test
+    public void test3() {
+        final MoreArguments arguments = new MoreArguments();
+        arguments.expId = 2;
         arguments.debug = true;
         final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(arguments);
         experiment.run();

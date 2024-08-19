@@ -36,6 +36,8 @@ public class CheckActivitiesListener extends Listener {
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex;
 	private final boolean []exclusive;
+	private final ArrayList<TreeMap<ActivityFlow, Long>> interruptions;
+	private final ArrayList<TreeMap<ActivityFlow, Long>> expectedTerminations;
 
 	/**
 	 * Constructs a new CheckActivitiesListener object.
@@ -58,6 +60,12 @@ public class CheckActivitiesListener extends Listener {
 			request[i] = new PairQueue();
 			start[i] = new PairQueue();
 			acquire[i] = new PairQueue();
+		}
+		this.interruptions = new ArrayList<TreeMap<ActivityFlow, Long>>();
+		this.expectedTerminations = new ArrayList<TreeMap<ActivityFlow, Long>>();
+		for (int i = 0; i < nElems; i++) {
+			interruptions.add(new TreeMap<ActivityFlow, Long>());
+			expectedTerminations.add(new TreeMap<ActivityFlow, Long>());
 		}
 		addEntrance(ElementActionInfo.class);
 	}
@@ -119,9 +127,16 @@ public class CheckActivitiesListener extends Listener {
 						exclusive[eInfo.getElement().getIdentifier()] = true;
 					}
 				}
+				expectedTerminations.get(eInfo.getElement().getIdentifier()).put(act, eInfo.getTs() + actDuration.get(actId));
 				break;
 			case RESACT:
+				long expectedTs = expectedTerminations.get(eInfo.getElement().getIdentifier()).get(act);
+				long delay = eInfo.getTs() - interruptions.get(eInfo.getElement().getIdentifier()).get(act);
+				expectedTerminations.get(eInfo.getElement().getIdentifier()).put(act, expectedTs + delay);
+			break;
 			case INTACT:
+				interruptions.get(eInfo.getElement().getIdentifier()).put(act, eInfo.getTs());
+				break;
 			default:
 				break;
 			
