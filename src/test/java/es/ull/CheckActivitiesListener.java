@@ -97,8 +97,8 @@ public class CheckActivitiesListener extends Listener {
 				final int indexStart = find(start[actId], eInfo);
 				assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
 				if (indexStart != -1) {
-					assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
-					expectedTerminations[actId].remove(eInfo.getElementInstance());
+					assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
+					expectedTerminations[actId].remove(eInfo.getElementInstance().getParent());
 					start[actId].remove(indexStart);
 				}
 				if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
@@ -127,16 +127,16 @@ public class CheckActivitiesListener extends Listener {
 				Long[] expected = new Long[2];
 				expected[0] = eInfo.getTs() + actDuration.get(actId);
 				expected[1] = eInfo.getTs();
-				expectedTerminations[actId].put(eInfo.getElementInstance(), expected);
+				expectedTerminations[actId].put(eInfo.getElementInstance().getParent(), expected);
 				break;
 			case RESACT:
-				long expectedTs = expectedTerminations[actId].get(eInfo.getElementInstance())[0];
-				long delay = eInfo.getTs() - expectedTerminations[actId].get(eInfo.getElementInstance())[1];
-				expectedTerminations[actId].get(eInfo.getElementInstance())[0] = expectedTs + delay;
+				long expectedTs = expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0];
+				long delay = eInfo.getTs() - expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1];
+				expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0] = expectedTs + delay;
 				start[actId].add(eInfo);
 			break;
 			case INTACT:
-				expectedTerminations[actId].get(eInfo.getElementInstance())[1] = eInfo.getTs();
+				expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1] = eInfo.getTs();
 				final int indexPreviousStart = find(start[actId], eInfo);
 				assertNotEquals(indexPreviousStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
 				start[actId].remove(eInfo);
