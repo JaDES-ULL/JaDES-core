@@ -15,10 +15,7 @@ import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.IEventSource;
-import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationObject;
-import es.ull.simulation.model.SimulationPeriodicCycle;
-import es.ull.simulation.model.TimeDrivenElementGenerator;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.TimeFunctionDelayFlow;
 import es.ull.simulation.model.flow.WaitForSignalFlow;
@@ -30,20 +27,22 @@ import es.ull.simulation.model.flow.WaitForSignalFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WaitForSignalFlowTestSimulation extends Simulation {
-	final static private long ENDTS = 35;
-	final static private int NELEM = 10;
+public class WaitForSignalFlowTestSimulation extends StandardTestSimulation {
 	final static private long DELAY = 10;
 	final static private long CHECK_DELAY = 5;
-	private final SimListener listener;
+	private SimListener listener;
 	private final TreeMap<Long, Integer> elementsPassedPerTime;
 
 	/**
 	 */
-	public WaitForSignalFlowTestSimulation() {
-		super(0, "Test wait for signal simulation", 0L, ENDTS);
+	public WaitForSignalFlowTestSimulation(TestArguments args) {
+		super(0, "Test wait for signal simulation", args);
 		elementsPassedPerTime = new TreeMap<>();
-		final ElementType et = new ElementType(this, "Message");
+	}
+	
+	@Override
+	protected void createModel() {
+		final ElementType et = getDefElementType("Message");
 		final TimeFunctionDelayFlow delayFlow = new TimeFunctionDelayFlow(this,
 				"Little delay", DELAY) {
 			@Override
@@ -63,6 +62,7 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 				return super.beforeRequest(ei);
 			}
 		};
+		registerActivity(delayFlow, DELAY);
 		listener = new SimListener(this);
 		final WaitForSignalFlow waitFlow = new WaitForSignalFlow(this, "Wait", listener) {
 			@Override
@@ -72,12 +72,13 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 			}
 		};
 		waitFlow.link(delayFlow);
-		new TimeDrivenElementGenerator(this, NELEM, et, waitFlow,
-				SimulationPeriodicCycle.newDailyCycle(getTimeUnit()));
-		addInfoReceiver(new CheckerListener());
-		ArrayList<Integer> nElems = new ArrayList<>();
-		nElems.add(NELEM);
-		addInfoReceiver(new CheckElementsListener(nElems));
+		getDefGenerator(et, waitFlow);
+	}
+
+	@Override
+	protected void addCheckers() {
+		super.addCheckers();
+		addInfoReceiver(new CheckerListener(getArguments().nElements));
 	}
 	
 	@Override
@@ -149,9 +150,10 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 	}
 
 	class CheckerListener extends Listener {
-
-		public CheckerListener() {
+		final private int nElements;
+		public CheckerListener(int nElements) {
 			super("Checker");
+			this.nElements = nElements;
 			addEntrance(SimulationStartStopInfo.class);
 		}
 
@@ -160,7 +162,7 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 			if (info instanceof SimulationStartStopInfo) {
 				final SimulationStartStopInfo sInfo = (SimulationStartStopInfo) info;
 				ArrayList<Long> times = new ArrayList<>(elementsPassedPerTime.keySet());
-				int remaining = NELEM;
+				int remaining = nElements;
 				if (SimulationStartStopInfo.Type.END.equals(sInfo.getType())) {
 					for (int i = 0; i < elementsPassedPerTime.size(); i++) {
 						int n = (int)Math.ceil(remaining / 2.0);
@@ -175,7 +177,10 @@ public class WaitForSignalFlowTestSimulation extends Simulation {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new WaitForSignalFlowTestSimulation().start();
+		TestArguments arguments = new TestArguments();
+		arguments.simEnd = 35;
+		arguments.nElements = 10;
+		new WaitForSignalFlowTestSimulation(arguments).start();
 
 	}
 

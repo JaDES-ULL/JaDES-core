@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
@@ -14,7 +15,7 @@ import es.ull.simulation.model.flow.DoWhileFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP21Simulation_DoWhile extends WFPTestSimulation {
+public class WFP21Simulation_DoWhile extends StandardTestSimulation {
 
 	/**
 	 * @param type

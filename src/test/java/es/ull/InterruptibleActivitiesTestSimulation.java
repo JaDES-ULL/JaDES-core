@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import es.ull.CheckResourcesListener.ResourceUsageTimeStamps;
-import es.ull.simulation.experiment.BaseExperiment;
-import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
@@ -23,6 +21,7 @@ import es.ull.simulation.model.TimeStamp;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.ITaskFlow;
 
 /**
  * Checks interruptible activities. Activities are interrupted when a resource stops being available before the activity has finalized.
@@ -66,7 +65,7 @@ public class InterruptibleActivitiesTestSimulation extends Simulation {
 		addInfoReceiver(new CheckElementsListener(nElems));
 		final ArrayList<Long> actDuration = new ArrayList<>();
 		actDuration.add(ACT_DURATION);
-		final TreeMap<ActivityFlow, Integer> actIndex = new TreeMap<>();
+		final TreeMap<ITaskFlow, Integer> actIndex = new TreeMap<>();
 		actIndex.put(act, 0);
 		addInfoReceiver(new CheckActivitiesListener(1, actIndex, actDuration));
 		// Prepare structures to check behavior of resources
@@ -85,24 +84,16 @@ public class InterruptibleActivitiesTestSimulation extends Simulation {
 		}
 		roleOns.add(new ResourceUsageTimeStamps(0, rt.getIdentifier(), roleOnTimestamps));
 		roleOffs.add(new ResourceUsageTimeStamps(0, rt.getIdentifier(), roleOffTimestamps));	
-		addInfoReceiver(new CheckResourcesListener(1, roleOns, roleOffs));
+		addInfoReceiver(new CheckResourcesListener(roleOns, roleOffs));
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-        final CommonArguments arguments = new CommonArguments();
-		new BaseExperiment("Testing interruptible activities", arguments) {
-
-			@Override
-			public void runExperiment(int ind) {
-				Simulation sim = new InterruptibleActivitiesTestSimulation();
-				sim.addInfoReceiver(new StdInfoView());
-				sim.run();
-			}
-			
-		}.run();
+		Simulation sim = new InterruptibleActivitiesTestSimulation();
+		sim.addInfoReceiver(new StdInfoView());
+		sim.run();
 	}
 
 }

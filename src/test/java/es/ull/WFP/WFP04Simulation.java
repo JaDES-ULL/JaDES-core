@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
@@ -15,7 +16,7 @@ import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP04Simulation extends WFPTestSimulation {
+public class WFP04Simulation extends StandardTestSimulation {
 	int ndays;
 	
 	public WFP04Simulation(int id, TestWFP.TestWFPArguments args) {

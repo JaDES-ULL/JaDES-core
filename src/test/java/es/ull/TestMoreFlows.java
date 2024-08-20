@@ -2,18 +2,18 @@ package es.ull;
 
 import org.junit.jupiter.api.Test;
 
-import com.beust.jcommander.Parameter;
-
+import es.ull.StandardTestSimulation.TestArguments;
 import es.ull.simulation.experiment.BaseExperiment;
-import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.model.Simulation;
 
 public class TestMoreFlows {
     public static class TestMoreFlowsExperiment extends BaseExperiment {
         final private int expId;
-        public TestMoreFlowsExperiment(MoreArguments args) {
+        final private TestArguments args;
+        public TestMoreFlowsExperiment(int expId, TestArguments args) {
             super("Testing More Flows", args);
-            expId = args.expId;
+            this.expId = expId;
+            this.args = args;
         }
 
         @Override
@@ -21,10 +21,10 @@ public class TestMoreFlows {
             Simulation simul = null;
             switch (expId) {
                 case 0:
-                    simul = new WaitForSignalFlowTestSimulation();
+                    simul = new WaitForSignalFlowTestSimulation(args);
                     break;            
                 case 1:
-                    simul = new ConditionalResourceGeneratorTestSimulation();
+                    simul = new ConditionalResourceGeneratorTestSimulation(args);
                     break;
                 case 2:
                     simul = new InterruptibleActivitiesTestSimulation();
@@ -38,31 +38,28 @@ public class TestMoreFlows {
 
     @Test
     public void test1() {
-        final MoreArguments arguments = new MoreArguments();
-        arguments.expId = 0;
-        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(arguments);
+        final TestArguments arguments = new TestArguments();
+        arguments.simEnd = 35;
+        arguments.nElements = 10;
+        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(0, arguments);
         experiment.run();
     }
 
     @Test
     public void test2() {
-        final MoreArguments arguments = new MoreArguments();
-        arguments.expId = 1;
-        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(arguments);
+        final TestArguments arguments = new TestArguments();
+        arguments.simEnd = 60;
+        arguments.nElements = 1;
+        arguments.resStart = 0;
+        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(1, arguments);
         experiment.run();
     }
 
     @Test
     public void test3() {
-        final MoreArguments arguments = new MoreArguments();
-        arguments.expId = 2;
+        final TestArguments arguments = new TestArguments();
         arguments.debug = true;
-        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(arguments);
+        final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(2, arguments);
         experiment.run();
-    }
-
-    public class MoreArguments extends CommonArguments {
-        @Parameter (names = "-exp", description = "Identifier of the experiment to run")
-        public int expId = 0;
     }
 }

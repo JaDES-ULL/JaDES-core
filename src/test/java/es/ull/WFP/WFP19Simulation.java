@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
@@ -11,7 +12,7 @@ import es.ull.simulation.model.flow.ActivityFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP19Simulation extends WFPTestSimulation {
+public class WFP19Simulation extends StandardTestSimulation {
 	private boolean pass;
 
 	/**

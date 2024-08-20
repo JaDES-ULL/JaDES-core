@@ -3,6 +3,7 @@
  */
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -14,7 +15,7 @@ import es.ull.simulation.model.flow.SynchronizedMultipleInstanceFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP13Simulation extends WFPTestSimulation {
+public class WFP13Simulation extends StandardTestSimulation {
 	final static int RES = 6;
 
 	/**

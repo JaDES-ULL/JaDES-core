@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -11,7 +12,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Yeray Callero
  * @author Iván Castilla Rodríguez
  */
-public class WFP08Simulation extends WFPTestSimulation {
+public class WFP08Simulation extends StandardTestSimulation {
 	public WFP08Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP8: Multi-Merge. EjControlCalidad", args);
 	}
@@ -27,10 +28,10 @@ public class WFP08Simulation extends WFPTestSimulation {
         WorkGroup wgMa = new WorkGroup(this, new ResourceType[] {rt0}, new int[] {1});
         WorkGroup wgEm = new WorkGroup(this, new ResourceType[] {rt1}, new int[] {1});
 	   	
-		ActivityFlow act0 = getDefActivity("Crear destornilladores", 2, wgMa, false);
-		ActivityFlow act1 = getDefActivity("Crear llaves", 2, wgMa, false);
-		ActivityFlow act2 = getDefActivity("Crear niveladores", 1, wgMa, false);
-		ActivityFlow act3 = getDefActivity("Control de calidad", 2, wgEm, false);
+		ActivityFlow act0 = getDefActivity("Crear destornilladores", 15L, wgMa, false);
+		ActivityFlow act1 = getDefActivity("Crear llaves", 15L, wgMa, false);
+		ActivityFlow act2 = getDefActivity("Crear niveladores", 10L, wgMa, false);
+		ActivityFlow act3 = getDefActivity("Control de calidad", 15L, wgEm, false);
         
 		getDefResource("Maquina1", rt0);
 		getDefResource("Maquina2", rt0);

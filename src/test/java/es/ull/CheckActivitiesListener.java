@@ -16,6 +16,8 @@ import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.flow.ActivityFlow;
+import es.ull.simulation.model.flow.DelayFlow;
+import es.ull.simulation.model.flow.ITaskFlow;
 /**
  * Checks the elements created and finished during the simulation
  * @author Iván Castilla Rodríguez
@@ -35,7 +37,7 @@ public class CheckActivitiesListener extends Listener {
 	private final PairQueue [] start;
 	private final PairQueue [] acquire;
 	private final ArrayList<Long> actDuration;
-	private final TreeMap<ActivityFlow, Integer> actIndex;
+	private final TreeMap<ITaskFlow, Integer> actIndex;
 	private final boolean []exclusive;
 	private final TrioQueue[] expectedTerminations;
 
@@ -47,7 +49,7 @@ public class CheckActivitiesListener extends Listener {
 	 * @param actIndex      A TreeMap where each key is an ActivityFlow and the value is the index of the activity.
 	 * @param actDuration   An ArrayList containing the duration of each activity.
 	 */
-	public CheckActivitiesListener(final int nElems, final TreeMap<ActivityFlow, Integer> actIndex,
+	public CheckActivitiesListener(final int nElems, final TreeMap<ITaskFlow, Integer> actIndex,
 								   final ArrayList<Long> actDuration) {
 		super("Activity checker ");
 		this.actIndex = actIndex;
@@ -81,69 +83,11 @@ public class CheckActivitiesListener extends Listener {
 	public void infoEmited(SimulationInfo info) {
 		if (info instanceof ElementActionInfo) {
 			final ElementActionInfo eInfo = (ElementActionInfo)info;
-			final ActivityFlow act = (ActivityFlow)eInfo.getActivity().getParent(); 
-			final int actId = actIndex.get(act);
-			switch(eInfo.getType()) {
-			case ACQ:
-				assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_ACQ_NOT_REQ);
-				acquire[actId].add(eInfo);
-				break;
-			case END:
-				final int indexReq = find(request[actId], eInfo);
-				assertNotEquals(indexReq, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_REQ);
-				if (indexReq != -1) {
-					request[actId].remove(indexReq);
-				}
-				final int indexStart = find(start[actId], eInfo);
-				assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
-				if (indexStart != -1) {
-					assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
-					expectedTerminations[actId].remove(eInfo.getElementInstance().getParent());
-					start[actId].remove(indexStart);
-				}
-				if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
-					exclusive[eInfo.getElement().getIdentifier()] = false;
-				}
-				break;
-			case REL:
-				final int indexAcq = find(acquire[actId], eInfo);
-				assertNotEquals(indexAcq, -1, eInfo.getElement().toString() + "\t" + ERROR_REL_NOT_ACQ);
-				if (indexAcq != -1) {
-					acquire[actId].remove(indexAcq);
-				}
-				break;
-			case REQ:
-				request[actId].add(eInfo);
-				break;
-			case START:
-				assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_START_NOT_REQ);
-				start[actId].add(eInfo);
-				if (act.isExclusive()) {
-					assertFalse(exclusive[eInfo.getElement().getIdentifier()], eInfo.getElement().toString() + "\t" + ERROR_EXCLUSIVE + " " + act.getDescription());
-					if (!exclusive[eInfo.getElement().getIdentifier()]) {
-						exclusive[eInfo.getElement().getIdentifier()] = true;
-					}
-				}
-				Long[] expected = new Long[2];
-				expected[0] = eInfo.getTs() + actDuration.get(actId);
-				expected[1] = eInfo.getTs();
-				expectedTerminations[actId].put(eInfo.getElementInstance().getParent(), expected);
-				break;
-			case RESACT:
-				long expectedTs = expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0];
-				long delay = eInfo.getTs() - expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1];
-				expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0] = expectedTs + delay;
-				start[actId].add(eInfo);
-			break;
-			case INTACT:
-				expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1] = eInfo.getTs();
-				final int indexPreviousStart = find(start[actId], eInfo);
-				assertNotEquals(indexPreviousStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
-				start[actId].remove(eInfo);
-				break;
-			default:
-				break;
-			
+			if (eInfo.getActivity() instanceof ActivityFlow) {
+				checkActivityFlow(eInfo);
+			}
+			else if (eInfo.getActivity() instanceof DelayFlow) {
+				checkDelayFlow(eInfo);
 			}
 		}
 		else if (info instanceof SimulationStartStopInfo) {
@@ -155,6 +99,98 @@ public class CheckActivitiesListener extends Listener {
 			}
 		}
 		
+	}
+
+	private void checkDelayFlow(ElementActionInfo eInfo) {
+		final DelayFlow act = (DelayFlow)eInfo.getActivity(); 
+		final int actId = actIndex.get(act);
+		switch(eInfo.getType()) {
+		case END:
+			final int indexStart = find(start[actId], eInfo);
+			assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
+			if (indexStart != -1) {
+				assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
+				expectedTerminations[actId].remove(eInfo.getElementInstance());
+				start[actId].remove(indexStart);
+			}
+			break;
+		case START:
+			start[actId].add(eInfo);
+			Long[] expected = new Long[2];
+			expected[0] = eInfo.getTs() + actDuration.get(actId);
+			expected[1] = eInfo.getTs();
+			expectedTerminations[actId].put(eInfo.getElementInstance(), expected);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void checkActivityFlow(ElementActionInfo eInfo) {
+		final ActivityFlow act = (ActivityFlow)eInfo.getActivity().getParent(); 
+		final int actId = actIndex.get(act);
+		switch(eInfo.getType()) {
+		case ACQ:
+			assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_ACQ_NOT_REQ);
+			acquire[actId].add(eInfo);
+			break;
+		case END:
+			final int indexReq = find(request[actId], eInfo);
+			assertNotEquals(indexReq, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_REQ);
+			if (indexReq != -1) {
+				request[actId].remove(indexReq);
+			}
+			final int indexStart = find(start[actId], eInfo);
+			assertNotEquals(indexStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
+			if (indexStart != -1) {
+				assertEquals(expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0], eInfo.getTs(), eInfo.getElement().toString() + "\t" + ERROR_DURATION + " " + act.getDescription());
+				expectedTerminations[actId].remove(eInfo.getElementInstance().getParent());
+				start[actId].remove(indexStart);
+			}
+			if (act.isExclusive() && exclusive[eInfo.getElement().getIdentifier()]) {
+				exclusive[eInfo.getElement().getIdentifier()] = false;
+			}
+			break;
+		case REL:
+			final int indexAcq = find(acquire[actId], eInfo);
+			assertNotEquals(indexAcq, -1, eInfo.getElement().toString() + "\t" + ERROR_REL_NOT_ACQ);
+			if (indexAcq != -1) {
+				acquire[actId].remove(indexAcq);
+			}
+			break;
+		case REQ:
+			request[actId].add(eInfo);
+			break;
+		case START:
+			assertNotEquals(find(request[actId], eInfo), -1, eInfo.getElement().toString() + "\t" + ERROR_START_NOT_REQ);
+			start[actId].add(eInfo);
+			if (act.isExclusive()) {
+				assertFalse(exclusive[eInfo.getElement().getIdentifier()], eInfo.getElement().toString() + "\t" + ERROR_EXCLUSIVE + " " + act.getDescription());
+				if (!exclusive[eInfo.getElement().getIdentifier()]) {
+					exclusive[eInfo.getElement().getIdentifier()] = true;
+				}
+			}
+			Long[] expected = new Long[2];
+			expected[0] = eInfo.getTs() + actDuration.get(actId);
+			expected[1] = eInfo.getTs();
+			expectedTerminations[actId].put(eInfo.getElementInstance().getParent(), expected);
+			break;
+		case RESACT:
+			long expectedTs = expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0];
+			long delay = eInfo.getTs() - expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1];
+			expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[0] = expectedTs + delay;
+			start[actId].add(eInfo);
+		break;
+		case INTACT:
+			expectedTerminations[actId].get(eInfo.getElementInstance().getParent())[1] = eInfo.getTs();
+			final int indexPreviousStart = find(start[actId], eInfo);
+			assertNotEquals(indexPreviousStart, -1, eInfo.getElement().toString() + "\t" + ERROR_END_NOT_START);
+			start[actId].remove(eInfo);
+			break;
+		default:
+			break;
+		
+		}
 	}
 
 	private static class PairQueue extends ArrayList<ElementActionInfo> {

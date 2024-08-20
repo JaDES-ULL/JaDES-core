@@ -1,6 +1,7 @@
 package es.ull.WFP;
 
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
@@ -14,7 +15,7 @@ import es.ull.simulation.model.flow.ForLoopFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP21Simulation_For extends WFPTestSimulation {
+public class WFP21Simulation_For extends StandardTestSimulation {
 
 	/**
 	 * @param type

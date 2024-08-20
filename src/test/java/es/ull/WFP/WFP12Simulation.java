@@ -3,6 +3,7 @@
  */
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -15,7 +16,7 @@ import es.ull.simulation.model.flow.ThreadSplitFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP12Simulation extends WFPTestSimulation {
+public class WFP12Simulation extends StandardTestSimulation {
 	static final int RES = 5;
 
 	/**
@@ -37,9 +38,9 @@ public class WFP12Simulation extends WFPTestSimulation {
 		ResourceType rt0 = getDefResourceType("Policeman");
     	WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt0}, new int[] {1});
     	
-    	ActivityFlow act0 = getDefActivity("Receive Infringment", 1, wg);
-    	ActivityFlow act1 = getDefActivity("Issue-Infringment-Notice", 5, wg, false);
-    	ActivityFlow act2 = getDefActivity("Coffee", 1, wg);
+    	ActivityFlow act0 = getDefActivity("Receive Infringment", 10L, wg);
+    	ActivityFlow act1 = getDefActivity("Issue-Infringment-Notice", 30L, wg, false);
+    	ActivityFlow act2 = getDefActivity("Coffee", 10L, wg);
     	
     	for (int i = 0; i < RES; i++)
     		getDefResource("RES" + i, rt0);

@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -12,7 +13,7 @@ import es.ull.simulation.model.flow.SimpleMergeFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP05Simulation extends WFPTestSimulation {
+public class WFP05Simulation extends StandardTestSimulation {
 	
 	public WFP05Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP5: Simple Merge. EjExcavaciones", args);
@@ -32,8 +33,8 @@ public class WFP05Simulation extends WFPTestSimulation {
         
         ActivityFlow act0 = getDefActivity("Excavacion bobcat", wgEBob, false);
         ActivityFlow act1 = getDefActivity("Excavacion D9", wgED9, false);
-        ActivityFlow act2 = getDefActivity("Facturacion", 2, wgFacturacion, false);
-        ActivityFlow act3 = getDefActivity("Excavacion H8", 1, wgEH8, false);
+        ActivityFlow act2 = getDefActivity("Facturacion", 15L, wgFacturacion, false);
+        ActivityFlow act3 = getDefActivity("Excavacion H8", 10L, wgEH8, false);
         
         getDefResource("Bobcat1", rt0);
         getDefResource("D91", rt1);

@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -12,7 +13,7 @@ import es.ull.simulation.model.flow.SynchronizationFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP03Simulation extends WFPTestSimulation {
+public class WFP03Simulation extends StandardTestSimulation {
 	
 	public WFP03Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP3: Synchronization. EjEnvioMercacias", args);
@@ -23,7 +24,7 @@ public class WFP03Simulation extends WFPTestSimulation {
 
         WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt}, new int[] {1});
         ActivityFlow act0 = getDefActivity("Generacion de factura", wg, false);
-        ActivityFlow act1 = getDefActivity("Comprobacion de factura", 1, wg, false);
+        ActivityFlow act1 = getDefActivity("Comprobacion de factura", 10L, wg, false);
         ActivityFlow act2 = getDefActivity("Envio de mercancias", wg, false);
         
 

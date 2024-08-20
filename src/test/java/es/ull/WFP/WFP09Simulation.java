@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -11,7 +12,7 @@ import es.ull.simulation.model.flow.StructuredDiscriminatorFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP09Simulation extends WFPTestSimulation {
+public class WFP09Simulation extends StandardTestSimulation {
 
 	/**
 	 * Constructs a new WFP09Simulation object.
@@ -32,9 +33,9 @@ public class WFP09Simulation extends WFPTestSimulation {
 	   	
         WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt0}, new int[] {1});
 
-        ActivityFlow act0 = getDefActivity("Comprobar respiracion", 0, wg, false);
-        ActivityFlow act1 = getDefActivity("Comprobar pulso", 1, wg, false);
-        ActivityFlow act2 = getDefActivity("Masaje cardiaco", 2, wg, false);
+        ActivityFlow act0 = getDefActivity("Comprobar respiracion", wg, false);
+        ActivityFlow act1 = getDefActivity("Comprobar pulso", 10L, wg, false);
+        ActivityFlow act2 = getDefActivity("Masaje cardiaco", 15L, wg, false);
         
         getDefResource("Doctor 1", rt0);        
         getDefResource("Doctor 2", rt0);        

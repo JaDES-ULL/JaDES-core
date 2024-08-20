@@ -3,6 +3,7 @@
  */
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -15,7 +16,7 @@ import es.ull.simulation.model.flow.ThreadSplitFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP41_42Simulation extends WFPTestSimulation {
+public class WFP41_42Simulation extends StandardTestSimulation {
 
 	public WFP41_42Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP41_42: Thread Split-Merge", args);
@@ -34,9 +35,9 @@ public class WFP41_42Simulation extends WFPTestSimulation {
     	getDefResource("Ref1", rt1);
     	getDefResource("Ref2", rt1);
 		
-    	ActivityFlow act0 = getDefActivity("Confirm paper receival", 0, wg0, false);
-    	ActivityFlow act1 = getDefActivity("Independent Peer review", 6, wg1, false);
-    	ActivityFlow act2 = getDefActivity("Notify authors", 0, wg0, false);
+    	ActivityFlow act0 = getDefActivity("Confirm paper receival", wg0, false);
+    	ActivityFlow act1 = getDefActivity("Independent Peer review", 120L, wg1, false);
+    	ActivityFlow act2 = getDefActivity("Notify authors", wg0, false);
 		
         ThreadSplitFlow split = new ThreadSplitFlow(this, 3);
 		act0.link(split);

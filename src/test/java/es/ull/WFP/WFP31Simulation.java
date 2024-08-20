@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -12,7 +13,7 @@ import es.ull.simulation.model.flow.PartialJoinFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP31Simulation extends WFPTestSimulation {
+public class WFP31Simulation extends StandardTestSimulation {
 
 	public WFP31Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP31: Blocking Partial Join. EjBanco", args);

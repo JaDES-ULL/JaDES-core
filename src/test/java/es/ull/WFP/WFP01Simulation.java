@@ -1,4 +1,5 @@
 package es.ull.WFP;
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -9,7 +10,7 @@ import es.ull.simulation.model.flow.ActivityFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP01Simulation extends WFPTestSimulation {
+public class WFP01Simulation extends StandardTestSimulation {
 	
 	public WFP01Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP1: Sequence. EjTarjetaCredito", args);

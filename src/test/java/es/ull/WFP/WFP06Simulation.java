@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
@@ -15,7 +16,7 @@ import es.ull.simulation.model.flow.MultiChoiceFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP06Simulation extends WFPTestSimulation {
+public class WFP06Simulation extends StandardTestSimulation {
 	
 	public WFP06Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP6: Multichoice. EjLamadasEmergencia", args);

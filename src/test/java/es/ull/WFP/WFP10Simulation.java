@@ -2,6 +2,7 @@ package es.ull.WFP;
 
 import java.util.ArrayList;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.model.ElementInstance;
@@ -17,7 +18,7 @@ import es.ull.simulation.model.flow.MultiChoiceFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP10Simulation extends WFPTestSimulation {
+public class WFP10Simulation extends StandardTestSimulation {
 	private static final double MAX_CAPACITY = 20.0;
 	private double capacity;
 	private int deliveries;

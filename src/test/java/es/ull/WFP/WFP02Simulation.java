@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -11,7 +12,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP02Simulation extends WFPTestSimulation {
+public class WFP02Simulation extends StandardTestSimulation {
 	
 	public WFP02Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP2: Parallel Split. EjAlarma", args);

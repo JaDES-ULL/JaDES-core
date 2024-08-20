@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.condition.AbstractCondition;
 import es.ull.simulation.condition.NotCondition;
 import es.ull.simulation.condition.TrueCondition;
@@ -15,7 +16,7 @@ import es.ull.simulation.model.flow.StructuredSynchroMergeFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP07Simulation extends WFPTestSimulation {
+public class WFP07Simulation extends StandardTestSimulation {
 	
 	public WFP07Simulation(int id, TestWFP.TestWFPArguments args) {
 		super(id, "WFP7: Structured Synchronizing Merge. EjTransferenciaPacientes", args);

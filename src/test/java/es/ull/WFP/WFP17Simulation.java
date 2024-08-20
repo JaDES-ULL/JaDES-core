@@ -5,6 +5,7 @@ package es.ull.WFP;
 
 import java.util.ArrayList;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -18,7 +19,7 @@ import es.ull.simulation.model.flow.InterleavedParallelRoutingFlow;
  * and the following dependencies: A -> B, A -> C, C -> D -> E, B -> E. F has no dependencies 
  *
  */
-public class WFP17Simulation extends WFPTestSimulation {
+public class WFP17Simulation extends StandardTestSimulation {
 	final static int RES = 6;
 
 	/**

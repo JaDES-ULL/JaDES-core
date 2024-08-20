@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -12,7 +13,7 @@ import es.ull.simulation.model.flow.StructuredPartialJoinFlow;
  *
  */
 // TODO: Check carefully
-public class WFP30Simulation extends WFPTestSimulation {
+public class WFP30Simulation extends StandardTestSimulation {
 
 	/**
 	 * @param type

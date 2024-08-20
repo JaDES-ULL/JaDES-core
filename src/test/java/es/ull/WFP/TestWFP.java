@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import com.beust.jcommander.Parameter;
 
-import es.ull.simulation.experiment.CommonArguments;
+import es.ull.StandardTestSimulation.TestArguments;
 
 /**
  * @author Iván Castilla Rodríguez
@@ -25,7 +25,7 @@ public class TestWFP {
         exp.run();
     }
     
-    public static class TestWFPArguments extends CommonArguments{
+    public static class TestWFPArguments extends TestArguments {
     	@Parameter(names = { "--wfp", "-wfp" }, description = "Selects a specific WFP to test with", order = 5)
     	public int wfp = -1;
     }

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
@@ -39,9 +40,16 @@ public class CheckResourcesListener extends Listener {
 	private final ArrayList<ResourceUsageTimeStamps> roleOns;
 	private final ArrayList<ResourceUsageTimeStamps> roleOffs;
 
-	public CheckResourcesListener(final int resources, final ArrayList<ResourceUsageTimeStamps> roleOns, final ArrayList<ResourceUsageTimeStamps> roleOffs) {
+	public CheckResourcesListener(final ArrayList<ResourceUsageTimeStamps> roleOns, final ArrayList<ResourceUsageTimeStamps> roleOffs) {
 		super("Resource checker");
-		this.resources = resources;
+		final TreeSet<Integer> resIds = new TreeSet<Integer>();
+		for (ResourceUsageTimeStamps r : roleOns) {
+			resIds.add(r.getResId());
+		}
+		for (ResourceUsageTimeStamps r : roleOffs) {
+			resIds.add(r.getResId());
+		}
+		this.resources = resIds.size();
 		this.resCreated = 0;
 		this.resFinished = 0;
 		this.inUse = new boolean[resources];

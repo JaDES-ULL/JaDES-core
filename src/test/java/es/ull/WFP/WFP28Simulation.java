@@ -1,5 +1,6 @@
 package es.ull.WFP;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
@@ -12,7 +13,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WFP28Simulation extends WFPTestSimulation {
+public class WFP28Simulation extends StandardTestSimulation {
 
 	/**
 	 * @param type
@@ -34,9 +35,9 @@ public class WFP28Simulation extends WFPTestSimulation {
         WorkGroup wg0 = new WorkGroup(this, new ResourceType[] {rt0}, new int[] {1});
         WorkGroup wg1 = new WorkGroup(this, new ResourceType[] {rt1}, new int[] {1});
 	   	
-        ActivityFlow act0 = getDefActivity("Confirmar llegada delegacion", 2, wg0, false);
-        ActivityFlow act1 = getDefActivity("Chequeo de seguridad", 3, wg1, false);
-        ActivityFlow act2 = getDefActivity("Preparacion para nueva delegacion", 2, wg0, false);
+        ActivityFlow act0 = getDefActivity("Confirmar llegada delegacion", 15L, wg0, false);
+        ActivityFlow act1 = getDefActivity("Chequeo de seguridad", 20L, wg1, false);
+        ActivityFlow act2 = getDefActivity("Preparacion para nueva delegacion", 15L, wg0, false);
 
         getDefResource("Asistente 1", rt0);        
         getDefResource("Asistente 2", rt0);
