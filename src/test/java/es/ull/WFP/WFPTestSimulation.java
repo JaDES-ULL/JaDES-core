@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import es.ull.CheckActivitiesListener;
 import es.ull.CheckElementsListener;
 import es.ull.CheckResourcesListener;
+import es.ull.CheckResourcesListener.ResourceUsageTimeStamps;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
@@ -49,8 +50,8 @@ public abstract class WFPTestSimulation extends Simulation {
 	private final ArrayList<Integer> nElems;
 	private final ArrayList<Long> actDuration;
 	private final TreeMap<ActivityFlow, Integer> actIndex; 
-	private final ArrayList<TreeMap<Integer, Long>> roleOns;
-	private final ArrayList<TreeMap<Integer, Long>> roleOffs;
+	private final ArrayList<ResourceUsageTimeStamps> roleOns;
+	private final ArrayList<ResourceUsageTimeStamps> roleOffs;
 	private final TestWFP.TestWFPArguments args;
 	
 	public WFPTestSimulation(int id, String description, TestWFP.TestWFPArguments args) {
@@ -58,8 +59,8 @@ public abstract class WFPTestSimulation extends Simulation {
 		nElems = new ArrayList<Integer>();
 		actDuration = new ArrayList<Long>();
 		actIndex = new TreeMap<ActivityFlow, Integer>();
-		roleOffs = new ArrayList<TreeMap<Integer, Long>>();
-		roleOns = new ArrayList<TreeMap<Integer, Long>>();
+		roleOffs = new ArrayList<>();
+		roleOns = new ArrayList<>();
 		this.args = args;
 		createModel();
 		addCheckers();
@@ -82,12 +83,9 @@ public abstract class WFPTestSimulation extends Simulation {
 		final Resource res = new Resource(this, description);
 		final SimulationPeriodicCycle cycle = new SimulationPeriodicCycle(SIMUNIT, RESSTART, new SimulationTimeFunction(SIMUNIT, "ConstantVariate", RESPERIOD), 0);
 		res.newTimeTableOrCancelEntriesAdder(rt).withDuration(cycle, RESAVAILABLE).addTimeTableEntry();
-		final TreeMap<Integer, Long> roleOn = new TreeMap<>();
-		roleOn.put(rt.getIdentifier(), RESSTART);
-		roleOns.add(roleOn);
-		final TreeMap<Integer, Long> roleOff = new TreeMap<>();
-		roleOff.put(rt.getIdentifier(), RESSTART + RESAVAILABLE);
-		roleOffs.add(roleOff);
+		
+		roleOns.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), RESSTART));
+		roleOffs.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), RESSTART + RESAVAILABLE));
 		return res;
 	}
 	

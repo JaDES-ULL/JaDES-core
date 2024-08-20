@@ -8,6 +8,7 @@ import es.ull.simulation.model.ElementType;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import es.ull.CheckResourcesListener.ResourceUsageTimeStamps;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -88,18 +89,10 @@ public class ConditionalResourceGeneratorTestSimulation extends Simulation {
 		actIndex.put(req1, 1);
 		addInfoReceiver(new CheckActivitiesListener(1, actIndex, actDuration));
 		// Prepare structures to check behavior of resources
-		final ArrayList<TreeMap<Integer, Long>> roleOns = new ArrayList<>();
-		final TreeMap<Integer, Long> roleOns0 = new TreeMap<>();
-		roleOns0.put(rt0.getIdentifier(), 0L);
-		roleOns.add(roleOns0);
-		final TreeMap<Integer, Long> roleOns1 = new TreeMap<>();
-		roleOns1.put(rt1.getIdentifier(), DURATION);
-		roleOns.add(roleOns1);
-		final ArrayList<TreeMap<Integer, Long>> roleOffs = new ArrayList<>();
-		final TreeMap<Integer, Long> roleOffs0 = new TreeMap<>();
-		roleOffs.add(roleOffs0);
-		final TreeMap<Integer, Long> roleOffs1 = new TreeMap<>();
-		roleOffs.add(roleOffs1);
+		final ArrayList<ResourceUsageTimeStamps> roleOns = new ArrayList<>();
+		roleOns.add(new ResourceUsageTimeStamps(0, 0, new long[] {0L}));
+		roleOns.add(new ResourceUsageTimeStamps(1, 1, new long[] {DURATION}));
+		final ArrayList<ResourceUsageTimeStamps> roleOffs = new ArrayList<>();
 		addInfoReceiver(new CheckResourcesListener(2, roleOns, roleOffs));
 	}
 

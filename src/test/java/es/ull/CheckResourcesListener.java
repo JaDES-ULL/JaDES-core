@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.TreeMap;
 
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
@@ -37,12 +36,10 @@ public class CheckResourcesListener extends Listener {
 	private int resCreated;
 	private int resFinished;
 	private boolean []inUse;
-	private final ArrayList<TreeMap<Integer, Long>> roleOns;
-	private final ArrayList<TreeMap<Integer, Long>> roleOffs;
-	private final ArrayList<TreeMap<Integer, Boolean>> checkedroleOns;
-	private final ArrayList<TreeMap<Integer, Boolean>> checkedroleOffs;
+	private final ArrayList<ResourceUsageTimeStamps> roleOns;
+	private final ArrayList<ResourceUsageTimeStamps> roleOffs;
 
-	public CheckResourcesListener(final int resources, final ArrayList<TreeMap<Integer, Long>> roleOns, final ArrayList<TreeMap<Integer, Long>> roleOffs) {
+	public CheckResourcesListener(final int resources, final ArrayList<ResourceUsageTimeStamps> roleOns, final ArrayList<ResourceUsageTimeStamps> roleOffs) {
 		super("Resource checker");
 		this.resources = resources;
 		this.resCreated = 0;
@@ -51,22 +48,16 @@ public class CheckResourcesListener extends Listener {
 		Arrays.fill(inUse, false);
 		this.roleOffs = roleOffs;
 		this.roleOns = roleOns;
-		this.checkedroleOns = new ArrayList<TreeMap<Integer, Boolean>>();
-		this.checkedroleOffs = new ArrayList<TreeMap<Integer, Boolean>>();
-		for (int i = 0; i < this.roleOns.size(); i++) {
-			checkedroleOns.add(new TreeMap<Integer, Boolean>());
-			for (final Integer key : this.roleOns.get(i).keySet()) {
-				checkedroleOns.get(i).put(key, false);
-			}
-		}
-		for (int i = 0; i < this.roleOffs.size(); i++) {
-			checkedroleOffs.add(new TreeMap<Integer, Boolean>());
-			for (final Integer key : this.roleOffs.get(i).keySet()) {
-				checkedroleOffs.get(i).put(key, false);
-			}
-		}
 		addEntrance(ResourceInfo.class);
 		addEntrance(ResourceUsageInfo.class);
+	}
+
+	private ResourceUsageTimeStamps find(ArrayList<ResourceUsageTimeStamps> usages, final int resId, final int roleId) {
+		for (final ResourceUsageTimeStamps r : usages) {
+			if (r.getResId() == resId && r.getRoleId() == roleId)
+				return r;
+		}
+		return null;
 	}
 
 	@Override
@@ -78,17 +69,19 @@ public class CheckResourcesListener extends Listener {
 			final int roleId = (rt != null) ? rt.getIdentifier() : -1;
 			switch(rInfo.getType()) {
 			case ROLON:
-				assertTrue(roleOns.get(resId).containsKey(roleId), rInfo.getResource().toString() + "\t" + ERROR_ROLON2 + "\t" + rInfo.getResourceType().toString());
-				if (roleOns.get(resId).containsKey(roleId))
-					assertEquals(rInfo.getTs(),  roleOns.get(resId).get(roleId), rInfo.getResource().toString() + "\t" + ERROR_ROLON1);
-				checkedroleOns.get(resId).put(roleId, true);
+				final ResourceUsageTimeStamps rOn = find(roleOns, resId, roleId);
+				assertTrue(rOn != null, rInfo.getResource().toString() + "\t" + ERROR_ROLON2 + "\t" + rInfo.getResourceType().toString());
+				if (rOn != null)
+					assertEquals(rInfo.getTs(),  rOn.getNextValidTimeStamp(), rInfo.getResource().toString() + "\t" + ERROR_ROLON1);
+				rOn.check();
 				resCreated++;
 				break;
 			case ROLOFF:
-				assertTrue(roleOffs.get(resId).containsKey(roleId), rInfo.getResource().toString() + "\t" + ERROR_ROLOFF2 + "\t" + rInfo.getResourceType().toString());
-				if (roleOffs.get(resId).containsKey(roleId))
-					assertEquals(rInfo.getTs(),  roleOffs.get(resId).get(roleId), rInfo.getResource().toString() + "\t" + ERROR_ROLOFF1);
-				checkedroleOffs.get(resId).put(roleId, true);
+				final ResourceUsageTimeStamps rOff = find(roleOffs, resId, roleId);
+				assertTrue(rOff != null, rInfo.getResource().toString() + "\t" + ERROR_ROLOFF2 + "\t" + rInfo.getResourceType().toString());
+				if (rOff != null)
+					assertEquals(rInfo.getTs(),  rOff.getNextValidTimeStamp(), rInfo.getResource().toString() + "\t" + ERROR_ROLOFF1);
+				rOff.check();
 				resFinished++;
 				break;
 			default:
@@ -116,17 +109,46 @@ public class CheckResourcesListener extends Listener {
 			if (SimulationStartStopInfo.Type.END.equals(tInfo.getType()))  {
 				assertEquals(resCreated, resources, ERROR_RESCREATED);
 				assertEquals(resFinished, resources, ERROR_RESFINISHED);
-				for (int i = 0; i < roleOns.size(); i++) {
-					for (final Integer key : roleOns.get(i).keySet()) {
-						assertTrue(checkedroleOns.get(i).get(key), ERROR_ROLON3 + "\t" + roleOns.get(i).get(key));
-					}
+				for (ResourceUsageTimeStamps r : roleOns) {
+					assertEquals(r.getNextValidTimeStamp(), -1, ERROR_ROLON3 + "\t" + r.getResId() + "\t" + r.getRoleId());
 				}
-				for (int i = 0; i < roleOffs.size(); i++) {
-					for (final Integer key : roleOffs.get(i).keySet()) {
-						assertTrue(checkedroleOffs.get(i).get(key), ERROR_ROLOFF3 + "\t" + roleOns.get(i).get(key));
-					}
+				for (ResourceUsageTimeStamps r : roleOffs) {
+					assertEquals(r.getNextValidTimeStamp(), -1, ERROR_ROLOFF3 + "\t" + r.getResId() + "\t" + r.getRoleId());
 				}
+
 			}
+		}
+	}
+
+	public static class ResourceUsageTimeStamps {
+		private final int resId;
+		private final long[] timeStamps;
+		private final int roleId;
+		private int checked;
+
+		public ResourceUsageTimeStamps(final int resId, final int roleId, final long[] timeStamps) {
+			this.resId = resId;
+			this.roleId = roleId;
+			this.timeStamps = timeStamps;
+			this.checked = -1;
+		}
+		public ResourceUsageTimeStamps(final int resId, final int roleId, long timeStamp) {
+			this(resId, roleId, new long[] {timeStamp});
+		}
+
+		public int getResId() {
+			return resId;
+		}
+		public long getNextValidTimeStamp() {
+			if (checked == timeStamps.length - 1)
+				return -1;
+			return timeStamps[checked + 1];
+		}
+		public int getRoleId() {
+			return roleId;
+		}
+		public void check() {
+			this.checked++;
 		}
 	}
 }

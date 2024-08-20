@@ -29,5 +29,11 @@ public class TestWFP {
     	@Parameter(names = { "--wfp", "-wfp" }, description = "Selects a specific WFP to test with", order = 5)
     	public int wfp = -1;
     }
-    
+ 
+    public static void main(String[] args) {
+        final TestWFPArguments arguments = new TestWFPArguments();
+        arguments.wfp = 1;
+        final WFPTestExperiment experiment = new WFPTestExperiment(arguments);
+        experiment.run();
+    }
 }

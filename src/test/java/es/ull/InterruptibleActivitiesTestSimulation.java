@@ -9,6 +9,7 @@ import es.ull.simulation.inforeceiver.StdInfoView;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import es.ull.CheckResourcesListener.ResourceUsageTimeStamps;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.model.ElementType;
@@ -33,21 +34,25 @@ public class InterruptibleActivitiesTestSimulation extends Simulation {
 	static private final long ACT_DURATION = 101;
 	static private final long RES_START = 20L;
 	static private final long RES_DURATION = 40L;
+	static private final long RES_CYCLE = 100L;
+	static private final long ELEM_CYCLE = 800L;
+	static private final long END = 400L;
+
 
 	public InterruptibleActivitiesTestSimulation() {
-		super(0, "Testing interruptible activities", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.MINUTE, 400));
+		super(0, "Testing interruptible activities", unit, TimeStamp.getZero(), new TimeStamp(TimeUnit.MINUTE, END));
 		final ResourceType rt = new ResourceType(this, "RT0");
 		final WorkGroup wg = new WorkGroup(this, new ResourceType[] {rt}, new int[] {1});
 
 		final ActivityFlow act = new ActivityFlow(this, "ACT0", 0, false, true);
 		act.newWorkGroupAdder(wg).withDelay(ACT_DURATION).add();
-		final SimulationPeriodicCycle c1 = new SimulationPeriodicCycle(unit, 0, new SimulationTimeFunction(
-				unit, "ConstantVariate", 800), 0);
-		final SimulationPeriodicCycle c2 = new SimulationPeriodicCycle(unit, RES_START, new SimulationTimeFunction(
-				unit, "ConstantVariate", 100), 0);
-		new Resource(this, "RES0").newTimeTableOrCancelEntriesAdder(rt).withDuration(c2, RES_DURATION).addTimeTableEntry();
+		final SimulationPeriodicCycle creatorCycle = new SimulationPeriodicCycle(unit, 0, new SimulationTimeFunction(
+				unit, "ConstantVariate", ELEM_CYCLE), 0);
+		final SimulationPeriodicCycle resCycle = new SimulationPeriodicCycle(unit, RES_START, new SimulationTimeFunction(
+				unit, "ConstantVariate", RES_CYCLE), 0);
+		new Resource(this, "RES0").newTimeTableOrCancelEntriesAdder(rt).withDuration(resCycle, RES_DURATION).addTimeTableEntry();
 		new TimeDrivenElementGenerator(this, TimeFunctionFactory.getInstance("ConstantVariate", NELEM),
-							new ElementType(this, "ET0", 0), act, c1);
+							new ElementType(this, "ET0", 0), act, creatorCycle);
 	
 		setListeners(act, rt);
 	}
@@ -56,22 +61,28 @@ public class InterruptibleActivitiesTestSimulation extends Simulation {
 		ArrayList<Integer> nElems = new ArrayList<>();
 		nElems.add(NELEM);
 		addInfoReceiver(new CheckElementsListener(nElems));
-/*		final ArrayList<Long> actDuration = new ArrayList<>();
+		final ArrayList<Long> actDuration = new ArrayList<>();
 		actDuration.add(ACT_DURATION);
 		final TreeMap<ActivityFlow, Integer> actIndex = new TreeMap<>();
 		actIndex.put(act, 0);
 		addInfoReceiver(new CheckActivitiesListener(1, actIndex, actDuration));
 		// Prepare structures to check behavior of resources
-/* 		final ArrayList<TreeMap<Integer, Long>> roleOns = new ArrayList<>();
-		final TreeMap<Integer, Long> roleOns0 = new TreeMap<>();
-		roleOns0.put(rt.getIdentifier(), RES_START);
-		roleOns.add(roleOns0);
-		final ArrayList<TreeMap<Integer, Long>> roleOffs = new ArrayList<>();
-		final TreeMap<Integer, Long> roleOffs0 = new TreeMap<>();
-		roleOffs0.put(rt.getIdentifier(), RES_START + RES_DURATION);
-		roleOffs.add(roleOffs0);
-		addInfoReceiver(new CheckResourcesListener(2, roleOns, roleOffs));
-	*/	
+		final ArrayList<ResourceUsageTimeStamps> roleOns = new ArrayList<>();
+		final ArrayList<ResourceUsageTimeStamps> roleOffs = new ArrayList<>();
+		long start = RES_START;
+		int activations = (int) ((END - RES_START) / RES_CYCLE) + 1;
+		long [] roleOnTimestamps = new long[activations];
+		activations = (int) ((END - RES_START - RES_DURATION) / RES_CYCLE) + 1; 
+		long [] roleOffTimestamps = new long[activations];
+		for (int i = 0; i < (int) ((END - RES_START) / RES_CYCLE) + 1; i++) {
+			roleOnTimestamps[i] = start;
+			if (start + RES_DURATION < END)
+				roleOffTimestamps[i] = start + RES_DURATION;
+			start += RES_CYCLE;
+		}
+		roleOns.add(new ResourceUsageTimeStamps(0, rt.getIdentifier(), roleOnTimestamps));
+		roleOffs.add(new ResourceUsageTimeStamps(0, rt.getIdentifier(), roleOffTimestamps));	
+		addInfoReceiver(new CheckResourcesListener(1, roleOns, roleOffs));
 	}
 
 	/**
