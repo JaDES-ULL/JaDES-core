@@ -25,6 +25,9 @@ import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 
 /**
+ * Checks interruptible activities. Activities are interrupted when a resource stops being available before the activity has finalized.
+ * The test involves a single activity that lasts more than the available time of a resource. The resource is available cyclically, so
+ * the activity resumes every time the resource is available again. 
  * @author Iván Castilla Rodríguez
  *
  */

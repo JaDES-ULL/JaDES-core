@@ -21,6 +21,7 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ParallelFlow;
 
 /**
+ * Checks the conditional generation of resources. A special type of ActivityFlow is used to generate a resource after such activity finishes.
  * @author Iván Castilla Rodríguez
  *
  */
@@ -39,6 +40,7 @@ public class ConditionalResourceGeneratorTestSimulation extends Simulation {
 		
 		@Override
 		public void afterFinalize(ElementInstance fe) {
+			// Here it is created the resource
 			final Resource res = new Resource(simul, "Container later 1");
 			res.newTimeTableOrCancelEntriesAdder(rt1).addTimeTableEntry();
 			simul.addEvent(res.onCreate(simul.getTs()));

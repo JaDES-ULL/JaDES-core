@@ -18,15 +18,16 @@ import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ParallelFlow;
 
 /**
+ * A test for elements with different priorities.
  * @author Iván Castilla Rodríguez
  *
  */
 public class TestPriorityElement {
-	static final int NACT = 40;
-	static final int NELEMT = 4;
-	static final int NELEM = 100;
-	static final int NRES = 20;
-	static final TimeUnit unit = TimeUnit.MINUTE;
+	static private final int NACT = 40;
+	static private final int NELEMT = 4;
+	static private final int NELEM = 100;
+	static private final int NRES = 20;
+	static private final TimeUnit unit = TimeUnit.MINUTE;
 
 	/**
 	 * @param args
