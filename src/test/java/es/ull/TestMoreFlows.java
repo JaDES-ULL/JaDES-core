@@ -21,13 +21,23 @@ public class TestMoreFlows {
             Simulation simul = null;
             switch (expId) {
                 case 0:
-                    simul = new WaitForSignalFlowTestSimulation(args);
+                    args.simEnd = 35;
+                    args.nElements = 10;
+                    simul = new TestWaitForSignalFlowSimulation(args);
                     break;            
                 case 1:
-                    simul = new ConditionalResourceGeneratorTestSimulation(args);
+                    args.simEnd = 60;
+                    args.nElements = 1;
+                    args.resStart = 0;
+                    simul = new TestConditionalResourceGeneratorSimulation(args);
                     break;
                 case 2:
-                    simul = new InterruptibleActivitiesTestSimulation();
+                    args.simEnd = 400L;
+                    args.nElements = 1;
+                    args.resStart = 20L;
+                    args.resPeriod	= 100L;
+                    args.resAvailability = 40L;
+                    simul = new TestInterruptibleActivitiesSimulation(args);
                     break;
                 default:
                     break;
@@ -39,8 +49,6 @@ public class TestMoreFlows {
     @Test
     public void test1() {
         final TestArguments arguments = new TestArguments();
-        arguments.simEnd = 35;
-        arguments.nElements = 10;
         final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(0, arguments);
         experiment.run();
     }
@@ -48,9 +56,6 @@ public class TestMoreFlows {
     @Test
     public void test2() {
         final TestArguments arguments = new TestArguments();
-        arguments.simEnd = 60;
-        arguments.nElements = 1;
-        arguments.resStart = 0;
         final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(1, arguments);
         experiment.run();
     }
@@ -58,7 +63,6 @@ public class TestMoreFlows {
     @Test
     public void test3() {
         final TestArguments arguments = new TestArguments();
-        arguments.debug = true;
         final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(2, arguments);
         experiment.run();
     }

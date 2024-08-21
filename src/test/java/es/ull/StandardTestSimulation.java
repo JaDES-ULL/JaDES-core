@@ -96,8 +96,20 @@ public abstract class StandardTestSimulation extends Simulation {
 		final SimulationPeriodicCycle cycle = new SimulationPeriodicCycle(SIMUNIT, args.resStart, new SimulationTimeFunction(SIMUNIT, "ConstantVariate", args.resPeriod), 0);
 		res.newTimeTableOrCancelEntriesAdder(rt).withDuration(cycle, args.resAvailability).addTimeTableEntry();
 		
-		roleOns.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), args.resStart));
-		roleOffs.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), args.resStart + args.resAvailability));
+		long start = args.resStart;
+		int activations = (int) ((args.simEnd - args.resStart) / args.resPeriod) + 1;
+		long [] roleOnTimestamps = new long[activations];
+		activations = (int) ((args.simEnd - args.resStart - args.resAvailability) / args.resPeriod) + 1; 
+		long [] roleOffTimestamps = new long[activations];
+		for (int i = 0; i < (int) ((args.simEnd - args.resStart) / args.resPeriod) + 1; i++) {
+			roleOnTimestamps[i] = start;
+			if (start + args.resAvailability < args.simEnd)
+				roleOffTimestamps[i] = start + args.resAvailability;
+			start += args.resPeriod;
+		}
+
+		roleOns.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), roleOnTimestamps));
+		roleOffs.add(new ResourceUsageTimeStamps(res.getIdentifier(), rt.getIdentifier(), roleOffTimestamps));
 		return res;
 	}
 	

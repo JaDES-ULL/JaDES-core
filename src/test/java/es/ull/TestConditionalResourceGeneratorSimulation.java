@@ -17,7 +17,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class ConditionalResourceGeneratorTestSimulation extends StandardTestSimulation {
+public class TestConditionalResourceGeneratorSimulation extends StandardTestSimulation {
 	private final static long DURATION = 5L;
 
 	class SpecialActivityFlow extends TestActivityFlow {
@@ -41,7 +41,7 @@ public class ConditionalResourceGeneratorTestSimulation extends StandardTestSimu
 	 * @param description
 	 * @param nExperiments
 	 */
-	public ConditionalResourceGeneratorTestSimulation(TestArguments arguments) {
+	public TestConditionalResourceGeneratorSimulation(TestArguments arguments) {
 		super(0, "Testing conditional generation of resources", arguments);
 	}
 
@@ -89,7 +89,7 @@ public class ConditionalResourceGeneratorTestSimulation extends StandardTestSimu
         arguments.simEnd = 60;
         arguments.nElements = 1;
         arguments.resStart = 0;
-		new ConditionalResourceGeneratorTestSimulation(arguments).start();
+		new TestConditionalResourceGeneratorSimulation(arguments).start();
 	}
 
 }

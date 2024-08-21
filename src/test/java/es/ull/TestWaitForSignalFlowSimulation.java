@@ -27,7 +27,7 @@ import es.ull.simulation.model.flow.WaitForSignalFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class WaitForSignalFlowTestSimulation extends StandardTestSimulation {
+public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 	final static private long DELAY = 10;
 	final static private long CHECK_DELAY = 5;
 	private SimListener listener;
@@ -35,7 +35,7 @@ public class WaitForSignalFlowTestSimulation extends StandardTestSimulation {
 
 	/**
 	 */
-	public WaitForSignalFlowTestSimulation(TestArguments args) {
+	public TestWaitForSignalFlowSimulation(TestArguments args) {
 		super(0, "Test wait for signal simulation", args);
 		elementsPassedPerTime = new TreeMap<>();
 	}
@@ -89,10 +89,10 @@ public class WaitForSignalFlowTestSimulation extends StandardTestSimulation {
 	
 	class SimListener extends SimulationObject implements IEventSource, WaitForSignalFlow.Listener {
 		private WaitForSignalFlow IFlow = null;
-		final private WaitForSignalFlowTestSimulation simul;
+		final private TestWaitForSignalFlowSimulation simul;
 		final private ArrayList<ElementInstance> waiting;
 		
-		public SimListener(WaitForSignalFlowTestSimulation simul) {
+		public SimListener(TestWaitForSignalFlowSimulation simul) {
 			super(simul, 0, "LIS");
 			this.simul = simul;
 			this.waiting = new ArrayList<ElementInstance>();
@@ -180,7 +180,7 @@ public class WaitForSignalFlowTestSimulation extends StandardTestSimulation {
 		TestArguments arguments = new TestArguments();
 		arguments.simEnd = 35;
 		arguments.nElements = 10;
-		new WaitForSignalFlowTestSimulation(arguments).start();
+		new TestWaitForSignalFlowSimulation(arguments).start();
 
 	}
 
