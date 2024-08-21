@@ -7,7 +7,7 @@ import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.flow.IResourceHandlerFlow;
 
-public class ResourceUsageInfo extends AsynchronousInfo {
+public class ResourceUsageInfo extends TimeStampedInfo {
 
 	/** Possible types of resource information */
 	public enum Type implements IInfoType {

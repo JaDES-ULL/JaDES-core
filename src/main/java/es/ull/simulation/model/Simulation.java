@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.InfoReceiver;
+import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.inforeceiver.SimulationInfoHandler;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.BasicFlow;
@@ -604,16 +604,16 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * Adds an information receiver which processes information produced by this simulation.
 	 * @param receiver A processor for the information produced by this simulation
 	 */
-	public void addInfoReceiver(final InfoReceiver receiver) {
+	public void addInfoReceiver(final Listener receiver) {
 		infoHandler.registerReceivers(receiver);
 	}
 
 	/**
-	 * Returns the handler for the information produced by the execution of this simulation.
-	 * @param info A piece of information produced by the simulation
+	 * Notifies a piece of information to the information handler.
+	 * @param info A piece of information produced by the simulation or any of its components
 	 */
-	public Number notifyInfo(final SimulationInfo info) {
-		return infoHandler.notifyInfo(info);
+	public void notifyInfo(final SimulationInfo info) {
+		infoHandler.notifyInfo(info);
 	}
 	
 	// User methods

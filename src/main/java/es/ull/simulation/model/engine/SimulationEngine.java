@@ -12,7 +12,6 @@ import java.util.TreeMap;
 import java.util.concurrent.CountDownLatch;
 
 import es.ull.simulation.info.TimeChangeInfo;
-import es.ull.simulation.inforeceiver.InfoReceiver;
 import es.ull.simulation.model.ActivityManager;
 import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.Element;
@@ -57,9 +56,6 @@ import es.ull.simulation.utils.Output;
  * <li>Just before the simulation clock advances {@link #beforeClockTick()}</li> 
  * <li>Just After the simulation clock advances {@link #afterClockTick()}</li> 
  * </ul> 
- * <p>
- * A simulation uses {@link InfoReceiver}s to show results. Those "listeners" can
- * be added by invoking the {@link #addInfoReceiver(InfoReceiver)} method. 
  * <p>
  * For debugging purposes, an {@link Output} can be associated to this simulation, thus
  * defining the destination for error and debug messages.

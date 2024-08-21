@@ -8,7 +8,7 @@ import es.ull.simulation.model.Simulation;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationStartStopInfo extends AsynchronousInfo {
+public class SimulationStartStopInfo extends TimeStampedInfo {
 	/** The types of information related to simulation time */
 	public enum Type implements IInfoType {
 		START	("SIMULATION STARTS"), 

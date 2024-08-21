@@ -9,7 +9,7 @@ import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.flow.IActionFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
-public class ElementActionInfo extends AsynchronousInfo {
+public class ElementActionInfo extends TimeStampedInfo {
 	
 	/** Possible types of element information */
 	public enum Type implements IInfoType {

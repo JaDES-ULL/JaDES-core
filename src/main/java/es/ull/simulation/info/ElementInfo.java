@@ -4,7 +4,7 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Simulation;
 
-public class ElementInfo extends AsynchronousInfo {
+public class ElementInfo extends TimeStampedInfo {
 
 	/** Possible types of element information */
 	public enum Type implements IInfoType {

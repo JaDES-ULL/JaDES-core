@@ -6,7 +6,7 @@ import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 
-public class ResourceInfo extends AsynchronousInfo {
+public class ResourceInfo extends TimeStampedInfo {
 
 	/** Possible types of resource information */
 	public enum Type implements IInfoType {
