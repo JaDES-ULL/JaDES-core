@@ -176,6 +176,18 @@ public abstract class StandardTestSimulation extends Simulation {
 		nElems.add(0);
 		return new ElementType(this, description);
 	}
+
+	/**
+	 * Creates a new element type with the given description and priority
+	 * @param description The description of the element type
+	 * @param priority The priority of the element type
+	 * @return The new element type
+	 */
+	public ElementType getDefElementType(String description, int priority) {
+		// Adds a new element type but, until not used within a generator, it will create 0 elements
+		nElems.add(0);
+		return new ElementType(this, description, priority);
+	}
 	
 	/**
 	 * Creates a new generator cycle with the default values
@@ -247,7 +259,7 @@ public abstract class StandardTestSimulation extends Simulation {
 		public long genStart = 0;
 		@Parameter(names = {"-Tgp", "--TgenPeriod"}, description = "The period for the generator of elements (minutes)", order = 7)
 		public long genPeriod = 1440;
-		@Parameter(names = {"-Te", "--TnElements"}, description = "The number of elements to generate", order = 8)
+		@Parameter(names = {"-Te", "--TnElements"}, description = "The number of elements to generate per element type", order = 8)
 		public int nElements = 3;
 	}
 }
