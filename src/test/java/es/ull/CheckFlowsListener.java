@@ -34,8 +34,8 @@ public class CheckFlowsListener extends Listener {
 	public CheckFlowsListener(int nElem) {
 		super("Activity checker ");
 		this.checkStructure = new NodeInfo[nElem];
-		addEntrance(ElementActionInfo.class);
-		addEntrance(ElementInfo.class);
+		addTargetInformation(ElementActionInfo.class);
+		addTargetInformation(ElementInfo.class);
 	}
 
 	private static final NodeInfo buildCheckStructure(IInitializerFlow initFlow) {

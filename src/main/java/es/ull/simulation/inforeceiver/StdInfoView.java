@@ -19,12 +19,12 @@ public class StdInfoView extends Listener {
 
 	public StdInfoView() {
 		super("STANDARD INFO VIEW");
-		addEntrance(SimulationStartStopInfo.class);
-		addEntrance(ElementActionInfo.class);
-		addEntrance(ElementInfo.class);
-		addEntrance(ResourceInfo.class);
-		addEntrance(ResourceUsageInfo.class);
-		addEntrance(EntityLocationInfo.class);
+		addTargetInformation(SimulationStartStopInfo.class);
+		addTargetInformation(ElementActionInfo.class);
+		addTargetInformation(ElementInfo.class);
+		addTargetInformation(ResourceInfo.class);
+		addTargetInformation(ResourceUsageInfo.class);
+		addTargetInformation(EntityLocationInfo.class);
 	}
 	
 	@Override

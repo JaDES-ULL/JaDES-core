@@ -45,10 +45,8 @@ public class WFPTestExperiment extends BaseExperiment {
 			case 212:	simul = new WFP21Simulation_DoWhile(ind, args);	break;
 			case 28:	simul = new WFP28Simulation(ind, args);	break;
 			case 30:	simul = new WFP30Simulation(ind, args);	break;
-			case 40:	simul = new WFP40Simulation(ind, args);	break;
-			default: 
-				System.err.println(getDescription() + " - Invalid WFP number: " + wfp);
-			break;
+			case 40:
+			default:	simul = new WFP40Simulation(ind, args);	break; 
 		}
 		simul.run();
 	}

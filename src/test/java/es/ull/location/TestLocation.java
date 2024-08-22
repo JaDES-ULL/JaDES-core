@@ -115,7 +115,7 @@ public class TestLocation extends BaseExperiment {
 
 		public LocationListener() {
 			super("Location listener");
-			addEntrance(EntityLocationInfo.class);
+			addTargetInformation(EntityLocationInfo.class);
 		}
 
 		@Override

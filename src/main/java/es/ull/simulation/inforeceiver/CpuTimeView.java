@@ -21,7 +21,7 @@ public class CpuTimeView extends Listener {
 	
 	public CpuTimeView(final PrintStream out, final boolean print) {
 		super("CPU Time viewer");
-		addEntrance(SimulationStartStopInfo.class);
+		addTargetInformation(SimulationStartStopInfo.class);
 		this.print = print;
 		this.out = out;
 	}

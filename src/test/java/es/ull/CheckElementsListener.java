@@ -36,7 +36,7 @@ public class CheckElementsListener extends Listener {
 		this.elements = elements;
 		elemCreated = new int[elements.size()];
 		elemFinished = new int[elements.size()];
-		addEntrance(ElementInfo.class);
+		addTargetInformation(ElementInfo.class);
 	}
 
 	@Override

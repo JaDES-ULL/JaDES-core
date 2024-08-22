@@ -65,7 +65,7 @@ public class CheckActivitiesListener extends Listener {
 			acquire[i] = new PairQueue();
 			expectedTerminations[i] = new TrioQueue();
 		}
-		addEntrance(ElementActionInfo.class);
+		addTargetInformation(ElementActionInfo.class);
 	}
 
 	private int find(PairQueue queue, ElementActionInfo eInfo) {

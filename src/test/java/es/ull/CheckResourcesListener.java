@@ -56,8 +56,8 @@ public class CheckResourcesListener extends Listener {
 		Arrays.fill(inUse, false);
 		this.roleOffs = roleOffs;
 		this.roleOns = roleOns;
-		addEntrance(ResourceInfo.class);
-		addEntrance(ResourceUsageInfo.class);
+		addTargetInformation(ResourceInfo.class);
+		addTargetInformation(ResourceUsageInfo.class);
 	}
 
 	private ResourceUsageTimeStamps find(ArrayList<ResourceUsageTimeStamps> usages, final int resId, final int roleId) {

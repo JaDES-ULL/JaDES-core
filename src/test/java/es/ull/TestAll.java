@@ -47,14 +47,13 @@ public class TestAll {
                     simul = new TestInterruptibleActivitiesSimulation(args);
                     break;
                 case PRIORITY_ELEMENTS:
+                default:
                     args.simEnd = 400L;
                     args.nElements = 10;
                     args.resStart = 20L;
                     args.resPeriod	= 100L;
                     args.resAvailability = 40L;
                     simul = new TestPriorityElementSimulation(args);
-                    break;
-                default:
                     break;
             }
             simul.run();
@@ -65,6 +64,7 @@ public class TestAll {
     @EnumSource(TestType.class)
     public void testAll(TestType type) {
         final TestArguments arguments = new TestArguments();
+        arguments.quiet = true;
         final TestMoreFlowsExperiment experiment = new TestMoreFlowsExperiment(type, arguments);
         experiment.run();
     }

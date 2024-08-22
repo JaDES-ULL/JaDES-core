@@ -140,8 +140,8 @@ public class TestTransport extends BaseExperiment {
 
 		public LocationListener() {
 			super("Location listener");
-			addEntrance(EntityLocationInfo.class);
-			addEntrance(ElementActionInfo.class);
+			addTargetInformation(EntityLocationInfo.class);
+			addTargetInformation(ElementActionInfo.class);
 		}
 
 		@Override

@@ -154,7 +154,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 		public CheckerListener(int nElements) {
 			super("Checker");
 			this.nElements = nElements;
-			addEntrance(SimulationStartStopInfo.class);
+			addTargetInformation(SimulationStartStopInfo.class);
 		}
 
 		@Override

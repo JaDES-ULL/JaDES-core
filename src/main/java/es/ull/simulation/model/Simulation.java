@@ -605,7 +605,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * @param receiver A processor for the information produced by this simulation
 	 */
 	public void addInfoReceiver(final Listener receiver) {
-		infoHandler.registerReceivers(receiver);
+		infoHandler.registerListener(receiver);
 	}
 
 	/**

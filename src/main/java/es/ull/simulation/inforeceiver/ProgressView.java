@@ -17,8 +17,8 @@ public class ProgressView extends Listener {
 	int percentage = 0;
 	public ProgressView(long endTs) {
 		super("Progress");
-		addEntrance(TimeChangeInfo.class);
-		addEntrance(SimulationStartStopInfo.class);
+		addTargetInformation(TimeChangeInfo.class);
+		addTargetInformation(SimulationStartStopInfo.class);
 		gap = endTs / 100;
 		nextMsg = gap;
 	}

@@ -35,10 +35,10 @@ public class BenchmarkListener extends Listener {
 	public BenchmarkListener(final PrintStream out) {
 		super("Bench");
 		this.out = out;
-		addEntrance(SimulationStartStopInfo.class);
-		addEntrance(ElementInfo.class);
-		addEntrance(ElementActionInfo.class);
-		addEntrance(ResourceInfo.class);
+		addTargetInformation(SimulationStartStopInfo.class);
+		addTargetInformation(ElementInfo.class);
+		addTargetInformation(ElementActionInfo.class);
+		addTargetInformation(ResourceInfo.class);
 	}
 
 	public synchronized void infoEmited(final SimulationInfo info) {

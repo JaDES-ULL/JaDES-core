@@ -24,7 +24,7 @@ public class DelayListener extends Listener {
 	public DelayListener(long timeout) {
 		super("Delay listener");
 		this.timeout = timeout;
-		addEntrance(TimeChangeInfo.class);
+		addTargetInformation(TimeChangeInfo.class);
 	}
 
 	/* (non-Javadoc)
