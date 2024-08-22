@@ -48,7 +48,6 @@ class ResourceList1 {
     public synchronized boolean remove(Integer res) {
     	nREMOVES.incrementAndGet();
     	Integer val = tree.get(res);
-    	// FIXME Debería crearme un tipo personalizado de excepción
     	if (val == null)
     		throw new RuntimeException("Unexpected error: Integer not found in resource type");
     	if (val > 1) {
