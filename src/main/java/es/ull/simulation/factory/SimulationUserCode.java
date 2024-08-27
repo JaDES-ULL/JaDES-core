@@ -67,12 +67,4 @@ public class SimulationUserCode {
 	public int size() {
 		return container.size();
 	}
-
-	/**
-	 * Remove one element of the store.
-	 * @param key Index of the element.
-	 */
-	public void remove(String key) {
-		container.remove(key);
-	}
 }

@@ -72,24 +72,27 @@ public class StandardCompilator {
 		if (compiler == null) {
 			System.out.println("Compiler not found");
 			System.exit(1);
+			return null;
 		}
-		// create a collector for diagnostic messages 
-		diagnostics = new DiagnosticCollector<JavaFileObject>();
-		// create a standard manager for the Java file objects
-		StandardJavaFileManager fileMan = compiler.getStandardFileManager(
-				diagnostics, null, null);
-		/*
-		 * forward most calls to the standard Java file manager but put the
-		 * compiled classes into the store with ByteJavaFileManager
-		 */
-		ByteJavaFileManager<StandardJavaFileManager> jfm = new ByteJavaFileManager<StandardJavaFileManager>(
-				fileMan, storeInput);
-		/*
-		 * create a compilation task using the supplied file manager, diagnostic
-		 * collector, and applied to the string Java file object (in a list)
-		 */
-		return compiler.getTask(null, jfm, diagnostics, null, null, Arrays
-				.asList(src));
+		else {
+			// create a collector for diagnostic messages 
+			diagnostics = new DiagnosticCollector<JavaFileObject>();
+			// create a standard manager for the Java file objects
+			StandardJavaFileManager fileMan = compiler.getStandardFileManager(
+					diagnostics, null, null);
+			/*
+			* forward most calls to the standard Java file manager but put the
+			* compiled classes into the store with ByteJavaFileManager
+			*/
+			ByteJavaFileManager<StandardJavaFileManager> jfm = new ByteJavaFileManager<StandardJavaFileManager>(
+					fileMan, storeInput);
+			/*
+			* create a compilation task using the supplied file manager, diagnostic
+			* collector, and applied to the string Java file object (in a list)
+			*/
+			return compiler.getTask(null, jfm, diagnostics, null, null, Arrays
+					.asList(src));
+		}
 	}
 	
 	/**
