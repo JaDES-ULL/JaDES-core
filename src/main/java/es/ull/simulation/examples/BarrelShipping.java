@@ -115,7 +115,7 @@ class BarrelShippingExperiment extends BaseExperiment {
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
 				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
-		simul.addInfoReceiver(new StdInfoView());
+		simul.registerListener(new StdInfoView());
 		simul.run();
 	}
 

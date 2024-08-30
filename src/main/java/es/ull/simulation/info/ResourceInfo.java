@@ -6,10 +6,10 @@ import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 
-public class ResourceInfo extends TimeStampedInfo {
+public class ResourceInfo extends SimulationInfo {
 
 	/** Possible types of resource information */
-	public enum Type implements IInfoType {
+	public enum Type implements IPieceOfInformation.IInfoType {
 			START	("RESOURCE START"), 
 			FINISH	("RESOURCE FINISH"), 
 			ROLON	("ROLE ON"), 

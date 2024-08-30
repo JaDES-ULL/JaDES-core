@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 
 import es.ull.simulation.info.ElementInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
-import es.ull.simulation.info.SimulationInfo;
 
 /**
  * Checks the elements created and finished during the simulation
@@ -40,7 +40,7 @@ public class CheckElementsListener extends Listener {
 	}
 
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		if (info instanceof ElementInfo) {
 			ElementInfo eInfo = (ElementInfo)info;
 			int et;

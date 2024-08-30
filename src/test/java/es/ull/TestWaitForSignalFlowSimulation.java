@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.DiscreteEvent;
@@ -78,7 +78,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 	@Override
 	protected void addCheckers() {
 		super.addCheckers();
-		addInfoReceiver(new CheckerListener(getArguments().nElements));
+		registerListener(new CheckerListener(getArguments().nElements));
 	}
 	
 	@Override
@@ -158,7 +158,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 		}
 
 		@Override
-		public void infoEmited(SimulationInfo info) {
+		public void infoEmited(IPieceOfInformation info) {
 			if (info instanceof SimulationStartStopInfo) {
 				final SimulationStartStopInfo sInfo = (SimulationStartStopInfo) info;
 				ArrayList<Long> times = new ArrayList<>(elementsPassedPerTime.keySet());

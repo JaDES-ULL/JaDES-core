@@ -69,13 +69,13 @@ public abstract class StandardTestSimulation extends Simulation {
 	 */
 	protected void addCheckers() {
 		if (!args.quiet)
-			addInfoReceiver(new StdInfoView());
-		addInfoReceiver(new CheckResourcesListener(roleOns, roleOffs));
-		addInfoReceiver(new CheckElementsListener(nElems));
+			registerListener(new StdInfoView());
+		registerListener(new CheckResourcesListener(roleOns, roleOffs));
+		registerListener(new CheckElementsListener(nElems));
 		int n = 0;
 		for (int count : nElems) 
 			n += count;
-		addInfoReceiver(new CheckActivitiesListener(n, actIndex, actDuration));
+		registerListener(new CheckActivitiesListener(n, actIndex, actDuration));
 	}
 	
 	/**

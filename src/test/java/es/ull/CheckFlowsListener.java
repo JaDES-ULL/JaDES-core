@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ElementInfo;
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.Element;
@@ -159,7 +159,7 @@ public class CheckFlowsListener extends Listener {
 	}
 	
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		if (info instanceof ElementInfo) {
 			final ElementInfo eInfo = (ElementInfo)info;
 			final Element elem = eInfo.getElement();

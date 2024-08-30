@@ -57,7 +57,7 @@ public class BenchmarkTest {
 				Simulation sim = config.getTestModel(); 
 				
 				if (arguments.debug)
-					sim.addInfoReceiver(new BenchmarkListener(System.out));
+					sim.registerListener(new BenchmarkListener(System.out));
 				sim.run();;
 			}
 			

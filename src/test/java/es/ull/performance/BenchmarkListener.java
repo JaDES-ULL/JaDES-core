@@ -7,8 +7,8 @@ import java.io.PrintStream;
 
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ElementInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.ResourceInfo;
-import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 
@@ -41,7 +41,7 @@ public class BenchmarkListener extends Listener {
 		addTargetInformation(ResourceInfo.class);
 	}
 
-	public synchronized void infoEmited(final SimulationInfo info) {
+	public synchronized void infoEmited(final IPieceOfInformation info) {
 		if (info instanceof ElementInfo) {
 			elemEvents++;
 			if (((ElementInfo) info).getTs() == lastEventTs) {

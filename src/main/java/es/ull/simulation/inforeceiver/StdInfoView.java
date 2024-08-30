@@ -5,9 +5,9 @@ import java.io.PrintStream;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.EntityLocationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
-import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
 
 public class StdInfoView extends Listener {
@@ -28,7 +28,7 @@ public class StdInfoView extends Listener {
 	}
 	
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		out.println(info.toString());
 		if (info instanceof SimulationStartStopInfo) { 
 			final SimulationStartStopInfo tInfo = (SimulationStartStopInfo) info;

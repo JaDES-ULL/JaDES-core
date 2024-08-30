@@ -4,10 +4,10 @@ import es.ull.simulation.model.Element;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Simulation;
 
-public class ElementInfo extends TimeStampedInfo {
+public class ElementInfo extends SimulationInfo {
 
 	/** Possible types of element information */
-	public enum Type implements IInfoType {
+	public enum Type implements IPieceOfInformation.IInfoType {
 			START ("ELEMENT START"), 
 			FINISH ("ELEMENT FINISH");
 			

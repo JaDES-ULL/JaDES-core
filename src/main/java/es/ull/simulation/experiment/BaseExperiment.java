@@ -12,8 +12,6 @@ public abstract class BaseExperiment implements IExperiment {
 	private final CommonArguments arguments;
 	/** A structure to print the progress of simulations */
 	private final PrintProgress progress;
-	private long time;
-
 
 	/**
 	 * Creates a new experiment.
@@ -50,7 +48,7 @@ public abstract class BaseExperiment implements IExperiment {
 
 	@Override
     public void run() {
-		time = System.currentTimeMillis();
+		final long time = System.currentTimeMillis();
         beforeStart();
 		final int nExperiments = getNExperiments();
 		progress.print();

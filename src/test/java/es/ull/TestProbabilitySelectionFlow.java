@@ -76,7 +76,7 @@ class ExperimentProbSel extends BaseExperiment {
 				"ConstantVariate", 100), et, root, cGen);
 		
 		StdInfoView debugView = new StdInfoView();
-		sim.addInfoReceiver(debugView);
+		sim.registerListener(debugView);
 		sim.run();
 	}
 	

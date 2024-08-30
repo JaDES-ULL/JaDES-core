@@ -98,7 +98,7 @@ class ExpOverlapped extends BaseExperiment {
 				"ConstantVariate", NELEM),
 						factory.getElementTypeInstance("ET0"), metaFlow, c);
 		
-		sim.addInfoReceiver(new StdInfoView());
+		sim.registerListener(new StdInfoView());
 		sim.run();
 	}
 }

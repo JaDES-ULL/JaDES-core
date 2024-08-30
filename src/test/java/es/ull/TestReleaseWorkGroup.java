@@ -77,7 +77,7 @@ public class TestReleaseWorkGroup extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelReleaseManagement(ind);
-		simul.addInfoReceiver(new StdInfoView());
+		simul.registerListener(new StdInfoView());
 		simul.run();
 	}
 

@@ -273,7 +273,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelResourceManagementDefaultGroup(ind);
-		simul.addInfoReceiver(new StdInfoView());
+		simul.registerListener(new StdInfoView());
 		simul.run();;
 	}
 

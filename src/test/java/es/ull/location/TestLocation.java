@@ -11,7 +11,7 @@ import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.info.EntityLocationInfo;
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Simulation;
@@ -119,7 +119,7 @@ public class TestLocation extends BaseExperiment {
 		}
 
 		@Override
-		public void infoEmited(SimulationInfo info) {
+		public void infoEmited(IPieceOfInformation info) {
 			final EntityLocationInfo eInfo = (EntityLocationInfo)info;
 			System.out.println(eInfo);
 		}
@@ -129,7 +129,7 @@ public class TestLocation extends BaseExperiment {
 		@Override
 		public void runExperiment(int ind) {
 			final SimulLocation sim =  new SimulLocation(ind, ENDTS);
-			sim.addInfoReceiver(new LocationListener());
+			sim.registerListener(new LocationListener());
 			sim.run();
 		}
 

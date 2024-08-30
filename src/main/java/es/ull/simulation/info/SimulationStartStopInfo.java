@@ -8,9 +8,9 @@ import es.ull.simulation.model.Simulation;
  * @author Iván Castilla Rodríguez
  *
  */
-public class SimulationStartStopInfo extends TimeStampedInfo {
+public class SimulationStartStopInfo extends SimulationInfo {
 	/** The types of information related to simulation time */
-	public enum Type implements IInfoType {
+	public enum Type implements IPieceOfInformation.IInfoType {
 		START	("SIMULATION STARTS"), 
 		END		("SIMULATION ENDS");
 		
@@ -42,14 +42,23 @@ public class SimulationStartStopInfo extends TimeStampedInfo {
 		this.cpuTime = System.nanoTime();
 	}
 
+	/**
+	 * Returns the CPU time for the start or end of the simulation
+	 * @return CPU time
+	 */
 	public long getCpuTime() {
 		return cpuTime;
 	}
 	
+	/**
+	 * Returns the type of information
+	 * @return Type of information
+	 */
 	public Type getType() {
 		return type;
 	}
 	
+	@Override
 	public String toString() {
 		return  simul.long2SimulationTime(getTs()) + "\t[SIM]\t" + type.getDescription();
 	}

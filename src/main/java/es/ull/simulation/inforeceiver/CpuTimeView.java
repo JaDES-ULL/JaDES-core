@@ -5,7 +5,7 @@ package es.ull.simulation.inforeceiver;
 
 import java.io.PrintStream;
 
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 
 /**
@@ -27,7 +27,7 @@ public class CpuTimeView extends Listener {
 	}
 
 	@Override
-	public void infoEmited(final SimulationInfo info) {
+	public void infoEmited(final IPieceOfInformation info) {
 		final SimulationStartStopInfo tInfo = (SimulationStartStopInfo)info;
 		
 		if (SimulationStartStopInfo.Type.START.equals(tInfo.getType())) {

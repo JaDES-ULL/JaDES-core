@@ -1,16 +1,24 @@
 package es.ull.simulation.info;
 
-import es.ull.simulation.model.Simulation;
-
-public abstract class TimeStampedInfo extends SimulationInfo {
-
+/**
+ * A piece of information that has a timestamp associated to it
+ */
+public abstract class TimeStampedInfo implements IPieceOfInformation {
+	/** The timestamp of the information */
 	final protected long ts;
 	
-	public TimeStampedInfo(final Simulation model, final long ts) {
-		super(model);
+	/**
+	 * Creates a new piece of information with a timestamp
+	 * @param ts Timestamp
+	 */
+	public TimeStampedInfo(final long ts) {
 		this.ts = ts;
 	}
 
+	/**
+	 * Returns the timestamp of the information
+	 * @return Timestamp
+	 */
 	public long getTs() {
 		return ts;
 	}

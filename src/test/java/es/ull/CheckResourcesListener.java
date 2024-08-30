@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TreeSet;
 
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
-import es.ull.simulation.info.SimulationInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ResourceType;
@@ -69,7 +69,7 @@ public class CheckResourcesListener extends Listener {
 	}
 
 	@Override
-	public void infoEmited(final SimulationInfo info) {
+	public void infoEmited(final IPieceOfInformation info) {
 		if (info instanceof ResourceInfo) {
 			final ResourceInfo rInfo = (ResourceInfo)info;
 			final int resId = rInfo.getResource().getIdentifier();

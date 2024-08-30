@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import es.ull.simulation.info.ElementActionInfo;
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
 import es.ull.simulation.model.ElementInstance;
@@ -80,7 +80,7 @@ public class CheckActivitiesListener extends Listener {
 	}
 	
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		if (info instanceof ElementActionInfo) {
 			final ElementActionInfo eInfo = (ElementActionInfo)info;
 			if (eInfo.getActivity() instanceof ActivityFlow) {

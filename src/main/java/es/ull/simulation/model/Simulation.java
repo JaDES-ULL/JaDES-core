@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.inforeceiver.Listener;
-import es.ull.simulation.inforeceiver.SimulationInfoHandler;
+import es.ull.simulation.inforeceiver.IHandlesInformation;
+import es.ull.simulation.inforeceiver.InfoHandler;
 import es.ull.simulation.model.engine.SimulationEngine;
 import es.ull.simulation.model.flow.BasicFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow;
@@ -32,7 +33,7 @@ import es.ull.simulation.variable.IVariable;
  * @author Ivan Castilla Rodriguez
  *
  */
-public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, IDebuggable {
+public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, IDebuggable, IHandlesInformation {
 	/** The default time unit used by the simulation */
 	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
 	/** If true, notifies Activity Managers that an element is available randomly; otherwise,
@@ -71,7 +72,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	protected final Map<String, IVariable> varCollection = new TreeMap<String, IVariable>();
 	
 	/** A handler for the information produced by the execution of this simulation */
-	protected final SimulationInfoHandler infoHandler = new SimulationInfoHandler();
+	protected final InfoHandler infoHandler = new InfoHandler();
 	
 	/** The simulation engine that executes this model */
 	protected SimulationEngine simulationEngine = null;
@@ -600,19 +601,13 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		}
 	}
 
-	/**
-	 * Adds an information receiver which processes information produced by this simulation.
-	 * @param receiver A processor for the information produced by this simulation
-	 */
-	public void addInfoReceiver(final Listener receiver) {
+	@Override
+	public void registerListener(final Listener receiver) {
 		infoHandler.registerListener(receiver);
 	}
 
-	/**
-	 * Notifies a piece of information to the information handler.
-	 * @param info A piece of information produced by the simulation or any of its components
-	 */
-	public void notifyInfo(final SimulationInfo info) {
+	@Override
+	public void notifyInfo(final IPieceOfInformation info) {
 		infoHandler.notifyInfo(info);
 	}
 	

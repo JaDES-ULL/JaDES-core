@@ -43,7 +43,7 @@ public class BasicHospitalMain extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		final Simulation simul = new BasicHospitalModel(ind, TimeUnit.MINUTE, 0, 7 * 24 * 60);
-		simul.addInfoReceiver(new StdInfoView());
+		simul.registerListener(new StdInfoView());
 		simul.run();
 	}
 

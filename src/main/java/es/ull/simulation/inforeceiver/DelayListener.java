@@ -5,7 +5,7 @@ package es.ull.simulation.inforeceiver;
 
 import java.util.concurrent.TimeUnit;
 
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.TimeChangeInfo;
 
 /**
@@ -31,7 +31,7 @@ public class DelayListener extends Listener {
 	 * @see com.ull.simulation.inforeceiver.InfoReceiver#infoEmited(com.ull.simulation.info.SimulationInfo)
 	 */
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		try {
 			TimeUnit.SECONDS.sleep(timeout);
 		} catch (InterruptedException e) {

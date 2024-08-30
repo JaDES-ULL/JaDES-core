@@ -3,7 +3,7 @@
  */
 package es.ull.simulation.inforeceiver;
 
-import es.ull.simulation.info.SimulationInfo;
+import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
 import es.ull.simulation.info.TimeChangeInfo;
 
@@ -24,7 +24,7 @@ public class ProgressView extends Listener {
 	}
 
 	@Override
-	public void infoEmited(SimulationInfo info) {
+	public void infoEmited(IPieceOfInformation info) {
 		if (info instanceof SimulationStartStopInfo) {
 			final SimulationStartStopInfo tInfo = (SimulationStartStopInfo)info;
 		

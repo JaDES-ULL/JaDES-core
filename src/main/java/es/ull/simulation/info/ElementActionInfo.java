@@ -9,10 +9,10 @@ import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.flow.IActionFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 
-public class ElementActionInfo extends TimeStampedInfo {
+public class ElementActionInfo extends SimulationInfo {
 	
 	/** Possible types of element information */
-	public enum Type implements IInfoType {
+	public enum Type implements IPieceOfInformation.IInfoType {
 			REQ		("REQUEST RESOURCES"),
 			ACQ		("ACQUIRE RESOURCES"),
 			START	("START DELAY"), 

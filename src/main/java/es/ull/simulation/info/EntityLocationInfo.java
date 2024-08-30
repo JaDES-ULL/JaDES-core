@@ -11,9 +11,9 @@ import es.ull.simulation.model.location.IMovable;
  * @author Iván Castilla Rodríguez
  *
  */
-public class EntityLocationInfo extends TimeStampedInfo {
+public class EntityLocationInfo extends SimulationInfo {
 	/** Possible types of element information */
-	public enum Type implements IInfoType {
+	public enum Type implements IPieceOfInformation.IInfoType {
 			ARRIVE	("ARRIVE AT LOCATION"),
 			LEAVE	("LEAVE FROM LOCATION"),
 			START	("START AT LOCATION"),
