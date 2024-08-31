@@ -10,7 +10,7 @@ import es.ull.simulation.model.engine.SimulationEngine;
  * @author Ivan Castilla Rodriguez
  *
  */
-public abstract class SimulationObject implements Comparable<SimulationObject>, IIdentifiable, IDebuggable,
+public abstract class SimulationObject implements Comparable<SimulationObject>, IIdentifiable, ILoggable,
 		TimeFunctionParams {
 	protected final Simulation simul;
 	private final String objectTypeId;
@@ -83,20 +83,16 @@ public abstract class SimulationObject implements Comparable<SimulationObject>, 
 		return simul.getTs();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.ull.simulation.Debuggable#debug(java.lang.String)
-	 */
     public void debug(String message) {
-    	IDebuggable.super.debug(this.toString() + "\t" + getTs() + "\t" + message);
+		logger.debug(this.toString() + "\t" + getTs() + "\t" + message);
+	}
+
+    public void trace(String message) {
+		logger.trace(this.toString() + "\t" + getTs() + "\t" + message);
 	}
 	
-    /*
-     * (non-Javadoc)
-     * @see com.ull.simulation.Debuggable#error(java.lang.String)
-     */
 	public void error(String description) {
-		IDebuggable.super.error(this.toString() +
+		logger.error(this.toString() +
 				"\t" + getTs() + "\t" + description);
 	}
 

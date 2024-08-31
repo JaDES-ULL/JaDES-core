@@ -48,12 +48,12 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 			@Override
 			public void afterFinalize(ElementInstance ei) {
 				super.afterFinalize(ei);
-				ei.getElement().debug("Finished");
+				ei.getElement().trace("Finished");
 			}
 			
 			@Override
 			public boolean beforeRequest(ElementInstance ei) {
-				ei.getElement().debug("Passed");
+				ei.getElement().trace("Passed");
 				if (elementsPassedPerTime.get(getTs()) == null) {
 					elementsPassedPerTime.put(getTs(), 1);
 				} else {
@@ -67,7 +67,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 		final WaitForSignalFlow waitFlow = new WaitForSignalFlow(this, "Wait", listener) {
 			@Override
 			public boolean beforeRequest(ElementInstance ei) {
-				ei.getElement().debug("Trying to pass");
+				ei.getElement().trace("Trying to pass");
 				return super.beforeRequest(ei);
 			}
 		};
@@ -134,7 +134,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 			public void event() {
 				final int n = (int)Math.ceil(waiting.size() / 2.0);
 				if (n > 0)
-					SimListener.this.debug("Allowing " + n + " elements to pass");
+					SimListener.this.trace("Allowing " + n + " elements to pass");
 				for (int i = 0; i < n; i++) {
 					IFlow.signal(waiting.remove(0));
 				}

@@ -33,7 +33,7 @@ import es.ull.simulation.variable.IVariable;
  * @author Ivan Castilla Rodriguez
  *
  */
-public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, IDebuggable, IHandlesInformation {
+public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, ILoggable, IHandlesInformation {
 	/** The default time unit used by the simulation */
 	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
 	/** If true, notifies Activity Managers that an element is available randomly; otherwise,
@@ -218,14 +218,16 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		return RANDOM_NOTIFY_AMS;
 	}
 
-	@Override
 	public void debug(final String description) {
-		IDebuggable.super.debug(this.toString() + "\t" + getTs() + "\t" + description);
+		logger.debug(this.toString() + "\t" + getTs() + "\t" + description);
 	}
 
-	@Override
+	public void trace(final String description) {
+		logger.trace(this.toString() + "\t" + getTs() + "\t" + description);
+	}
+
 	public void error(final String description) {
-		IDebuggable.super.error(this.toString() + "\t" + getTs() + "\t" + description);
+		logger.error(this.toString() + "\t" + getTs() + "\t" + description);
 	}
 
 	/**
@@ -278,7 +280,7 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		amCreator.createActivityManagers();
 		debugPrintActManager();					
 		simulationEngine.initializeEngine();
-		debug("SIMULATION MODEL CREATED");
+		trace("SIMULATION MODEL CREATED\t" + getTs());
 		init();
 
 		infoHandler.notifyInfo(new SimulationStartStopInfo(this, SimulationStartStopInfo.Type.START, startTs));
@@ -295,14 +297,10 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 		
 		simulationEngine.simulationLoop();
 
-		debug("SIMULATION FINISHES");
-		debug("Simulation time = " + getTs());
-		debug("Previewed simulation time = " + endTs);
+		trace("SIMULATION FINISHES\t" + getTs() + "\t[EXPECTED " + endTs + "]");
     	simulationEngine.printState();
 		
-		infoHandler.notifyInfo(new SimulationStartStopInfo(this, SimulationStartStopInfo.Type.END, endTs));
-		debug("SIMULATION COMPLETELY FINISHED");
-    	
+		infoHandler.notifyInfo(new SimulationStartStopInfo(this, SimulationStartStopInfo.Type.END, endTs));    	
         // The user defined method for finalization is invoked
 		end();
 	}
@@ -593,12 +591,10 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * Prints the contents of the activity managers created.
 	 */
 	protected void debugPrintActManager() {
-		if (isDebugEnabled()) {
-			StringBuffer str1 = new StringBuffer("Activity Managers:\r\n");
-			for (ActivityManager am : amList)
-				str1.append(am.getDescription() + "\r\n");
-			debug(str1.toString());
-		}
+		StringBuffer str1 = new StringBuffer("Activity Managers:\r\n");
+		for (ActivityManager am : amList)
+			str1.append(am.getDescription() + "\r\n");
+		debug(str1.toString());
 	}
 
 	@Override

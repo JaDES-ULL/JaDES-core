@@ -145,19 +145,17 @@ public class StandardActivityManagerCreator extends ActivityManagerCreator {
 		 * the links.
 		 */
 		void debug() {
-			if (simul.isDebugEnabled()) {
-				StringBuffer str = new StringBuffer();
-				// Pinto el graph para chequeo
-				for (ResourceType rt : keySet()) {
-					str.append("Resource Type (" + rt.getIdentifier() + "): " + rt.getDescription()
-							+ "\r\n");
-					str.append("\tNeighbours: ");
-					for (ResourceType nodo : get(rt))
-						str.append(nodo + "\t");
-					str.append("\r\n");
-				}
-				simul.debug("Graph created\r\n" + str.toString());
+			StringBuffer str = new StringBuffer();
+			// Pinto el graph para chequeo
+			for (ResourceType rt : keySet()) {
+				str.append("Resource Type (" + rt.getIdentifier() + "): " + rt.getDescription()
+						+ "\r\n");
+				str.append("\tNeighbours: ");
+				for (ResourceType nodo : get(rt))
+					str.append(nodo + "\t");
+				str.append("\r\n");
 			}
+			simul.debug("Graph created\r\n" + str.toString());
 		}
 	}
 

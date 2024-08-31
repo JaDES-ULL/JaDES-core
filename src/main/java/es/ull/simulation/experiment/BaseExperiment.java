@@ -21,7 +21,6 @@ public abstract class BaseExperiment implements IExperiment {
         super();
         this.description = description;
 		this.arguments = arguments;
-		setDebugEnabled(arguments.debug);
 		this.progress = new PrintProgress(arguments.nRuns + 1);
     }
 

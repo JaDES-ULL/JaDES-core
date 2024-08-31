@@ -101,7 +101,7 @@ public class ResourceType extends SimulationObject implements IEntityType {
      * @param res New available resource.
      */
     protected void incAvailable(Resource res) {
-    	debug("Resource added\t" + res);
+    	trace("Resource added\t" + res);
         availableResourceList.add(res);
 		// If the resource was being used in a previous "availability period", it was marked as
         // "timeOut". This mark can be removed.
@@ -114,7 +114,7 @@ public class ResourceType extends SimulationObject implements IEntityType {
      * @param res New unavailable resource.
      */
     protected void decAvailable(Resource res) {
-    	debug("Resource removed\t" + res);
+    	trace("Resource removed\t" + res);
         // If the resource is being used for this resource type, it's marked as "timeOut"
         if (availableResourceList.remove(res) && (res.getCurrentResourceType() == this))
         	res.setTimeOut(true);

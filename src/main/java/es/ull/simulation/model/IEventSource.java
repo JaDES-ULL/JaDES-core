@@ -9,7 +9,7 @@ package es.ull.simulation.model;
  * @author Ivan Castilla Rodriguez
  *
  */
-public interface IEventSource extends IDebuggable {
+public interface IEventSource extends ILoggable {
 	
 	/**
 	 * Creates an event for the moment the simulation creates this object

@@ -92,7 +92,7 @@ public class WFP10Simulation extends StandardTestSimulation {
         final MultiChoiceFlow mul1 = new MultiChoiceFlow(this) {
         	@Override
         	public boolean beforeRequest(ElementInstance ei) {
-        		ei.getElement().debug("Current volume: " + getCapacity());
+        		ei.getElement().trace("Current volume: " + getCapacity());
          		return true;
         	}
         };
@@ -101,7 +101,7 @@ public class WFP10Simulation extends StandardTestSimulation {
     		@Override
     		public void afterFinalize(ElementInstance ei) {
     			final double filling = fillBin();
-    			ei.getElement().debug("Added: "+ filling + " / Current volume: " + getCapacity());
+    			ei.getElement().trace("Added: "+ filling + " / Current volume: " + getCapacity());
     		}
     	};
     	
@@ -109,7 +109,7 @@ public class WFP10Simulation extends StandardTestSimulation {
     		@Override
     		public boolean beforeRequest(ElementInstance ei) {
     			incDeliveries();
-    			ei.getElement().debug("Sent: " + deliveries);
+    			ei.getElement().trace("Sent: " + deliveries);
     			return true;
     		}
     	};

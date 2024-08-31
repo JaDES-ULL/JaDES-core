@@ -291,7 +291,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     	final MoveResourcesFlow flow = (MoveResourcesFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
     	final IRouter router = flow.getRouter();
-		debug("Start route\t" + this + "\t" + destination);
+		trace("Start route\t" + this + "\t" + destination);
     	movingInstance = ei;
     	// No need to move
     	if (currentLocation.equals(destination)) {
@@ -320,7 +320,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     	final TransportFlow flow = (TransportFlow)ei.getCurrentFlow();
     	final Location destination = flow.getDestination();
     	final IRouter router = flow.getRouter();
-		debug("Start transport\t" + this + "\t" + destination);
+		trace("Start transport\t" + this + "\t" + destination);
     	movingInstance = ei;
     	// No need to move
     	if (currentLocation.equals(destination)) {
@@ -351,7 +351,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
 		flow.notifyArrival(movingInstance, success);
     	movingInstance = null;
     	if (success)
-			debug("Finishes route\t" + this + "\t" + flow.getDestination());
+			trace("Finishes route\t" + this + "\t" + flow.getDestination());
     	else
 			error("Destination unreachable. Current: " + currentLocation + "; destination: " +
 					flow.getDestination());
@@ -369,7 +369,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
     	if (success) {
 			flow.finish(movingInstance);
     		movingInstance = null;
-    		debug("Finishes transport\t" + this + "\t" + flow.getDestination());
+    		trace("Finishes transport\t" + this + "\t" + flow.getDestination());
     	}
     	else {
 			movingInstance.cancel(flow);
@@ -608,7 +608,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
         	final long waitTime = role.beforeRoleOn();
         	if (waitTime == 0) {
         		simul.notifyInfo(new ResourceInfo(simul, Resource.this, role, ResourceInfo.Type.ROLON, ts));
-        		debug("Resource available\t" + role);
+        		trace("Resource available\t" + role);
         		role.incAvailable(Resource.this);
         		engine.addRole(role, ts + duration);
         		role.afterRoleOn();
@@ -662,7 +662,7 @@ public class Resource extends VariableStoreSimulationObject implements IDescriba
         		simul.notifyInfo(new ResourceInfo(simul, Resource.this, role, ResourceInfo.Type.ROLOFF, ts));
         		role.decAvailable(Resource.this);
         		engine.removeRole(role);
-        		debug("Resource unavailable\t" + role);
+        		trace("Resource unavailable\t" + role);
         		final long nextTs = (iter == null) ? -1 : iter.next();
         		if (nextTs != -1) {
         			RoleOnEvent rEvent = new RoleOnEvent(nextTs, role, iter, duration);

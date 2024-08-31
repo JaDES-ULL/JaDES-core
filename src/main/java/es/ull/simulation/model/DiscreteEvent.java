@@ -99,7 +99,7 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
         }
         
         public void event() {
-        	source.debug("Ends execution");
+        	ILoggable.logger.trace(this + "\tEnds execution");
         }
     }
 
@@ -117,7 +117,7 @@ public abstract class DiscreteEvent implements Runnable, Comparable<DiscreteEven
         }
 
         public void event() {
-        	source.debug("Starts Execution");
+        	ILoggable.logger.trace(this + "\tStarts Execution");
         }
     }
 }

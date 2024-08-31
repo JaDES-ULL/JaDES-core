@@ -165,8 +165,7 @@ public class ReleaseResourcesFlow extends AbstractSingleSuccessorFlow implements
     	final ArrayDeque<Resource> resources = ei.releaseCaughtResources();
 		simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(),
 				this, ei.getExecutionWG(), resources, ElementActionInfo.Type.REL, simul.getTs()));
-		if (ei.getElement().isDebugEnabled())
-			ei.getElement().debug("Finishes\t" + this + "\t" + getDescription());
+		ei.getElement().trace("Finishes\t" + this + "\t" + getDescription());
 		afterFinalize(ei);
     }
 

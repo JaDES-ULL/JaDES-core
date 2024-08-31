@@ -22,8 +22,5 @@ public class CommonArguments {
 	public boolean parallel = false;
 	@Parameter(names = { "--quiet", "-q" }, description = "Quiet execution (does not print progress info)", order = 6)
 	public boolean quiet = false;
-	@Parameter(names = { "--debug", "-d" }, description = "Debug enabled: prints all the debug messages", order = 6)
-	public boolean debug = false;
-
     
 }

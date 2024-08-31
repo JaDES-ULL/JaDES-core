@@ -166,8 +166,7 @@ public class ActivityManagerEngine extends AbstractEngineObject {
 		for (final ElementInstance ei : currentQueue) {
 			final Element elem = ei.getElement();
 			final RequestResourcesFlow reqFlow = (RequestResourcesFlow) ei.getCurrentFlow();
-			if (elem.isDebugEnabled())
-				elem.debug("Calling availableElement()\t" + reqFlow + "\t" + reqFlow.getDescription());
+			elem.trace("Calling availableElement()\t" + reqFlow + "\t" + reqFlow.getDescription());
 			if (!elem.isExclusive()) {
 				final ArrayDeque<Resource> solution = reqFlow.isFeasible(ei);
 				if (solution != null) {

@@ -184,15 +184,13 @@ public class SimulationEngine implements IIdentifiable {
 	 * time, the contents of the future event list and the execution queue. 
 	 */
 	public void printState() {
-		if (simul.isDebugEnabled()) {
-			StringBuffer strLong = new StringBuffer("------    LP STATE    ------");
-			strLong.append("LVT: " + lvt + "\r\n");
-	        strLong.append(waitQueue.size() + " waiting elements: ");
-	        for (DiscreteEvent e : waitQueue)
-	            strLong.append(e + " ");
-	        strLong.append("\r\n------ LP STATE FINISHED ------\r\n");
-			simul.debug(strLong.toString());
-		}
+		StringBuffer strLong = new StringBuffer("------    LP STATE    ------");
+		strLong.append("LVT: " + lvt + "\r\n");
+		strLong.append(waitQueue.size() + " waiting elements: ");
+		for (DiscreteEvent e : waitQueue)
+			strLong.append(e + " ");
+		strLong.append("\r\n------ LP STATE FINISHED ------\r\n");
+		simul.debug(strLong.toString());
 	}
 
     /**
@@ -270,7 +268,7 @@ public class SimulationEngine implements IIdentifiable {
 	            // Updates the simulation clock
 	            lvt = newLVT;
 	    		simul.notifyInfo(new TimeChangeInfo(simul, lvt));
-	            simul.debug("SIMULATION TIME ADVANCING " + lvt);
+	            simul.trace("SIMULATION TIME ADVANCING " + lvt);
 			}
 		}
 	}

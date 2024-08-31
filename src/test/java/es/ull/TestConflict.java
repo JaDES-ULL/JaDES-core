@@ -22,7 +22,6 @@ class ExpConflict extends BaseExperiment {
     
     ExpConflict(CommonArguments arguments) {
     	super("CHECKING CONFLICTS", arguments);
-		setDebugEnabled(true); 
     }
     
     /**

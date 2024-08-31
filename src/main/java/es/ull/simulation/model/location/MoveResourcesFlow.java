@@ -141,7 +141,7 @@ public class MoveResourcesFlow extends AbstractSingleSuccessorFlow implements IT
 	 */
 	public void finish(final ElementInstance ei) {
 		if (ei.isExecutable()) {
-			ei.getElement().debug("All resources arrived at destination\t" + this + "\t" + getDescription());
+			ei.getElement().trace("All resources arrived at destination\t" + this + "\t" + getDescription());
 			afterFinalize(ei);			
 		}
 		next(ei);

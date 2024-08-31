@@ -228,7 +228,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
         	final ArrayDeque<Resource> solution = new ArrayDeque<Resource>(); 
             if (engine.checkWorkGroup(solution, wg, ei)) {
                 ei.setExecutionWG(wg);
-        		ei.getElement().debug("Can carry out \t" + this + "\t" + wg);
+        		ei.getElement().trace("Can carry out \t" + this + "\t" + wg);
                 return solution;
             }            
         }
@@ -270,8 +270,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
 				if (beforeRequest(ei)) {
 					simul.notifyInfo(new ElementActionInfo(simul, ei, ei.getElement(),
 							this, ei.getExecutionWG(), null, ElementActionInfo.Type.REQ, simul.getTs()));
-					if (ei.getElement().isDebugEnabled())
-						ei.getElement().debug("Requests\t" + this + "\t" + getDescription());
+					ei.getElement().trace("Requests\t" + this + "\t" + getDescription());
 					engine.queueAdd(ei); // The element is introduced in the queue
 					manager.notifyAvailableElement(ei);
 				}

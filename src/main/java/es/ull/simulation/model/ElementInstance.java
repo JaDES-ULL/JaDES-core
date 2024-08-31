@@ -341,13 +341,13 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
     	long auxTs = Long.MAX_VALUE;
     	for (Resource res : solution) {
     		auxTs = Math.min(auxTs, res.catchResource(this));;
-            res.getCurrentResourceType().debug("Resource taken\t" + res + "\t" + getElement());
+            res.getCurrentResourceType().trace("Resource taken\t" + res + "\t" + getElement());
     	}
     	engine.notifyResourcesAcquired();
     	final long ts = elem.getTs();
 		elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
 				executionWG, solution, ElementActionInfo.Type.ACQ, ts));
-		elem.debug("Resources acquired\t" + this + "\t" + reqFlow.getDescription());			
+		elem.trace("Resources acquired\t" + this + "\t" + reqFlow.getDescription());			
 		reqFlow.afterAcquire(this);
 		long delay = Math.round(executionWG.getDurationSample(elem) * remainingTask);
 		auxTs -= ts;
@@ -355,12 +355,12 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 			if (remainingTask == 1.0) {
 				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
 						executionWG, null, ElementActionInfo.Type.START, ts));
-				elem.debug("Start delay\t" + this + "\t" + reqFlow.getDescription());
+				elem.trace("Start delay\t" + this + "\t" + reqFlow.getDescription());
 			}
 			else {
 				elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, reqFlow,
 						executionWG, null, ElementActionInfo.Type.RESACT, ts));
-				elem.debug("Continues\t" + this + "\t" + reqFlow.getDescription());			
+				elem.trace("Continues\t" + this + "\t" + reqFlow.getDescription());			
 			}
 			// The required time for finishing the activity is reduced (useful only for interruptible activities)
 			if (reqFlow.partOfInterruptible() && (delay - auxTs > 0.0)) {
@@ -400,7 +400,7 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 						res.getCurrentResourceType(), ResourceInfo.Type.CANCELON, actualTs));
 				res.generateCancelPeriodOffEvent(actualTs, cancellationDuration);
 			}
-			elem.debug("Returned " + res);
+			elem.trace("Returned " + res);
         	// The resource is freed
         	if (res.releaseResource(this)) {
         		// The activity managers involved are included in the list
@@ -436,15 +436,13 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
 			remainingTask = 0.0;
 			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f,
 					executionWG, null, ElementActionInfo.Type.END, elem.getTs()));
-			if (elem.isDebugEnabled())
-				elem.debug("Finishes\t" + this + "\t" + f.getDescription());
+			elem.trace("Finishes\t" + this + "\t" + f.getDescription());
 			f.afterFinalize(this);
 		}
 		else {
 			elem.getSimulation().notifyInfo(new ElementActionInfo(elem.getSimulation(), this, elem, f,
 					executionWG, null, ElementActionInfo.Type.INTACT, elem.getTs()));
-			if (elem.isDebugEnabled())
-				elem.debug("Finishes part of \t" + this + "\t" + f.getDescription() + "\t" +
+			elem.trace("Finishes part of \t" + this + "\t" + f.getDescription() + "\t" +
 						remainingTask * 100 + "% Left");
 			// Notifies the parent workthread that the activity was interrupted
 		}

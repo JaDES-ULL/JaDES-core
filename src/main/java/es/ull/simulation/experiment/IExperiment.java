@@ -3,14 +3,14 @@
  */
 package es.ull.simulation.experiment;
 
-import es.ull.simulation.model.IDebuggable;
+import es.ull.simulation.model.ILoggable;
 import es.ull.simulation.model.IDescribable;
 
 /**
  * Controls a set of simulation experiments. 
  * @author Iván Castilla Rodríguez
  */
-public interface IExperiment extends IDescribable, IDebuggable {
+public interface IExperiment extends IDescribable, ILoggable {
 	/** 
 	 * Executes the experiment with the given index.
 	 * @param index Number of the experiment to be executed
