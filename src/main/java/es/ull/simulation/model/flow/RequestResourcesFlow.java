@@ -222,7 +222,7 @@ public class RequestResourcesFlow extends AbstractSingleSuccessorFlow implements
 	public ArrayDeque<Resource> isFeasible(final ElementInstance ei) {
     	if (!stillFeasible)
     		return null;
-        Iterator<ActivityWorkGroup> iter = workGroupTable.randomIterator();
+        Iterator<ActivityWorkGroup> iter = workGroupTable.balancedIterator();
         while (iter.hasNext()) {
         	ActivityWorkGroup wg = iter.next();
         	final ArrayDeque<Resource> solution = new ArrayDeque<Resource>(); 

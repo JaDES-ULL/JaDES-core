@@ -18,7 +18,6 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
 import es.ull.simulation.model.flow.RequestResourcesFlow.ActivityWorkGroup;
 import es.ull.simulation.model.flow.ITaskFlow;
 import es.ull.simulation.utils.Prioritizable;
-import es.ull.simulation.utils.RandomPermutation;
 
 /**
  * Represents an instance of an element, so multiple instances of the same element can be active at
@@ -409,19 +408,8 @@ public class ElementInstance implements Prioritizable, Comparable<ElementInstanc
         		}
         	}
         }
-		if (Simulation.isRandomNotifyAMs()) {
-			final int[] order = RandomPermutation.nextPermutation(amList.size());
-			ActivityManager[] ams = new ActivityManager[amList.size()];
-			ams = (ActivityManager[]) amList.toArray(ams);
-			for (int ind : order) {
-				ActivityManager am = ams[ind];
-				am.notifyResource();
-			}
-		}
-		else {
-			for (ActivityManager am : amList) {
-				am.notifyResource();
-			}
+		for (ActivityManager am : amList) {
+			am.notifyResource();
 		}
         return resources;
 	}

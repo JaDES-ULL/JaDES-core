@@ -22,6 +22,9 @@ public abstract class BaseExperiment implements IExperiment {
         this.description = description;
 		this.arguments = arguments;
 		this.progress = new PrintProgress(arguments.nRuns + 1);
+		if (arguments.seed != IExperiment.getSeed()) {
+			IExperiment.setSeed(arguments.seed);
+		}
     }
 
 	@Override

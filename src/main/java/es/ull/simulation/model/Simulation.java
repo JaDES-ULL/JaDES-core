@@ -35,11 +35,7 @@ import es.ull.simulation.variable.IVariable;
  */
 public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, ILoggable, IHandlesInformation {
 	/** The default time unit used by the simulation */
-	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 
-	/** If true, notifies Activity Managers that an element is available randomly; otherwise,
-	 * the notification is purely sequential */
-	private final static boolean RANDOM_NOTIFY_AMS = false;
-	
+	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 	
 	/** A short text describing this simulation. */
 	protected final String description;
 	/** Time unit of the simulation */
@@ -208,14 +204,6 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 			gen.assignSimulation(simulationEngine);
 		for (ActivityManager am : amList)
 			am.assignSimulation(simulationEngine);
-	}
-
-	/**
-	 * Returns whether {@link ActivityManager Activity managers} are notified randomly when an element is available
-	 * @return True is activity managers are notified randomly; false otherwise.
-	 */
-	public static boolean isRandomNotifyAMs() {
-		return RANDOM_NOTIFY_AMS;
 	}
 
 	public void debug(final String description) {

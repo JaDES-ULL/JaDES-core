@@ -4,6 +4,8 @@
 package es.ull.simulation.experiment;
 
 import es.ull.simulation.model.ILoggable;
+import simkit.random.RandomNumber;
+import simkit.random.RandomNumberFactory;
 import es.ull.simulation.model.IDescribable;
 
 /**
@@ -11,6 +13,17 @@ import es.ull.simulation.model.IDescribable;
  * @author Iván Castilla Rodríguez
  */
 public interface IExperiment extends IDescribable, ILoggable {
+	RandomNumber randomNumber = RandomNumberFactory.getInstance();
+
+	/** */
+	public static long getSeed() {
+		return randomNumber.getSeed();
+	}
+
+	public static void setSeed(long seed) {
+		randomNumber.setSeed(seed);
+	}
+
 	/** 
 	 * Executes the experiment with the given index.
 	 * @param index Number of the experiment to be executed
