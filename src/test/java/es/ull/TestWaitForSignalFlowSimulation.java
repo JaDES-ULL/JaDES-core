@@ -180,7 +180,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 		TestArguments arguments = new TestArguments();
 		arguments.simEnd = 35;
 		arguments.nElements = 10;
-		new TestWaitForSignalFlowSimulation(arguments).start();
+		new TestWaitForSignalFlowSimulation(arguments).run();
 
 	}
 

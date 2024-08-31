@@ -28,8 +28,7 @@ class ExperimentProbSel extends BaseExperiment {
 	public void runExperiment(int ind) {
 		Simulation sim = null;
 		TimeUnit unit = TimeUnit.MINUTE;
-		SimulationFactory factory = new SimulationFactory(ind, "EjProbabilidades", TimeUnit.MINUTE,
-				TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "EjProbabilidades");
 		sim = factory.getSimulation();
 
     	ActivityFlow act0 = (ActivityFlow)factory.getFlowInstance("ActivityFlow", "10 %", 0,
@@ -77,7 +76,7 @@ class ExperimentProbSel extends BaseExperiment {
 		
 		StdInfoView debugView = new StdInfoView();
 		sim.registerListener(debugView);
-		sim.run();
+		sim.run(TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 	}
 	
 

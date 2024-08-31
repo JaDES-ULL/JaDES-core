@@ -22,7 +22,7 @@ import es.ull.simulation.model.flow.ParallelFlow;
  * 
  */
 class ExpOverlapped extends BaseExperiment {
-	final static TimeUnit unit = TimeUnit.MINUTE;
+	final static TimeUnit unit = Simulation.DEF_TIME_UNIT;
     static final int NDAYS = 1;
 	final static int NELEM = 3;
 	final static int NRESOURCES = 2;
@@ -33,8 +33,7 @@ class ExpOverlapped extends BaseExperiment {
 	}
 
 	public void runExperiment(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "Sistema de análisis", unit,
-				TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "Sistema de análisis");
 		Simulation sim = factory.getSimulation();
 
         // PASO 1: Inicializo las Activityes de las que se compone
@@ -99,7 +98,7 @@ class ExpOverlapped extends BaseExperiment {
 						factory.getElementTypeInstance("ET0"), metaFlow, c);
 		
 		sim.registerListener(new StdInfoView());
-		sim.run();
+		sim.run(TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 	}
 }
 

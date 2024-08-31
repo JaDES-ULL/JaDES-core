@@ -9,6 +9,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
+import es.ull.performance.BenchmarkModel.ModelType;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.model.Simulation;
@@ -33,6 +34,16 @@ public class BenchmarkTest {
 		if (arguments.ovType < 0 || arguments.ovType >= BenchmarkModel.OverlappingType.values().length) {
 			throw new ParameterException("Invalid overlapping type. Must be a number >= 0 and < " + BenchmarkModel.OverlappingType.values().length);
 		}
+		// Force time horizon for certain models
+		switch(ModelType.values()[arguments.modType]) {
+			case PARALLEL: arguments.timeHorizon = arguments.nElem * arguments.nAct * (arguments.nIter + 1) + 1; break;
+			case NORESOURCES:
+			case RESOURCES: 
+			case MIXCONFLICT: 
+			case TOTALCONFLICT:
+			case CONFLICT:
+			default: arguments.timeHorizon = arguments.nElem * (arguments.nIter + 1) + 1; break;
+		}				
 
 		BaseExperiment exp = new BaseExperiment("Same Time", arguments) {
 			long t1;
@@ -57,7 +68,7 @@ public class BenchmarkTest {
 				Simulation sim = config.getTestModel(); 
 				
 				sim.registerListener(new BenchmarkListener(System.out));
-				sim.run();;
+				sim.run(arguments.timeHorizon);
 			}
 			
 		};

@@ -89,7 +89,7 @@ public class TestConditionalResourceGeneratorSimulation extends StandardTestSimu
         arguments.simEnd = 60;
         arguments.nElements = 1;
         arguments.resStart = 0;
-		new TestConditionalResourceGeneratorSimulation(arguments).start();
+		new TestConditionalResourceGeneratorSimulation(arguments).run();
 	}
 
 }

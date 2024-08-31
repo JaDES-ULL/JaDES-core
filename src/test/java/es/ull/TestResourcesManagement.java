@@ -24,12 +24,12 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  *
  */
 public class TestResourcesManagement extends BaseExperiment {
-	final static TimeUnit UNIT = TimeUnit.MINUTE;
+	final static TimeUnit UNIT = Simulation.DEF_TIME_UNIT;
 	final static long END_TIME = 100;
 
 	class ModelResourceManagement extends Simulation {
 		public ModelResourceManagement(int ind) {
-			super(ind, "Testing resource management " + ind, UNIT, 0, END_TIME);
+			super(ind, "Testing resource management " + ind);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -102,7 +102,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	
 	class ModelResourceManagementDefaultGroup extends Simulation {
 		public ModelResourceManagementDefaultGroup(int ind) {
-			super(ind, "Testing resource management " + ind, UNIT, 0, END_TIME);
+			super(ind, "Testing resource management " + ind);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -175,7 +175,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	
 	class ModelResourceManagementSimple extends Simulation {
 		public ModelResourceManagementSimple(int ind) {
-			super(ind, "Testing simple resource management " + ind, UNIT, 0, END_TIME);
+			super(ind, "Testing simple resource management " + ind);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -213,8 +213,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	
 	class ModelResourceManagementCheckingRTs extends Simulation {
 		public ModelResourceManagementCheckingRTs(int ind) {
-			super(ind, "Testing simple resource management with several different resource types"
-					+ ind, UNIT, 0, END_TIME);
+			super(ind, "Testing simple resource management with several different resource types" + ind);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -274,7 +273,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelResourceManagementDefaultGroup(ind);
 		simul.registerListener(new StdInfoView());
-		simul.run();;
+		simul.run(END_TIME);;
 	}
 
 	/**

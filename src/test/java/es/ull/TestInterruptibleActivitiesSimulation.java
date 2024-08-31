@@ -5,7 +5,6 @@ package es.ull;
 
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
-import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 
@@ -46,7 +45,7 @@ public class TestInterruptibleActivitiesSimulation extends StandardTestSimulatio
 		targs.resStart = 20L;
 		targs.resPeriod	= 100L;
 		targs.resAvailability = 40L;
-		Simulation sim = new TestInterruptibleActivitiesSimulation(targs);
+		StandardTestSimulation sim = new TestInterruptibleActivitiesSimulation(targs);
 		sim.run();
 	}
 

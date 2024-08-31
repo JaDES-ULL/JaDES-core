@@ -29,7 +29,7 @@ public class VariableManagerTest {
 	}
 
 	static class ExperimentManagerTest1 extends BaseExperiment {
-		final static TimeUnit unit = TimeUnit.MINUTE;
+		final static TimeUnit unit = Simulation.DEF_TIME_UNIT;
 		static final int NDAYS = 1;
 		static final double PERIOD = 1040.0;
 		
@@ -39,8 +39,7 @@ public class VariableManagerTest {
 	
 		public void runExperiment(int ind) {
 			boolean quiet = getArguments().quiet;
-			SimulationFactory factory = new SimulationFactory(ind, "Ej", unit, TimeStamp.getZero(),
-					new TimeStamp(TimeUnit.DAY, NDAYS));
+			SimulationFactory factory = new SimulationFactory(ind, "Ej");
 			Simulation sim = factory.getSimulation();
 	
 			factory.getFlowInstance("ActivityFlow", "Verificar cuenta", 0, false, false);
@@ -70,7 +69,7 @@ public class VariableManagerTest {
 			if (!quiet)
 				System.out.println("Valor del enumerado: " + sim.getVar("tipoCoche").toString());
 	
-			sim.run();
+			sim.run(new TimeStamp(TimeUnit.DAY, NDAYS));
 		}
 	}
 	}

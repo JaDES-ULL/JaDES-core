@@ -9,7 +9,6 @@ import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.inforeceiver.StdInfoView;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.TimeUnit;
 
 /**
  * Main class to execute the "hospital" tutorial example.
@@ -42,9 +41,9 @@ public class BasicHospitalMain extends BaseExperiment {
 
 	@Override
 	public void runExperiment(int ind) {
-		final Simulation simul = new BasicHospitalModel(ind, TimeUnit.MINUTE, 0, 7 * 24 * 60);
+		final Simulation simul = new BasicHospitalModel(ind);
 		simul.registerListener(new StdInfoView());
-		simul.run();
+		simul.run(0, 7 * 24 * 60);
 	}
 
 	/**

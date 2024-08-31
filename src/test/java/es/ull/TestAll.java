@@ -5,7 +5,6 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import es.ull.StandardTestSimulation.TestArguments;
 import es.ull.simulation.experiment.BaseExperiment;
-import es.ull.simulation.model.Simulation;
 
 public class TestAll {
     public enum TestType {
@@ -25,7 +24,7 @@ public class TestAll {
 
         @Override
         public void runExperiment(int ind) {
-            Simulation simul = null;
+            StandardTestSimulation simul = null;
             switch (expId) {
                 case WAIT_FOR_SIGNAL:
                     args.simEnd = 35;

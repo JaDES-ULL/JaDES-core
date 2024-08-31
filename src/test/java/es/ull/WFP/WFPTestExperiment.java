@@ -5,8 +5,8 @@ package es.ull.WFP;
 
 import com.beust.jcommander.JCommander;
 
+import es.ull.StandardTestSimulation;
 import es.ull.simulation.experiment.BaseExperiment;
-import es.ull.simulation.model.Simulation;
 
 /**
  * @author Iván Castilla Rodríguez
@@ -24,7 +24,7 @@ public class WFPTestExperiment extends BaseExperiment {
 	
 	@Override
 	public void runExperiment(int ind) {
-		Simulation simul = null;
+		StandardTestSimulation simul = null;
 		switch (wfp) {
 			case 1:		simul = new WFP01Simulation(ind, args);	break;
 			case 2:		simul = new WFP02Simulation(ind, args);	break;

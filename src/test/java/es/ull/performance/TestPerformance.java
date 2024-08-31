@@ -7,17 +7,12 @@ import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.model.Simulation;
-import es.ull.simulation.model.TimeStamp;
-import es.ull.simulation.model.TimeUnit;
 
 /**
  * @author Iván Castilla Rodríguez
  *
  */
 public class TestPerformance {
-	final static TimeUnit unit = TimeUnit.MINUTE;
-	final static TimeStamp STARTTS = TimeStamp.getZero();
-	final static TimeStamp ENDTS = TimeStamp.getZero();
 
 	/**
 	 * @param args
@@ -29,7 +24,7 @@ public class TestPerformance {
 
 			@Override
 			public void runExperiment(int ind) {
-				SimulationFactory factory = new SimulationFactory(ind, "SimTest", unit, STARTTS, ENDTS);
+				SimulationFactory factory = new SimulationFactory(ind, "SimTest");
 				Simulation sim = factory.getSimulation();
 				int i = 0;
 				try {
@@ -45,7 +40,7 @@ public class TestPerformance {
 //					System.out.println("Not enough memory with " + i + " activities");
 //				}
 				
-				sim.run();
+				sim.run(0L);
 			}			
 		}.run();
 

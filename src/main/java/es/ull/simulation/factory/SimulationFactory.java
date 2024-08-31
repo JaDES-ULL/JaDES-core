@@ -12,8 +12,6 @@ import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.ISimulationCycle;
 import es.ull.simulation.model.TimeDrivenElementGenerator;
-import es.ull.simulation.model.TimeStamp;
-import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.IFlow;
 import es.ull.simulation.model.flow.IInitializerFlow;
@@ -37,30 +35,8 @@ public class SimulationFactory {
 	 * @param startTs
 	 * @param endTs
 	 */
-	public SimulationFactory(int id, String description, long startTs, long endTs) {
-		simul = new Simulation(id, description, startTs, endTs);
-	}
-
-	/**
-	 * @param id
-	 * @param description
-	 * @param unit
-	 * @param startTs
-	 * @param endTs
-	 */
-	public SimulationFactory(int id, String description, TimeUnit unit, long startTs, long endTs) {
-		simul = new Simulation(id, description, unit, startTs, endTs);
-	}
-
-	/**
-	 * @param id
-	 * @param description
-	 * @param unit
-	 * @param startTs
-	 * @param endTs
-	 */
-	public SimulationFactory(int id, String description, TimeUnit unit, TimeStamp startTs, TimeStamp endTs) {
-		simul = new Simulation(id, description, unit, startTs, endTs);
+	public SimulationFactory(int id, String description) {
+		simul = new Simulation(id, description);
 	}
 
 	public Simulation getSimulation() {

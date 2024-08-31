@@ -20,7 +20,6 @@ import es.ull.simulation.factory.UserMethod;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.SimulationTimeFunction;
 import es.ull.simulation.model.TimeStamp;
-import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.functions.TimeFunctionFactory;
 
@@ -43,7 +42,7 @@ public class BenchmarkModel {
 	 * - PARALLEL: Each resource simultaneously requests ALL the activities. 
 	 * @author Iván Castilla Rodríguez
 	 */
-	enum ModelType {NORESOURCES, RESOURCES, CONFLICT, MIXCONFLICT, TOTALCONFLICT, PARALLEL}
+	public enum ModelType {NORESOURCES, RESOURCES, CONFLICT, MIXCONFLICT, TOTALCONFLICT, PARALLEL}
 	/**
 	 * Defines the temporal behaviour of the elements when requesting the activities:
 	 * - SAMETIME: All the elements request the activities at the same time
@@ -53,8 +52,7 @@ public class BenchmarkModel {
 	 */
 	enum OverlappingType {SAMETIME, CONSECUTIVE, MIXED};
 	final private String head;
-	final static private TimeUnit unit = TimeUnit.MINUTE;
-	final static private SimulationTimeFunction oneFunction = new SimulationTimeFunction(unit,
+	final static private SimulationTimeFunction oneFunction = new SimulationTimeFunction(Simulation.DEF_TIME_UNIT,
 			"ConstantVariate", 1);
 	final int id;
 	final ModelType modType;
@@ -89,15 +87,7 @@ public class BenchmarkModel {
 		this.rtXact = arguments.rtXAct;
 		this.rtXres = arguments.rtXRes;
 		this.resAvailabilityFactor = arguments.resAvailabilityFactor;
-		switch(modType) {
-			case PARALLEL: this.endTs = new TimeStamp(TimeUnit.MINUTE, nElem * nAct * (nIter + 1) + 1); break;
-			case NORESOURCES:
-			case RESOURCES: 
-			case MIXCONFLICT: 
-			case TOTALCONFLICT:
-			case CONFLICT:
-			default: this.endTs = new TimeStamp(TimeUnit.MINUTE, nElem * (nIter + 1) + 1); break;
-		}
+		this.endTs = new TimeStamp(Simulation.DEF_TIME_UNIT, arguments.timeHorizon);
 		String auxHead = "ParallelSimulation Type\tModel Type\tOverlapping Type\tThreads\tIterations";
 		if (modType == ModelType.CONFLICT)
 			auxHead += "\tRTxACT\tRTxRES";
@@ -107,7 +97,7 @@ public class BenchmarkModel {
 			auxHead += "\tMix";
 		auxHead += "\tActivities\tElements";
 		head = auxHead;
-		this.allCycle = new SimulationPeriodicCycle(unit, TimeStamp.getZero(), new SimulationTimeFunction(unit,
+		this.allCycle = new SimulationPeriodicCycle(Simulation.DEF_TIME_UNIT, TimeStamp.getZero(), new SimulationTimeFunction(Simulation.DEF_TIME_UNIT,
 				"ConstantVariate", endTs.getValue()), 0);
 	}
 	
@@ -164,7 +154,7 @@ public class BenchmarkModel {
 			    	acts[i].newWorkGroupAdder(wgs[i]).withDelay(nElem).add();
 				for (ForLoopFlow smf : smfs) {
 					factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
-							"ConstantVariate", 1), et, smf, new SimulationPeriodicCycle(unit,
+							"ConstantVariate", 1), et, smf, new SimulationPeriodicCycle(Simulation.DEF_TIME_UNIT,
 							TimeStamp.getZero(), oneFunction, nElem));
 				}
 				break;
@@ -173,7 +163,7 @@ public class BenchmarkModel {
 			    	acts[i].newWorkGroupAdder(wgs[i]).withDelay(nElem  / mixFactor).add();
 				for (ForLoopFlow smf : smfs) {
 					factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
-							"ConstantVariate", 1), et, smf, new SimulationPeriodicCycle(unit,
+							"ConstantVariate", 1), et, smf, new SimulationPeriodicCycle(Simulation.DEF_TIME_UNIT,
 							TimeStamp.getZero(), oneFunction, nElem));
 				}
 				break;
@@ -198,7 +188,7 @@ public class BenchmarkModel {
 		Resource[] res = new Resource[nElem * nAct];
 		ActivityFlow[] acts = new ActivityFlow[nAct];
 		
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 		
@@ -234,7 +224,7 @@ public class BenchmarkModel {
 		ActivityFlow[] acts = new ActivityFlow[nAct];
 		ForLoopFlow[] smfs = new ForLoopFlow[nAct];
 		
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 		
@@ -263,7 +253,7 @@ public class BenchmarkModel {
 		ActivityFlow[] acts = new ActivityFlow[nAct];
 		ForLoopFlow[] smfs = new ForLoopFlow[nAct];
 		
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 		
@@ -293,7 +283,7 @@ public class BenchmarkModel {
 		WorkGroup[] wgs = new WorkGroup[nAct];
 		Resource[] res = new Resource[nElem];
 
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 		
@@ -327,7 +317,7 @@ public class BenchmarkModel {
 		WorkGroup[] wgs = new WorkGroup[nAct];
 		Resource[] res = new Resource[nElem];
 
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 		
@@ -361,7 +351,7 @@ public class BenchmarkModel {
 		ActivityFlow[] acts = new ActivityFlow[nAct];
 		ForLoopFlow[] smfs = new ForLoopFlow[nAct];
 		
-		SimulationFactory factory = new SimulationFactory(id, "TEST", unit, TimeStamp.getZero(), endTs);
+		SimulationFactory factory = new SimulationFactory(id, "TEST");
 		
 		SimulationUserCode code = addWorkLoad(factory);
 	

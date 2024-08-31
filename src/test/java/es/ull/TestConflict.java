@@ -18,7 +18,7 @@ import es.ull.simulation.model.flow.IInitializerFlow;
 
 class ExpConflict extends BaseExperiment {
     static final int NDAYS = 1;
-	static final TimeUnit unit = TimeUnit.MINUTE;
+	static final TimeUnit unit = Simulation.DEF_TIME_UNIT;
     
     ExpConflict(CommonArguments arguments) {
     	super("CHECKING CONFLICTS", arguments);
@@ -127,11 +127,10 @@ class ExpConflict extends BaseExperiment {
     
 	@Override
 	public void runExperiment(int ind) {
-		SimulationFactory factory = new SimulationFactory(ind, "TestConflicts", unit, TimeStamp.getZero(),
-				new TimeStamp(TimeUnit.DAY, NDAYS));
+		SimulationFactory factory = new SimulationFactory(ind, "TestConflicts");
 		Simulation sim = factory.getSimulation();
 		createSimulation1(factory);
-		sim.run();
+		sim.run(TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 	}	
 }
 /**

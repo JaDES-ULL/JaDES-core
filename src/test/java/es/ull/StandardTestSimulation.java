@@ -48,7 +48,7 @@ public abstract class StandardTestSimulation extends Simulation {
 	private final TestArguments args;
 	
 	public StandardTestSimulation(int id, String description, TestArguments args) {
-		super(id, description, SIMSTART, args.simEnd);
+		super(id, description);
 		nElems = new ArrayList<Integer>();
 		actDuration = new ArrayList<Long>();
 		actIndex = new TreeMap<ITaskFlow, Integer>();
@@ -230,6 +230,10 @@ public abstract class StandardTestSimulation extends Simulation {
 
 	public void registerRoleOff(int resId, int rtId, long[] roleOffTimestamps) {
 		roleOffs.add(new ResourceUsageTimeStamps(resId, rtId, roleOffTimestamps));
+	}
+
+	public void run() {
+		run(SIMSTART, args.simEnd);
 	}
 
 	/**

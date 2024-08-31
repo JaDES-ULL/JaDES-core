@@ -21,12 +21,12 @@ import es.ull.simulation.model.flow.RequestResourcesFlow;
  *
  */
 public class TestReleaseWorkGroup extends BaseExperiment {
-	final static TimeUnit UNIT = TimeUnit.MINUTE;
+	final static TimeUnit UNIT = Simulation.DEF_TIME_UNIT;
 	final static long END_TIME = 100;
 
 	class ModelReleaseManagement extends Simulation {
 		public ModelReleaseManagement (int ind) {
-			super(ind, "Testing resource management " + ind, UNIT, 0, END_TIME);
+			super(ind, "Testing resource management " + ind);
 			
 			// The only element type
 			final ElementType et = new ElementType(this, "Package");
@@ -78,7 +78,7 @@ public class TestReleaseWorkGroup extends BaseExperiment {
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelReleaseManagement(ind);
 		simul.registerListener(new StdInfoView());
-		simul.run();
+		simul.run(0, END_TIME);
 	}
 
 	/**

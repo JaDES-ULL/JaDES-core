@@ -11,6 +11,7 @@ import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
+import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
@@ -24,8 +25,8 @@ class TestDynamicGenerationExperiment extends BaseExperiment {
 
 	@Override
 	public void runExperiment(int ind) {
-		TimeUnit unit = TimeUnit.MINUTE;
-		SimulationFactory factory = new SimulationFactory(ind, "Test Dynamic", unit, 0, 1);
+		TimeUnit unit = Simulation.DEF_TIME_UNIT;
+		SimulationFactory factory = new SimulationFactory(ind, "Test Dynamic");
 		
 		ResourceType rt0 = factory.getResourceTypeInstance("RT0");
 		ResourceType rt1 = factory.getResourceTypeInstance("RT1");
@@ -45,7 +46,7 @@ class TestDynamicGenerationExperiment extends BaseExperiment {
 		
 		factory.getElementTypeInstance("ET0");
 		factory.getFlowInstance("SingleFlow", act0);
-		factory.getSimulation().run();
+		factory.getSimulation().run(0, 1);
 	}
 }
 

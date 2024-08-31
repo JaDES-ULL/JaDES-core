@@ -111,8 +111,8 @@ public class TestResourcesLocation extends BaseExperiment {
 	}
 
 	class SimulLocation extends Simulation {
-		public SimulLocation(int id, long endTs) {
-			super(id, "Simulating locations " + id, 0, endTs);
+		public SimulLocation(int id) {
+			super(id, "Simulating locations " + id);
 			final MyRouter IRouter = new MyRouter(); 
 			final ElementType et = new ElementType(this, "Delivery request from home");
 			final ResourceType rtTruck = new ResourceType(this, "Delivery truck");
@@ -152,9 +152,9 @@ public class TestResourcesLocation extends BaseExperiment {
 
 	@Override
 	public void runExperiment(int ind) {
-		final SimulLocation sim =  new SimulLocation(ind, ENDTS);
+		final SimulLocation sim =  new SimulLocation(ind);
 		sim.registerListener(new LocationListener());
-		sim.run();
+		sim.run(ENDTS);
 	}
 
 	/**

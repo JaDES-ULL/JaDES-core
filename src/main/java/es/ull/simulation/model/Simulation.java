@@ -33,9 +33,9 @@ import es.ull.simulation.variable.IVariable;
  * @author Ivan Castilla Rodriguez
  *
  */
-public class Simulation implements IIdentifiable, Runnable, IDescribable, IVariableStore, ILoggable, IHandlesInformation {
+public class Simulation implements IIdentifiable, IDescribable, IVariableStore, ILoggable, IHandlesInformation {
 	/** The default time unit used by the simulation */
-	private final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 	
+	public final static TimeUnit DEF_TIME_UNIT = TimeUnit.MINUTE; 	
 	/** A short text describing this simulation. */
 	protected final String description;
 	/** Time unit of the simulation */
@@ -77,35 +77,21 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	protected ActivityManagerCreator amCreator = null;
 	
 	/** A value representing the simulation's start timestamp without unit */
-	protected final long startTs;
+	protected long startTs;
 
 	/** A value representing the simulation's end timestamp without unit */
-	protected final long endTs;
-
+	protected long endTs;
+	
 	/**
-	 * Creates a new instance of a simulation using the default time unit.
-	 * 
-	 * @param id Simulation identifier
-	 * @param description A short text describing this simulation.
-	 * @param startTs Simulation start expressed in simulation time units
-	 * @param endTs Simulation end expressed in simulation time units
-	 */
-	public Simulation(final int id, final String description, final long startTs, final long endTs) {
-		this(id, description, DEF_TIME_UNIT, startTs, endTs);
-	}
-
-	/**
-	 * Creates a new instance of a simulation 
+	 * Creates a new instance of a simulation
 	 *
 	 * @param id Simulation identifier
 	 * @param description A short text describing this simulation.
-	 * @param unit This simulation's time unit
-	 * @param startTs Simulation start timestamp
-	 * @param endTs Simulation end timestamp
 	 */
-	public Simulation(final int id, final String description, final TimeUnit unit, final TimeStamp startTs,
-					  final TimeStamp endTs) {
-		this(id, description, unit, unit.convert(startTs), unit.convert(endTs));
+	public Simulation(final int id, final String description) {
+		this.id = id;
+		this.description = description;
+		unit = DEF_TIME_UNIT;
 	}
 	
 	/**
@@ -113,30 +99,16 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 *
 	 * @param id Simulation identifier
 	 * @param description A short text describing this simulation.
-	 * @param unit This simulation's time unit
-	 * @param startTs Simulation start expressed in simulation time units
-	 * @param endTs Simulation end expressed in simulation time units
 	 */
-	public Simulation(final int id, final String description, final TimeUnit unit, final long startTs,
-					  final long endTs) {
+	public Simulation(final int id, final String description, final TimeUnit unit) {
 		this.id = id;
-		this.unit = unit;
 		this.description = description;
-		this.startTs = startTs;
-		this.endTs = endTs;
+		this.unit = unit;
 	}
 	
 	@Override
 	public int getIdentifier() {
 		return id;
-	}
-	
-	/**
-	 * Returns the default simulation time unit 
-	 * @return the default simulation time unit
-	 */
-	public static TimeUnit getDefTimeUnit() {
-		return DEF_TIME_UNIT;
 	}
 
 	/**
@@ -227,21 +199,41 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	}
 	
 	/**
-	 * Starts the simulation execution in a threaded way. Initializes all the structures, and
-	 * starts the workers. 
-	 */
-	public void start() {
-		new Thread(this).start();		
-	}
-	
-	/**
 	 * Adds a new event to the simulation
 	 * @param ev New event
 	 */
 	public void addEvent(final DiscreteEvent ev) {
 		simulationEngine.addEvent(ev);
 	}
-	
+
+	/**
+	 * Starts the execution of the simulation at timestamp 0 using the default time unit.
+	 * 
+	 * @param endTs Simulation end timestamp
+	 */
+	public void run(final TimeStamp endTs) {
+		run(0L, unit.convert(endTs));
+	}
+
+	/**
+	 * Starts the execution of the simulation at timestamp 0 using the default time unit.
+	 * @param unit This simulation's time unit
+	 * @param endTs Simulation end expressed in simulation default time units
+	 */
+	public void run(final long endTs) {
+		run(0L, endTs);
+	}
+
+	/**
+	 * Starts the execution of the simulation using the default time unit.
+	 * 
+	 * @param startTs Simulation start timestamp
+	 * @param endTs Simulation end timestamp
+	 */
+	public void run(final TimeStamp startTs, final TimeStamp endTs) {
+		run(unit.convert(startTs), unit.convert(endTs));
+	}
+
 	/**
 	 * Starts the execution of the simulation. It creates and initializes all the necessary 
 	 * structures.<p> The following checks and initializations are performed within this method:
@@ -255,9 +247,12 @@ public class Simulation implements IIdentifiable, Runnable, IDescribable, IVaria
 	 * <li>The main simulation loop is run</li>
 	 * <li>The user defined method {@link #end()} is invoked.</li>
 	 * </ol>
+	 * @param startTs Simulation start expressed in simulation default time units
+	 * @param endTs Simulation end expressed in simulation default  time units
      */ 
-	@Override
-	public void run() {
+	public void run(long startTs, long endTs) {
+		this.startTs = startTs;
+		this.endTs = endTs;
 		// Sets default simulation engine
 		if (simulationEngine == null) {
 			setSimulationEngine(new SimulationEngine(id, this));

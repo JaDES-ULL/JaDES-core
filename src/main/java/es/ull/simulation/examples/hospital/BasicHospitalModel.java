@@ -12,7 +12,6 @@ import es.ull.simulation.model.SimulationPeriodicCycle;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.TimeDrivenElementGenerator;
-import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.ExclusiveChoiceFlow;
@@ -46,8 +45,8 @@ public class BasicHospitalModel extends Simulation {
 	 * @param startTs
 	 * @param endTs
 	 */
-	public BasicHospitalModel(int id, TimeUnit unit, long startTs, long endTs) {
-		super(id, "Hospital", unit, startTs, endTs);
+	public BasicHospitalModel(int id) {
+		super(id, "Hospital");
 		// Define the model
 		
 		// The only element type: patients

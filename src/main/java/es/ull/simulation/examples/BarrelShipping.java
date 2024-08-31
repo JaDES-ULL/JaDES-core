@@ -19,7 +19,6 @@ import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationWeeklyPeriodicCycle;
-import es.ull.simulation.model.TimeUnit;
 import es.ull.simulation.model.WorkGroup;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.IFlow;
@@ -38,7 +37,7 @@ class BarrelShippingExperiment extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		SimulationFactory factory = new SimulationFactory(
-				ind, "Barrel shipping", TimeUnit.MINUTE, 0, NDAYS * 24 * 60);
+				ind, "Barrel shipping");
 		Simulation simul = factory.getSimulation();
 		
 		// Declares global model variables
@@ -116,7 +115,7 @@ class BarrelShippingExperiment extends BaseExperiment {
 				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
 		simul.registerListener(new StdInfoView());
-		simul.run();
+		simul.run(0, NDAYS * 24 * 60);
 	}
 
 }
