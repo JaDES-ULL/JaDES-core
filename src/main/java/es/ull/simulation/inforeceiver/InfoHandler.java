@@ -41,6 +41,27 @@ public class InfoHandler implements IHandlesInformation {
 	}
 
 	/**
+	 * Returns the listeners that are interested in receiving information of a certain type.
+	 * @param infoTypeClass The type of information.
+	 * @return The listeners that are interested in receiving information of the given type.
+	 */
+	public ArrayList<Listener> getListeners(Class<? extends IPieceOfInformation> infoTypeClass) {
+		return registeredListeners.get(infoTypeClass);
+	}
+
+	/**
+	 * Returns all the listeners that are interested in receiving information.
+	 * @return All the listeners that are interested in receiving information.
+	 */
+	public ArrayList<Listener> getListeners() {
+		ArrayList<Listener> listeners = new ArrayList<Listener>();
+		for (ArrayList<Listener> list: registeredListeners.values()) {
+			listeners.addAll(list);
+		}
+		return listeners;
+	}
+
+	/**
 	 * Notifies the listeners that a piece of information has been generated.
 	 * @param info The piece of information that has been generated.
 	 */

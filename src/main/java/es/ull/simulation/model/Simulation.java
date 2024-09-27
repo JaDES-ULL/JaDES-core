@@ -590,6 +590,23 @@ public class Simulation implements IIdentifiable, IDescribable, IVariableStore, 
 		infoHandler.notifyInfo(info);
 	}
 	
+	/**
+	 * Returns the listeners attached to this simulation that are interested in receiving information of a certain type.
+	 * @param infoTypeClass The type of information.
+	 * @return The listeners that are interested in receiving information of the given type.
+	 */
+	public ArrayList<Listener> getListeners(final Class<? extends IPieceOfInformation> infoTypeClass) {
+		return infoHandler.getListeners(infoTypeClass);
+	}
+
+	/**
+	 * Returns all the listeners attached to this simulation that are interested in receiving information.
+	 * @return All the listeners that are interested in receiving information.
+	 */
+	public ArrayList<Listener> getListeners() {
+		return infoHandler.getListeners();
+	}
+
 	// User methods
 	
 	/**

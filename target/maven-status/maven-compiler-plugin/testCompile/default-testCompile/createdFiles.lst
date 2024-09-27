@@ -2,7 +2,6 @@ es\ull\ExperimentProbSel.class
 es\ull\WFP\WFP12Simulation.class
 es\ull\location\TestTransport$MyRouter.class
 es\ull\TestAll$TestType.class
-es\ull\WFP\package-info.class
 es\ull\performance\ResourceList2.class
 es\ull\WFP\WFP21Simulation_For.class
 es\ull\CheckElementsListener.class
@@ -30,7 +29,6 @@ es\ull\StandardTestSimulation$TestArguments.class
 es\ull\WFP\WFP21Simulation_WhileDo.class
 es\ull\WFP\WFP10Simulation$WFP10Condition.class
 es\ull\TestWaitForSignalFlowSimulation.class
-es\ull\location\package-info.class
 es\ull\CheckActivitiesListener.class
 es\ull\location\TestTransport$LocationListener.class
 es\ull\TestConflict.class
@@ -100,7 +98,6 @@ es\ull\WFP\WFP41_42Simulation.class
 es\ull\CheckResourcesListener$1.class
 es\ull\TestAll$1.class
 es\ull\location\TestTransport$SimulLocation.class
-es\ull\package-info.class
 es\ull\location\TestLocation.class
 es\ull\TestConditionalResourceGeneratorSimulation$SpecialActivityFlow.class
 es\ull\TestResourcesManagement$ModelResourceManagementSimple.class
@@ -110,4 +107,5 @@ es\ull\TestResourcesManagement$ModelResourceManagement.class
 es\ull\WFP\TestWFP$TestWFPArguments.class
 es\ull\TestWaitForSignalFlowSimulation$2.class
 es\ull\location\TestLocation$LocationListener.class
+es\ull\performance\BenchmarkTest$2.class
 es\ull\CheckActivitiesListener$PairQueue.class
