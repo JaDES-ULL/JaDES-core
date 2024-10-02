@@ -13,7 +13,7 @@ import es.ull.simulation.info.SimulationStartStopInfo;
  * @author Iván Castilla Rodríguez
  *
  */
-public class CpuTimeView extends Listener {
+public class CpuTimeView extends BasicListener {
 	protected long iniT = Long.MAX_VALUE;
 	protected long endT = Long.MAX_VALUE;
 	private final boolean print;

@@ -10,13 +10,13 @@ import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 
 /**
  * @author Iván Castilla Rodríguez
  *
  */
-public class BenchmarkListener extends Listener {
+public class BenchmarkListener extends BasicListener {
 
 	long elemEvents = 0;
 	long startEv = 0;

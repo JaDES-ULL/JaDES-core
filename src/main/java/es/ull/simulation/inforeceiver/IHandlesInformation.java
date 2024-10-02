@@ -10,7 +10,7 @@ public interface IHandlesInformation {
 	 * Registers a listener to receive information of a certain type.
 	 * @param listener The listener that wants to receive the information.
 	 */
-	public void registerListener(Listener listener);
+	public void registerListener(BasicListener listener);
 
 	/**
 	 * Notifies the listeners that a piece of information has been generated.

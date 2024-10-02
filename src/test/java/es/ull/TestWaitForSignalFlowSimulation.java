@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 import es.ull.simulation.model.DiscreteEvent;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
@@ -149,7 +149,7 @@ public class TestWaitForSignalFlowSimulation extends StandardTestSimulation {
 		
 	}
 
-	class CheckerListener extends Listener {
+	class CheckerListener extends BasicListener {
 		final private int nElements;
 		public CheckerListener(int nElements) {
 			super("Checker");

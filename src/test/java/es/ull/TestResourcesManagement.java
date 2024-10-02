@@ -6,7 +6,7 @@ package es.ull;
 import es.ull.simulation.condition.ResourceTypeAcquiredCondition;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.SimulationPeriodicCycle;
@@ -272,7 +272,7 @@ public class TestResourcesManagement extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelResourceManagementDefaultGroup(ind);
-		simul.registerListener(new StdInfoView());
+		simul.registerListener(new StdInfoListener());
 		simul.run(END_TIME);;
 	}
 

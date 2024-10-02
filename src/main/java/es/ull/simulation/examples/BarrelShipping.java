@@ -12,7 +12,7 @@ import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.factory.SimulationUserCode;
 import es.ull.simulation.factory.UserMethod;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
@@ -114,7 +114,7 @@ class BarrelShippingExperiment extends BaseExperiment {
 		factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
 				"ConstantVariate", 1.0), etShipping, actFilling, cGen);
 
-		simul.registerListener(new StdInfoView());
+		simul.registerListener(new StdInfoListener());
 		simul.run(0, NDAYS * 24 * 60);
 	}
 

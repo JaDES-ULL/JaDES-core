@@ -13,7 +13,7 @@ import es.ull.simulation.info.TimeChangeInfo;
  * The delay lasts {@link DelayListener#timeout} seconds.
  * @author Iván Castilla Rodríguez
  */
-public class DelayListener extends Listener {
+public class DelayListener extends BasicListener {
 	private final long timeout;
 	
 	/**

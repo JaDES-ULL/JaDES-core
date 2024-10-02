@@ -3,7 +3,7 @@ import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -74,7 +74,7 @@ class ExperimentProbSel extends BaseExperiment {
         factory.getTimeDrivenElementGeneratorInstance(TimeFunctionFactory.getInstance(
 				"ConstantVariate", 100), et, root, cGen);
 		
-		StdInfoView debugView = new StdInfoView();
+		StdInfoListener debugView = new StdInfoListener();
 		sim.registerListener(debugView);
 		sim.run(TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 	}

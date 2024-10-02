@@ -5,7 +5,7 @@ package es.ull;
 
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -77,7 +77,7 @@ public class TestReleaseWorkGroup extends BaseExperiment {
 	@Override
 	public void runExperiment(int ind) {
 		final Simulation simul = new ModelReleaseManagement(ind);
-		simul.registerListener(new StdInfoView());
+		simul.registerListener(new StdInfoListener());
 		simul.run(0, END_TIME);
 	}
 

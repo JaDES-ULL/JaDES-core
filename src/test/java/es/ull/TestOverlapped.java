@@ -6,7 +6,7 @@ import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
 import es.ull.simulation.factory.SimulationFactory;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -97,7 +97,7 @@ class ExpOverlapped extends BaseExperiment {
 				"ConstantVariate", NELEM),
 						factory.getElementTypeInstance("ET0"), metaFlow, c);
 		
-		sim.registerListener(new StdInfoView());
+		sim.registerListener(new StdInfoListener());
 		sim.run(TimeStamp.getZero(), new TimeStamp(TimeUnit.DAY, NDAYS));
 	}
 }

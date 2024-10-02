@@ -13,7 +13,7 @@ import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.EntityLocationInfo;
 import es.ull.simulation.info.IPieceOfInformation;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.ResourceType;
 import es.ull.simulation.model.Simulation;
@@ -135,7 +135,7 @@ public class TestResourcesLocation extends BaseExperiment {
 		
 	}
 
-	class LocationListener extends Listener {
+	class LocationListener extends BasicListener {
 
 		public LocationListener() {
 			super("Location listener");

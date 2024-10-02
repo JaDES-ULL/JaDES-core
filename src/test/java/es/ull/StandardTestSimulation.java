@@ -10,7 +10,7 @@ import com.beust.jcommander.Parameter;
 
 import es.ull.CheckResourcesListener.ResourceUsageTimeStamps;
 import es.ull.simulation.experiment.CommonArguments;
-import es.ull.simulation.inforeceiver.StdInfoView;
+import es.ull.simulation.inforeceiver.StdInfoListener;
 import es.ull.simulation.model.ElementType;
 import es.ull.simulation.model.Resource;
 import es.ull.simulation.model.ResourceType;
@@ -69,7 +69,7 @@ public abstract class StandardTestSimulation extends Simulation {
 	 */
 	protected void addCheckers() {
 		if (!args.quiet)
-			registerListener(new StdInfoView());
+			registerListener(new StdInfoListener());
 		registerListener(new CheckResourcesListener(roleOns, roleOffs));
 		registerListener(new CheckElementsListener(nElems));
 		int n = 0;

@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 
 /**
  * Checks the elements created and finished during the simulation
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckElementsListener extends Listener {
+public class CheckElementsListener extends BasicListener {
 	private final static String ERROR_FINISHED = "Wrong number of elements finished";
 	private final static String ERROR_CREATED = "Wrong number of elements created";
 	private ArrayList<Integer> elements;

@@ -15,14 +15,14 @@ import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.ResourceInfo;
 import es.ull.simulation.info.ResourceUsageInfo;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 import es.ull.simulation.model.ResourceType;
 
 /**
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckResourcesListener extends Listener {
+public class CheckResourcesListener extends BasicListener {
 	private final static String ERROR_ROLON1 = "Wrong activation time of resource role";
 	private final static String ERROR_ROLON2 = "Resource activating for unexpected role";
 	private final static String ERROR_ROLON3 = "Resource never activated for role";

@@ -13,7 +13,7 @@ import java.util.TreeMap;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 import es.ull.simulation.model.ElementInstance;
 import es.ull.simulation.model.flow.ActivityFlow;
 import es.ull.simulation.model.flow.DelayFlow;
@@ -23,7 +23,7 @@ import es.ull.simulation.model.flow.ITaskFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckActivitiesListener extends Listener {
+public class CheckActivitiesListener extends BasicListener {
 	private final static String ERROR_ACQ_NOT_REQ = "Resources acquired but not requested";
 	private final static String ERROR_START_NOT_REQ = "Activity started but not requested";
 	private final static String ERROR_END_NOT_REQ = "Activity ended but not requested";

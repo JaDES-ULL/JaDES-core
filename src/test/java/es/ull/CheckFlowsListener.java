@@ -10,7 +10,7 @@ import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.ElementInfo;
 import es.ull.simulation.info.IPieceOfInformation;
 import es.ull.simulation.info.SimulationStartStopInfo;
-import es.ull.simulation.inforeceiver.Listener;
+import es.ull.simulation.inforeceiver.BasicListener;
 import es.ull.simulation.model.Element;
 import es.ull.simulation.model.flow.IActionFlow;
 import es.ull.simulation.model.flow.IFlow;
@@ -22,7 +22,7 @@ import es.ull.simulation.model.flow.AbstractSingleSuccessorFlow;
  * @author Iván Castilla Rodríguez
  *
  */
-public class CheckFlowsListener extends Listener {
+public class CheckFlowsListener extends BasicListener {
 	private final NodeInfo[] checkStructure;
 
 	/**
