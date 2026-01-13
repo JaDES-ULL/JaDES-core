@@ -57,7 +57,8 @@ public class BenchmarkTest {
 			@Override
 			public void afterFinalize() {
 				super.afterFinalize();
-				if (!arguments.quiet)
+				// TODO: This should be integrated with logger levels.
+				//if (!arguments.quiet)
 					System.out.println("TOTAL EXPERIMENT: " + ((System.nanoTime() - t1) / 1000000) + " miliseconds");
 			}
 			

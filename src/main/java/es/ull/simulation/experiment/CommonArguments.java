@@ -5,7 +5,7 @@ import com.beust.jcommander.Parameter;
 /** 
  * Commonly used arguments for the simulation experiments.
  */
-public class CommonArguments {
+public class CommonArguments implements IExperimentConfigurationProvider {
 	@Parameter(names = { "--runs", "-r" }, description = "Number of simulation experiments to launch", order = 1)
 	public int nRuns = 1;
  	@Parameter(names = { "--seed", "-s" }, description = "Seed for the random number generator", order = 3)
@@ -16,6 +16,25 @@ public class CommonArguments {
 	public int nThreads = Runtime.getRuntime().availableProcessors();
 	@Parameter(names = { "--parallel", "-p" }, description = "Enables parallel execution", order = 4)
 	public boolean parallel = false;
-	@Parameter(names = { "--quiet", "-q" }, description = "Quiet execution (does not print progress info)", order = 3)
-	public boolean quiet = false;
+	
+	@Override
+	public int getNRuns() {
+		return nRuns;
+	}
+	@Override
+	public long getSeed() {
+		return seed;
+	}
+	@Override
+	public int getTimeHorizon() {
+		return timeHorizon;
+	}
+	@Override
+	public int getNThreads() {
+		return nThreads;
+	}
+	@Override
+	public boolean isParallel() {
+		return parallel;
+	}
 }

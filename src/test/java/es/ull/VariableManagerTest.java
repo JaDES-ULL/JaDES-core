@@ -3,6 +3,7 @@ package es.ull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 import com.beust.jcommander.JCommander;
 
@@ -29,6 +30,7 @@ public class VariableManagerTest {
 	}
 
 	static class ExperimentManagerTest1 extends BaseExperiment {
+		private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ExperimentManagerTest1.class); 
 		final static TimeUnit unit = Simulation.DEF_TIME_UNIT;
 		static final int NDAYS = 1;
 		static final double PERIOD = 1040.0;
@@ -38,7 +40,6 @@ public class VariableManagerTest {
 		}
 	
 		public void runExperiment(int ind) {
-			boolean quiet = getArguments().quiet;
 			SimulationFactory factory = new SimulationFactory(ind, "Ej");
 			Simulation sim = factory.getSimulation();
 	
@@ -50,24 +51,20 @@ public class VariableManagerTest {
 			IntVariable temp = (IntVariable) sim.getVar("Coste");
 			temp.setValue(temp.getValue().intValue() * 10); 
 			assertEquals(sim.getVar("Coste").getValue(), 2000);
-			if (!quiet)
-				System.out.println("Coste de la actividad = " + sim.getVar("Coste").toString());
+			logger.debug("Coste de la actividad = " + sim.getVar("Coste").toString());
 			
 			((IntVariable)sim.getVar("Coste total")).setValue(sim.getVar("Coste").getValue());
 			assertEquals(sim.getVar("Coste total").getValue(), 2000);
-			if (!quiet)
-				System.out.println("Coste total= " + sim.getVar("Coste total").toString());
+			logger.debug("Coste total= " + sim.getVar("Coste total").toString());
 			
 			EnumType type = new EnumType("Deportivo", "Familiar", "Gasoil");
 			sim.putVar("tipoCoche", new EnumVariable(type, Integer.valueOf(0)));
 			((EnumVariable)sim.getVar("tipoCoche")).setValue(2);
 			assertEquals(sim.getVar("tipoCoche").toString(), "Gasoil");
-			if (!quiet)
-				System.out.println("Valor del enumerado: " + sim.getVar("tipoCoche").toString());
+			logger.debug("Valor del enumerado: " + sim.getVar("tipoCoche").toString());
 			((EnumVariable)sim.getVar("tipoCoche")).setValue("Deportivo");
 			assertEquals(sim.getVar("tipoCoche").toString(), "Deportivo");
-			if (!quiet)
-				System.out.println("Valor del enumerado: " + sim.getVar("tipoCoche").toString());
+			logger.debug("Valor del enumerado: " + sim.getVar("tipoCoche").toString());
 	
 			sim.run(new TimeStamp(TimeUnit.DAY, NDAYS));
 		}
