@@ -9,6 +9,7 @@ import com.beust.jcommander.JCommander;
 
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
+import es.ull.simulation.experiment.CommonArgumentsDefaultProvider;
 import es.ull.simulation.functions.TimeFunctionFactory;
 import es.ull.simulation.info.ElementActionInfo;
 import es.ull.simulation.info.EntityLocationInfo;
@@ -163,7 +164,7 @@ public class TestTransport extends BaseExperiment {
 	 */
 	public static void main(String[] args) {
 		final CommonArguments arguments = new CommonArguments();
-		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).defaultProvider(new CommonArgumentsDefaultProvider()).build();
 		jc.parse(args);
 
 		new TestTransport(arguments).run();;

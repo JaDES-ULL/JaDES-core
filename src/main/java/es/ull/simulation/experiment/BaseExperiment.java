@@ -19,19 +19,20 @@ public abstract class BaseExperiment implements IExperiment {
 	private final IExperimentConfigurationProvider configProvider;
 	/** A structure to print the progress of simulations */
 	private final PrintProgress progress;
+	/** The number of experiments to be carried out */
+	private final int nExperiments;
 
 	/**
 	 * Creates a new experiment.
 	 * @param description A short text describing this experiment
 	 */
-    public BaseExperiment(String description, IExperimentConfigurationProvider arguments) {
+    public BaseExperiment(String description, IExperimentConfigurationProvider config) {
         super();
         this.description = description;
-		this.configProvider = arguments;
-		this.progress = new PrintProgress(arguments.getNRuns() + 1);
-		if (arguments.getSeed() != IExperiment.getSeed()) {
-			IExperiment.setSeed(arguments.getSeed());
-		}
+		this.configProvider = config;
+		this.nExperiments = (config.getNRuns().isPresent()) ? config.getNRuns().getAsInt() : IExperiment.DEFAULT_RUNS;
+		this.progress = new PrintProgress(nExperiments + 1);
+		IExperiment.setSeed(config.getSeed().isPresent() ? config.getSeed().getAsLong() : IExperiment.getSeed());
     }
 
 	@Override
@@ -44,7 +45,7 @@ public abstract class BaseExperiment implements IExperiment {
 	 * @return The number of experiments to be carried out
 	 */
 	public int getNExperiments() {
-		return configProvider.getNRuns();
+		return nExperiments;
 	}
 
 	/**
@@ -59,11 +60,11 @@ public abstract class BaseExperiment implements IExperiment {
     public void run() {
 		final long time = System.currentTimeMillis();
         beforeStart();
-		final int nExperiments = getNExperiments();
 		progress.print();
 		if (nExperiments > 0) {
-			if (configProvider.isParallel()) {
-				final int nThreads = configProvider.getNThreads();
+			if (configProvider.isParallel().orElse(false)) {
+				final int nThreads = configProvider.getNThreads().isPresent() ? configProvider.getNThreads().getAsInt()
+						: IExperiment.DEFAULT_N_THREADS;
 				try {
 					final Thread[] workers = new Thread[nThreads];
 					int nExperimentsPerThread = nExperiments / nThreads;
@@ -126,7 +127,7 @@ public abstract class BaseExperiment implements IExperiment {
 
 		public PrintProgress(int totalSim) {
 			this.totalSim = totalSim;
-			this.gap = (configProvider.getNRuns() > N_PROGRESS) ? configProvider.getNRuns() / N_PROGRESS : 1;
+			this.gap = (nExperiments > N_PROGRESS) ? nExperiments / N_PROGRESS : 1;
 			this.counter = new AtomicInteger();
 		}
 

@@ -14,6 +14,9 @@ import es.ull.simulation.model.IDescribable;
  */
 public interface IExperiment extends IDescribable, ILoggable {
 	RandomNumber randomNumber = RandomNumberFactory.getInstance();
+	final static int DEFAULT_RUNS = 1;
+	final static int DEFAULT_N_THREADS = Runtime.getRuntime().availableProcessors();
+	final static int DEFAULT_TIME_HORIZON = 100;
 
 	/** */
 	public static long getSeed() {

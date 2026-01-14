@@ -12,6 +12,7 @@ import com.beust.jcommander.ParameterException;
 import es.ull.performance.BenchmarkModel.ModelType;
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
+import es.ull.simulation.experiment.CommonArgumentsDefaultProvider;
 import es.ull.simulation.model.Simulation;
 
 /**
@@ -26,7 +27,7 @@ public class BenchmarkTest {
 	 */
 	public static void main(String[] args) {
         final BenchmarkArguments arguments = new BenchmarkArguments();
-		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).defaultProvider(new CommonArgumentsDefaultProvider()).build();
 		jc.parse(args);
 		if (arguments.modType < 0 || arguments.modType >= BenchmarkModel.ModelType.values().length) {
 			throw new ParameterException("Invalid model type. Must be a number >= 0 and < " + BenchmarkModel.ModelType.values().length);

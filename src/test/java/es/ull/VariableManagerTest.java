@@ -9,6 +9,7 @@ import com.beust.jcommander.JCommander;
 
 import es.ull.simulation.experiment.BaseExperiment;
 import es.ull.simulation.experiment.CommonArguments;
+import es.ull.simulation.experiment.CommonArgumentsDefaultProvider;
 import es.ull.simulation.factory.SimulationFactory;
 import es.ull.simulation.model.Simulation;
 import es.ull.simulation.model.TimeStamp;
@@ -23,7 +24,7 @@ public class VariableManagerTest {
 	@Test
 	public void test1() {
 		final CommonArguments arguments = new CommonArguments();
-		final JCommander jc = JCommander.newBuilder().addObject(arguments).build();
+		final JCommander jc = JCommander.newBuilder().addObject(arguments).defaultProvider(new CommonArgumentsDefaultProvider()).build();
 		jc.parse("-q");
 
 		new ExperimentManagerTest1(arguments).run();
